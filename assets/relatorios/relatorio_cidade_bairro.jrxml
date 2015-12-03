@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.5394743546921208"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="gab_seqcid_bai" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT gab_pk_seq_bai,
+       gab_desc_bai,
+       case gab_regiao_bai when 0 then 'Centro'
+                           when 1 then 'Norte'
+                           when 2 then 'Sul'
+                           when 3 then 'Leste'
+                           when 4 then 'Oeste'
+                           when 5 then 'Distrito'
+                           when 6 then 'Rural'
+                           when 7 then 'Ribeirinha'
+       else ''
+       end regiao,
+       gab_desc_eve,
+       gab_pk_seq_evb,
+       gab_datacomemorativa_evb,
+       gab_desc_evb
+FROM gabtbbai
+LEFT JOIN gabtbevb ON gab_pk_seq_bai = gab_seqbai_evb
+LEFT JOIN gabtbeve ON gab_seqeve_evb = gab_pk_seq_eve
+WHERE gab_seqcid_bai = $P{gab_seqcid_bai}]]>
+	</queryString>
+	<field name="gab_pk_seq_bai" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_desc_bai" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="regiao" class="java.lang.String"/>
+	<field name="gab_desc_eve" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_pk_seq_evb" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_datacomemorativa_evb" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_desc_evb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="14">
+			<staticText>
+				<reportElement x="411" y="0" width="81" height="14" uuid="a8e365f3-dc9f-495a-b363-c8f7aa09eae6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Região]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="0" width="89" height="14" uuid="7361e047-58c5-4ada-bfd3-b41ec92fe166"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="14" uuid="02d531f5-0156-4810-9f36-7df0f118cfc8"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="56" y="0" width="319" height="15" uuid="8045fc02-4721-49dc-a6fe-88e9c0209e3a"/>
+				<textFieldExpression><![CDATA[$F{gab_desc_bai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="50" height="15" uuid="6a8f81e3-79a3-4607-ae52-c9b5f22caf36"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gab_pk_seq_bai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="0" width="81" height="15" uuid="27efe788-b131-4c59-89fc-7b86dc4f19d6"/>
+				<textFieldExpression><![CDATA[$F{regiao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

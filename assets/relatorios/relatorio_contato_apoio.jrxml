@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.948717100000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="gab_seqconpai_pol" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select gab_pk_seq_pol,
+       apoio.gab_nome_con,
+       gab_desc_cgo,
+       case gab_tipo_cgo when 0 then "Publico"
+       else "Privado"
+      end as tipo_cargo
+from gabtbpol
+left join gabtbcon apoioado ON apoioado.gab_pk_seq_con = gab_seqconpai_pol
+left join gabtbcon apoio    ON apoio.gab_pk_seq_con    = gab_seqcon_pol
+left join gabtbcgo          ON apoio.gab_seqcgo_con    = gab_pk_seq_cgo
+where apoioado.gab_pk_seq_con = $P{gab_seqconpai_pol}]]>
+	</queryString>
+	<field name="gab_pk_seq_pol" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_nome_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_desc_cgo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_cargo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="-3" y="-1" width="37" height="15" uuid="63cf9b9a-b29f-4aad-906b-70f83e3e50ec"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="-1" width="70" height="15" uuid="9b667cda-992e-4702-b0b5-da098617dc56"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apoia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="-1" width="70" height="15" uuid="67954bd5-fe19-471f-a336-31339bf06610"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="0" width="44" height="15" uuid="3bac73b4-2b4c-4ec7-b317-210a31ca077b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="37" height="15" uuid="519b140a-5b77-47c0-b696-8a952bd3b01c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gab_pk_seq_pol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="0" width="271" height="15" uuid="3671bd38-4083-4bc8-b08c-5ffc6c59ee1c"/>
+				<textFieldExpression><![CDATA[$F{gab_nome_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="129" height="15" uuid="14ab78be-b144-4505-9cf6-a47295962d5c"/>
+				<textFieldExpression><![CDATA[$F{gab_desc_cgo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="452" y="0" width="88" height="15" uuid="dc6ccfa5-b45b-4708-bfb6-edf26efe09f3"/>
+				<textFieldExpression><![CDATA[$F{tipo_cargo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

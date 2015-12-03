@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
+	<property name="ireport.zoom" value="1.3636363636363789"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM gabtbcon]]>
+	</queryString>
+	<field name="gab_pk_seq_con" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_nome_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_tipo_con" class="java.lang.Integer">
+		<fieldDescription><![CDATA[0- PESSOA 1- OUTROS]]></fieldDescription>
+	</field>
+	<field name="gab_apelido_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_sexo_con" class="java.lang.Integer">
+		<fieldDescription><![CDATA[0- MASCULINO 1- FEMININO]]></fieldDescription>
+	</field>
+	<field name="gab_estadocivil_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_datanasc_con" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_seqprf_con" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_seqcgo_con" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_seqcid_con" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_seqpap_con" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_fone_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_fax_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_celular1_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_celular2_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_celular3_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_email_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_cepresidencial_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_cepcomercial_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_enderesidencial_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_endecomercial_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_nroresidencial_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_nrocomercial_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_observacao_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_seqbai_con" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="TOTAL_REGISTRO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="46">
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="15" uuid="77aee1f6-2e61-4180-ad5e-85de0871255d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Info Rio Sistemas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="11" width="123" height="20" uuid="5168f16c-d8aa-4c1f-bdc5-edf2333c0b22"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aniversariantes]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="515" y="14" width="10" height="15" uuid="b514ee71-0ef4-4a2e-ad33-080c9a1776a3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="15" width="41" height="15" uuid="3d31b837-4f42-4254-89b1-b1d96d2f3330"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="525" y="15" width="17" height="15" uuid="8144e2f5-ac89-497d-9623-66521b449f81"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="540" y="14" width="35" height="15" uuid="df856cb8-6884-4e38-b148-72f3ed50292e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="31" width="80" height="15" uuid="a6fcdb7d-b739-4db2-9bf5-9ada99c72a3a"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[GABPR514]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="2d6829fa-4643-4bc3-a06c-f682233779db"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="16" width="555" height="1" uuid="d4224500-6fc0-4cc1-b228-1798983d227b"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="477" y="4" width="63" height="12" uuid="cf648948-f857-432a-8251-c7c949c2de5b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="3" width="63" height="13" uuid="7d2c1dbb-9367-4bff-ac97-172addf5570d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="4" width="32" height="12" uuid="aa343d14-b5e9-470d-be85-ac838e747359"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="5" width="60" height="12" uuid="32a4f192-65b1-469c-9d09-12945c4e5e95"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Nascto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="4" width="63" height="12" uuid="081c754b-c7d7-4e35-bdf3-179fd6a0ecb5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="4" width="63" height="12" uuid="b8f6131a-e995-4d46-863a-60b1c1ed3ed5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apelido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="2" y="0" width="32" height="15" uuid="b4011a24-6a6a-4dc8-8026-d912c7e2e30d"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gab_pk_seq_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="0" width="77" height="15" uuid="b1d5ebf5-9726-44a6-a0b1-bff17a008d2a"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gab_celular1_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="39" y="0" width="179" height="15" uuid="a7db446a-1e05-4b97-bc6e-7be4b3882431"/>
+				<textElement>
+					<font size="9" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gab_nome_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="0" width="72" height="15" uuid="0884904d-c7c5-4c6d-922b-257e24bdbfc1"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gab_fone_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="220" y="0" width="114" height="15" uuid="18c35406-04ae-4ffd-b825-c68060448c5e"/>
+				<textElement>
+					<font size="9" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gab_apelido_con}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="336" y="0" width="60" height="15" uuid="6b064809-ff1d-4ff1-9d80-c7c85f345ed8"/>
+				<textFieldExpression><![CDATA[$F{gab_datanasc_con} == '0000-00-00' ? '' : $F{gab_datanasc_con}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="9cf8ce3f-f07e-42b7-99aa-4132f79f3279"/>
+			</line>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="0" y="3" width="100" height="15" uuid="848b8a7a-1c20-4a86-9e64-37e852cf4ed8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="3" width="15" height="15" uuid="9b0c30b6-f33f-4cf0-9a29-b80cc2373939"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="416" y="2" width="70" height="15" uuid="b00941ad-1f5c-48a7-a873-fd99106930c8"/>
+				<textFieldExpression><![CDATA[$V{TOTAL_REGISTRO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="316" y="2" width="100" height="15" uuid="89d21ad2-6e4c-4cc9-952e-be9004f8eb3a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de registro ==>]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

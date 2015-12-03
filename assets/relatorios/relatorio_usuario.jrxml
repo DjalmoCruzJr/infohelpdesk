@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
+	<property name="ireport.zoom" value="1.6528925619834771"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT gab_pk_seq_usu,
+       gab_desc_per,
+       gab_nome_usu,
+       gab_login_usu,
+       case gab_ativo_usu when 1 then 'Ativo'
+       else 'Inativo'
+       end as tipo
+FROM gabtbusu
+LEFT JOIN gabtbper ON gab_pk_seq_per = gab_seqper_usu]]>
+	</queryString>
+	<field name="gab_pk_seq_usu" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_desc_per" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_nome_usu" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_login_usu" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String"/>
+	<variable name="TOTAL_REGISTRO" class="java.lang.Integer" calculation="Count"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="51">
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="15" uuid="77aee1f6-2e61-4180-ad5e-85de0871255d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Info Rio Sistemas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="11" width="123" height="20" uuid="5168f16c-d8aa-4c1f-bdc5-edf2333c0b22"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuário]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="515" y="14" width="10" height="15" uuid="b514ee71-0ef4-4a2e-ad33-080c9a1776a3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="15" width="41" height="15" uuid="3d31b837-4f42-4254-89b1-b1d96d2f3330"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="525" y="15" width="17" height="15" uuid="8144e2f5-ac89-497d-9623-66521b449f81"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="540" y="14" width="35" height="15" uuid="df856cb8-6884-4e38-b148-72f3ed50292e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="455" y="31" width="100" height="15" uuid="865be4ae-da68-4afa-9c25-dd157dc8170f"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[GABPR504]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="50" width="555" height="1" uuid="38ab5e50-900a-4973-b89b-b8d93d9e2646"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="39" height="15" uuid="a19588e5-2f8d-4554-8e40-5080b468522a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="-1" width="38" height="15" uuid="d502a701-9ffb-454a-8da0-d64b025fdce3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="63" height="15" uuid="a3f74257-58f1-4715-a8a6-904526574e52"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Login]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="60" height="15" uuid="74c96222-8ca1-444b-919a-cc0609bdaeef"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="1" width="63" height="15" uuid="5a3250fd-9306-4d1c-8aff-136f900842a2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="16" width="555" height="1" uuid="d4825883-8cd9-4a11-87ed-3aa999ea8b15"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="39" height="15" uuid="e4e2b842-a90d-4e32-a20a-94ac4b4c1815"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gab_pk_seq_usu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="288" y="3" width="186" height="15" uuid="3a176d3a-db4d-42e0-84a7-8452b9de6aa4"/>
+				<textFieldExpression><![CDATA[$F{gab_login_usu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="3" width="62" height="14" uuid="f436b200-a4a3-4ad0-b1c5-f44e5cb738fb"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="2" width="83" height="15" uuid="4e74c597-21da-48a4-bbfc-4fcecd9dba48"/>
+				<textFieldExpression><![CDATA[$F{gab_desc_per}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="2" width="144" height="15" uuid="19cf4a68-dc59-4463-80b8-d74539f77556"/>
+				<textFieldExpression><![CDATA[$F{gab_nome_usu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="9cf8ce3f-f07e-42b7-99aa-4132f79f3279"/>
+			</line>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="0" y="3" width="100" height="15" uuid="848b8a7a-1c20-4a86-9e64-37e852cf4ed8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="3" width="15" height="15" uuid="9b0c30b6-f33f-4cf0-9a29-b80cc2373939"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement x="373" y="2" width="100" height="15" uuid="089e0a13-70a9-4ddb-a805-cad7644f3bdc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de registro ==>]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="473" y="2" width="70" height="15" uuid="9cbd943c-e1ea-44a3-b3be-91e856530a3d"/>
+				<textFieldExpression><![CDATA[$V{TOTAL_REGISTRO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

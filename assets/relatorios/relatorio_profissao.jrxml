@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
+	<property name="ireport.zoom" value="2.196150000000024"/>
+	<property name="ireport.x" value="310"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT gab_pk_seq_prf,
+       gab_descricao_prf,
+       gab_diacomemorativo_prf,
+       case gab_mescomemorativo_prf when 1 then 'JAN'
+				    when 2 then 'FEV'
+				    when 3 then 'MAR'
+				    when 4 then 'ABR'
+				    when 5 then 'MAI'
+				    when 6 then 'JUL'
+				    when 7 then 'JUN'
+				    when 8 then 'AGO'
+				    when 9 then 'SET'
+				    when 10 then 'OUT'
+				    when 11 then 'NOV'
+				    when 12 then 'DEZ'
+      else ''
+     end mes
+from gabtbprf]]>
+	</queryString>
+	<field name="gab_pk_seq_prf" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_descricao_prf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_diacomemorativo_prf" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mes" class="java.lang.String"/>
+	<variable name="TOTAL_REGISTRO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{gab_pk_seq_prf}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="47">
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="15" uuid="77aee1f6-2e61-4180-ad5e-85de0871255d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Info Rio Sistemas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="11" width="123" height="20" uuid="5168f16c-d8aa-4c1f-bdc5-edf2333c0b22"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Profissão]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="515" y="14" width="10" height="15" uuid="b514ee71-0ef4-4a2e-ad33-080c9a1776a3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="15" width="41" height="15" uuid="3d31b837-4f42-4254-89b1-b1d96d2f3330"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="525" y="15" width="17" height="15" uuid="8144e2f5-ac89-497d-9623-66521b449f81"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="540" y="14" width="35" height="15" uuid="df856cb8-6884-4e38-b148-72f3ed50292e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="31" width="80" height="15" uuid="a6fcdb7d-b739-4db2-9bf5-9ada99c72a3a"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[GABPR511]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="54" y="0" width="100" height="15" uuid="5a3250fd-9306-4d1c-8aff-136f900842a2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="0" width="39" height="15" uuid="a19588e5-2f8d-4554-8e40-5080b468522a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="0" width="108" height="15" uuid="e439bac2-1639-4cea-a42e-c212b5a6d65e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dia/Mês]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="2d6829fa-4643-4bc3-a06c-f682233779db"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="16" width="555" height="1" uuid="d4224500-6fc0-4cc1-b228-1798983d227b"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="54" y="0" width="340" height="15" uuid="f5c75a85-29d7-4bd0-8c63-1d03ac4ebf72"/>
+				<textFieldExpression><![CDATA[$F{gab_descricao_prf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="0" width="39" height="15" uuid="e4e2b842-a90d-4e32-a20a-94ac4b4c1815"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gab_pk_seq_prf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="0" width="12" height="15" uuid="fe36e29a-c067-42a1-a16e-198221c48e45"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gab_diacomemorativo_prf} == "0" ? "" : $F{gab_diacomemorativo_prf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="416" y="0" width="5" height="15" isPrintWhenDetailOverflows="true" uuid="7ab5eda6-b0db-4e51-846b-1ae67b2c1dbb"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="0" width="65" height="15" uuid="d75d5725-a8ad-46f7-a4fc-63a981025fa7"/>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="9cf8ce3f-f07e-42b7-99aa-4132f79f3279"/>
+			</line>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="0" y="3" width="100" height="15" uuid="848b8a7a-1c20-4a86-9e64-37e852cf4ed8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="3" width="15" height="15" uuid="9b0c30b6-f33f-4cf0-9a29-b80cc2373939"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="416" y="2" width="70" height="15" uuid="b00941ad-1f5c-48a7-a873-fd99106930c8"/>
+				<textFieldExpression><![CDATA[$V{TOTAL_REGISTRO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="316" y="2" width="100" height="15" uuid="89d21ad2-6e4c-4cc9-952e-be9004f8eb3a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de registro ==>]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

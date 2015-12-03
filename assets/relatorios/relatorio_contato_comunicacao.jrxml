@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="gab_seqcon_cco" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT gab_pk_seq_cco,
+       gab_desc_com,
+       gab_desc_cco
+FROM gabtbcco								INNER JOIN gabtbcom ON gab_pk_seq_com = gab_seqcom_cco
+WHERE gab_seqcon_cco = $P{gab_seqcon_cco}]]>
+	</queryString>
+	<field name="gab_pk_seq_cco" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_desc_com" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_desc_cco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="1" y="-1" width="37" height="15" uuid="658ce077-e92a-41dc-8690-2c937bdfa586"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="0" width="100" height="15" uuid="fbe9d29f-546f-412d-bbaf-a9474e02d6a3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comunicação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="0" width="100" height="15" uuid="9db13926-9065-4382-af8f-5fbf7f2ea478"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="48" y="1" width="199" height="15" uuid="dcdf5776-c71e-47f6-830b-3755c40780d8"/>
+				<textFieldExpression><![CDATA[$F{gab_desc_com}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="1" width="268" height="15" uuid="3671bd38-4083-4bc8-b08c-5ffc6c59ee1c"/>
+				<textFieldExpression><![CDATA[$F{gab_desc_cco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="1" width="37" height="15" uuid="519b140a-5b77-47c0-b696-8a952bd3b01c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gab_pk_seq_cco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

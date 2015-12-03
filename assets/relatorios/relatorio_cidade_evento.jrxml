@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.7715610000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="gab_seqcid_evc" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT gab_pk_seq_evc,
+       gab_pk_seq_eve,
+       gab_desc_eve,
+       gab_desc_evc,
+       CASE gab_dia_evc
+        WHEN 1 THEN 'Domingo'
+        WHEN 2 THEN 'Segunda'
+        WHEN 3 THEN 'Terça'
+        WHEN 4 THEN 'Quarta'
+        WHEN 5 THEN 'Quinta'
+        WHEN 6 THEN 'Sexta'
+        WHEN 7 THEN 'Sábado'
+        else ''
+        END AS Dia_Semana,
+        CASE gab_datacomemorativa_evc
+        WHEN 0000-00-00 THEN ''
+        else gab_datacomemorativa_evc END AS DATA_COMEMORATIVA
+FROM gabtbevc
+LEFT OUTER JOIN gabtbeve on gab_pk_seq_eve = gab_seqeve_evc
+WHERE gab_seqcid_evc = $P{gab_seqcid_evc}]]>
+	</queryString>
+	<field name="gab_pk_seq_evc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_pk_seq_eve" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_desc_eve" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_desc_evc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Dia_Semana" class="java.lang.String"/>
+	<field name="DATA_COMEMORATIVA" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="15" uuid="ab0be3e8-a835-4670-8bc8-02b027b05f6b"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="0" width="63" height="15" uuid="5cdc8956-7980-405c-bb6f-deb01fa09744"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="106" height="15" uuid="ae3a5789-2cd0-4e32-97b2-6c23a0a17f04"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="0" width="95" height="15" uuid="e6d30abd-3b37-4526-b0ff-2d2872e6a15b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Comemorativa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="0" width="78" height="15" uuid="938ec433-4c6c-40c6-b90f-ec006010e799"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dia]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="15" uuid="a86673fc-3b2a-4506-948b-a57e2093c658"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gab_pk_seq_evc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="0" width="121" height="15" uuid="8045fc02-4721-49dc-a6fe-88e9c0209e3a"/>
+				<textFieldExpression><![CDATA[$F{gab_desc_eve}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="181" height="15" uuid="76c4d087-6e2a-41c6-ba58-f62462549036"/>
+				<textFieldExpression><![CDATA[$F{gab_desc_evc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="0" width="78" height="15" uuid="6581df21-32ab-4336-a966-228f0af30c99"/>
+				<textFieldExpression><![CDATA[$F{Dia_Semana}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="382" y="0" width="76" height="14" uuid="ad379906-8fbe-4b8c-a433-49a852729999"/>
+				<textFieldExpression><![CDATA[$F{DATA_COMEMORATIVA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

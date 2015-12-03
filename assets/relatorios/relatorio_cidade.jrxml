@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
+	<property name="ireport.zoom" value="1.500000000000019"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="101"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM gabtbcid]]>
+	</queryString>
+	<field name="gab_pk_seq_cid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_nome_cid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gab_uf_cid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="TOTAL_REGITRO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{gab_pk_seq_cid}]]></variableExpression>
+	</variable>
+	<pageHeader>
+		<band height="49">
+			<staticText>
+				<reportElement x="455" y="2" width="100" height="15" uuid="77aee1f6-2e61-4180-ad5e-85de0871255d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Info Rio Sistemas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="13" width="113" height="20" uuid="5168f16c-d8aa-4c1f-bdc5-edf2333c0b22"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="515" y="16" width="10" height="15" uuid="b514ee71-0ef4-4a2e-ad33-080c9a1776a3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="17" width="41" height="15" uuid="3d31b837-4f42-4254-89b1-b1d96d2f3330"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="525" y="17" width="17" height="15" uuid="8144e2f5-ac89-497d-9623-66521b449f81"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="540" y="16" width="35" height="15" uuid="df856cb8-6884-4e38-b148-72f3ed50292e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="455" y="33" width="100" height="15" uuid="e7951e62-ef63-4b29-a7ef-ab00de2f8d0d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[GABPR509]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="47" width="555" height="1" uuid="3167657a-63e4-4716-bf59-3b451adadbfe"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement x="52" y="0" width="78" height="15" uuid="5a3250fd-9306-4d1c-8aff-136f900842a2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Nome Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="63" height="15" uuid="a3f74257-58f1-4715-a8a6-904526574e52"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="47" height="15" uuid="a19588e5-2f8d-4554-8e40-5080b468522a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="555" height="1" uuid="4824f051-2dfd-498f-b91a-07f7e0c43889"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField>
+				<reportElement positionType="Float" x="52" y="0" width="295" height="15" uuid="19cf4a68-dc59-4463-80b8-d74539f77556"/>
+				<textElement>
+					<font isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gab_nome_cid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="354" y="0" width="101" height="15" uuid="3a176d3a-db4d-42e0-84a7-8452b9de6aa4"/>
+				<textFieldExpression><![CDATA[$F{gab_uf_cid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="0" width="47" height="15" uuid="fcdf3423-c45b-4ac4-8074-9b61c1be9db7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gab_pk_seq_cid}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="51">
+			<subreport>
+				<reportElement x="32" y="0" width="523" height="51" isRemoveLineWhenBlank="true" uuid="bbd30172-544a-4560-8f9a-0cf74ce4eeb0"/>
+				<subreportParameter name="gab_seqcid_sec">
+					<subreportParameterExpression><![CDATA[$F{gab_pk_seq_cid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorio_cidade_servico.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="20" y="0" width="535" height="50" isRemoveLineWhenBlank="true" uuid="29cb020a-5ee1-4ac0-9529-4e6c76e290bf"/>
+				<subreportParameter name="gab_seqcid_evc">
+					<subreportParameterExpression><![CDATA[$F{gab_pk_seq_cid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorio_cidade_evento.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="20" y="0" width="535" height="50" isRemoveLineWhenBlank="true" uuid="40b77403-f42d-422e-ac3f-7ab200de8e65"/>
+				<subreportParameter name="gab_seqcid_bai">
+					<subreportParameterExpression><![CDATA[$F{gab_pk_seq_cid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorio_cidade_bairro.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="20" y="0" width="534" height="50" uuid="8d21d381-e6bc-46d3-a3ae-6babfc486d8c"/>
+				<subreportParameter name="cidade_evento_servico">
+					<subreportParameterExpression><![CDATA[$F{gab_pk_seq_cid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorio_cidade_bairro_evento_servico.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="20" y="0" width="535" height="50" uuid="350fff8d-7750-4641-83c5-db67564d70ea"/>
+				<subreportParameter name="gab_seqcid_evb">
+					<subreportParameterExpression><![CDATA[$F{gab_pk_seq_cid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorio_cidade_bairro_evento.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="17">
+			<line>
+				<reportElement x="2" y="0" width="555" height="1" uuid="f5011f39-f7d7-44e4-9a9c-bc4ac076a650"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField pattern="d/M/yyyy">
+				<reportElement x="0" y="1" width="100" height="15" uuid="848b8a7a-1c20-4a86-9e64-37e852cf4ed8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="539" y="0" width="15" height="15" uuid="9b0c30b6-f33f-4cf0-9a29-b80cc2373939"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="15" splitType="Stretch"/>
+	</summary>
+</jasperReport>
