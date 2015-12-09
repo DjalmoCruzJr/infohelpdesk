@@ -6,15 +6,14 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>HelpDesk | Info Rio Sistema LTDA</title>
-		<meta name="keywords" content="HTML5 Admin Template" />
+		<title>Help Desk | Info Rio Sistema LTDA</title>
+		<meta name="keywords" content="Admin Help Desk | Info Rio Sistema LTDA" />
 		<meta name="description" content="Help Desk - Info Rio Sistema LTDA">
 		<meta name="author" content="okler.net">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.css') ?>" rel="stylesheet">
 		<link href="<?php echo base_url('assets/vendor/font-awesome/css/font-awesome.css') ?>" rel="stylesheet">
 		<link href="<?php echo base_url('assets/stylesheets/dataTables.bootstrap.css') ?>" rel="stylesheet">		
-		
 		
 		<link href="<?php echo base_url('assets/stylesheets/theme.css') ?>" rel="stylesheet">
 		
@@ -24,13 +23,16 @@
 		<script src="<?php echo base_url('assets/vendor/modernizr/modernizr.js') ?>"></script>
 		
 		<link href="<?php echo base_url('assets/vendor/select2/select2.css') ?>" rel="stylesheet">
+		
+		<link href="<?php echo base_url('assets/vendor/bootstrap-chosen/bootstrap-chosen.css') ?>" rel="stylesheet">
+		
 	</head>
 	<body>
 		<section class="body">
 			<header class="header">
 				<div class="logo-container">
 					<a href="<?php echo site_url('inicio')?>" class="logo">
-						<img src="<?php echo base_url('assets/images/logo.png') ?>" height="35" alt="Info Rio Sistema LTDA" />
+						<img src="<?php echo base_url('assets/images/logo.png') ?>" height="35" alt="Porto Admin" />
 					</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
 						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -41,11 +43,10 @@
 				<div class="header-right">
 <!-- 					<ul class="notifications"> -->
 <!-- 						<li>	 -->
-<!-- 								<a href="{ANIVERSARIANTES}" class=" btn btn-primary" title="Aniversariantes" > -->
-<!-- 									<i class="fa fa-birthday-cake fa-lg"></i> -->
-<!-- 									<span  class="badge">{QTD_ANIVERSARIANTES}</span> -->
-	 								
-<!-- 								</a>						 -->
+<!-- 							<a href="{ANIVERSARIANTES}" class=" btn btn-primary" title="Aniversariantes" > -->
+<!-- 								<i class="fa fa-birthday-cake fa-lg"></i> -->
+<!-- 								<span  class="badge"></span> -->
+<!-- 							</a>						 -->
 <!-- 						</li> -->
 <!-- 					</ul> -->
 			
@@ -221,8 +222,8 @@
 								<i class="fa fa-user fa-2x"></i>
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-								<span class="name">Luiz Mário</span>
-								<span class="role">Administrador</span>
+								<span class="name">Info Rio Sistemas LTDA</span>
+								<span class="role">Técnico</span>
 							</div>
 			
 							<i class="fa custom-caret"></i>
@@ -275,19 +276,19 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="<?php echo site_url('cidade');?>">
+												<a href="<?php echo site_url('cidade')?>">
 													 Cidades
 												</a>
-											</li>
+											</li>	
 										</ul>
 										<ul class="nav nav-children">
 											<li class="nav-parent">
 												<a>Gerenciador</a>
 												<ul class="nav nav-children">
 													<li>
-														<a href="#">
+														<a href="<?php echo site_url('#');?>">
 															 Programa
-														</a>														
+														</a>
 													</li>											
 												</ul>
 											</li>	
@@ -315,7 +316,7 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="<?php echo site_url('contato_aniversariantes')?>">
+												<a href="#">
 													Aniversáriantes
 												</a>
 											</li>
@@ -431,9 +432,13 @@
 		<script src="<?php echo base_url('assets/javascripts/mask.js') ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/select2/select2.js') ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/select2/select2_locale_pt-BR.js') ?>"></script>
+		<script src="<?php echo base_url('assets/vendor/bootstrap-chosen/chosen.jquery.js') ?>"></script>
 		
 		<script>
 		    $(".js-example-basic-multiple").select2();
+
+		    $('.chosen-select').chosen();
+			$('.chosen-select-deselect').chosen({ allow_single_deselect: true });
 
 // 		    $.extend($.fn.select2.defaults, $.fn.select2.locales['pt-BR']);
 
