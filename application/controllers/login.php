@@ -5,8 +5,7 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model('Usuario_Model', 'UsuarioModel');
-		$this->load->model('Perfil_Model', 'PerfilModel');
+		$this->load->model('Contato_Model', 'ContatoModel');
 		
 		if (!isset($_SESSION)) {
 			session_start();
@@ -18,11 +17,10 @@ class Login extends CI_Controller {
 	public function index() {
 		$dados = array();
 		
+		$dados['hel_login_con'] = '';
+		$dados['hel_senha_con'] = '';
 		
-		$dados['gab_login_usu']          = '';
-		$dados['gab_senha_usu']          = '';
-		
-		$dados['ACAO_FORM'] = site_url('login/entrar');
+		$dados['ACAO_FORM']     = site_url('login/entrar');
 		
 		$this->carregarDadosFlash($dados);
 		
@@ -30,14 +28,14 @@ class Login extends CI_Controller {
 	}
 	
 	public function entrar() {		
-		global $gab_login_usu;
-		global $gab_senha_usu;
+		global $hel_login_con;
+		global $hel_senha_con;
 			
-		global $usuario;
-		global $perfil;
+		global $contato;
+		global $empresa;
 			
-		$gab_login_usu  	= $this->input->post('gab_login_usu');
-		$gab_senha_usu  	= $this->input->post('gab_senha_usu');
+		$hel_login_con  	= $this->input->post('hel_senha_con');
+		$hel_senha_con  	= $this->input->post('hel_senha_con');
 		
 	
 		if ($this->testarDados()) {
@@ -46,16 +44,16 @@ class Login extends CI_Controller {
 			$this->session->set_userdata($perfil);
 			redirect('');
 		} else {
-			redirect('login/');
+			redirect('login');
 		}
 	}
 	
 	private function testarDados() {
-		global $gab_login_usu;
-		global $gab_senha_usu;
+		global $hel_login_con;
+		global $hel_senha_con;
 	
-		global $usuario;
-		global $perfil;
+		global $contato;
+		global $empresa;
 	
 		$erros    = FALSE;
 		$mensagem = null;
@@ -64,37 +62,37 @@ class Login extends CI_Controller {
 		if ((!empty($gab_login_usu)) and (!empty($gab_senha_usu))) {
 			$usuario = $this->UsuarioModel->getUsuarioLogin($gab_login_usu, md5($gab_senha_usu));
 			
-			if (!$usuario){
+// 			if (!$usuario){
 				
-				$erros    = TRUE;
-				$mensagem .= "- Login inválido.\n";
+// 				$erros    = TRUE;
+// 				$mensagem .= "- Login inválido.\n";
 				
-				$this->session->set_flashdata('ERRO_GAB_LOGIN_USU', 'has-error');
-				$this->session->set_flashdata('ERRO_GAB_SENHA_USU', 'has-error');
+// 				$this->session->set_flashdata('ERRO_GAB_LOGIN_USU', 'has-error');
+// 				$this->session->set_flashdata('ERRO_GAB_SENHA_USU', 'has-error');
 				
-			} else if ($usuario and ($usuario->gab_ativo_usu == 0)) {
-				$erros    = TRUE;
-				$mensagem .= "- Usuário inativo.\n";
+// 			} else if ($usuario and ($usuario->gab_ativo_usu == 0)) {
+// 				$erros    = TRUE;
+// 				$mensagem .= "- Usuário inativo.\n";
 
-				$this->session->set_flashdata('ERRO_GAB_LOGIN_USU', 'has-error');
-				$this->session->set_flashdata('ERRO_GAB_SENHA_USU', 'has-error');
-			}else {
-					$perfil = $this->PerfilModel->get($usuario->gab_seqper_usu);
-				}
+// 				$this->session->set_flashdata('ERRO_GAB_LOGIN_USU', 'has-error');
+// 				$this->session->set_flashdata('ERRO_GAB_SENHA_USU', 'has-error');
+// 			}else {
+// 					$perfil = $this->PerfilModel->get($usuario->gab_seqper_usu);
+// 				}
 		}				
 	
-		if (empty($gab_login_usu)) {
+		if (empty($hel_login_con)) {
 			$erros    = TRUE;
 			$mensagem .= "- Login não informado.\n";
 	
-			$this->session->set_flashdata('ERRO_GAB_LOGIN_USU', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
 		}
 	
-		if (empty($gab_senha_usu)) {
+		if (empty($hel_senha_con)) {
 			$erros    = TRUE;
 			$mensagem .= "- Senha não informada.\n";
 	
-			$this->session->set_flashdata('ERRO_GAB_SENHA_USU', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
 		}
 	
 			
@@ -103,7 +101,7 @@ class Login extends CI_Controller {
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 	
 			$this->session->set_flashdata('ERRO_LOGIN', TRUE);			
-			$this->session->set_flashdata('gab_login_usu', $gab_login_usu);
+			$this->session->set_flashdata('hel_login_con', $hel_login_con);
 		}
 	
 		return !$erros;
@@ -112,21 +110,19 @@ class Login extends CI_Controller {
 	
 	private function carregarDadosFlash(&$dados) {
 		$ERRO_LOGIN           = $this->session->flashdata('ERRO_LOGIN');		
-		$ERRO_GAB_LOGIN_USU   = $this->session->flashdata('ERRO_GAB_LOGIN_USU');
-		$ERRO_GAB_SENHA_USU   = $this->session->flashdata('ERRO_GAB_SENHA_USU');
+		$ERRO_HEL_LOGIN_CON   = $this->session->flashdata('ERRO_HEL_LOGIN_CON');
+		$ERRO_HEL_SENHA_CON   = $this->session->flashdata('ERRO_HEL_SENHA_CON');
 			
-		$gab_login_usu      = $this->session->flashdata('gab_login_usu');
+		$hel_login_con        = $this->session->flashdata('hel_login_con');
 	
 		$titulo_erro = $this->session->flashdata('titulo_erro');
 		$erro        = $this->session->flashdata('erro');
 	
 		if ($ERRO_LOGIN) {			
-			$dados['gab_login_usu']        = $gab_login_usu;
+			$dados['hel_login_con']        = $hel_login_con;
 				
-				
-			$dados['ERRO_GAB_LOGIN_USU']   = $ERRO_GAB_LOGIN_USU;
-			$dados['ERRO_GAB_SENHA_USU']   = $ERRO_GAB_SENHA_USU;
-				
+			$dados['ERRO_HEL_LOGIN_CON']   = $ERRO_HEL_LOGIN_CON;
+			$dados['ERRO_HEL_SENHA_CON']   = $ERRO_HEL_SENHA_CON;
 				
 			$dados['MENSAGEM_LOGIN_ERRO'] = $this->criarAlterta($titulo_erro, $erro);
 		} else {

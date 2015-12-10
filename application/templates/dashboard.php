@@ -279,6 +279,11 @@
 												<a href="<?php echo site_url('cidade')?>">
 													 Cidades
 												</a>
+											</li>
+											<li>
+												<a href="<?php echo site_url('empresa')?>">
+													 Empresa
+												</a>
 											</li>	
 										</ul>
 										<ul class="nav nav-children">
@@ -449,6 +454,7 @@
 	    
 		    $(document).ready(function() {
 		        $('#tb_cidade').dataTable({"order": [[ 1, "asc" ]]});
+		        $('#tb_empresa').dataTable({"order": [[ 1, "asc" ]]});		        
 			});
 		</script>
 

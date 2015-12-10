@@ -2,9 +2,9 @@
 
 class Empresa_Model extends CI_Model {
 	
-	public function get($hel_pk_seq_cid) {
-		$this->db->from('heltbcid');
-		$this->db->where('hel_pk_seq_cid', $hel_pk_seq_cid, FALSE);
+	public function get($hel_pk_seq_emp) {
+		$this->db->from('heltbemp');
+		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
 		return $this->db->get()->first_row();
 	}
 	
@@ -14,9 +14,16 @@ class Empresa_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getCidade() {
-		$this->db->from('heltbcid');
-		$this->db->order_by("hel_nome_cid", "asc");
+	public function getEmpresa() {
+		$this->db->from('heltbemp');
+		$this->db->join('heltbcid','hel_pk_seq_cid = hel_seqcid_emp','left');
+		$this->db->order_by("hel_nomefantasia_emp", "asc");
+		return $this->db->get()->result();
+	}
+	
+	public function getEmpresaCadastrada($hel_cnpj_emp) {
+		$this->db->from('heltbemp');
+		$this->db->where('hel_cnpj_emp', $hel_cnpj_emp, FALSE);
 		return $this->db->get()->result();
 	}
 	
@@ -35,8 +42,8 @@ class Empresa_Model extends CI_Model {
 	}
 	
 	
-	public function insert($cidade) {
-		$res = $this->db->insert('heltbcid', $cidade);
+	public function insert($empresa) {
+		$res = $this->db->insert('heltbemp', $empresa);
 	
 		if ($res) {
 			return $this->db->insert_id();
@@ -45,20 +52,20 @@ class Empresa_Model extends CI_Model {
 		}
 	}
 	
-	public function update($cidade, $hel_pk_seq_cid) {
-		$this->db->where('hel_pk_seq_cid', $hel_pk_seq_cid, FALSE);
-		$res = $this->db->update('heltbcid', $cidade);
+	public function update($empresa, $hel_pk_seq_emp) {
+		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
+		$res = $this->db->update('heltbemp', $empresa);
 	
 		if ($res) {
-			return $hel_pk_seq_cid;
+			return $hel_pk_seq_emp;
 		} else {
 			return FALSE;
 		}
 	}
 	
-	public function delete($gab_pk_seq_cid) {
-		$this->db->where('gab_pk_seq_cid', $gab_pk_seq_cid, FALSE);
-		return $this->db->delete('gabtbcid');
+	public function delete($hel_pk_seq_emp) {
+		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
+		return $this->db->delete('heltbemp');
 	}
 		
 }
