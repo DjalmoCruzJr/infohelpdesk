@@ -17,11 +17,19 @@ class Inicio extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index() {
+	public function index()
+	{
 		
 		$this->layout = LAYOUT_DASHBOARD;
+		
 		$this->load->view('inicio_view');
 		
+// 		if ($this->session->userdata('logado')) {
+// 			$this->load->view('inicio_view');
+// 		}
+// 		else {
+// 			redirect('login');
+// 		}
 		
 	}
 }

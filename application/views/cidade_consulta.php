@@ -10,7 +10,7 @@
                 <div>
                     <a href="{NOVA_CIDADE}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Nova Cidade</a>
 	                <div class="pull-right">
-			    		<a class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
+			    		<a onclick="" class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>
                 </div>
                 </br>
@@ -19,7 +19,7 @@
 						<thead>
                             <tr>
                                 <th>Nome</th>    
-                                <th width="80">UF</th>
+                                <th>UF</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -62,8 +62,8 @@
 
 <script type="text/javascript">
 
-	var idExclusao = "";
-	
+	var idExclusao = "";	
+
     function abrirConfirmacao(id){
         idExclusao = id;
         $('#myModal').modal('show');
@@ -73,5 +73,5 @@
         $('#myModal').modal('hide');
         location.href = 'cidade/apagar/' + idExclusao;
     }
-    
+
 </script>
