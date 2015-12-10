@@ -279,6 +279,11 @@
 													 Cidades
 												</a>
 											</li>
+											<li>
+												<a href="<?php echo site_url('tipo_contato');?>">
+													Tipo contato
+												</a>
+											</li>
 										</ul>
 										<ul class="nav nav-children">
 											<li class="nav-parent">
@@ -444,6 +449,9 @@
 	    
 		    $(document).ready(function() {
 		        $('#tb_cidade').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_tipo_contato').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_contato').dataTable({"order": [[ 1, "asc" ]]});
+
 			});
 		</script>
 
