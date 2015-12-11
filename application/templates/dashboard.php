@@ -293,7 +293,12 @@
 													Tipo contato
 												</a>
 											</li>
-								</ul>
+											<li>
+												<a href="<?php echo site_url('servico');?>">
+													Serviço
+												</a>
+											</li>
+									</ul>
 										<ul class="nav nav-children">
 											<li class="nav-parent">
 												<a>Gerenciador</a>
