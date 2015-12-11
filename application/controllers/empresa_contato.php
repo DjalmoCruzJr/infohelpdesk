@@ -21,6 +21,7 @@ class Empresa_Contato extends CI_Controller {
 		
 		$dados['NOVO_EMPRESA_CONTATO']  = site_url('empresa_contato/novo/'.$hel_seqcon_exc);
 		$dados['URL_APAGAR']      		= site_url('empresa_contato/apagar');
+		$dados['VOLTAR_CONTATO']  		= site_url('contato');
 		$dados['hel_seqcon_exc']  		= base64_decode($hel_seqcon_exc);
 		
 		$this->carregarDadosContato($dados);

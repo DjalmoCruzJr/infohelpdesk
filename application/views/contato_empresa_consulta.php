@@ -36,6 +36,9 @@
                 </div>
             </div>
         </div>
+        <div class="text-right">
+       		<a href="{VOLTAR_CONTATO}" class="btn btn-info"><i class="glyphicon glyphicon-chevron-left"></i> Voltar Contato</a>
+       	</div>
     </div>
 </div>
 

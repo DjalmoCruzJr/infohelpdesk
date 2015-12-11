@@ -2,7 +2,6 @@
 	<h2>Contatos - {HEL_NOMEFANTASIA_EMP}</h2>
 </header>
 
-
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
@@ -29,6 +28,9 @@
                 </div>
             </div>
         </div>
+     <div class="text-right">
+       	<a href="{VOLTAR_EMPRESA}" class="btn btn-info"><i class="glyphicon glyphicon-chevron-left"></i> Voltar Empresa</a>
+    </div>   
     </div>
 </div>
 

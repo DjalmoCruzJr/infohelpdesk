@@ -16,6 +16,7 @@ class Contato_Empresa extends CI_Controller {
 		
 		$dados['BLC_DADOS']  	  = array();
 		$dados['hel_seqemp_exc']  = base64_decode($hel_seqemp_exc);
+		$dados['VOLTAR_EMPRESA']  = site_url('empresa');
 		
 		$this->carregarDadosEmpresa($dados);
 		
@@ -38,7 +39,7 @@ class Contato_Empresa extends CI_Controller {
 			
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
-				"hel_nome_con"  => $registro->hel_nom_con,
+				"hel_nome_con"  => $registro->hel_nome_con,
 				"hel_desc_tco"	=> $registro->hel_desc_tco,
 				"hel_ativo_con"	=> $registro->hel_ativo_con == 1 ? 'Ativo' : 'Inativo'
 			);
