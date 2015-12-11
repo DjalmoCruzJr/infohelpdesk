@@ -465,6 +465,7 @@
 				$('#tb_tipo_contato').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_contato').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_empresa').dataTable({"order": [[ 1, "asc" ]]});
+		        $('#tb_servico').dataTable({"order": [[ 1, "asc" ]]});
 			});
 		</script>
 
