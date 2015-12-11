@@ -75,7 +75,7 @@
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = 'cidade/apagar/' + idExclusao;
+        location.href = 'contato/apagar/' + idExclusao;
     }
 
 </script>

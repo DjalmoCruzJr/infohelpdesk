@@ -7,6 +7,9 @@ class Contato extends CI_Controller {
  		$this->layout = LAYOUT_DASHBOARD;
 		
 		$this->load->model('Contato_Model', 'ContatoModel');
+		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
+		$this->load->model('Chamado_Model', 'ChamadoModel');
+		$this->load->model('Tipo_Contato_Model', 'TipoContatoModel');
 	}
 
 	
@@ -24,19 +27,15 @@ class Contato extends CI_Controller {
 	public function novo() {
 			
 		$dados = array();
-		$dados['hel_pk_seq_emp']  		= 0;		
-		$dados['hel_empresa_emp'] 		= '';
-		$dados['hel_filial_emp']  		= '';
-		$dados['hel_cnpj_emp']  		= '';
-		$dados['hel_razaosocial_emp']  	= '';
-		$dados['hel_nomefantasia_emp']  = '';
-		$dados['hel_endereco_emp']  	= '';
-		$dados['hel_numero_emp']  		= '';
-		$dados['hel_bairro_emp']  		= '';
-		$dados['hel_seqcid_emp']  		= '';
-		$dados['hel_cep_emp']  			= '';
-		$dados['hel_ativo_emp']  		= '';
-		$dados['hel_checkedativo_emp']  = 'checked';
+		$dados['hel_pk_seq_con']  			= 0;		
+		$dados['hel_nome_con'] 				= '';
+		$dados['hel_login_con']  			= '';
+		$dados['hel_senha_con']  			= '';
+		$dados['hel_confirsenha_con']		= '';
+		$dados['hel_seqtco_con']  			= '';
+		$dados['hel_checkedativo_con']  	= 'checked';
+		$dados['hel_dis_senha_con']  		= '';
+		$dados['hel_dis_confirsenha_con']	= '';
 		
 		$dados['ACAO'] = 'Novo';
 		
@@ -44,110 +43,89 @@ class Contato extends CI_Controller {
 	
 		$this->carregarDadosFlash($dados);
 	
-		$this->carregarCidade($dados);
+		$this->carregarTipoContato($dados);
 		
-		$this->parser->parse('empresa_cadastro', $dados);
+		$this->parser->parse('contato_cadastro', $dados);
 	}
 	
-	public function editar($hel_pk_seq_emp) {		
-		$hel_pk_seq_emp = base64_decode($hel_pk_seq_emp);
+	public function editar($hel_pk_seq_con) {		
+		$hel_pk_seq_con = base64_decode($hel_pk_seq_con);
 		$dados = array();
 		
-		$this->carregarEmpresa($hel_pk_seq_emp, $dados);
+		$this->carregarContato($hel_pk_seq_con, $dados);
 		
 		$dados['ACAO'] = 'Editar';
 		$this->setarURL($dados);
 		
 		$this->carregarDadosFlash($dados);
 		
-		$this->carregarCidade($dados);
+		$this->carregarTipoContato($dados);
 		
-		$this->parser->parse('empresa_cadastro', $dados);	
+		$this->parser->parse('contato_cadastro', $dados);	
 	}
 	
 	public function salvar() {
-		global $hel_pk_seq_emp;
-		global $hel_empresa_emp;
-		global $hel_filial_emp;
-		global $hel_cnpj_emp;
-		global $hel_razaosocial_emp;
-		global $hel_nomefantasia_emp;
-		global $hel_endereco_emp;
-		global $hel_numero_emp;
-		global $hel_bairro_emp;
-		global $hel_seqcid_emp;
-		global $hel_cep_emp;
-		global $hel_ativo_emp;
+		global $hel_pk_seq_con;
+		global $hel_nome_con;
+		global $hel_seqtco_con;
+		global $hel_login_con;
+		global $hel_senha_con;
+		global $hel_confirsenha_con;
+		global $hel_ativo_con;
 		
-		$hel_pk_seq_emp  		= $this->input->post('hel_pk_seq_emp');			
-		$hel_empresa_emp 		= $this->input->post('hel_empresa_emp');
-		$hel_filial_emp 		= $this->input->post('hel_filial_emp');
-		$hel_cnpj_emp 			= $this->input->post('hel_cnpj_emp');
-		$hel_razaosocial_emp 	= $this->input->post('hel_razaosocial_emp');
-		$hel_nomefantasia_emp 	= $this->input->post('hel_nomefantasia_emp');
-		$hel_endereco_emp 		= $this->input->post('hel_endereco_emp');
-		$hel_numero_emp 		= $this->input->post('hel_numero_emp');
-		$hel_bairro_emp 		= $this->input->post('hel_bairro_emp');
-		$hel_seqcid_emp 		= $this->input->post('hel_seqcid_emp');
-		$hel_cep_emp 			= $this->input->post('hel_cep_emp');
-		$hel_ativo_emp 			= $this->input->post('hel_ativo_emp') == 1 ? 1 : 0;
-
-		$hel_cnpj_emp 			= str_replace(".", null, $hel_cnpj_emp);
-		$hel_cnpj_emp 			= str_replace("/", null, $hel_cnpj_emp);
-		$hel_cnpj_emp 			= str_replace("-", null, $hel_cnpj_emp);
-		
-		$hel_cep_emp 			= str_replace("-", null, $hel_cep_emp);
+		$hel_pk_seq_con  		= $this->input->post('hel_pk_seq_con');			
+		$hel_nome_con 			= $this->input->post('hel_nome_con');
+		$hel_seqtco_con			= $this->input->post('hel_seqtco_con');
+		$hel_login_con 			= $this->input->post('hel_login_con');
+		$hel_senha_con 			= $this->input->post('hel_senha_con');
+		$hel_confirsenha_con 	= $this->input->post('hel_confirsenha_con');
+		$hel_ativo_con 			= $this->input->post('hel_ativo_con') == 1 ? 1 : 0;
 		
 		if ($this->testarDados()) {
-			$empresa = array(
-				"hel_empresa_emp"    	=> $hel_empresa_emp, 
-				"hel_filial_emp"     	=> $hel_filial_emp,
-				"hel_cnpj_emp" 		 	=> $hel_cnpj_emp,
-				"hel_razaosocial_emp"   => $hel_razaosocial_emp,
-				"hel_nomefantasia_emp"  => $hel_nomefantasia_emp,
-				"hel_endereco_emp"     	=> $hel_endereco_emp,
-				"hel_numero_emp"     	=> $hel_numero_emp,
-				"hel_bairro_emp"     	=> $hel_bairro_emp,
-				"hel_seqcid_emp"     	=> $hel_seqcid_emp,
-				"hel_cep_emp"     		=> $hel_cep_emp,
-				"hel_ativo_emp"     	=> $hel_ativo_emp
+			$contato = array(
+				"hel_nome_con"   => $hel_nome_con, 
+				"hel_seqtco_con" => $hel_seqtco_con,
+				"hel_login_con"  => $hel_login_con,
+				"hel_senha_con"  => empty($hel_senha_con) ? sha1($$hel_senha_con) : $hel_senha_con,
+				"hel_ativo_con"  => $hel_ativo_con
 			);
 			
-			if (!$hel_pk_seq_emp) {	
-				$hel_pk_seq_emp = $this->EmpresaModel->insert($empresa);
+			if (!$hel_pk_seq_con) {	
+				$hel_pk_seq_con = $this->ContatoModel->insert($contato);
 			} else {
-				$hel_pk_seq_emp = $this->EmpresaModel->update($empresa, $hel_pk_seq_emp);
+				$hel_pk_seq_con = $this->ContatoModel->update($contato, $hel_pk_seq_con);
 			}
 
-			if (is_numeric($hel_pk_seq_emp)) {
-				$this->session->set_flashdata('sucesso', 'Empresa salva com sucesso.');
-				redirect('empresa');
+			if (is_numeric($hel_pk_seq_con)) {
+				$this->session->set_flashdata('sucesso', 'Contato salva com sucesso.');
+				redirect('contato');
 			} else {
-				$this->session->set_flashdata('erro', $hel_pk_seq_emp);	
-				redirect('empresa');
+				$this->session->set_flashdata('erro', $hel_pk_seq_con);	
+				redirect('contato');
 			}
 		} else {
-			if (!$hel_pk_seq_emp) {
-				redirect('empresa/novo/');
+			if (!$hel_pk_seq_con) {
+				redirect('contato/novo/');
 			} else {
-				redirect('empresa/editar/'.base64_encode($hel_pk_seq_emp));
+				redirect('contato/editar/'.base64_encode($hel_pk_seq_con));
 			}			
 		}
 	}
 	
-	public function apagar($hel_pk_seq_emp) {		
-		if ($this->testarApagar(base64_decode($hel_pk_seq_emp))) {
-			$res = $this->EmpresaModel->delete(base64_decode($hel_pk_seq_emp));
+	public function apagar($hel_pk_seq_con) {		
+		if ($this->testarApagar(base64_decode($hel_pk_seq_con))) {
+			$contato = array ("hel_ativo_con" => 0);
+			$res = $this->ContatoModel->update($contato,base64_decode($hel_pk_seq_con));
 			if ($res) {
-				$this->session->set_flashdata('sucesso', 'Empresa apagada com sucesso.');
+				$this->session->set_flashdata('sucesso', 'Contato inativado com sucesso.');
 			} 
 		}				
-		redirect('empresa');
+		redirect('contato');
 	}
 	
 	private function setarURL(&$dados) {
-		$dados['CONSULTA_EMPRESA']  = site_url('empresa');
-		$dados['ACAO_FORM']         = site_url('empresa/salvar');
+		$dados['CONSULTA_CONTATO']  = site_url('contato');
+		$dados['ACAO_FORM']         = site_url('contato/salvar');
 	}	
 	
 	private function carregarDados(&$dados) {
@@ -159,121 +137,97 @@ class Contato extends CI_Controller {
 				"hel_login_con"   => $registro->hel_login_con,
 				"hel_desc_tco"	  => $registro->hel_desc_tco,
 				"hel_ativo_con"	  => $registro->hel_ativo_con == 1 ? 'Ativo' : 'Inativo',
-				"EDITAR_CONTATO"  => site_url('empresa/editar/'.base64_encode($registro->hel_pk_seq_con)),
+				"EDITAR_CONTATO"  => site_url('contato/editar/'.base64_encode($registro->hel_pk_seq_con)),
 				"APAGAR_CONTATO"  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_con)."')"
 			);
 		}
 	}
 	
-	private function carregarEmpresa($hel_pk_seq_emp, &$dados) {
-		$resultado = $this->EmpresaModel->get($hel_pk_seq_emp);
+	private function carregarContato($hel_pk_seq_con, &$dados) {
+		$resultado = $this->ContatoModel->get($hel_pk_seq_con);
 		
 		if ($resultado) {
 			foreach ($resultado as $chave => $valor) {
 				$dados[$chave] = $valor;
 			}
-
 		} else {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');			
 		}
 		
-		$dados['hel_checkedativo_emp'] = $dados['hel_ativo_emp'] == 1 ? 'checked' : '';
-		
+		$dados['hel_checkedativo_con'] 		= $dados['hel_ativo_con'] == 1 ? 'checked' : '';
+		$dados['hel_dis_senha_con']    		= 'readonly';
+		$dados['hel_dis_confirsenha_con']   = 'readonly';
+		$dados['hel_confirsenha_con']    	= $dados['hel_senha_con'];		
 	}
 	
 	
-	private function carregarCidade(&$dados) {
-		$resultado = $this->CidadeModel->getCidade();
+	private function carregarTipoContato(&$dados) {
+		$resultado = $this->TipoContatoModel->getTipoContato();
 		
 		foreach ($resultado as $registro) {
-			$dados['BLC_CIDADE'][] = array(
-					"hel_pk_seq_cid"     => $registro->hel_pk_seq_cid,
-					"hel_nome_cid"       => $registro->hel_nome_cid,
-					"hel_codmun_cid"       => $registro->hel_codmun_cid,
-					"sel_hel_seqcid_emp" => ($dados['hel_seqcid_emp'] == $registro->hel_pk_seq_cid)?'selected':''
+			$dados['BLC_TIPO_CONTATO'][] = array(
+					"hel_pk_seq_tco"     => $registro->hel_pk_seq_tco,
+					"hel_desc_tco"       => $registro->hel_desc_tco,
+					"sel_hel_seqtco_con" => ($dados['hel_seqtco_con'] == $registro->hel_pk_seq_tco)?'selected':''
 			);
 		}
 	
-		!$resultado ? $dados['BLC_CIDADE'][] = array("hel_nome_cid" => 'Não existe nenhuma cidade cadastrada') :'';
+		!$resultado ? $dados['BLC_CIDADE'][] = array("hel_desc_tco" => 'Não existe nenhuma tipo de contato cadastrado') :'';
 	}
 	
 	
 	private function testarDados() {
-		global $hel_pk_seq_emp;
-		global $hel_empresa_emp;
-		global $hel_filial_emp;
-		global $hel_cnpj_emp;
-		global $hel_razaosocial_emp;
-		global $hel_nomefantasia_emp;
-		global $hel_endereco_emp;
-		global $hel_numero_emp;
-		global $hel_bairro_emp;
-		global $hel_seqcid_emp;
-		global $hel_cep_emp;
-		global $hel_ativo_emp;
+		global $hel_pk_seq_con;
+		global $hel_nome_con;
+		global $hel_seqtco_con;
+		global $hel_login_con;
+		global $hel_senha_con;
+		global $hel_confirsenha_con;
+		global $hel_ativo_con;
 
 		$erros    = FALSE;
 		$mensagem = null;
 
-		$hel_razaosocial_emp 	= trim($hel_razaosocial_emp);
-		$hel_nomefantasia_emp 	= trim($hel_nomefantasia_emp);
-		$hel_endereco_emp 		= trim($hel_endereco_emp);
-		$hel_numero_emp 		= trim($hel_numero_emp);
-		$hel_bairro_emp 		= trim($hel_bairro_emp);
+		$hel_nome_con 			= trim($hel_nome_con);
+		$hel_login_con 			= trim($hel_login_con);
+		$hel_senha_con 			= trim($hel_senha_con);
+		$hel_confirsenha_con 	= trim($hel_confirsenha_con);
 		
-		if (empty($hel_empresa_emp)) {
+		if (empty($hel_nome_con)) {
 			$erros    = TRUE;
-			$mensagem .= "- Empresa não foi preenchido.\n";
-			$this->session->set_flashdata('ERRO_HEL_EMPRESA_EMP', 'has-error');
+			$mensagem .= "- Nome não foi preenchido.\n";
+			$this->session->set_flashdata('ERRO_HEL_NOME_CON', 'has-error');
 		}
 		
-		if (empty($hel_filial_emp)) {
+		if (empty($hel_seqtco_con)) {
 			$erros    = TRUE;
-			$mensagem .= "- Filial não foi preenchido.\n";
-			$this->session->set_flashdata('ERRO_HEL_FILIAL_EMP', 'has-error');
+			$mensagem .= "- Tipo de contato não foi selecionado.\n";
+			$this->session->set_flashdata('ERRO_HEL_SEQTCO_CON', 'has-error');
 		}
 		
-		if ($hel_cnpj_emp == '') {
+		if (empty($hel_login_con)) {
 			$erros    = TRUE;
-			$mensagem .= "- CNPJ não foi preenchido.\n";
-			$this->session->set_flashdata('ERRO_HEL_CNPJ_EMP', 'has-error');
+			$mensagem .= "- Login não foi preenchido.\n";
+			$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
 		}
 		
-		if (empty($hel_razaosocial_emp)) {
+		if (empty($hel_senha_con)) {
 			$erros    = TRUE;
-			$mensagem .= "- Razão Social não foi preenchido.\n";
-			$this->session->set_flashdata('ERRO_HEL_RAZAOSOCIAL_EMP', 'has-error');
+			$mensagem .= "- Senha não foi preenchido.\n";
+			$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
 		}
 		
-		if (empty($hel_nomefantasia_emp)) {
+		if (empty($hel_confirsenha_con)) {
 			$erros    = TRUE;
-			$mensagem .= "- Nome fantasia não foi preenchido.\n";
-			$this->session->set_flashdata('ERRO_HEL_NOMEFANTASIA_EMP', 'has-error');
+			$mensagem .= "- Confirmação da senha não foi preenchido.\n";
+			$this->session->set_flashdata('ERRO_HEL_CONFIRSENHA_CON', 'has-error');
 		}
 		
-		if (empty($hel_seqcid_emp)) {
+		if (!empty($hel_senha_con) and !empty($hel_confirsenha_con) and $hel_senha_con <> $hel_confirsenha_con){
 			$erros    = TRUE;
-			$mensagem .= "- Cidade não foi selecionada.\n";
-			$this->session->set_flashdata('ERRO_HEL_SEQCID_EMP', 'has-error');
-		}
-		
-		if (empty($hel_cep_emp)) {
-			$erros    = TRUE;
-			$mensagem .= "- CEP não foi preenchido.\n";
-			$this->session->set_flashdata('ERRO_HEL_CEP_EMP', 'has-error');
-		}
-		
-		if (!$erros and $this->EmpresaModel->getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp)){
-			$erros    = TRUE;
-			$mensagem .= "- Empresa já cadastrada.\n";
-			$this->session->set_flashdata('ERRO_HEL_EMPRESA_EMP', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_FILIAL_EMP', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_CNPJ_EMP', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_RAZAOSOCIAL_EMP', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_NOMEFANTASIA_EMP', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_SEQCID_EMP', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_CEP_EMP', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_ATIVO_EMP', 'has-error');
+			$mensagem .= "- Senha e confirmação da senha diferentes.\n";
+			$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_CONFIRSENHA_CON', 'has-error');
 		}
 
 		
@@ -281,41 +235,32 @@ class Contato extends CI_Controller {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
-			$this->session->set_flashdata('ERRO_HEL_EMP', TRUE);				
-			$this->session->set_flashdata('hel_empresa_emp', $hel_empresa_emp);
-			$this->session->set_flashdata('hel_filial_emp', $hel_filial_emp);
-			$this->session->set_flashdata('hel_cnpj_emp', $hel_cnpj_emp);
-			$this->session->set_flashdata('hel_razaosocial_emp', $hel_razaosocial_emp);
-			$this->session->set_flashdata('hel_nomefantasia_emp', $hel_nomefantasia_emp);
-			$this->session->set_flashdata('hel_endereco_emp', $hel_endereco_emp);
-			$this->session->set_flashdata('hel_numero_emp', $hel_numero_emp);
-			$this->session->set_flashdata('hel_bairro_emp', $hel_bairro_emp);
-			$this->session->set_flashdata('hel_seqcid_emp', $hel_seqcid_emp);
-			$this->session->set_flashdata('hel_cep_emp', $hel_cep_emp);
-			$this->session->set_flashdata('hel_ativo_emp', $hel_ativo_emp);
+			$this->session->set_flashdata('ERRO_HEL_CON', TRUE);				
+			$this->session->set_flashdata('hel_nome_con', $hel_nome_con);
+			$this->session->set_flashdata('hel_login_con', $hel_login_con);
+			$this->session->set_flashdata('hel_senha_con', $hel_senha_con);
+			$this->session->set_flashdata('hel_confirsenha_con', $hel_confirsenha_con);
+			$this->session->set_flashdata('hel_seqtco_con', $hel_seqtco_con);
+			$this->session->set_flashdata('hel_ativo_con', $hel_ativo_con);
 		}
 				
 		return !$erros;
 	}
 	
-	private function testarApagar($hel_pk_seq_emp) {
+	private function testarApagar($hel_pk_seq_con) {
 		$erros    = FALSE;
 		$mensagem = null;
 		
-		if ($this->OrdemServicoModel->getEmpresaOrdemServico($hel_pk_seq_emp)) {
+		if ($this->EmpresaContatoModel->getContatoEmpresaContato($hel_pk_seq_con)) {
 			$erros    = TRUE;
-			$mensagem .= "- Ordem Serviço cadastrada.\n";
+			$mensagem .= "- Contatos da empresa cadastro.\n";
+		}
+
+		if ($this->ChamadoModel->getContatoChamado($hel_pk_seq_con)) {
+			$erros    = TRUE;
+			$mensagem .= "- Chamado cadastro.\n";
 		}
 		
-		if ($this->SistemaContradoModel->getEmpresaSistemaContratado($hel_pk_seq_emp)) {
-			$erros    = TRUE;
-			$mensagem .= "- Sistema Contratado cadastrada.\n";
-		}
-	
-		if ($this->EmpresaContatoModel->getEmpresaContato($hel_pk_seq_emp)) {
-			$erros    = TRUE;
-			$mensagem .= "- Contatos cadastrada.\n";
-		}
 	
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');
@@ -326,51 +271,41 @@ class Contato extends CI_Controller {
 	}
 	
 	private function carregarDadosFlash(&$dados) {
-		$ERRO_HEL_EMP   	   		= $this->session->flashdata('ERRO_HEL_EMP');
-		$ERRO_HEL_EMPRESA_EMP   	= $this->session->flashdata('ERRO_HEL_EMPRESA_EMP');
-		$ERRO_HEL_FILIAL_EMP   		= $this->session->flashdata('ERRO_HEL_FILIAL_EMP');
-		$ERRO_HEL_CNPJ_EMP   		= $this->session->flashdata('ERRO_HEL_CNPJ_EMP');
-		$ERRO_HEL_RAZAOSOCIAL_EMP   = $this->session->flashdata('ERRO_HEL_RAZAOSOCIAL_EMP');
-		$ERRO_HEL_NOMEFANTASIA_EMP	= $this->session->flashdata('ERRO_HEL_NOMEFANTASIA_EMP');
-		$ERRO_HEL_SEQCID_EMP       	= $this->session->flashdata('ERRO_HEL_SEQCID_EMP');
-		$ERRO_HEL_CEP_EMP       	= $this->session->flashdata('ERRO_HEL_CEP_EMP');
-		$ERRO_HEL_ATIVO_EMP       	= $this->session->flashdata('ERRO_HEL_ATIVO_EMP');
+		$ERRO_HEL_CON   	   		= $this->session->flashdata('ERRO_HEL_CON');
+		$ERRO_HEL_NOME_CON   		= $this->session->flashdata('ERRO_HEL_NOME_CON');
+		$ERRO_HEL_LOGIN_CON   		= $this->session->flashdata('ERRO_HEL_LOGIN_CON');
+		$ERRO_HEL_SENHA_CON   		= $this->session->flashdata('ERRO_HEL_SENHA_CON');
+		$ERRO_HEL_CONFIRSENHA_CON  	= $this->session->flashdata('ERRO_HEL_CONFIRSENHA_CON');
+		$ERRO_HEL_SEQTCO_CON  		= $this->session->flashdata('ERRO_HEL_SEQTCO_CON');
+		$ERRO_HEL_ATIVO_CON  		= $this->session->flashdata('ERRO_HEL_ATIVO_CON');
+		
 
-		$hel_empresa_emp     	   = $this->session->flashdata('hel_empresa_emp');
-		$hel_filial_emp     	   = $this->session->flashdata('hel_filial_emp');
-		$hel_cnpj_emp     	   	   = $this->session->flashdata('hel_cnpj_emp');
-		$hel_razaosocial_emp   	   = $this->session->flashdata('hel_razaosocial_emp');
-		$hel_nomefantasia_emp  	   = $this->session->flashdata('hel_nomefantasia_emp');
-		$hel_endereco_emp  	   	   = $this->session->flashdata('hel_endereco_emp');
-		$hel_numero_emp  	   	   = $this->session->flashdata('hel_numero_emp');
-		$hel_bairro_emp  	   	   = $this->session->flashdata('hel_bairro_emp');
-		$hel_seqcid_emp  	   	   = $this->session->flashdata('hel_seqcid_emp');
-		$hel_cep_emp  	   	   	   = $this->session->flashdata('hel_cep_emp');
-		$hel_ativo_emp  	   	   = $this->session->flashdata('hel_ativo_emp');
+		$hel_nome_con     	   		= $this->session->flashdata('hel_nome_con');
+		$hel_login_con     	   		= $this->session->flashdata('hel_login_con');
+		$hel_senha_con     	   		= $this->session->flashdata('hel_senha_con');
+		$hel_confirsenha_con  		= $this->session->flashdata('hel_confirsenha_con');
+		$hel_seqtco_con  			= $this->session->flashdata('hel_seqtco_con');
+		$hel_ativo_con  	   	   	= $this->session->flashdata('hel_ativo_con');
 		
 		
-		if ($ERRO_HEL_EMP) {
-			$dados['hel_empresa_emp']      		= $hel_empresa_emp;
-			$dados['hel_filial_emp']       		= $hel_filial_emp;
-			$dados['hel_cnpj_emp']         		= $hel_cnpj_emp;
-			$dados['hel_razaosocial_emp']  		= $hel_razaosocial_emp;
-			$dados['hel_nomefantasia_emp'] 		= $hel_nomefantasia_emp;
-			$dados['hel_endereco_emp']     		= $hel_endereco_emp;
-			$dados['hel_numero_emp']  	   		= $hel_numero_emp;
-			$dados['hel_bairro_emp']  	   		= $hel_bairro_emp;
-			$dados['hel_seqcid_emp']  	   		= $hel_seqcid_emp;
-			$dados['hel_cep_emp']  		   		= $hel_cep_emp;
-			$dados['hel_ativo_emp']  	   		= $hel_ativo_emp;
-			$dados['hel_checkedativo_emp']  	= $hel_ativo_emp == 1 ? 'checked' : '';
+		if ($ERRO_HEL_CON) {
+			$dados['hel_nome_con']      		= $hel_nome_con;
+			$dados['hel_login_con']       		= $hel_login_con;
+			$dados['hel_senha_con']         	= $hel_senha_con;
+			$dados['hel_confirsenha_con']  		= $hel_confirsenha_con;
+			$dados['hel_seqtco_con'] 			= $hel_seqtco_con;
+			$dados['hel_ativo_con'] 			= $hel_ativo_con;
+			$dados['hel_checkedativo_con']  	= $hel_ativo_con == 1 ? 'checked' : '';
+			$dados['hel_dis_senha_con']  		= empty($dados['hel_dis_senha_con']) ? '' : $dados['hel_dis_senha_con'];
+			$dados['hel_dis_confirsenha_con']  	= empty($dados['hel_dis_confirsenha_con']) ? '' : $dados['hel_dis_confirsenha_con'];
+			$dados['hel_checkedativo_con']  	= $hel_ativo_con == 1 ? 'checked' : '';
 			
-			$dados['ERRO_HEL_EMPRESA_EMP']  	= $ERRO_HEL_EMPRESA_EMP;
-			$dados['ERRO_HEL_FILIAL_EMP']    	= $ERRO_HEL_FILIAL_EMP;
-			$dados['ERRO_HEL_CNPJ_EMP']  		= $ERRO_HEL_CNPJ_EMP;
-			$dados['ERRO_HEL_RAZAOSOCIAL_EMP']  = $ERRO_HEL_RAZAOSOCIAL_EMP;
-			$dados['ERRO_HEL_NOMEFANTASIA_EMP'] = $ERRO_HEL_NOMEFANTASIA_EMP;
-			$dados['ERRO_HEL_SEQCID_EMP']    	= $ERRO_HEL_SEQCID_EMP;
-			$dados['ERRO_HEL_CEP_EMP']    		= $ERRO_HEL_CEP_EMP;
-			$dados['ERRO_HEL_ATIVO_EMP']    	= $ERRO_HEL_ATIVO_EMP;
+			$dados['ERRO_HEL_NOME_CON']  		= $ERRO_HEL_NOME_CON;
+			$dados['ERRO_HEL_LOGIN_CON']    	= $ERRO_HEL_LOGIN_CON;
+			$dados['ERRO_HEL_SENHA_CON']  		= $ERRO_HEL_SENHA_CON;
+			$dados['ERRO_HEL_CONFIRSENHA_CON']  = $ERRO_HEL_CONFIRSENHA_CON;
+			$dados['ERRO_HEL_SEQTCO_CON'] 		= $ERRO_HEL_SEQTCO_CON;
+			$dados['ERRO_HEL_ATIVO_CON']    	= $ERRO_HEL_ATIVO_CON;
 		}
 	}
 	

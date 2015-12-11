@@ -2,10 +2,9 @@
 
 class Contato_Model extends CI_Model {
 
-
 	public function get($hel_pk_seq_con) {
 		$this->db->from('heltbcon');
-		$this->db->where('hel_pk_seq_con', $hel_pk_seq_cto, FALSE);
+		$this->db->where('hel_pk_seq_con', $hel_pk_seq_con, FALSE);
 		return $this->db->get()->first_row();
 	}
 
@@ -24,8 +23,8 @@ class Contato_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function insert($cidade) {
-		$res = $this->db->insert('heltbcid', $cidade);
+	public function insert($contato) {
+		$res = $this->db->insert('heltbcon', $contato);
 	
 		if ($res) {
 			return $this->db->insert_id();
@@ -34,22 +33,17 @@ class Contato_Model extends CI_Model {
 		}
 	}
 	
-	public function update($cidade, $hel_pk_seq_cid) {
-		$this->db->where('hel_pk_seq_cid', $hel_pk_seq_cid, FALSE);
-		$res = $this->db->update('heltbcid', $cidade);
+	public function update($contato, $hel_pk_seq_con) {
+		$this->db->where('hel_pk_seq_con', $hel_pk_seq_con, FALSE);
+		$res = $this->db->update('heltbcon', $contato);
 	
 		if ($res) {
-			return $hel_pk_seq_cid;
+			return $hel_pk_seq_con;
 		} else {
 			return FALSE;
 		}
 	}
-	
-	public function delete($hel_pk_seq_cid) {
-		$this->db->where('hel_pk_seq_cid', $hel_pk_seq_cid, FALSE);
-		return $this->db->delete('heltbcid');
-	}
-	
+
 	public function getContatoLogin($hel_login_con, $hel_senha_con) {
 		$this->db->from('heltbexc');
 		$this->db->join('heltbcon', 'hel_seqcon_exc = hel_pk_seq_con');
