@@ -14,6 +14,12 @@ class Ordem_Servico_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getContatoEmpresaOrdemServico($hel_pk_seq_exc) {
+		$this->db->from('heltbose');
+		$this->db->where('hel_seqexc_ose', $hel_pk_seq_exc, FALSE);
+		return $this->db->get()->result();
+	}
+	
 	public function getEmpresa() {
 		$this->db->from('heltbemp');
 		$this->db->join('heltbcid','hel_pk_seq_cid = hel_seqcid_emp','left');

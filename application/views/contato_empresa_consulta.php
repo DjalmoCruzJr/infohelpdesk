@@ -8,9 +8,6 @@
             <div class="col-lg-12">
                 <div>
                     <a href="{NOVO_EMPRESA_CONTATO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nova Contato da empresa</a>
-	                <div class="pull-right">
-			    		<a onclick="" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
-			    	</div>
                 </div>
                 </br>
                 <div class="table">
@@ -19,8 +16,7 @@
                             <tr>
                                 <th>Empresa</th>    
                                 <th>Contato</th>
-                                <th>Tipo de Contato</th>
-                                <th class="coluna-acao" width="80"></th>
+                                <th width="120">Tipo de Contato</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -28,11 +24,11 @@
                         <tbody>
                         	{BLC_DADOS}
 	                            <tr>
-	                                <td class="vertical-center">{hel_nome_con}</td>	    
-	                                <td class="vertical-center">{hel_login_con}</td>
+	                                <td class="vertical-center">{hel_nomefantasia_emp}</td>	    
+	                                <td class="vertical-center">{hel_nome_con}</td>
 	                                <td class="vertical-center">{hel_desc_tco}</td>
-	                                <td class="text-center"><a href="{EDITAR_CONTATO}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
-	                                <td class="text-center"><a onclick="{APAGAR_CONTATO}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
+	                                <td class="text-center"><a href="{EDITAR_EMPRESA_CONTATO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+	                                <td class="text-center"><a onclick="{APAGAR_EMPRESA_CONTATO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
                         	{/BLC_DADOS}
                         </tbody>                   
@@ -51,7 +47,7 @@
                     <h3 class="modal-title" id="myModalLabel">Info Rio Sistemas</h3>
                 </div>
                 <div class="modal-body">
-                    <h4>Deseja realmente apagar esta cidade ?</h4>
+                    <h4>Deseja realmente apagar esta contado da empresa ?</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="apagar()">Sim</button>
@@ -60,20 +56,20 @@
         </div>
     </div>
 </div>
-
-
 <script type="text/javascript">
 
-	var idExclusao = "";	
+	var idExclusao = "";
+	var idContato  = "";	
 
-    function abrirConfirmacao(id){
+    function abrirConfirmacao(id, idC){
         idExclusao = id;
+        idContato  = idC;
         $('#myModal').modal('show');
     }
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = 'contato/apagar/' + idExclusao;
+        location.href = '{URL_APAGAR}/' + idExclusao + '/' + idContato;
     }
 
 </script>

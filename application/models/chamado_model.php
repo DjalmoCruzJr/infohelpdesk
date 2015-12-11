@@ -14,6 +14,12 @@ class Chamado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getEmpresaContatoChamado($hel_pk_seq_exc) {
+		$this->db->from('heltbcha');
+		$this->db->where('hel_seqexc_cha', $hel_pk_seq_exc, FALSE);
+		return $this->db->get()->result();
+	}
+	
 	public function getCidade() {
 		$this->db->from('heltbcid');
 		$this->db->order_by("hel_nome_cid", "asc");
