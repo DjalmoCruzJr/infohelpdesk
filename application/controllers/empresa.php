@@ -8,6 +8,10 @@ class Empresa extends CI_Controller {
 		
 		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Cidade_Model', 'CidadeModel');
+		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
+		$this->load->model('Sistema_Contratado_Model', 'SistemaContradoModel');
+		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
+		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 	}
 
 	
@@ -80,7 +84,7 @@ class Empresa extends CI_Controller {
 		global $hel_cep_emp;
 		global $hel_ativo_emp;
 		
-		$hel_pk_seq_cid  		= $this->input->post('hel_pk_seq_emp');			
+		$hel_pk_seq_emp  		= $this->input->post('hel_pk_seq_emp');			
 		$hel_empresa_emp 		= $this->input->post('hel_empresa_emp');
 		$hel_filial_emp 		= $this->input->post('hel_filial_emp');
 		$hel_cnpj_emp 			= $this->input->post('hel_cnpj_emp');
@@ -136,14 +140,14 @@ class Empresa extends CI_Controller {
 		}
 	}
 	
-	public function apagar($hel_pk_seq_cid) {		
-		if ($this->testarApagar(base64_decode($hel_pk_seq_cid))) {
-			$res = $this->CidadeModel->delete(base64_decode($hel_pk_seq_cid));
+	public function apagar($hel_pk_seq_emp) {		
+		if ($this->testarApagar(base64_decode($hel_pk_seq_emp))) {
+			$res = $this->EmpresaModel->delete(base64_decode($hel_pk_seq_emp));
 			if ($res) {
-				$this->session->set_flashdata('sucesso', 'Cidade apagada com sucesso.');
+				$this->session->set_flashdata('sucesso', 'Empresa apagada com sucesso.');
 			} 
 		}				
-		redirect('cidade');
+		redirect('empresa');
 	}
 	
 	private function setarURL(&$dados) {
@@ -265,7 +269,7 @@ class Empresa extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_CEP_EMP', 'has-error');
 		}
 		
-		if (!$erros and $this->EmpresaModel->getEmpresaCadastrada($hel_cnpj_emp)){
+		if (!$erros and $this->EmpresaModel->getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp)){
 			$erros    = TRUE;
 			$mensagem .= "- Empresa já cadastrada.\n";
 			$this->session->set_flashdata('ERRO_HEL_EMPRESA_EMP', 'has-error');
@@ -300,13 +304,23 @@ class Empresa extends CI_Controller {
 		return !$erros;
 	}
 	
-	private function testarApagar($hel_pk_seq_cid) {
+	private function testarApagar($hel_pk_seq_emp) {
 		$erros    = FALSE;
 		$mensagem = null;
-	
-		if ($this->EmpresaModel->getEmpresaCidade($hel_pk_seq_cid)) {
+		
+		if ($this->OrdemServicoModel->getEmpresaOrdemServico($hel_pk_seq_emp)) {
 			$erros    = TRUE;
-			$mensagem .= "- Empresa cadastrada.\n";
+			$mensagem .= "- Ordem Serviço cadastrada.\n";
+		}
+		
+		if ($this->SistemaContradoModel->getEmpresaSistemaContratado($hel_pk_seq_emp)) {
+			$erros    = TRUE;
+			$mensagem .= "- Sistema Contratado cadastrada.\n";
+		}
+	
+		if ($this->EmpresaContatoModel->getEmpresaContato($hel_pk_seq_emp)) {
+			$erros    = TRUE;
+			$mensagem .= "- Contatos cadastrada.\n";
 		}
 	
 		if ($erros) {

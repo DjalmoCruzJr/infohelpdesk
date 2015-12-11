@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Empresa_Model extends CI_Model {
+class Sistema_Contratado_Model extends CI_Model {
 	
 	public function get($hel_pk_seq_emp) {
 		$this->db->from('heltbemp');
@@ -8,9 +8,9 @@ class Empresa_Model extends CI_Model {
 		return $this->db->get()->first_row();
 	}
 	
-	public function getEmpresaCidade($hel_seqcid_emp) {
-		$this->db->from('heltbemp');
-		$this->db->where('hel_seqcid_emp', $hel_seqcid_emp, FALSE);
+	public function getEmpresaSistemaContratado($hel_pk_seq_emp) {
+		$this->db->from('heltbsco');
+		$this->db->where('hel_seqemp_sco', $hel_pk_seq_emp, FALSE);
 		return $this->db->get()->result();
 	}
 	
