@@ -298,19 +298,22 @@
 													Serviço
 												</a>
 											</li>
+											<li>
+												<a href="#">
+													Sistema
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													Menu
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													Sistema Contatado
+												</a>
+											</li>
 									</ul>
-										<ul class="nav nav-children">
-											<li class="nav-parent">
-												<a>Gerenciador</a>
-												<ul class="nav nav-children">
-													<li>
-														<a href="<?php echo site_url('#');?>">
-															 Programa
-														</a>
-													</li>											
-												</ul>
-											</li>	
-										</ul>	
 									</li>
 									<li class="nav-parent">
 										<a>
@@ -320,10 +323,14 @@
 										<ul class="nav nav-children">
 											<li>
 												<a href="#">
-													Basic 
+													Chamado 
 												</a>
 											</li>
-											
+											<li>
+												<a href="#">
+													Ordem de Serviço 
+												</a>
+											</li>
 										</ul>
 									</li>
 									
