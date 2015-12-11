@@ -30,11 +30,11 @@ class Template {
 				
 				$html	= str_replace("{CONTEUDO}", $output, $layout);
 				
-				if ($CI->session->userdata('logado')) {
-					$this->carregarDadosSessao($CI, $html);
-				} else {
-					redirect('login/');
-				}
+// 				if ($CI->session->userdata('logado')) {
+// 					$this->carregarDadosSessao($CI, $html);
+// 				} else {
+// 					redirect('login/');
+// 				}
 				
 				if (!$tituloErroDash) {
 					$tituloErroDash = '';

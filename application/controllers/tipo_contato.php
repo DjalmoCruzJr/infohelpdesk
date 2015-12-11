@@ -42,14 +42,16 @@ class Tipo_Contato extends CI_Controller {
 	public function editar($hel_pk_seq_tco) {
 		$hel_pk_seq_tco = base64_decode($hel_pk_seq_tco);
 		$dados = array();
-		
+
 		$this->carregarTipo_Contato($hel_pk_seq_tco, $dados);
-		
+
+		$this->carregarDadosFlash($dados);
+
 		$dados['ACAO'] = 'Editar';
 
 		$this->setarURL($dados);
-		
-		$this->carregarDadosFlash($dados);
+
+
 		
 		$this->parser->parse('tipo_contato_cadastro', $dados);
 	}
@@ -127,9 +129,9 @@ class Tipo_Contato extends CI_Controller {
 		$tipo = "";
 
 		if ($hel_tipo_tco == 1){
-			$tipo = "Tecnico";
+			$tipo = "Técnico";
 		}else if ($hel_tipo_tco == 2){
-			$tipo = "Responsavel";
+			$tipo = "Responsável";
 		}else if($hel_tipo_tco == 3){
 			$tipo = "Outros";
 		}
@@ -146,6 +148,8 @@ class Tipo_Contato extends CI_Controller {
 		} else {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');
 		}
+
+		$this->carregar_tipo_contato($dados);
 	}
 	
 
@@ -201,6 +205,19 @@ class Tipo_Contato extends CI_Controller {
 	
 		return !$erros;
 	}
+
+	private function carregar_tipo_contato(&$dados){
+
+		switch ($dados['hel_tipo_tco']){
+			case 1: $dados['hel_checktecnico_tco'] = 'checked';
+				break;
+			case 2: $dados['hel_checkresponsavel_tco'] = 'checked';
+				break;
+			case 3: $dados['hel_checkoutro_tco'] = 'checked';
+				break;
+		}
+
+	}
 	
 	private function carregarDadosFlash(&$dados) {
 		$ERRO_GAB_HEL   	   = $this->session->flashdata('ERRO_GAB_HEL');
@@ -213,15 +230,7 @@ class Tipo_Contato extends CI_Controller {
 		if ($ERRO_GAB_HEL) {
 			$dados['hel_desc_tco']       = $hel_desc_tco;
 			$dados['hel_tipo_tco']       = $hel_tipo_tco;
-
-			switch ($hel_tipo_tco){
-				case 1: $dados['hel_checktecnico_tco'] = 'checked';
-						break;
-				case 2: $dados['hel_checkresponsavel_tco'] = 'checked';
-						break;
-				case 3: $dados['hel_checkoutro_tco'] =  'checked';
-						break;
-			}
+			$this->carregar_tipo_contato($dados);
 
 			$dados['ERRO_GAB_DESC_HEL']  = $ERRO_GAB_DESC_HEL;
 			$dados['ERRO_GAB_TIPO_HEL']  = $ERRO_GAB_TIPO_HEL;

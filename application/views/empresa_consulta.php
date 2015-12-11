@@ -1,5 +1,5 @@
 <header class="page-header">
-	<h2>Consulta Tipo de Contato</h2>
+	<h2>Consulta de Empresa</h2>
 </header>
 
 
@@ -8,18 +8,20 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVO_TIPO_CONTATO}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Novo Tipo Contato</a>
+                    <a href="{NOVA_EMPRESA}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nova Empresa</a>
 	                <div class="pull-right">
-			    		<a class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
+			    		<a onclick="" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>
                 </div>
                 </br>
                 <div class="table">
-                    <table class="table table-striped table-bordered table-hover table-condensed" id="tb_tipo_contato">
+                    <table class="table table-striped table-bordered table-hover table-condensed" id="tb_empresa">
 						<thead>
                             <tr>
-                                <th>Descrição</th>
-                                <th width="160">Tipo de contato</th>
+                                <th>Nome Fantasia</th>    
+                                <th>CNPJ</th>
+                                <th>Cidade</th>
+                                <th>Ativo</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -27,10 +29,12 @@
                         <tbody>
                         	{BLC_DADOS}
 	                            <tr>
-	                                <td class="vertical-center">{hel_desc_tco}</td>
-	                                <td class="vertical-center">{hel_tipo_tco}</td>
-	                                <td class="text-center"><a href="{EDITAR_TIPO_CONTATO}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
-	                                <td class="text-center"><a onclick="{APAGAR_TIPO_CONTATO}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
+	                                <td class="vertical-center">{hel_nomefantasia_emp}</td>	    
+	                                <td class="vertical-center">{hel_cnpj_emp}</td>
+	                                <td class="vertical-center">{hel_nome_cid}</td>
+	                                <td class="vertical-center">{hel_ativo_emp}</td>	                                
+	                                <td class="text-center"><a href="{EDITAR_EMPRESA}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+	                                <td class="text-center"><a onclick="{APAGAR_EMPRESA}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
                         	{/BLC_DADOS}
                         </tbody>                   
@@ -49,7 +53,7 @@
                     <h3 class="modal-title" id="myModalLabel">Info Rio Sistemas</h3>
                 </div>
                 <div class="modal-body">
-                    <h4>Deseja realmente apagar este tipo de contato  ?</h4>
+                    <h4>Deseja realmente apagar esta empresa ?</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="apagar()">Sim</button>
@@ -62,8 +66,8 @@
 
 <script type="text/javascript">
 
-	var idExclusao = "";
-	
+	var idExclusao = "";	
+
     function abrirConfirmacao(id){
         idExclusao = id;
         $('#myModal').modal('show');
@@ -71,7 +75,7 @@
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = 'tipo_contato/apagar/' + idExclusao;
+        location.href = 'empresa/apagar/' + idExclusao;
     }
-    
+
 </script>

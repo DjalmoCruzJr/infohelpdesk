@@ -279,17 +279,21 @@
 												<a href="<?php echo site_url('cidade')?>">
 													 Cidades
 												</a>
-<<<<<<< HEAD
 											</li>
+
+											</li>
+											<li>
+												<a href="<?php echo site_url('empresa')?>">
+													 Empresa
+												</a>
+											</li>
+
 											<li>
 												<a href="<?php echo site_url('tipo_contato');?>">
 													Tipo contato
 												</a>
 											</li>
-=======
-											</li>	
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-										</ul>
+								</ul>
 										<ul class="nav nav-children">
 											<li class="nav-parent">
 												<a>Gerenciador</a>
@@ -460,7 +464,7 @@
 		        $('#tb_cidade').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_tipo_contato').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_contato').dataTable({"order": [[ 1, "asc" ]]});
-
+		        $('#tb_empresa').dataTable({"order": [[ 1, "asc" ]]});
 			});
 		</script>
 

@@ -63,10 +63,10 @@ class Cidade extends CI_Controller {
 		global $hel_uf_cid;
 		global $hel_codmun_cid;
 		
-		$hel_pk_seq_cid  = $this->input->post('gab_pk_seq_cid');			
-		$hel_nome_cid    = $this->input->post('gab_nome_cid');
-		$hel_uf_cid      = $this->input->post('gab_uf_cid');
-		$hel_codmun_cid  = $this->input->post('gab_codmun_cid');
+		$hel_pk_seq_cid  = $this->input->post('hel_pk_seq_cid');			
+		$hel_nome_cid    = $this->input->post('hel_nome_cid');
+		$hel_uf_cid      = $this->input->post('hel_uf_cid');
+		$hel_codmun_cid  = $this->input->post('hel_codmun_cid');
 
 		if ($this->testarDados()) {
 			$cidade = array(
