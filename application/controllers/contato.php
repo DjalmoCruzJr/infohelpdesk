@@ -137,6 +137,7 @@ class Contato extends CI_Controller {
 				"hel_login_con"   => $registro->hel_login_con,
 				"hel_desc_tco"	  => $registro->hel_desc_tco,
 				"hel_ativo_con"	  => $registro->hel_ativo_con == 1 ? 'Ativo' : 'Inativo',
+				"CONTATO_EMPRESA" => site_url('empresa_contato/index/'.base64_encode($registro->hel_pk_seq_con)),	
 				"EDITAR_CONTATO"  => site_url('contato/editar/'.base64_encode($registro->hel_pk_seq_con)),
 				"APAGAR_CONTATO"  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_con)."')"
 			);

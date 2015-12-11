@@ -20,10 +20,12 @@ class Empresa_Contato_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	
-	public function getCidade() {
-		$this->db->from('heltbcid');
-		$this->db->order_by("hel_nome_cid", "asc");
+	public function getContatoEmpresa($hel_seqcon_exc) {
+		$this->db->from('heltbexc');
+		$this->db->join('heltbemp', 'hel_seqemp_exc = hel_pk_seq_emp', 'LEFT');
+		$this->db->join('heltbcon', 'hel_seqcon_exc = hel_pk_seq_con', 'LEFT');
+		$this->db->join('heltbtco', 'hel_seqtco_con = hel_pk_seq_tco', 'LEFT');
+		$this->db->where('hel_seqcon_exc', $hel_seqcon_exc, FALSE);
 		return $this->db->get()->result();
 	}
 	

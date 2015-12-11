@@ -1,27 +1,25 @@
 <header class="page-header">
-	<h2>Consulta de Contato</h2>
+	<h2>Consulta de Contato - {HEL_NOME_CON}</h2>
 </header>
-
 
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVO_CONTATO}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Nova Contato</a>
+                    <a href="{NOVO_EMPRESA_CONTATO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nova Contato da empresa</a>
 	                <div class="pull-right">
-			    		<a onclick="" class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
+			    		<a onclick="" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>
                 </div>
                 </br>
                 <div class="table">
-                    <table class="table table-striped table-bordered table-hover table-condensed" id="tb_contato">
+                    <table class="table table-striped table-bordered table-hover table-condensed" id="tb_contato_empresa">
 						<thead>
                             <tr>
-                                <th>Nome</th>    
-                                <th>Login</th>
+                                <th>Empresa</th>    
+                                <th>Contato</th>
                                 <th>Tipo de Contato</th>
-                                <th>Ativo</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
@@ -33,8 +31,6 @@
 	                                <td class="vertical-center">{hel_nome_con}</td>	    
 	                                <td class="vertical-center">{hel_login_con}</td>
 	                                <td class="vertical-center">{hel_desc_tco}</td>
-	                                <td class="vertical-center">{hel_ativo_con}</td>
-	                                <td class="text-center"><a href="{CONTATO_EMPRESA}" class="btn btn-link btn-xs" title="Contato da empresa"><i class="glyphicon glyphicon-comment"></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_CONTATO}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_CONTATO}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
