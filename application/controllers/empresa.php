@@ -165,6 +165,7 @@ class Empresa extends CI_Controller {
 				"hel_cnpj_emp"         => $registro->hel_cnpj_emp,
 				"hel_nome_cid"		   => $registro->hel_nome_cid,
 				"hel_ativo_emp"		   => $registro->hel_ativo_emp == 1 ? 'Ativo' : 'Inativo',
+				"EMPRESA_CONTATO" 	   => site_url('contato_empresa/index/'.base64_encode($registro->hel_pk_seq_emp)),
 				"EDITAR_EMPRESA" 	   => site_url('empresa/editar/'.base64_encode($registro->hel_pk_seq_emp)),
 				"APAGAR_EMPRESA" 	   => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_emp)."')"
 			);

@@ -1,5 +1,5 @@
 <header class="page-header">
-	<h2>Consulta de Empresa</h2>
+	<h2>Contatos - {HEL_NOMEFANTASIA_EMP}</h2>
 </header>
 
 
@@ -19,9 +19,9 @@
                         <tbody>
                         	{BLC_DADOS}
 	                            <tr>
-	                                <td class="vertical-center">{hel_nomefantasia_emp}</td>	    
-	                                <td class="vertical-center">{hel_cnpj_emp}</td>
-	                                <td class="vertical-center">{hel_ativo_emp}</td>	                                
+	                                <td class="vertical-center">{hel_nome_con}</td>	    
+	                                <td class="vertical-center">{hel_desc_tco}</td>
+	                                <td class="vertical-center">{hel_ativo_con}</td>	                                
 	                            </tr>
                         	{/BLC_DADOS}
                         </tbody>                   
