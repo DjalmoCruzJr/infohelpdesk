@@ -1,29 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Empresa extends CI_Controller {
+class Contato extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 				
  		$this->layout = LAYOUT_DASHBOARD;
 		
-		$this->load->model('Empresa_Model', 'EmpresaModel');
-		$this->load->model('Cidade_Model', 'CidadeModel');
-		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
-		$this->load->model('Sistema_Contratado_Model', 'SistemaContradoModel');
-		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
-		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
+		$this->load->model('Contato_Model', 'ContatoModel');
 	}
 
 	
 	public function index() {
 		$dados = array();
-		$dados['NOVA_EMPRESA'] = site_url('empresa/novo');
+		$dados['NOVO_CONTATO'] = site_url('contato/novo');
 		
 		$dados['BLC_DADOS']   = array();
 		
 		$this->carregarDados($dados);
 				
-		$this->parser->parse('empresa_consulta', $dados);
+		$this->parser->parse('contato_consulta', $dados);
 	}
 	
 	public function novo() {
@@ -153,20 +148,19 @@ class Empresa extends CI_Controller {
 	private function setarURL(&$dados) {
 		$dados['CONSULTA_EMPRESA']  = site_url('empresa');
 		$dados['ACAO_FORM']         = site_url('empresa/salvar');
-		$dados['URL_BUSCAR_CEP']   	= site_url('json/json/buscarCEP');
 	}	
 	
 	private function carregarDados(&$dados) {
-				
-		$resultado = $this->EmpresaModel->getEmpresa();	
+		$resultado = $this->ContatoModel->getContato();
+			
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
-				"hel_nomefantasia_emp" => $registro->hel_nomefantasia_emp,							
-				"hel_cnpj_emp"         => $registro->hel_cnpj_emp,
-				"hel_nome_cid"		   => $registro->hel_nome_cid,
-				"hel_ativo_emp"		   => $registro->hel_ativo_emp == 1 ? 'Ativo' : 'Inativo',
-				"EDITAR_EMPRESA" 	   => site_url('empresa/editar/'.base64_encode($registro->hel_pk_seq_emp)),
-				"APAGAR_EMPRESA" 	   => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_emp)."')"
+				"hel_nome_con" 	  => $registro->hel_nome_con,							
+				"hel_login_con"   => $registro->hel_login_con,
+				"hel_desc_tco"	  => $registro->hel_desc_tco,
+				"hel_ativo_con"	  => $registro->hel_ativo_con == 1 ? 'Ativo' : 'Inativo',
+				"EDITAR_CONTATO"  => site_url('empresa/editar/'.base64_encode($registro->hel_pk_seq_con)),
+				"APAGAR_CONTATO"  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_con)."')"
 			);
 		}
 	}

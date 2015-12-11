@@ -8,12 +8,6 @@ class Contato_Model extends CI_Model {
 		$this->db->where('hel_pk_seq_con', $hel_pk_seq_cto, FALSE);
 		return $this->db->get()->first_row();
 	}
-	
-	public function getContato(){
-		$this->db->from('heltbcon');
-		$this->db->order_by("hel_nome_con", "asc");
-		return $this->db->get()->result;
-	}
 
 	public function getContatoCadastrado($hel_pk_seq_tco) {
 		$this->db->where('hel_seqtco_con', $hel_pk_seq_tco);
@@ -22,11 +16,11 @@ class Contato_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-	
-	
-	public function getCidade() {
-		$this->db->from('heltbcid');
-		$this->db->order_by("hel_nome_cid", "asc");
+		
+	public function getContato() {
+		$this->db->from('heltbcon');
+		$this->db->join('heltbtco', 'hel_pk_seq_tco = hel_seqtco_con', 'LEFT');
+		$this->db->order_by("hel_nome_con", "asc");
 		return $this->db->get()->result();
 	}
 	

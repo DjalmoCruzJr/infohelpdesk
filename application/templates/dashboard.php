@@ -287,10 +287,14 @@
 													 Empresa
 												</a>
 											</li>
-
 											<li>
 												<a href="<?php echo site_url('tipo_contato');?>">
 													Tipo contato
+												</a>
+											</li>
+											<li>
+												<a href="<?php echo site_url('contato');?>">
+													Contato
 												</a>
 											</li>
 											<li>
