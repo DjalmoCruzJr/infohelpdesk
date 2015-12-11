@@ -54,7 +54,7 @@
 					<label for="hel_cep_emp" class="col-sm-1 control-label">CEP</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control mask-cep" id="hel_cep_emp" name="hel_cep_emp" onblur="carregarCep()" 
-						       value="{hel_cep_emp}" maxlength="8" autocomplete="off" autofocus/>
+						       value="{hel_cep_emp}" maxlength="9" autocomplete="off" autofocus/>
 					</div>
 				</div>
 				<label for="hel_endereco_emp" class="col-sm-1 control-label">Endereço</label>
@@ -71,7 +71,7 @@
 			<div class="form-group">
 				<div class="{ERRO_HEL_SEQCID_EMP}">
 					<label for="hel_seqcid_emp" class="col-sm-1 control-label">Cidade</label>
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 							<select class="form-control" id="hel_seqcid_emp" name="hel_seqcid_emp" autofocus="autofocus">
 								<option value="">Selecione...</option>
 									{BLC_CIDADE}
