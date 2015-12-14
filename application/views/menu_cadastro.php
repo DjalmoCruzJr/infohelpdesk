@@ -8,7 +8,7 @@
 			<input type="hidden" id="hel_pk_seq_men" name="hel_pk_seq_men" value="{hel_pk_seq_men}"/>
 			<div class="form-group">
 				<div class="{ERRO_HEL_DESC_MEN}">
-					<label for="hel_desc_men" class="col-sm-1 control-label">Descricao</label>
+					<label for="hel_desc_men" class="col-sm-1 control-label">Descricão</label>
 					<div class="col-sm-11">
 						<input type="text" class="form-control" id="hel_desc_men"
 							   name="hel_desc_men" value="{hel_desc_men}" maxlength="45" autocomplete="off" autofocus/>
