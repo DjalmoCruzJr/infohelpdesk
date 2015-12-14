@@ -16,7 +16,7 @@
 		<link href="<?php echo base_url('assets/vendor/font-awesome/css/font-awesome.css') ?>" rel="stylesheet">
 		<link href="<?php echo base_url('assets/stylesheets/dataTables.bootstrap.css') ?>" rel="stylesheet">
 		
-		<link href="<?php echo base_url('assets/stylesheets/theme.cs') ?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/stylesheets/theme.css') ?>" rel="stylesheet">
 		<link href="<?php echo base_url('assets/stylesheets/theme-custom.css') ?>" rel="stylesheet">
 		<script src="<?php echo base_url('assets/vendor/modernizr/modernizr.js') ?>"></script>
 
