@@ -292,6 +292,24 @@
 													Tipo contato
 												</a>
 											</li>
+									<li>
+										<a href="<?php echo site_url('menu');?>">
+											Menu
+										</a>
+									</li>
+								</ul>
+										<ul class="nav nav-children">
+											<li class="nav-parent">
+												<a>Gerenciador</a>
+												<ul class="nav nav-children">
+													<li>
+														<a href="<?php echo site_url('#');?>">
+															 Programa
+														</a>
+													</li>											
+												</ul>
+											</li>	
+										</ul>	
 											<li>
 												<a href="<?php echo site_url('contato');?>">
 													Contato
@@ -481,6 +499,7 @@
 				$('#tb_tipo_contato').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_contato').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_empresa').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_menu').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_servico').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_contato_empresa').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_empresa_contato').dataTable({"order": [[ 1, "asc" ]]});
