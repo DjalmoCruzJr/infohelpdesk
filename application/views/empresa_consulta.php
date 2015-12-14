@@ -22,7 +22,7 @@
                                 <th>CNPJ</th>
                                 <th>Cidade</th>
                                 <th>Ativo</th>
-                                <th class="coluna-acao" width="80"></th>
+                                <th class="coluna-acao" width="130">Contato da Empresa</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>

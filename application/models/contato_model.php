@@ -43,13 +43,18 @@ class Contato_Model extends CI_Model {
 			return FALSE;
 		}
 	}
+	
+	public function getLoginCadastro($hel_pk_seq_con, $hel_login_con) {
+		$this->db->from('heltbcon');
+		$this->db->where('hel_pk_seq_con <> ', $hel_pk_seq_con);
+		$this->db->where('hel_login_con = ', $hel_login_con);
+		return $this->db->get()->first_row();
+	}
 
 	public function getContatoLogin($hel_login_con, $hel_senha_con) {
-		$this->db->from('heltbexc');
-		$this->db->join('heltbcon', 'hel_seqcon_exc = hel_pk_seq_con');
-		$this->db->where('hel_login_con = ', $hel_login_con, FALSE);
-		$this->db->where('hel_senha_con = ', sha1($hel_senha_con), FALSE);
-		$this->db->where('hel_ativo_con = ', CONTATO_ATIVO, FALSE);
-		return $this->db->get()->result();
+		$this->db->from('heltbcon');
+		$this->db->where('hel_login_con = ', $hel_login_con);
+		$this->db->where('hel_senha_con = ', $hel_senha_con);
+		return $this->db->get()->first_row();
 	}
 }

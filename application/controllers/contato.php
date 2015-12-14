@@ -86,7 +86,7 @@ class Contato extends CI_Controller {
 				"hel_nome_con"   => $hel_nome_con, 
 				"hel_seqtco_con" => $hel_seqtco_con,
 				"hel_login_con"  => $hel_login_con,
-				"hel_senha_con"  => empty($hel_senha_con) ? sha1($$hel_senha_con) : $hel_senha_con,
+				"hel_senha_con"  => empty($hel_senha_con) ? sha1($hel_senha_con) : $hel_senha_con,
 				"hel_ativo_con"  => $hel_ativo_con
 			);
 			
@@ -229,6 +229,12 @@ class Contato extends CI_Controller {
 			$mensagem .= "- Senha e confirmação da senha diferentes.\n";
 			$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
 			$this->session->set_flashdata('ERRO_HEL_CONFIRSENHA_CON', 'has-error');
+		}
+		
+		if (!$erros and $this->ContatoModel->getLoginCadastro($hel_pk_seq_con, $hel_login_con)){
+			$erros    = TRUE;
+			$mensagem .= "- Já existi um contato cadastrado com esse login.\n";
+			$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
 		}
 
 		

@@ -5,6 +5,7 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
+		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Contato_Model', 'ContatoModel');
 		
 		if (!isset($_SESSION)) {
@@ -34,7 +35,7 @@ class Login extends CI_Controller {
 		global $contato;
 		global $empresa;
 			
-		$hel_login_con  	= $this->input->post('hel_senha_con');
+		$hel_login_con  	= $this->input->post('hel_login_con');
 		$hel_senha_con  	= $this->input->post('hel_senha_con');
 		
 	
@@ -58,43 +59,41 @@ class Login extends CI_Controller {
 		$erros    = FALSE;
 		$mensagem = null;
 	
-		
-		if ((!empty($gab_login_usu)) and (!empty($gab_senha_usu))) {
-			$usuario = $this->UsuarioModel->getUsuarioLogin($gab_login_usu, md5($gab_senha_usu));
-			
-// 			if (!$usuario){
-				
-// 				$erros    = TRUE;
-// 				$mensagem .= "- Login inválido.\n";
-				
-// 				$this->session->set_flashdata('ERRO_GAB_LOGIN_USU', 'has-error');
-// 				$this->session->set_flashdata('ERRO_GAB_SENHA_USU', 'has-error');
-				
-// 			} else if ($usuario and ($usuario->gab_ativo_usu == 0)) {
-// 				$erros    = TRUE;
-// 				$mensagem .= "- Usuário inativo.\n";
-
-// 				$this->session->set_flashdata('ERRO_GAB_LOGIN_USU', 'has-error');
-// 				$this->session->set_flashdata('ERRO_GAB_SENHA_USU', 'has-error');
-// 			}else {
-// 					$perfil = $this->PerfilModel->get($usuario->gab_seqper_usu);
-// 				}
-		}				
-	
 		if (empty($hel_login_con)) {
 			$erros    = TRUE;
 			$mensagem .= "- Login não informado.\n";
-	
+		
 			$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
 		}
-	
+		
 		if (empty($hel_senha_con)) {
 			$erros    = TRUE;
 			$mensagem .= "- Senha não informada.\n";
-	
+		
 			$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
 		}
-	
+		
+		
+		if ((!empty($hel_login_con)) and (!empty($hel_senha_con))) {
+			$contato = $this->ContatoModel->getContatoLogin($hel_login_con, sha1($hel_senha_con));
+			
+			if (!$contato){
+				$erros    = TRUE;
+				$mensagem .= "- Login inválido.\n";
+				
+				$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
+				$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
+				
+			} else if ( ($contato) and ($contato->hel_ativo_con == 0) ) {
+				$erros    = TRUE;
+				$mensagem .= "- Contato inativo.\n";
+
+				$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
+				$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
+			} else {
+				$empresa = $this->EmpresaModel->get($usuario->gab_seqper_usu);
+			}
+		}					
 			
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para entrar corrija os seguintes erros:');
@@ -115,8 +114,8 @@ class Login extends CI_Controller {
 			
 		$hel_login_con        = $this->session->flashdata('hel_login_con');
 	
-		$titulo_erro = $this->session->flashdata('titulo_erro');
-		$erro        = $this->session->flashdata('erro');
+		$titulo_erro 		  = $this->session->flashdata('titulo_erro');
+		$erro        		  = $this->session->flashdata('erro');
 	
 		if ($ERRO_LOGIN) {			
 			$dados['hel_login_con']        = $hel_login_con;

@@ -280,8 +280,6 @@
 													 Cidades
 												</a>
 											</li>
-
-											</li>
 											<li>
 												<a href="<?php echo site_url('empresa')?>">
 													 Empresa
@@ -292,12 +290,32 @@
 													Tipo contato
 												</a>
 											</li>
-									<li>
-										<a href="<?php echo site_url('menu');?>">
-											Menu
-										</a>
-									</li>
-								</ul>
+										<li>
+											<a href="<?php echo site_url('contato');?>">
+												Contato
+											</a>
+										</li>
+										<li>
+											<a href="<?php echo site_url('servico');?>">
+												Serviço
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												Sistema
+											</a>
+										</li>
+										<li>
+											<a href="<?php echo site_url('menu');?>">
+												Menu
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												Sistema Contatado
+											</a>
+										</li>
+									</ul>
 										<ul class="nav nav-children">
 											<li class="nav-parent">
 												<a>Gerenciador</a>
@@ -310,32 +328,6 @@
 												</ul>
 											</li>	
 										</ul>	
-											<li>
-												<a href="<?php echo site_url('contato');?>">
-													Contato
-												</a>
-											</li>
-											<li>
-												<a href="<?php echo site_url('servico');?>">
-													Serviço
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													Sistema
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													Menu
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													Sistema Contatado
-												</a>
-											</li>
-									</ul>
 									</li>
 									<li class="nav-parent">
 										<a>
@@ -370,13 +362,10 @@
 										</ul>
 									</li>
 								</ul>
-							</nav>
-
-				
-							
-						</div>
-				
+							</ul>
+						</nav>	
 					</div>
+				</div>
 				
 				</aside>
 				<!-- end: sidebar -->

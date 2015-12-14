@@ -22,7 +22,7 @@
                                 <th>Login</th>
                                 <th>Tipo de Contato</th>
                                 <th>Ativo</th>
-                                <th class="coluna-acao" width="80"></th>
+                                <th class="coluna-acao" width="125">Contato da Empresa</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
