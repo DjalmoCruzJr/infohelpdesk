@@ -22,14 +22,12 @@ class Inicio extends CI_Controller {
 		
 		$this->layout = LAYOUT_DASHBOARD;
 		
-		$this->load->view('inicio_view');
-		
-// 		if ($this->session->userdata('logado')) {
-// 			$this->load->view('inicio_view');
-// 		}
-// 		else {
-// 			redirect('login');
-// 		}
+		if ($this->session->userdata('logado')) {
+			$this->load->view('inicio_view');
+		}
+		else {
+			redirect('login');
+		}
 		
 	}
 }
