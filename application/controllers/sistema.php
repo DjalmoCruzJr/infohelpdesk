@@ -129,9 +129,9 @@ class Sistema extends CI_Controller {
 		switch ($hel_tipo_sis) {
 			case 0 : $tipo = "Desktop";
 					 break;
-			case 1 : $tipo = "Web";
+			case 1 : $tipo = "Mobile";
 					 break;
-			case 2 : $tipo = "Mobile";
+			case 2 : $tipo = "Web";
 					 break;
 		}
 
@@ -231,9 +231,9 @@ class Sistema extends CI_Controller {
 		switch ($dados['hel_tipo_sis']){
 			case 0 : $dados['hel_checkDesktop_sis']  = 'checked';
 					 break;
-			case 1 : $dados['hel_checkweb_sis']  	 = 'checked';
+			case 1 : $dados['hel_checkMobile_sis']   = 'checked';
 					 break;
-			case 2 : $dados['hel_checkMobile_sis']   = 'checked';
+			case 2 : $dados['hel_checkweb_sis']     = 'checked';
 					 break;
 		}
 	}

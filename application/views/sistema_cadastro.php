@@ -38,14 +38,14 @@
 							</div>
 							<div class="radio-inline">
 								<label>
-									<input type="radio" id="hel_tipo_sis" {hel_checkweb_sis}
-										   name="hel_tipo_sis" value="1"/>Web
+									<input type="radio" id="hel_tipo_sis" {hel_checkMobile_sis}
+										   name="hel_tipo_sis" value="1"/>Mobile
 								</label>
 							</div>
 							<div class="radio-inline">
 								<label>
-									<input type="radio" id="hel_tipo_sis" {hel_checkMobile_sis}
-										   name="hel_tipo_sis" value="2"/>Mobile
+									<input type="radio" id="hel_tipo_sis" {hel_checkweb_sis}
+										   name="hel_tipo_sis" value="2"/>Web
 								</label>
 							</div>
 						</div>
