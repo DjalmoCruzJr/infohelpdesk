@@ -12,6 +12,8 @@ class Empresa extends CI_Controller {
 		$this->load->model('Sistema_Contratado_Model', 'SistemaContradoModel');
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
+		
+		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	
@@ -19,7 +21,7 @@ class Empresa extends CI_Controller {
 		$dados = array();
 		$dados['NOVA_EMPRESA'] = site_url('empresa/novo');
 		
-		$dados['BLC_DADOS']   = array();
+		$dados['BLC_DADOS']    = array();
 		
 		$this->carregarDados($dados);
 				
@@ -27,7 +29,7 @@ class Empresa extends CI_Controller {
 	}
 	
 	public function novo() {
-			
+							
 		$dados = array();
 		$dados['hel_pk_seq_emp']  		= 0;		
 		$dados['hel_empresa_emp'] 		= '';
