@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model('Empresa_Model', 'EmpresaModel');
+		$this->load->model('Tipo_Contato_Model', 'TipoContatoModel');
 		$this->load->model('Contato_Model', 'ContatoModel');
 		
 		if (!isset($_SESSION)) {
@@ -33,7 +33,7 @@ class Login extends CI_Controller {
 		global $hel_senha_con;
 			
 		global $contato;
-		global $empresa;
+		global $tipo_contato;
 			
 		$hel_login_con  	= $this->input->post('hel_login_con');
 		$hel_senha_con  	= $this->input->post('hel_senha_con');
@@ -41,8 +41,8 @@ class Login extends CI_Controller {
 	
 		if ($this->testarDados()) {
 			$this->session->set_userdata(array('logado' => TRUE));
-			$this->session->set_userdata($usuario);
-			$this->session->set_userdata($perfil);
+			$this->session->set_userdata($contato);
+			$this->session->set_userdata($tipo_contato);
 			redirect('');
 		} else {
 			redirect('login');
@@ -54,7 +54,7 @@ class Login extends CI_Controller {
 		global $hel_senha_con;
 	
 		global $contato;
-		global $empresa;
+		global $tipo_contato;
 	
 		$erros    = FALSE;
 		$mensagem = null;
@@ -91,7 +91,7 @@ class Login extends CI_Controller {
 				$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
 				$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
 			} else {
-				$empresa = $this->EmpresaModel->get($usuario->gab_seqper_usu);
+				$tipo_contato = $this->TipoContatoModel->get($contato->hel_seqtco_con);
 			}
 		}					
 			

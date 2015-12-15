@@ -222,8 +222,8 @@
 								<i class="fa fa-user fa-2x"></i>
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-								<span class="name">Info Rio Sistemas LTDA</span>
-								<span class="role">Técnico</span>
+								<span class="name">{hel_login_con}</span>
+								<span class="role">{hel_desc_tco}</span>
 							</div>
 			
 							<i class="fa custom-caret"></i>
@@ -233,7 +233,7 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="<?php echo site_url('AlterarSenha')?>"><i class="fa fa-user"></i> Meu Perfil</a>
+									<a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Meu Perfil</a>
 								</li>								
 								<li>
 									<a role="menuitem" tabindex="-1" href="<?php echo site_url('login')?>"><i class="fa fa-power-off"></i> Sair</a>
@@ -290,32 +290,32 @@
 													Tipo contato
 												</a>
 											</li>
-										<li>
-											<a href="<?php echo site_url('contato');?>">
-												Contato
-											</a>
-										</li>
-										<li>
-											<a href="<?php echo site_url('servico');?>">
-												Serviço
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												Sistema
-											</a>
-										</li>
-										<li>
-											<a href="<?php echo site_url('menu');?>">
-												Menu
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												Sistema Contatado
-											</a>
-										</li>
-									</ul>
+											<li>
+												<a href="<?php echo site_url('contato');?>">
+													Contato
+												</a>
+											</li>
+											<li>
+												<a href="<?php echo site_url('servico');?>">
+													Serviço
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													Sistema
+												</a>
+											</li>
+											<li>
+												<a href="<?php echo site_url('menu');?>">
+													Menu
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													Sistema Contatado
+												</a>
+											</li>
+										</ul>
 										<ul class="nav nav-children">
 											<li class="nav-parent">
 												<a>Gerenciador</a>

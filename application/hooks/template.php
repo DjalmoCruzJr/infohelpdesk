@@ -30,11 +30,11 @@ class Template {
 				
 				$html	= str_replace("{CONTEUDO}", $output, $layout);
 				
-// 				if ($CI->session->userdata('logado')) {
-// 					$this->carregarDadosSessao($CI, $html);
-// 				} else {
-// 					redirect('login/');
-// 				}
+				if ($CI->session->userdata('logado')) {
+					$this->carregarDadosSessao($CI, $html);
+				} else {
+					redirect('login/');
+				}
 				
 				if (!$tituloErroDash) {
 					$tituloErroDash = '';
@@ -87,13 +87,8 @@ class Template {
 		}
 		
 	private function carregarDadosSessao($CI, &$html) {
-// 		$CI->load->model('Contato_Model', 'ContatoModel');
-// 		$resultado = $CI->ContatoModel->getQtdAniversariantes();
-		
-// 		$html	= str_replace("{gab_nome_usu}", $CI->session->userdata('gab_nome_usu'), $html);
-// 		$html	= str_replace("{gab_desc_per}", $CI->session->userdata('gab_desc_per'), $html);
-// 		$html   = str_replace("{ANIVERSARIANTES}", site_url('contato/carregarAniversariantes') ,$html);
-// 		$html   = str_replace("{QTD_ANIVERSARIANTES}", $resultado->quantidade ,$html);
+		$html	= str_replace("{hel_login_con}", $CI->session->userdata('hel_login_con'), $html);
+		$html	= str_replace("{hel_desc_tco}", $CI->session->userdata('hel_desc_tco'), $html); 		
 	}
 	
 }
