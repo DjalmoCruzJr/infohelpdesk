@@ -20,8 +20,8 @@
 						<thead>
 							<tr>
 								<th>Descrição</th>
-								<th class="coluna-acao" width="30"></th>
-								<th class="coluna-acao" width="30"></th>
+								<th class="coluna-acao" width="80"></th>
+								<th class="coluna-acao" width="80"></th>
 							</tr>
 						</thead>
 						<tbody>
