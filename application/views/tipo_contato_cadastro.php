@@ -8,7 +8,7 @@
 			<input type="hidden" id="hel_pk_seq_tco" name="hel_pk_seq_tco" value="{hel_pk_seq_tco}"/>
 			<div class="form-group">
 				<div class="{ERRO_GAB_DESC_HEL}">
-					<label for="hel_desc_tco" class="col-sm-1 control-label">Descricao</label>
+					<label for="hel_desc_tco" class="col-sm-1 control-label">Descricão</label>
 					<div class="col-sm-11">
 						<input type="text" class="form-control" id="hel_desc_tco"
 							   name="hel_desc_tco" value="{hel_desc_tco}" maxlength="60" autocomplete="off" autofocus/>
