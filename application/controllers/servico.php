@@ -6,8 +6,7 @@ class Servico extends CI_Controller {
 		parent::__construct();
 				
  		$this->layout = LAYOUT_DASHBOARD;
-		
-		$this->load->model('Servico_Model', 'ServicoModel');
+		$this->load->model('Servico_Model', 'ServicoModel');	
 	}
 
 	public function index() {
@@ -153,8 +152,7 @@ class Servico extends CI_Controller {
 	private function testarApagar($hel_pk_seq_ser) {
 		$erros    = FALSE;
 		$mensagem = null;
-		
-		
+			
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
