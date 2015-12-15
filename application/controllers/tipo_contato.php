@@ -128,11 +128,11 @@ class Tipo_Contato extends CI_Controller {
 
 		$tipo = "";
 
-		if ($hel_tipo_tco == 1){
+		if ($hel_tipo_tco == 0){
 			$tipo = "Técnico";
-		}else if ($hel_tipo_tco == 2){
+		}else if ($hel_tipo_tco == 1){
 			$tipo = "Responsável";
-		}else if($hel_tipo_tco == 3){
+		}else if($hel_tipo_tco == 2){
 			$tipo = "Outros";
 		}
 		return $tipo;
@@ -166,13 +166,13 @@ class Tipo_Contato extends CI_Controller {
 		if (empty($hel_desc_tco)) {
 			$erros    = TRUE;
 			$mensagem .= "- Descrição não preenchida.\n";
-			$this->session->set_flashdata('ERRO_GAB_DESC_HEL', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_DESC_TCO', 'has-error');
 		}
 
-		if (empty($hel_tipo_tco)) {
+		if ($hel_tipo_tco == '') {
 			$erros    = TRUE;
 			$mensagem .= "- Tipo de contado não preenchido.\n";
-			$this->session->set_flashdata('ERRO_GAB_TIPO_HEL', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_TIPO_TCO', 'has-error');
 		}
 
 
@@ -180,7 +180,7 @@ class Tipo_Contato extends CI_Controller {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
-			$this->session->set_flashdata('ERRO_GAB_HEL', TRUE);				
+			$this->session->set_flashdata('ERRO_HEL_TCO', TRUE);
 			$this->session->set_flashdata('hel_desc_tco', $hel_desc_tco);
 			$this->session->set_flashdata('hel_tipo_tco', $hel_tipo_tco);
 
@@ -209,31 +209,33 @@ class Tipo_Contato extends CI_Controller {
 	private function carregar_tipo_contato(&$dados){
 
 		switch ($dados['hel_tipo_tco']){
-			case 1: $dados['hel_checktecnico_tco'] = 'checked';
-				break;
-			case 2: $dados['hel_checkresponsavel_tco'] = 'checked';
-				break;
-			case 3: $dados['hel_checkoutro_tco'] = 'checked';
-				break;
+			case 0: $dados['hel_checktecnico_tco'] 		= 'checked';
+				    break;
+			case 1: $dados['hel_checkresponsavel_tco'] 	= 'checked';
+				    break;
+			case 2: $dados['hel_checkoutro_tco'] 		= 'checked';
+				    break;
 		}
 
 	}
 	
 	private function carregarDadosFlash(&$dados) {
-		$ERRO_GAB_HEL   	   = $this->session->flashdata('ERRO_GAB_HEL');
-		$ERRO_GAB_DESC_HEL     = $this->session->flashdata('ERRO_GAB_DESC_HEL');
-		$ERRO_GAB_TIPO_HEL     = $this->session->flashdata('ERRO_GAB_TIPO_HEL');
+		$ERRO_HEL_TCO   	   = $this->session->flashdata('ERRO_HEL_TCO');
+		$ERRO_HEL_DESC_TCO     = $this->session->flashdata('ERRO_HEL_DESC_TCO');
+		$ERRO_HEL_TIPO_TCO     = $this->session->flashdata('ERRO_HEL_TIPO_TCO');
 
 		$hel_desc_tco     	   = $this->session->flashdata('hel_desc_tco');
 		$hel_tipo_tco          = $this->session->flashdata('hel_tipo_tco');
 
-		if ($ERRO_GAB_HEL) {
+		if ($ERRO_HEL_TCO) {
 			$dados['hel_desc_tco']       = $hel_desc_tco;
 			$dados['hel_tipo_tco']       = $hel_tipo_tco;
-			$this->carregar_tipo_contato($dados);
+			if ($hel_tipo_tco != '') {
+				$this->carregar_tipo_contato($dados);
+			}
 
-			$dados['ERRO_GAB_DESC_HEL']  = $ERRO_GAB_DESC_HEL;
-			$dados['ERRO_GAB_TIPO_HEL']  = $ERRO_GAB_TIPO_HEL;
+			$dados['ERRO_HEL_DESC_TCO']  = $ERRO_HEL_DESC_TCO;
+			$dados['ERRO_HEL_TIPO_TCO']  = $ERRO_HEL_TIPO_TCO;
 			
 		}
 	}

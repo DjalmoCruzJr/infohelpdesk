@@ -7,7 +7,7 @@
 		<form action="{ACAO_FORM}" method="post" class="form-horizontal">
 			<input type="hidden" id="hel_pk_seq_tco" name="hel_pk_seq_tco" value="{hel_pk_seq_tco}"/>
 			<div class="form-group">
-				<div class="{ERRO_GAB_DESC_HEL}">
+				<div class="{ERRO_HEL_DESC_TCO}">
 					<label for="hel_desc_tco" class="col-sm-1 control-label">Descricão</label>
 					<div class="col-sm-11">
 						<input type="text" class="form-control" id="hel_desc_tco"
@@ -16,26 +16,26 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="{ERRO_GAB_TIPO_HEL}">
+				<div class="{ERRO_HEL_TIPO_TCO}">
 					<label for="hel_tipo_tco" class="col-sm-1 control-label">Tipo de Contato</label>
 					<div class="col-sm-7">
 						<div class="col-sm-11">
 							<div class="radio-inline">
 								<label>
-									<input type="radio" id="hel_tipo_tco" {hel_checktecnico_tco}="{hel_checktecnico_tco}"
-										   name="hel_tipo_tco" value="1" />Tecnico
+									<input type="radio" id="hel_tipo_tco" {hel_checktecnico_tco}
+										   name="hel_tipo_tco" value="0" />Técnico
 								</label>
 							</div>
 							<div class="radio-inline">
 								<label>
-									<input type="radio" id="hel_tipo_tco" {hel_checkresponsavel_tco}="{hel_checkresponsavel_tco}"
-										   name="hel_tipo_tco" value="2"/>Responsavel
+									<input type="radio" id="hel_tipo_tco" {hel_checkresponsavel_tco}
+										   name="hel_tipo_tco" value="1"/>Responsável
 								</label>
 							</div>
 							<div class="radio-inline">
 								<label>
-									<input type="radio" id="hel_tipo_tco" {hel_checkoutro_tco}="{hel_checkoutro_tco}"
-										   name="hel_tipo_tco" value="3"/>Outros
+									<input type="radio" id="hel_tipo_tco" {hel_checkoutro_tco}
+										   name="hel_tipo_tco" value="2"/>Outros
 								</label>
 							</div>
 						</div>
