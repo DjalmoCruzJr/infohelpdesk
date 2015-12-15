@@ -301,7 +301,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="#">
+												<a href="<?php echo site_url('sistema');?>">
 													Sistema
 												</a>
 											</li>
@@ -492,6 +492,7 @@
 		        $('#tb_servico').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_contato_empresa').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_empresa_contato').dataTable({"order": [[ 1, "asc" ]]});
+		        $('#tb_sistema').dataTable({"order": [[ 1, "asc" ]]});
 			});
 		</script>
 

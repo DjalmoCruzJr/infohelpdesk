@@ -1,5 +1,5 @@
 <header class="page-header">
-	<h2>Consulta de Serviço</h2>
+	<h2>Consulta de Sistema</h2>
 </header>
 
 
@@ -8,18 +8,19 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div>
-					<a href="{NOVO_SERVICO}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Novo Servico</a>
+					<a href="{NOVO_SISTEMA}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Novo Sistema</a>
 					<div class="pull-right">
 						<a class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a>
 					</div>
 				</div>
 				</br>
 				<div class="table">
-					<table
-						class="table table-striped table-bordered table-hover table-condensed" id="tb_servico">
+					<table class="table table-striped table-bordered table-hover table-condensed" id="tb_sistema">
 						<thead>
 							<tr>
+								<th>Código</th>
 								<th>Descrição</th>
+								<th>Tipo</th>
 								<th class="coluna-acao" width="80"></th>
 								<th class="coluna-acao" width="80"></th>
 							</tr>
@@ -27,9 +28,11 @@
 						<tbody>
 							{BLC_DADOS}
 							<tr>
-								<td class="vertical-center">{hel_desc_ser}</td>
-								<td class="text-center"><a href="{EDITAR_SERVICO}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
-								<td class="text-center"><a onclick="{APAGAR_SERVICO}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
+								<td class="vertical-center">{hel_codigo_sis}</td>
+								<td class="vertical-center">{hel_desc_sis}</td>
+								<td class="vertical-center">{hel_tipo_sis}</td>
+								<td class="text-center"><a href="{EDITAR_SISTEMA}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+								<td class="text-center"><a onclick="{APAGAR_SISTEMA}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 							</tr>
 							{/BLC_DADOS}
 						</tbody>
@@ -51,7 +54,7 @@
 				<h3 class="modal-title" id="myModalLabel">Info Rio Sistemas</h3>
 			</div>
 			<div class="modal-body">
-				<h4>Deseja realmente apagar este serviço ?</h4>
+				<h4>Deseja realmente apagar este sistema ?</h4>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" onclick="apagar()">Sim</button>
@@ -73,7 +76,7 @@
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = 'servico/apagar/' + idExclusao;
+        location.href = 'sistema/apagar/' + idExclusao;
     }
     
 </script>
