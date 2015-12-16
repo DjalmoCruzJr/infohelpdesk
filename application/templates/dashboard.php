@@ -493,6 +493,7 @@
 		        $('#tb_contato_empresa').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_empresa_contato').dataTable({"order": [[ 1, "asc" ]]});
 		        $('#tb_sistema').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_sistema_contratado').dataTable({"order": [[ 1, "asc" ]]});
 			});
 		</script>
 

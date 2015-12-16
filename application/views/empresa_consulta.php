@@ -23,6 +23,7 @@
                                 <th>Cidade</th>
                                 <th>Ativo</th>
                                 <th class="coluna-acao" width="130">Contato da Empresa</th>
+                                <th class="coluna-acao" width="140">Sistemas Contratados</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -34,7 +35,8 @@
 	                                <td class="vertical-center">{hel_cnpj_emp}</td>
 	                                <td class="vertical-center">{hel_nome_cid}</td>
 	                                <td class="vertical-center">{hel_ativo_emp}</td>
-	                                <td class="text-center"><a href="{EMPRESA_CONTATO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-comment"></i></a></td>	                                
+	                                <td class="text-center"><a href="{EMPRESA_CONTATO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-comment"></i></a></td>
+                                    <td class="text-center"><a href="{EMPRESA_SISTEMA_CONTRATADO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-comment"></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_EMPRESA}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_EMPRESA}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>

@@ -163,13 +163,14 @@ class Empresa extends CI_Controller {
 		$resultado = $this->EmpresaModel->getEmpresa();	
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
-				"hel_nomefantasia_emp" => $registro->hel_nomefantasia_emp,							
-				"hel_cnpj_emp"         => $registro->hel_cnpj_emp,
-				"hel_nome_cid"		   => $registro->hel_nome_cid,
-				"hel_ativo_emp"		   => $registro->hel_ativo_emp == 1 ? 'Ativo' : 'Inativo',
-				"EMPRESA_CONTATO" 	   => site_url('contato_empresa/index/'.base64_encode($registro->hel_pk_seq_emp)),
-				"EDITAR_EMPRESA" 	   => site_url('empresa/editar/'.base64_encode($registro->hel_pk_seq_emp)),
-				"APAGAR_EMPRESA" 	   => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_emp)."')"
+				"hel_nomefantasia_emp" 		  => $registro->hel_nomefantasia_emp,
+				"hel_cnpj_emp"         		   => $registro->hel_cnpj_emp,
+				"hel_nome_cid"		   		   => $registro->hel_nome_cid,
+				"hel_ativo_emp"		   		   => $registro->hel_ativo_emp == 1 ? 'Ativo' : 'Inativo',
+				"EMPRESA_SISTEMA_CONTRATADO"   => site_url('sistemas_contratados/index/'.base64_encode($registro->hel_pk_seq_emp)),
+				"EMPRESA_CONTATO" 	   		   => site_url('contato_empresa/index/'.base64_encode($registro->hel_pk_seq_emp)),
+				"EDITAR_EMPRESA" 	   		   => site_url('empresa/editar/'.base64_encode($registro->hel_pk_seq_emp)),
+				"APAGAR_EMPRESA" 	   		   => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_emp)."')"
 			);
 		}
 	}
