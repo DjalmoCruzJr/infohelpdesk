@@ -406,14 +406,23 @@ class Empresa extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($order_by, $filtro_cidade = NULL){	
+	public function relatorio($order_by, $filtro_cidade, $hel_ativo_emp){	
 		$order_by     = str_replace("%20", " ", $order_by);
 		$clasulaWhere = "";
 		$whereAnd     = " Where ";
 		
-		if ($filtro_cidade != NULL ){
+		if ($filtro_cidade != 0 ){
 			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_cid IN ('.$filtro_cidade.') ';
 			$whereAnd     = " AND ";
+		}
+		
+		switch ($hel_ativo_emp){
+			case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp;
+					 $whereAnd = " AND ";
+					 break;
+			case 1 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp;
+					 $whereAnd = " AND ";
+					 break;
 		}
 	
 		global $consulta;

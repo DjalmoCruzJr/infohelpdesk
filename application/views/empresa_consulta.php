@@ -91,6 +91,26 @@
 									</div>
 								</div>
 						</div>
+						<div class="form-group col-sm-11">
+						    <label for="hel_ativo_emp" class="col-sm-1 control-label">Status</label>
+								<div class="col-sm-11">
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statusinativo_con" name="status_relatorio" value="0" checked/>Inativo
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statusativo_con" name="status_relatorio" value="1"/>Ativo 
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statustodos_con" name="status_relatorio" value="2" checked="checked" />Todos
+										</label>
+									</div>
+								</div>
+							</div>
 						<div class="form-group">
 							<label for="cidade_relatorio" class="col-sm-3 ">Filtro por Cidade</label>
 								<div>
@@ -137,24 +157,38 @@
     	var cidade_relatorio = document.getElementById("cidade_relatorio");
       	var orderBy 		 = "";
 
-      	var fitroCidade	  	 = "";
+      	var filtroCidade	 = "";
       	var separadorCidade  = "";
     	for (var i = 0; i < cidade_relatorio.options.length; i++) {
       		if (cidade_relatorio.options[i].selected){
-      			fitroCidade 	 = fitroCidade + separadorCidade + cidade_relatorio.options[i].value;
+      			filtroCidade 	 = filtroCidade + separadorCidade + cidade_relatorio.options[i].value;
       			separadorCidade  = ",";
         	}
-      	}    
+      	} 
+
+      	if (filtroCidade == ""){
+      		filtroCidade = "0";
+        }
+
+        var status = "";  
+
+      	if (document.getElementById('hel_statusinativo_con').checked) {
+      		status = "0";
+		} else if (document.getElementById('hel_statusativo_con').checked) {
+			status = "1";
+		} else {
+			status = "2"
+		}
 		
     	if (document.getElementById('ordenacao_codigo').checked) {
-    		orderBy = " ORDER BY hel_pk_seq_emp ";
+    		orderBy = " ORDER BY hel_pk_seq_emp";
     	} else {
-    		orderBy = " ORDER BY hel_nomefantasia_emp ";
+    		orderBy = " ORDER BY hel_nomefantasia_emp";
 		}
     	
     	$('#relatorio_empresa').modal('hide');
     	
-    	window.open('empresa/relatorio/'+ orderBy, '_blank');
+    	window.open('empresa/relatorio/'+ orderBy+'/'+filtroCidade+'/'+status, '_blank');
     }	
 
 </script>
