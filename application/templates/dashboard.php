@@ -310,11 +310,6 @@
 													Menu
 												</a>
 											</li>
-											<li>
-												<a href="#">
-													Sistema Contatado
-												</a>
-											</li>
 										</ul>
 										<ul class="nav nav-children">
 											<li class="nav-parent">
