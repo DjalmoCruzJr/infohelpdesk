@@ -214,7 +214,7 @@ class Sistemas_Contratados extends CI_Controller {
 		$mensagem = null;
 		
 		if ($this->MenuSistemaModel->getMenuSistemaContratado($hel_pk_seq_con)) {
-			$erros    = TRUE;
+			$erros     = TRUE;
 			$mensagem .= "- Contatos da empresa cadastro.\n";
 		}
 	
@@ -230,7 +230,7 @@ class Sistemas_Contratados extends CI_Controller {
 		$ERRO_HEL_SCO   	   		= $this->session->flashdata('ERRO_HEL_SCO');
 		$ERRO_HEL_SEQSIS_SCO   		= $this->session->flashdata('ERRO_HEL_SEQSIS_SCO');
 
-		$hel_seqsis_sco 	= $this->session->flashdata('hel_seqsis_sco');
+		$hel_seqsis_sco 	        = $this->session->flashdata('hel_seqsis_sco');
 
 
 		if ($ERRO_HEL_SCO) {
