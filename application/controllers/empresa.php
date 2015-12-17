@@ -24,6 +24,8 @@ class Empresa extends CI_Controller {
 		$dados['BLC_DADOS']    = array();
 		
 		$this->carregarDados($dados);
+		
+		$this->carregarCidadeRelatorio($dados);
 				
 		$this->parser->parse('empresa_consulta', $dados);
 	}
@@ -189,6 +191,20 @@ class Empresa extends CI_Controller {
 		
 		$dados['hel_checkedativo_emp'] = $dados['hel_ativo_emp'] == 1 ? 'checked' : '';
 		
+	}
+	
+	private function carregarCidadeRelatorio(&$dados) {
+		$resultado = $this->CidadeModel->getCidade();
+			
+		foreach ($resultado as $registro) {
+			$dados['BLC_CIDADE_RELATORIO'][] = array(
+					"hel_pk_seq_cid"     => $registro->hel_pk_seq_cid,
+					"hel_nome_cid"       => $registro->hel_nome_cid,
+					"dis_hel_cid"        => ''
+			);
+		}
+		!$resultado ? $dados['BLC_CIDADE_RELATORIO'][] = array("hel_nome_cid" => 'Não existe nenhuma cidade cadastrado',
+				"dis_hel_cid"  => 'disabled') :'';
 	}
 	
 	
@@ -381,6 +397,47 @@ class Empresa extends CI_Controller {
 			$dados['ERRO_HEL_SEQCID_EMP']    	= $ERRO_HEL_SEQCID_EMP;
 			$dados['ERRO_HEL_CEP_EMP']    		= $ERRO_HEL_CEP_EMP;
 			$dados['ERRO_HEL_ATIVO_EMP']    	= $ERRO_HEL_ATIVO_EMP;
+		}
+	}
+	
+	private function gerarRelatorio(){
+		global $consulta;
+		$result = $this->db->query($consulta);
+		return $result->result();
+	}
+	
+	public function relatorio($order_by, $filtro_cidade = NULL){	
+		$order_by     = str_replace("%20", " ", $order_by);
+		$clasulaWhere = "";
+		$whereAnd     = " Where ";
+		
+		if ($filtro_cidade != NULL ){
+			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_cid IN ('.$filtro_cidade.') ';
+			$whereAnd     = " AND ";
+		}
+	
+		global $consulta;
+		$consulta = " SELECT hel_pk_seq_emp,
+							 hel_pk_seq_cid,
+						     hel_empresa_emp,
+						     hel_filial_emp,
+						     CONCAT(SUBSTRING(hel_cnpj_emp, 1,2), '.', SUBSTRING(hel_cnpj_emp,3,3), '.', SUBSTRING(hel_cnpj_emp,6,3), '/', SUBSTRING(hel_cnpj_emp,9,4), '-', SUBSTRING(hel_cnpj_emp,13, 2)) AS hel_cnpj_emp,
+						     hel_nomefantasia_emp,
+						     hel_nome_cid,
+						     CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
+							 else 'Inativo'
+						     END AS hel_ativo_emp
+					  FROM heltbemp
+					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp ".$clasulaWhere.$order_by;
+		
+	
+		if ($this->gerarRelatorio()) {
+			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_empresa.jrxml', $consulta);
+		} else {
+			$mensagem = "- Nenhuma empresa foi encontrada.\n";
+			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
+			$this->session->set_flashdata('erro', nl2br($mensagem));
+			redirect('erro_relatorio');
 		}
 	}
 	

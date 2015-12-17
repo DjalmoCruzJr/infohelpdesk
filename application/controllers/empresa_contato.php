@@ -54,6 +54,9 @@ class Empresa_Contato extends CI_Controller {
 		$this->carregarContatoEmpresa($hel_pk_seq_exc, $dados);
 		
 		$dados['ACAO'] = 'Editar';
+		
+		$dados['hel_seqcon_exc'] = base64_decode($hel_seqcon_exc);
+		
 		$this->setarURL($dados);
 		
 		$this->carregarDadosFlash($dados);
@@ -95,7 +98,7 @@ class Empresa_Contato extends CI_Controller {
 			if (!$hel_pk_seq_exc) {
 				redirect('empresa_contato/novo/'.base64_encode($hel_seqcon_exc));
 			} else {
-				redirect('cidade/editar/'.base64_encode($hel_pk_seq_cid));
+				redirect('empresa_contato/editar/'.base64_encode($hel_pk_seq_exc).'/'.base64_encode($hel_seqcon_exc));
 			}			
 		}
 	}

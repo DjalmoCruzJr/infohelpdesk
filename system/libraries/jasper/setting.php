@@ -1,6 +1,6 @@
 <?php
 $server="192.168.254.7";
-$db="gabinete";
+$db="helpdesk";
 $user="root";
 $pass="";
 $version="0.9d";
