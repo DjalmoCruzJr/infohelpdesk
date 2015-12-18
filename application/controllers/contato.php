@@ -10,6 +10,8 @@ class Contato extends CI_Controller {
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 		$this->load->model('Chamado_Model', 'ChamadoModel');
 		$this->load->model('Tipo_Contato_Model', 'TipoContatoModel');
+		
+		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	
@@ -22,6 +24,7 @@ class Contato extends CI_Controller {
 		$this->carregarDados($dados);
 				
 		$this->parser->parse('contato_consulta', $dados);
+		
 	}
 	
 	public function novo() {
@@ -86,7 +89,7 @@ class Contato extends CI_Controller {
 				"hel_nome_con"   => $hel_nome_con, 
 				"hel_seqtco_con" => $hel_seqtco_con,
 				"hel_login_con"  => $hel_login_con,
-				"hel_senha_con"  => empty($hel_senha_con) ? sha1($hel_senha_con) : $hel_senha_con,
+				"hel_senha_con"  => empty($hel_pk_seq_con) ? sha1($hel_senha_con) : $hel_senha_con,
 				"hel_ativo_con"  => $hel_ativo_con
 			);
 			
