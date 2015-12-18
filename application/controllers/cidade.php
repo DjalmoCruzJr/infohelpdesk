@@ -6,7 +6,9 @@ class Cidade extends CI_Controller {
 				
  		$this->layout = LAYOUT_DASHBOARD;
 		
-		$this->load->model('Cidade_Model', 'CidadeModel');		
+		$this->load->model('Cidade_Model', 'CidadeModel');
+
+		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	
@@ -21,6 +23,7 @@ class Cidade extends CI_Controller {
 		$this->carregarDados($dados);
 				
 		$this->parser->parse('cidade_consulta', $dados);
+		
 	}
 	
 	public function novo() {

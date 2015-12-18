@@ -11,6 +11,8 @@ class Empresa_Contato extends CI_Controller {
  		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
  		$this->load->model('Chamado_Model', 'ChamadoModel');
  		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');	
+ 		
+ 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	
@@ -29,6 +31,7 @@ class Empresa_Contato extends CI_Controller {
 		$this->carregarDados($dados);
 						
 		$this->parser->parse('contato_empresa_consulta', $dados);
+		
 	}
 	
 	public function novo($hel_seqcon_exc) {			

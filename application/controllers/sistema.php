@@ -9,6 +9,8 @@ class Sistema extends CI_Controller {
 		
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('assunto_sistema_model', 'AssuntoSistemaModel');
+		
+		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	public function index() {

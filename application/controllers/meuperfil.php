@@ -7,6 +7,7 @@ class MeuPerfil extends CI_Controller{
 		$this->layout = LAYOUT_DASHBOARD;
 		
 		$this->load->model('contato_model','ContatoModel');
+		
 	}
 	
 
