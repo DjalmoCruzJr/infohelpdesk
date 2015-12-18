@@ -6,22 +6,23 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 				
  		$this->layout = LAYOUT_DASHBOARD;
 
-		$this->load->model('Empresa_Model', 'EmpresaModel');
+		$this->load->model('Menu_Model', 'MenuModel');
 		$this->load->model('Menu_Sistemas_Contratados_Model', 'MenuSistemasContratadosModel');
+		$this->load->model('Sistemas_Contratados_Model', 'SistemasContratadosModel');
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Menu_Sistema_Model', 'MenuSistemaModel');
-
 	}
 
 	
-	public function index($hel_seqmen_msc) {
+	public function index($hel_seqemp_sco, $hel_pk_seq_sco) {
 		$dados = array();
-		$dados['NOVO_CONTATO']     = site_url('menu_sistemas_contratados/novo/'.$hel_seqmen_msc);
-		$dados['URL_APAGAR'] 	   = site_url('menu_sistemas_contratados/apagar');
-		$dados['VOLTAR_MENU']      = site_url('menu');
-		$dados['hel_seqmen_msc']   = base64_decode($hel_seqmen_msc);
+		$dados['NOVO_CONTATO']     			= site_url('menu_sistemas_contratados/novo/'.$hel_seqemp_sco.'/'.$hel_pk_seq_sco);
+		$dados['URL_APAGAR'] 	   			= site_url('menu_sistemas_contratados/apagar');
+		$dados['VOLTAR_SISTEMA_CONTRATADO'] = site_url('sistemas_contratados/index/'.$hel_seqemp_sco);
+		$dados['hel_seqsco_msc']   			= base64_decode($hel_pk_seq_sco);
+		$dados['hel_seqemp_sco']   			= $hel_seqemp_sco;
 
-		$this->carregarEmpresa($dados);
+		$this->carregarSistemaContratado($dados);
 		
 		$dados['BLC_DADOS']   = array();
 		
@@ -30,12 +31,13 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 		$this->parser->parse('menu_sistemas_contratados_consulta', $dados);
 	}
 	
-	public function novo($hel_seqmen_msc) {
+	public function novo($hel_seqemp_sco, $hel_seqsco_msc) {
 			
 		$dados = array();
-		$dados['hel_pk_seq_msc']  = 0;
-		$dados['hel_seqsco_msc'] = base64_decode($hel_seqmen_msc);
+		$dados['hel_pk_seq_msc'] = 0;
+		$dados['hel_seqsco_msc'] = base64_decode($hel_seqsco_msc);
 		$dados['hel_seqmen_msc'] = '';
+		$dados['hel_seqemp_sco'] = $hel_seqemp_sco;
 		
 		$dados['ACAO'] = 'Novo';
 		
@@ -43,7 +45,7 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 	
 		$this->carregarDadosFlash($dados);
 
-		$this->carregarSistemas($dados);
+		$this->carregarMenu($dados);
 		
 		$this->parser->parse('menu_sistemas_contratados_cadastro', $dados);
 	}
@@ -66,39 +68,39 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 		$this->parser->parse('sistemas_contratados_cadastro', $dados);
 	}
 	
-	public function salvar() {
-		global $hel_pk_seq_sco;
-		global $hel_seqemp_sco;
-		global $hel_seqsis_sco;
+	public function salvar($hel_seqemp_sco) {
+		global $hel_pk_seq_msc;
+		global $hel_seqsco_msc;
+		global $hel_seqmen_msc;
 
-		$hel_pk_seq_sco = $this->input->post('hel_pk_seq_sco');
-		$hel_seqemp_sco = $this->input->post('hel_seqemp_sco');
-		$hel_seqsis_sco	= $this->input->post('hel_seqsis_sco');
+		$hel_pk_seq_msc = $this->input->post('hel_pk_seq_msc');
+		$hel_seqsco_msc = $this->input->post('hel_seqsco_msc');
+		$hel_seqmen_msc	= $this->input->post('hel_seqmen_msc');
 
 		if ($this->testarDados()) {
-			$sistemas_cadastrados = array(
-				"hel_seqemp_sco" => $hel_seqemp_sco,
-				"hel_seqsis_sco" => $hel_seqsis_sco,
+			$menu_cadastrado = array(
+				"hel_seqsco_msc" => $hel_seqsco_msc,
+				"hel_seqmen_msc" => $hel_seqmen_msc,
 			);
 			
-			if (!$hel_pk_seq_sco) {
-				$hel_pk_seq_sco = $this->SistemasContratadosModel->insert($sistemas_cadastrados);
+			if (!$hel_pk_seq_msc) {
+				$hel_pk_seq_msc = $this->MenuSistemasContratadosModel->insert($menu_cadastrado);
 			} else {
-				$hel_pk_seq_sco = $this->SistemasContratadosModel->update($sistemas_cadastrados, $hel_pk_seq_sco);
+				$hel_pk_seq_msc = $this->MenuSistemasContratadosModel->update($menu_cadastrado, $hel_pk_seq_msc);
 			}
 
-			if (is_numeric($hel_pk_seq_sco)) {
-				$this->session->set_flashdata('sucesso', 'Sistemas Contratado salvo com sucesso.');
-				redirect('sistemas_contratados/index/'.base64_encode($hel_seqemp_sco));
+			if (is_numeric($hel_pk_seq_msc)) {
+				$this->session->set_flashdata('sucesso', 'Menu Contratado salvo com sucesso.');
+				redirect('menu_sistemas_contratados/index/'.$hel_seqemp_sco.'/'.base64_encode($hel_seqsco_msc));
 			} else {
 				$this->session->set_flashdata('erro', $hel_pk_seq_sco);
-				redirect('sistemas_contratados/index/'.base64_encode($hel_seqemp_sco));
+				redirect('menu_sistemas_contratados/index/'.$hel_seqemp_sco.'/'.base64_encode($hel_seqsco_msc));
 			}
 		} else {
-			if (!$hel_pk_seq_sco) {
-				redirect('sistemas_contratados/novo/'.base64_encode($hel_seqemp_sco));
+			if (!$hel_pk_seq_msc) {
+				redirect('menu_sistemas_contratados/novo/'.$hel_seqemp_sco.'/'.base64_encode($hel_seqsco_msc));
 			} else {
-				redirect('sistemas_contratados/editar/'.base64_encode($hel_pk_seq_sco).'/'.base64_encode($hel_seqemp_sco));
+				redirect('menu_sistemas_contratados/editar/'.$hel_seqemp_sco.'/'.base64_encode($hel_seqemp_sco));
 			}			
 		}
 	}
@@ -114,54 +116,42 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 	}
 	
 	private function setarURL(&$dados) {
-		$dados['CONSULTA_MENU_SISTEMAS_CONTRATADOS']  = site_url('menu_sistemas_contratados/index/'.base64_encode($dados['hel_seqmen_msc']));
-		$dados['ACAO_FORM']         			 = site_url('menu_sistemas_contratados/salvar');
+		$dados['CONSULTA_MENU_CONTRATADOS']  = site_url('menu_sistemas_contratados/index/'.$dados['hel_seqemp_sco'].'/'.base64_encode($dados['hel_seqsco_msc']));
+		$dados['ACAO_FORM']         		 = site_url('menu_sistemas_contratados/salvar/'.$dados['hel_seqemp_sco']);
 	}
 
-	private function carregarEmpresa(&$dados) {
+	private function carregarSistemaContratado(&$dados) {
 
-		$resultado = $this->MenuSistemaModel->get($dados['hel_seqmen_msc']);
-
+		$resultado = $this->SistemasContratadosModel->get($dados['hel_seqsco_msc']);
 		if ($resultado) {
-			$dados['NOME_MENU'] = $resultado->hel_desc_men;
+			$resultado = $this->SistemaModel->get($resultado->hel_seqsis_sco);
+			if ($resultado){
+				$dados['NOME_SISTEMA'] = $resultado->hel_desc_sis;
+			}
 		}
 	}
 
-	private function carregarSistemas(&$dados) {
-		$resultado = $this->SistemaModel->getSistema();
+	private function carregarMenu(&$dados) {
+		$resultado = $this->MenuModel->getMenu();
 
 		foreach ($resultado as $registro) {
-			$dados['BLC_SISTEMA'][] = array(
-				"hel_pk_seq_sis"     	=> $registro->hel_pk_seq_sis,
-				"hel_desc_sis"  		=> $registro->hel_desc_sis,
-				"sel_hel_seqsis_sco" 	=> ($dados['hel_seqsis_sco'] == $registro->hel_pk_seq_sis)?'selected':'' );
+			$dados['BLC_MENU'][] = array(
+				"hel_pk_seq_men"     	=> $registro->hel_pk_seq_men,
+				"hel_desc_men"  		=> $registro->hel_desc_men,
+				"sel_hel_seqmen_msc" 	=> ($dados['hel_seqmen_msc'] == $registro->hel_pk_seq_men)?'selected':'' );
 		}
 
-		!$resultado ? $dados['BLC_SISTEMA'][] = array("hel_desc_sis" => 'Não existe nenhuma sistema cadastrado') :'';
-	}
-
-	private function carregarTipoSistema($hel_tipo_sis){
-		$tipo = "";
-		switch ($hel_tipo_sis) {
-			case 0 : $tipo = "Desktop";
-				break;
-			case 1 : $tipo = "Web";
-				break;
-			case 2 : $tipo = "Mobile";
-				break;
-		}
-
-		return $tipo;
+		!$resultado ? $dados['BLC_SISTEMA'][] = array("hel_desc_men" => 'Não existe nenhuma menu cadastrado') :'';
 	}
 	
 	private function carregarDados(&$dados) {
-		$resultado = $this->MenuSistemasContratadosModel->getMenuSistemasContratados($dados['hel_seqmen_msc']);
+		$resultado = $this->MenuSistemasContratadosModel->getMenuContratados($dados['hel_seqsco_msc']);
 			
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
 				"hel_desc_men"    			   => $registro->hel_desc_men,
-				"EDITAR_SISTEMAS_CONTRATADOS"  => site_url('menu_sistemas_contratados/editar/'.base64_encode($registro->hel_pk_seq_msc).'/'.base64_encode($registro->hel_seqemp_sco)),
-				"APAGAR_SISTEMAS_CONTRATADOS"  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_msc)."','".base64_encode($dados['hel_seqmen_msc'])."')"
+				"EDITAR_SISTEMAS_CONTRATADOS"  => site_url('menu_sistemas_contratados/editar/'.base64_encode($registro->hel_pk_seq_msc).'/'.base64_encode($dados['hel_seqsco_msc']).'/'.$dados['hel_seqemp_sco']),
+// 				"APAGAR_SISTEMAS_CONTRATADOS"  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_msc)."','".base64_encode($dados['hel_seqmen_msc'])."')"
 			);
 		}
 	}
@@ -181,18 +171,18 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 	
 	
 	private function testarDados() {
-		global $hel_pk_seq_sco;
-		global $hel_seqemp_sco;
-		global $hel_seqsis_sco;
-
+		global $hel_pk_seq_msc;
+		global $hel_seqsco_msc;
+		global $hel_seqmen_msc;
+		
 		$erros    = FALSE;
 		$mensagem = null;
 
 
-		if (empty($hel_seqsis_sco)){
+		if (empty($hel_seqmen_msc)){
 			$erros    = TRUE;
-			$mensagem .= "- Sistema não foi selecionado.\n";
-			$this->session->set_flashdata('ERRO_HEL_SEQSIS_SCO', 'has-error');
+			$mensagem .= "- Menu Contratado não foi selecionado.\n";
+			$this->session->set_flashdata('ERRO_HEL_SEQMEN_MSC', 'has-error');
 		}
 
 		
@@ -200,8 +190,8 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
-			$this->session->set_flashdata('ERRO_HEL_SCO', TRUE);
-			$this->session->set_flashdata('hel_seqsis_sco', $hel_seqsis_sco);
+			$this->session->set_flashdata('ERRO_HEL_MSC', TRUE);
+			$this->session->set_flashdata('hel_seqsco_msc', $hel_seqmen_msc);
 		}
 				
 		return !$erros;
@@ -225,16 +215,16 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 	}
 	
 	private function carregarDadosFlash(&$dados) {
-		$ERRO_HEL_MSC   	   		= $this->session->flashdata('ERRO_HEL_MSC');
-		$ERRO_HEL_SEQSIS_MSC   		= $this->session->flashdata('ERRO_HEL_SEQSIS_MSC');
+		$ERRO_HEL_MSC   	 = $this->session->flashdata('ERRO_HEL_MSC');
+		$ERRO_HEL_SEQMEN_MSC = $this->session->flashdata('ERRO_HEL_SEQMEN_MSC');
 
-		$hel_seqsco_sco 	        = $this->session->flashdata('hel_seqsco_sco');
+		$hel_seqsco_msc 	        = $this->session->flashdata('hel_seqsco_msc');
 
 
 		if ($ERRO_HEL_MSC) {
-			$dados['hel_seqsco_sco']       = $hel_seqsco_sco;
+			$dados['hel_seqsco_msc']       = $hel_seqsco_msc;
 
-			$dados['ERRO_HEL_SEQSIS_MSC']  = $ERRO_HEL_SEQSIS_MSC;
+			$dados['ERRO_HEL_SEQMEN_MSC']  = $ERRO_HEL_SEQMEN_MSC;
 		}
 	}
 	

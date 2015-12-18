@@ -113,7 +113,6 @@ class Menu extends CI_Controller {
 			$dados['BLC_DADOS'][] = array(
 				"hel_pk_seq_men"         => $registro->hel_pk_seq_men,
 				"hel_desc_men"           => $registro->hel_desc_men,
-				"MENU_SISTEMA_CONTRATADO"=> site_url('menu_sistemas_contratados/index/'.base64_encode($registro->hel_pk_seq_men)),
 				"EDITAR_MENU"			 => 'menu/editar/'.base64_encode($registro->hel_pk_seq_men),
 				"APAGAR_MENU" 			 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_men)."')"
 			);

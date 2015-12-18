@@ -16,10 +16,10 @@ class Sistemas_Contratados extends CI_Controller {
 	
 	public function index($hel_seqemp_sco) {
 		$dados = array();
-		$dados['NOVO_CONTATO']     = site_url('sistemas_contratados/novo/'.$hel_seqemp_sco);
-		$dados['URL_APAGAR'] 	   = site_url('sistemas_contratados/apagar');
-		$dados['VOLTAR_EMPRESA']   = site_url('empresa');
-		$dados['hel_seqemp_sco']   = base64_decode($hel_seqemp_sco);
+		$dados['NOVO_SISTEMA_CONTRATADO'] = site_url('sistemas_contratados/novo/'.$hel_seqemp_sco);
+		$dados['URL_APAGAR'] 	   		  = site_url('sistemas_contratados/apagar');
+		$dados['VOLTAR_EMPRESA']   		  = site_url('empresa');
+		$dados['hel_seqemp_sco']   	      = base64_decode($hel_seqemp_sco);
 
 		$this->carregarEmpresa($dados);
 		
@@ -162,6 +162,7 @@ class Sistemas_Contratados extends CI_Controller {
 			$dados['BLC_DADOS'][] = array(
 				"hel_codigo_sis"  			   => $registro->hel_codigo_sis,
 				"hel_desc_sis"    			   => $registro->hel_desc_sis,
+				"MENU_SISTEMAS_CONTRATADOS"	   => site_url('menu_sistemas_contratados/index/'.base64_encode($dados['hel_seqemp_sco']).'/'.base64_encode($registro->hel_pk_seq_sco)),					
 				"EDITAR_SISTEMAS_CONTRATADOS"  => site_url('sistemas_contratados/editar/'.base64_encode($registro->hel_pk_seq_sco).'/'.base64_encode($registro->hel_seqemp_sco)),
 				"APAGAR_SISTEMAS_CONTRATADOS"  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_sco)."','".base64_encode($dados['hel_seqemp_sco'])."')"
 			);

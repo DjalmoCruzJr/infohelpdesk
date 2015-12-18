@@ -19,7 +19,6 @@
                             <thead>
                                 <tr>
                                     <th>Descrição</th>
-                                    <th class="coluna-acao" width="80">Sistemas contratados</th>
                                     <th class="coluna-acao" width="80"></th>
                                     <th class="coluna-acao" width="80"></th>
 
@@ -29,7 +28,6 @@
                                 {BLC_DADOS}
                                     <tr>
                                         <td class="vertical-center">{hel_desc_men}</td>
-                                        <td class="text-center"><a href="{MENU_SISTEMA_CONTRATADO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-briefcase"></i></a></td>
                                         <td class="text-center"><a href="{EDITAR_MENU}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
                                         <td class="text-center"><a onclick="{APAGAR_MENU}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
                                     </tr>

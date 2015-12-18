@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVO_CONTATO}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Novo Sistema Contratado</a>
+                    <a href="{NOVO_SISTEMA_CONTRATADO}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Novo Sistema Contratado</a>
                 </div>
                 </br>
                 <div class="table">
@@ -17,6 +17,7 @@
                             <tr>
                                 <th>Código</th>
                                 <th>Descrição</th>
+                                <th class="coluna-acao text-center" width="107">Menu Contratado</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -26,6 +27,7 @@
 	                            <tr>
 	                                <td class="vertical-center">{hel_codigo_sis}</td>
 	                                <td class="vertical-center">{hel_desc_sis}</td>
+	                                <td class="text-center"><a href="{MENU_SISTEMAS_CONTRATADOS}" class="btn btn-link btn-xs " title="Menu Contratado"><i class="glyphicon glyphicon-transfer"></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_SISTEMAS_CONTRATADOS}" class="btn btn-link btn-xs " title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_SISTEMAS_CONTRATADOS}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
