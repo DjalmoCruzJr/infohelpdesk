@@ -233,7 +233,7 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Meu Perfil</a>
+									<a role="menuitem" tabindex="-1"  href="<?php echo site_url('meuPerfil')?>"><i class="fa fa-user"></i> Meu Perfil</a>
 								</li>								
 								<li>
 									<a role="menuitem" tabindex="-1" href="<?php echo site_url('login')?>"><i class="fa fa-power-off"></i> Sair</a>
