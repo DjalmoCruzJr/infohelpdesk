@@ -1,5 +1,5 @@
 <header class="page-header">
-	<h2>Sistemas Contratados - {ACAO}</h2>
+	<h2>Menu Contratados - {ACAO}</h2>
 </header>
 
 
@@ -16,7 +16,7 @@
 						<select class="form-control" id="hel_seqmen_msc" name="hel_seqmen_msc" autofocus="autofocus">
 							<option value="">Selecione...</option>
 							{BLC_MENU}
-								<option value="{hel_pk_seq_men}" {sel_hel_seqsco_msc} >{hel_desc_men}</option>
+								<option value="{hel_pk_seq_men}" {sel_hel_seqmen_msc} >{hel_desc_men}</option>
 							{/BLC_MENU}
 						</select>
 				    </div>

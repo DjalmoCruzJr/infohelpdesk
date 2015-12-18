@@ -50,11 +50,12 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 		$this->parser->parse('menu_sistemas_contratados_cadastro', $dados);
 	}
 	
-	public function editar($hel_pk_seq_msc, $hel_seqemp_sco) {
+	public function editar($hel_pk_seq_msc, $hel_seqsco_msc, $hel_seqemp_sco) {
 		$dados = array();
 
 		$hel_pk_seq_msc 		 = base64_decode($hel_pk_seq_msc);
-		$dados['hel_seqemp_sco'] = base64_decode($hel_seqemp_sco);
+		$dados['hel_seqsco_msc'] = base64_decode($hel_seqsco_msc);
+		$dados['hel_seqemp_sco'] = $hel_seqemp_sco;
 		
 		$this->carregarMenuContratados($hel_pk_seq_msc, $dados);
 		
@@ -63,9 +64,9 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 		
 		$this->carregarDadosFlash($dados);
 		
-		$this->carregarMenu($dados);
+		$this->carregarMenu($dados);		
 		
-		$this->parser->parse('sistemas_contratados_cadastro', $dados);
+		$this->parser->parse('menu_sistemas_contratados_cadastro', $dados);
 	}
 	
 	public function salvar($hel_seqemp_sco) {
@@ -100,19 +101,17 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 			if (!$hel_pk_seq_msc) {
 				redirect('menu_sistemas_contratados/novo/'.$hel_seqemp_sco.'/'.base64_encode($hel_seqsco_msc));
 			} else {
-				redirect('menu_sistemas_contratados/editar/'.$hel_seqemp_sco.'/'.base64_encode($hel_seqemp_sco));
+				redirect('menu_sistemas_contratados/editar/'.base64_encode($hel_pk_seq_msc).'/'.base64_encode($hel_seqsco_msc).'/'.$hel_seqemp_sco);
 			}			
 		}
 	}
 	
-	public function apagar($hel_pk_seq_sco, $hel_seqemp_sco) {
-		if ($this->testarApagar(base64_decode($hel_pk_seq_sco))) {
-			$res = $this->SistemasContratadosModel->delete(base64_decode($hel_pk_seq_sco));
-			if ($res) {
-				$this->session->set_flashdata('sucesso', 'Sistemas Contratados com sucesso.');
-			} 
-		}				
-		redirect('sistemas_contratados/index/'.$hel_seqemp_sco);
+	public function apagar($hel_pk_seq_msc, $hel_seqemp_sco, $hel_seqsco_msc) {
+		$res = $this->MenuSistemasContratadosModel->delete(base64_decode($hel_pk_seq_msc));
+		if ($res) {
+			$this->session->set_flashdata('sucesso', 'Menu Contratados apagado com sucesso.');
+		} 			
+		redirect('menu_sistemas_contratados/index/'.$hel_seqemp_sco.'/'.$hel_seqsco_msc);
 	}
 	
 	private function setarURL(&$dados) {
@@ -151,7 +150,7 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 			$dados['BLC_DADOS'][] = array(
 				"hel_desc_men"    			   => $registro->hel_desc_men,
 				"EDITAR_SISTEMAS_CONTRATADOS"  => site_url('menu_sistemas_contratados/editar/'.base64_encode($registro->hel_pk_seq_msc).'/'.base64_encode($dados['hel_seqsco_msc']).'/'.$dados['hel_seqemp_sco']),
-// 				"APAGAR_SISTEMAS_CONTRATADOS"  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_msc)."','".base64_encode($dados['hel_seqmen_msc'])."')"
+				"APAGAR_SISTEMAS_CONTRATADOS"  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_msc)."','".$dados['hel_seqemp_sco']."','".base64_encode($dados['hel_seqsco_msc'])."')"
 			);
 		}
 	}
@@ -168,8 +167,6 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 		}
 	}
 
-	
-	
 	private function testarDados() {
 		global $hel_pk_seq_msc;
 		global $hel_seqsco_msc;
@@ -184,6 +181,12 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 			$mensagem .= "- Menu Contratado não foi selecionado.\n";
 			$this->session->set_flashdata('ERRO_HEL_SEQMEN_MSC', 'has-error');
 		}
+		
+		if ($this->MenuSistemasContratadosModel->getMenuContratadosCadastrado($hel_pk_seq_msc, $hel_seqsco_msc, $hel_seqmen_msc)){
+			$erros    = TRUE;
+			$mensagem .= "- Menu Contratado já cadastro.\n";
+			$this->session->set_flashdata('ERRO_HEL_SEQMEN_MSC', 'has-error');
+		}
 
 		
 		if ($erros) {
@@ -191,38 +194,22 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
 			$this->session->set_flashdata('ERRO_HEL_MSC', TRUE);
-			$this->session->set_flashdata('hel_seqsco_msc', $hel_seqmen_msc);
+			$this->session->set_flashdata('hel_seqmen_msc', $hel_seqmen_msc);
 		}
 				
 		return !$erros;
 	}
 	
-	private function testarApagar($hel_pk_seq_con) {
-		$erros    = FALSE;
-		$mensagem = null;
-		
-		if ($this->MenuSistemaModel->getMenuSistemaContratado($hel_pk_seq_con)) {
-			$erros     = TRUE;
-			$mensagem .= "- Contatos da empresa cadastro.\n";
-		}
-	
-		if ($erros) {
-			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');
-			$this->session->set_flashdata('erro', nl2br($mensagem));
-		}
-	
-		return !$erros;
-	}
 	
 	private function carregarDadosFlash(&$dados) {
 		$ERRO_HEL_MSC   	 = $this->session->flashdata('ERRO_HEL_MSC');
 		$ERRO_HEL_SEQMEN_MSC = $this->session->flashdata('ERRO_HEL_SEQMEN_MSC');
 
-		$hel_seqsco_msc 	        = $this->session->flashdata('hel_seqsco_msc');
+		$hel_seqmen_msc 	        = $this->session->flashdata('hel_seqmen_msc');
 
 
 		if ($ERRO_HEL_MSC) {
-			$dados['hel_seqsco_msc']       = $hel_seqsco_msc;
+			$dados['hel_seqmen_msc']       = $hel_seqmen_msc;
 
 			$dados['ERRO_HEL_SEQMEN_MSC']  = $ERRO_HEL_SEQMEN_MSC;
 		}
