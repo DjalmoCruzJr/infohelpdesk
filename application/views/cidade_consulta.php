@@ -10,7 +10,7 @@
                 <div>
                     <a href="{NOVA_CIDADE}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nova Cidade</a>
 	                <div class="pull-right">
-			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
+			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i>Imprimir</a> 
 			    	</div>
                 </div>
                 </br>
@@ -59,7 +59,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="relatorio_cidade" tabindex="-1" role="dialog" aria-labelledby="relatorio_usuario_label" aria-hidden="true">
+<div class="modal fade" id="relatorio_cidade" tabindex="-1" role="dialog" aria-labelledby="relatorio_cidade_label" aria-hidden="true">
     <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

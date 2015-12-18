@@ -164,11 +164,6 @@ class Menu extends CI_Controller {
 	private function testarApagar($hel_pk_seq_men) {
 		$erros    = FALSE;
 		$mensagem = null;
-	
-	//	if ($this->MenuModel->getMenuCadastrado($hel_pk_seq_men)) {
-	//		$erros    = TRUE;
-	//		$mensagem .= "- Sistema contratado cadastrado.\n";
-	//	}
 		
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');

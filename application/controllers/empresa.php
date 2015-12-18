@@ -203,6 +203,7 @@ class Empresa extends CI_Controller {
 					"dis_hel_cid"        => ''
 			);
 		}
+		
 		!$resultado ? $dados['BLC_CIDADE_RELATORIO'][] = array("hel_nome_cid" => 'Não existe nenhuma cidade cadastrado',
 				"dis_hel_cid"  => 'disabled') :'';
 	}
@@ -409,7 +410,7 @@ class Empresa extends CI_Controller {
 	public function relatorio($order_by, $filtro_cidade, $hel_ativo_emp){	
 		$order_by     = str_replace("%20", " ", $order_by);
 		$clasulaWhere = "";
-		$whereAnd     = " Where ";
+		$whereAnd     = " WHERE ";
 		
 		if ($filtro_cidade != 0 ){
 			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_cid IN ('.$filtro_cidade.') ';

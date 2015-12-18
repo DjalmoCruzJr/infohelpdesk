@@ -10,13 +10,13 @@ class Menu_Sistemas_Contratados_Model extends CI_Model {
 	
 	public function getMenuContratados($hel_seqsco_msc) {
 		$this->db->from('heltbmsc');
-		$this->db->join('heltbmen', 'hel_pk_seq_msc = hel_seqmen_msc', 'LEFT');
-		$this->db->where('hel_seqsco_msc', $hel_seqsco_msc, FALSE);
+		$this->db->join('heltbmen', 'hel_pk_seq_men = hel_seqmen_msc', 'LEFT');
+		$this->db->where('hel_seqsco_msc = ', $hel_seqsco_msc, FALSE);
 		return $this->db->get()->result();
 	}
 	
-	public function insert($menu_sistema_contratado) {
-		$res = $this->db->insert('heltbmsc', $menu_sistema_contratado);
+	public function insert($menu_contratado) {
+		$res = $this->db->insert('heltbmsc', $menu_contratado);
 	
 		if ($res) {
 			return $this->db->insert_id();

@@ -231,9 +231,7 @@ class Cidade extends CI_Controller {
 	}
 	
 	public function relatorio($order_by){
-		$clasulaWhere = "";
-	
-		$order_by     = str_replace("%20", " ", $order_by);
+		$order_by = str_replace("%20", " ", $order_by);
 	
 		global $consulta;
 		$consulta = " SELECT * FROM heltbcid ".$order_by;

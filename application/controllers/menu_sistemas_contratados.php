@@ -50,20 +50,20 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 		$this->parser->parse('menu_sistemas_contratados_cadastro', $dados);
 	}
 	
-	public function editar($hel_pk_seq_sco, $hel_seqemp_sco) {
+	public function editar($hel_pk_seq_msc, $hel_seqemp_sco) {
 		$dados = array();
 
-		$hel_pk_seq_sco 		 = base64_decode($hel_pk_seq_sco);
+		$hel_pk_seq_msc 		 = base64_decode($hel_pk_seq_msc);
 		$dados['hel_seqemp_sco'] = base64_decode($hel_seqemp_sco);
 		
-		$this->carregarSistemasContratados($hel_pk_seq_sco, $dados);
+		$this->carregarMenuContratados($hel_pk_seq_msc, $dados);
 		
 		$dados['ACAO'] = 'Editar';
 		$this->setarURL($dados);
 		
 		$this->carregarDadosFlash($dados);
 		
-		$this->carregarSistemas($dados);
+		$this->carregarMenu($dados);
 		
 		$this->parser->parse('sistemas_contratados_cadastro', $dados);
 	}
@@ -136,9 +136,9 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 
 		foreach ($resultado as $registro) {
 			$dados['BLC_MENU'][] = array(
-				"hel_pk_seq_men"     	=> $registro->hel_pk_seq_men,
-				"hel_desc_men"  		=> $registro->hel_desc_men,
-				"sel_hel_seqmen_msc" 	=> ($dados['hel_seqmen_msc'] == $registro->hel_pk_seq_men)?'selected':'' );
+				"hel_pk_seq_men"     => $registro->hel_pk_seq_men,
+				"hel_desc_men"  	 => $registro->hel_desc_men,
+				"sel_hel_seqmen_msc" => ($dados['hel_seqmen_msc'] == $registro->hel_pk_seq_men)?'selected':'' );
 		}
 
 		!$resultado ? $dados['BLC_SISTEMA'][] = array("hel_desc_men" => 'Não existe nenhuma menu cadastrado') :'';
@@ -156,8 +156,8 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 		}
 	}
 	
-	private function carregarSistemasContratados($hel_pk_seq_sco, &$dados) {
-		$resultado = $this->SistemasContratadosModel->get($hel_pk_seq_sco);
+	private function carregarMenuContratados($hel_pk_seq_msc, &$dados) {
+		$resultado = $this->MenuSistemasContratadosModel->get($hel_pk_seq_msc);
 		
 		if ($resultado) {
 			foreach ($resultado as $chave => $valor) {
