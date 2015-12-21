@@ -9,6 +9,8 @@ class Tipo_Contato extends CI_Controller {
 		
 		$this->load->model('Tipo_Contato_Model', 'Tipo_ContatoModel');
 		$this->load->model('Contato_Model', 'ContatoModel');
+		
+		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	

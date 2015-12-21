@@ -8,6 +8,8 @@ class Menu extends CI_Controller {
 		$this->layout = LAYOUT_DASHBOARD;
 		
 		$this->load->model('Menu_Model', 'MenuModel');
+		
+		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	
@@ -21,6 +23,7 @@ class Menu extends CI_Controller {
 		$this->carregarDados($dados);
 		
 		$this->parser->parse('menu_consulta', $dados);
+		
 	}
 	
 	public function novo() {		

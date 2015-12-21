@@ -6,7 +6,9 @@ class Servico extends CI_Controller {
 		parent::__construct();
 				
  		$this->layout = LAYOUT_DASHBOARD;
-		$this->load->model('Servico_Model', 'ServicoModel');	
+		$this->load->model('Servico_Model', 'ServicoModel');
+		
+		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	public function index() {
@@ -19,6 +21,7 @@ class Servico extends CI_Controller {
 		$this->carregarDados($dados);
 		
 		$this->parser->parse('servico_consulta', $dados);
+		
 	}
 	
 	public function novo() {		

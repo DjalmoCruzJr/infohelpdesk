@@ -47,7 +47,7 @@
                     <h3 class="modal-title" id="myModalLabel">Info Rio Sistemas</h3>
                 </div>
                 <div class="modal-body">
-                    <h4>Deseja realmente apagar esta Sistemas Contratado ?</h4>
+                    <h4>Deseja realmente apagar esta Menu Contratado ?</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="apagar()">Sim</button>
@@ -62,16 +62,18 @@
 
 	var idExclusao = "";
     var idEmpresa  = "";
+    var idSistema  = "";
 
-    function abrirConfirmacao(id, empresa){
+    function abrirConfirmacao(id, empresa, sistema){
         idExclusao = id;
         idEmpresa  = empresa;
+        idSistema  = sistema;
         $('#myModal').modal('show');
     }
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = '{URL_APAGAR}/' + idExclusao + '/' + idEmpresa;
+        location.href = '{URL_APAGAR}/' + idExclusao + '/' + idEmpresa + '/' + idSistema;
     }
 
 </script>

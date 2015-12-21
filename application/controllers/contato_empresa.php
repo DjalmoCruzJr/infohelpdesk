@@ -8,6 +8,8 @@ class Contato_Empresa extends CI_Controller {
 		
  		$this->load->model('Empresa_Model', 'EmpresaModel');
  		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
+ 		
+ 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
 	
