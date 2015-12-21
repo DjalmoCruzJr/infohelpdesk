@@ -25,7 +25,9 @@ class Empresa extends CI_Controller {
 		
 		$this->carregarDados($dados);
 		
-		$this->carregarCidadeRelatorio($dados);
+		$this->($dados);
+
+		carregarCidadeRelatorio;
 				
 		$this->parser->parse('empresa_consulta', $dados);
 	}
@@ -186,7 +188,7 @@ class Empresa extends CI_Controller {
 			}
 
 		} else {
-			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');			
+			show_error('Não foram +encontrados dados.', 500, 'Ops, erro encontrado');
 		}
 		
 		$dados['hel_checkedativo_emp'] = $dados['hel_ativo_emp'] == 1 ? 'checked' : '';
