@@ -176,4 +176,27 @@ class Servico extends CI_Controller {
 			$dados['ERRO_GAB_DESC_HEL']  = $ERRO_GAB_DESC_HEL;
 		}
 	}
+	
+	private function gerarRelatorio(){
+		global $consulta;
+	
+		$result = $this->db->query($consulta);
+		return $result->result();
+	}
+	
+	public function relatorio($order_by){
+		$order_by = str_replace("%20", " ", $order_by);
+	
+		global $consulta;
+		$consulta = " SELECT * FROM heltbser ".$order_by;
+	
+		if ($this->gerarRelatorio()) {
+			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_servico.jrxml', $consulta);
+		} else {
+			$mensagem = "- Nenhum serviço foi encontrado.\n";
+			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
+			$this->session->set_flashdata('erro', nl2br($mensagem));
+			redirect('erro_relatorio');
+		}
+	}
 }
