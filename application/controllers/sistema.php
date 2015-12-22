@@ -273,16 +273,37 @@ class Sistema extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($order_by){
-		$order_by = str_replace("%20", " ", $order_by);
-	
+	public function relatorio($order_by, $tipo){
+		$order_by     = str_replace("%20", " ", $order_by);
+		$whereAnd     = " WHERE ";
+		$clasulaWhere = "";
+				
+		switch ($tipo){
+			case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_tipo_sis = '.$tipo;
+					 $whereAnd = " AND ";
+				     break;
+			case 1 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_tipo_sis = '.$tipo;
+					 $whereAnd = " AND ";
+					 break;
+			case 2 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_tipo_sis = '.$tipo;
+			         $whereAnd = " AND ";
+					 break;
+		}
+		
 		global $consulta;
-		$consulta = " SELECT * FROM heltbsis ".$order_by;
+		$consulta = " SELECT hel_pk_seq_sis, 
+				             hel_codigo_sis, 
+				             hel_desc_sis,
+       						 CASE hel_tipo_sis WHEN 0 THEN 'Desktop'
+							  WHEN 1 THEN 'Mobile'
+							  WHEN 2 THEN 'Web'
+       						 END AS hel_tipo_sis 
+				       FROM heltbsis ".$clasulaWhere.$order_by;
 	
 		if ($this->gerarRelatorio()) {
 			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_sistema.jrxml', $consulta);
 		} else {
-			$mensagem = "- Nenhum cidade foi encontrada.\n";
+			$mensagem = "- Nenhum sistema foi encontrada.\n";
 			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			redirect('erro_relatorio');

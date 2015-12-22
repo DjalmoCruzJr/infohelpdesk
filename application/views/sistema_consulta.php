@@ -75,8 +75,8 @@
                 <div class="modal-body">
                 	<form class="form-horizontal">
 						<div class="form-group">
-							<label for="ordenacao_relatorio" class="col-sm-4 ">Ordenar por</label>
-								<div class="col-sm-11">
+							<label for="ordenacao_relatorio" class="col-sm-3 ">Ordenar por</label>
+								<div class="col-sm-9">
 									<div class="radio-inline">
 										<label>
 											<input type="radio" id="ordenacao_codigo_sistema" name="ordenacao_relatorio" value="0"/>Código do Sistema
@@ -94,8 +94,38 @@
 									</div>
 								</div>
 						</div>
+						
+						<div class="form-group">
+							<label for="tipo_relatorio" class="col-sm-3 ">Filtrar por sistema</label>
+								<div class="col-sm-9">
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_tipoDesktop_sis" name="tipo_relatorio" value="0"/>Desktop
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_tipoMobile_sis" name="tipo_relatorio" value="1" checked/>Mobile
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_tipoWeb_sis" name="tipo_relatorio" value="2" />Web
+										</label>
+									</div>
+									
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_tipoTodos_sis" name="tipo_relatorio" value="3" checked/>Todos
+										</label>
+									</div>
+								</div>
+						</div>
+						
+						
 					</form>
-					<br/>					
+				
+					<br/>				
 					<div class="form-group">
 						<center>
 							<button onclick="visualizarRelatorio()" name="salvar_usuario" class="btn btn-primary" > <i class="glyphicon glyphicon-print"></i> Visualizar</button>
@@ -126,8 +156,21 @@
     }
 
     function visualizarRelatorio() {
-      	var orderBy = "";
+      	
+      	var tipo = "";  
 
+      	if (document.getElementById('hel_tipoDesktop_sis').checked) {
+      		tipo = "0";
+		} else if (document.getElementById('hel_tipoMobile_sis').checked) {
+			tipo = "1";
+		} else if (document.getElementById('hel_tipoWeb_sis').checked){
+			tipo = "2"
+		}else{
+			tipo = "3";
+		}
+
+      	var orderBy = "";
+      	
     	if (document.getElementById('ordenacao_codigo_sistema').checked) {
     		orderBy = " ORDER BY hel_codigo_sis";
     	} else if (document.getElementById('ordenacao_codigo').checked){
@@ -138,7 +181,7 @@
     	
     	$('#relatorio_sistema').modal('hide');
     	
-    	window.open('sistema/relatorio/'+ orderBy, '_blank');
+    	window.open('sistema/relatorio/'+ orderBy +'/'+ tipo, '_blank');
     }
     
 </script>

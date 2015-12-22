@@ -7,7 +7,12 @@
 		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM heltbsis]]>
+		<![CDATA[SELECT hel_pk_seq_sis, hel_codigo_sis, hel_desc_sis,
+       CASE hel_tipo_sis
+	WHEN 0 THEN 'Desktop'
+	WHEN 1 THEN 'Mobile'
+	WHEN 2 THEN 'Web'
+       END AS hel_tipo_sis FROM heltbsis]]>
 	</queryString>
 	<field name="hel_pk_seq_sis" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -18,7 +23,7 @@
 	<field name="hel_desc_sis" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="hel_tipo_sis" class="java.lang.Integer">
+	<field name="hel_tipo_sis" class="java.lang.String">
 		<fieldDescription><![CDATA[0- Desktsop
 1- Mobile
 2- Web]]></fieldDescription>
@@ -27,7 +32,7 @@
 		<variableExpression><![CDATA[$F{hel_pk_seq_sis}]]></variableExpression>
 	</variable>
 	<pageHeader>
-		<band height="50">
+		<band height="48">
 			<staticText>
 				<reportElement x="455" y="2" width="100" height="15" uuid="77aee1f6-2e61-4180-ad5e-85de0871255d"/>
 				<textElement textAlignment="Right"/>
@@ -74,7 +79,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="16" splitType="Stretch">
+		<band height="17" splitType="Stretch">
 			<staticText>
 				<reportElement x="2" y="0" width="47" height="16" uuid="a19588e5-2f8d-4554-8e40-5080b468522a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -102,10 +107,17 @@
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="336" y="0" width="63" height="15" uuid="237cf4d3-f1b8-4eec-aea5-a5bef93fdd74"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="15">
+		<band height="16">
 			<textField>
 				<reportElement x="3" y="0" width="46" height="14" uuid="804bd453-8c32-4e81-a821-47e75c4ebc47"/>
 				<textElement textAlignment="Right"/>
@@ -121,6 +133,10 @@
 			<textField>
 				<reportElement positionType="Float" x="108" y="0" width="446" height="15" uuid="3a176d3a-db4d-42e0-84a7-8452b9de6aa4"/>
 				<textFieldExpression><![CDATA[$F{hel_desc_sis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="1" width="100" height="15" uuid="b7c61b1e-cf74-4f4b-b3c6-c46821c15499"/>
+				<textFieldExpression><![CDATA[$F{hel_tipo_sis}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
