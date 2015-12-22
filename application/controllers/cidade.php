@@ -7,7 +7,8 @@ class Cidade extends CI_Controller {
  		$this->layout = LAYOUT_DASHBOARD;
 		
 		$this->load->model('Cidade_Model', 'CidadeModel');
-
+		$this->load->model('Empresa_Model', 'EmpresaModel');
+		
 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
