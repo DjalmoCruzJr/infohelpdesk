@@ -266,4 +266,27 @@ class Sistema extends CI_Controller {
 		}
 	}
 	
+	private function gerarRelatorio(){
+		global $consulta;
+	
+		$result = $this->db->query($consulta);
+		return $result->result();
+	}
+	
+	public function relatorio($order_by){
+		$order_by = str_replace("%20", " ", $order_by);
+	
+		global $consulta;
+		$consulta = " SELECT * FROM heltbsis ".$order_by;
+	
+		if ($this->gerarRelatorio()) {
+			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_sistema.jrxml', $consulta);
+		} else {
+			$mensagem = "- Nenhum cidade foi encontrada.\n";
+			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
+			$this->session->set_flashdata('erro', nl2br($mensagem));
+			redirect('erro_relatorio');
+		}
+	}
+	
 }

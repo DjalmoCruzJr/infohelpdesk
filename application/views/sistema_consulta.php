@@ -10,7 +10,7 @@
 				<div>
 					<a href="{NOVO_SISTEMA}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Novo Sistema</a>
 					<div class="pull-right">
-						<a class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a>
+						<a onclick="abrirDialogRelatorio()" class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a>
 					</div>
 				</div>
 				</br>
@@ -65,6 +65,48 @@
 </div>
 
 
+<div class="modal fade" id="relatorio_sistema" tabindex="-1" role="dialog" aria-labelledby="relatorio_sistema_label" aria-hidden="true">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                    <h3 class="modal-title" id="relatorio_sistema_label">Relatório - Sistema</h3>
+                </div>
+                <div class="modal-body">
+                	<form class="form-horizontal">
+						<div class="form-group">
+							<label for="ordenacao_relatorio" class="col-sm-4 ">Ordenar por</label>
+								<div class="col-sm-11">
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="ordenacao_codigo_sistema" name="ordenacao_relatorio" value="0"/>Código do Sistema
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="ordenacao_codigo" name="ordenacao_relatorio" value="1" checked/>Código
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="ordenacao_nome" name="ordenacao_relatorio" value="2" />Nome
+										</label>
+									</div>
+								</div>
+						</div>
+					</form>
+					<br/>					
+					<div class="form-group">
+						<center>
+							<button onclick="visualizarRelatorio()" name="salvar_usuario" class="btn btn-primary" > <i class="glyphicon glyphicon-print"></i> Visualizar</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						</center>	
+					</div>	
+                </div>
+        	</div>
+    	</div>
+</div>
+
 <script type="text/javascript">
 
 	var idExclusao = "";
@@ -77,6 +119,26 @@
     function apagar(){
         $('#myModal').modal('hide');
         location.href = 'sistema/apagar/' + idExclusao;
+    }
+
+    function abrirDialogRelatorio(){
+        $('#relatorio_sistema').modal('show');
+    }
+
+    function visualizarRelatorio() {
+      	var orderBy = "";
+
+    	if (document.getElementById('ordenacao_codigo_sistema').checked) {
+    		orderBy = " ORDER BY hel_codigo_sis";
+    	} else if (document.getElementById('ordenacao_codigo').checked){
+    		orderBy = " ORDER BY hel_pk_seq_sis";
+		}else{
+			orderBy = " ORDER BY hel_desc_sis";
+		}
+    	
+    	$('#relatorio_sistema').modal('hide');
+    	
+    	window.open('sistema/relatorio/'+ orderBy, '_blank');
     }
     
 </script>
