@@ -25,9 +25,7 @@ class Empresa extends CI_Controller {
 		
 		$this->carregarDados($dados);
 		
-		$this->($dados);
-
-		carregarCidadeRelatorio;
+		$this->carregarCidadeRelatorio($dados);
 				
 		$this->parser->parse('empresa_consulta', $dados);
 	}
