@@ -46,6 +46,10 @@ class Empresa extends CI_Controller {
 		$dados['hel_cep_emp']  			= '';
 		$dados['hel_ativo_emp']  		= '';
 		$dados['hel_checkedativo_emp']  = 'checked';
+		$dados['hel_email_emp']			= '';
+		$dados['hel_fone_emp']			= '';
+		$dados['hel_celular_emp']		= '';
+		$dados['hel_fax_emp']			= '';
 		
 		$dados['ACAO'] = 'Novo';
 		
@@ -87,6 +91,10 @@ class Empresa extends CI_Controller {
 		global $hel_seqcid_emp;
 		global $hel_cep_emp;
 		global $hel_ativo_emp;
+		global $hel_email_emp;
+		global $hel_fone_emp;
+		global $hel_celular_emp;
+		global $hel_fax_emp;
 		
 		$hel_pk_seq_emp  		= $this->input->post('hel_pk_seq_emp');			
 		$hel_empresa_emp 		= $this->input->post('hel_empresa_emp');
@@ -100,12 +108,24 @@ class Empresa extends CI_Controller {
 		$hel_seqcid_emp 		= $this->input->post('hel_seqcid_emp');
 		$hel_cep_emp 			= $this->input->post('hel_cep_emp');
 		$hel_ativo_emp 			= $this->input->post('hel_ativo_emp') == 1 ? 1 : 0;
-
+		$hel_email_emp 			= $this->input->post('hel_email_emp');
+		$hel_fone_emp 			= $this->input->post('hel_fone_emp');
+		$hel_celular_emp 		= $this->input->post('hel_celular_emp');
+		$hel_fax_emp 			= $this->input->post('hel_fax_emp');
+		
 		$hel_cnpj_emp 			= str_replace(".", null, $hel_cnpj_emp);
 		$hel_cnpj_emp 			= str_replace("/", null, $hel_cnpj_emp);
 		$hel_cnpj_emp 			= str_replace("-", null, $hel_cnpj_emp);
 		
 		$hel_cep_emp 			= str_replace("-", null, $hel_cep_emp);
+		
+		$hel_fone_emp 			= str_replace("(", null, $hel_fone_emp);
+		$hel_fone_emp 			= str_replace(")", null, $hel_fone_emp);
+		$hel_fone_emp 			= str_replace("-", null, $hel_fone_emp);
+		
+		$hel_celular_emp 		= str_replace("(", null, $hel_celular_emp);
+		$hel_celular_emp 		= str_replace(")", null, $hel_celular_emp);
+		$hel_celular_emp 		= str_replace("-", null, $hel_celular_emp);
 		
 		if ($this->testarDados()) {
 			$empresa = array(
@@ -119,7 +139,12 @@ class Empresa extends CI_Controller {
 				"hel_bairro_emp"     	=> $hel_bairro_emp,
 				"hel_seqcid_emp"     	=> $hel_seqcid_emp,
 				"hel_cep_emp"     		=> $hel_cep_emp,
-				"hel_ativo_emp"     	=> $hel_ativo_emp
+				"hel_ativo_emp"     	=> $hel_ativo_emp,
+				"hel_email_emp"     	=> $hel_email_emp,
+				"hel_fone_emp"     	    => $hel_fone_emp,
+				"hel_celular_emp"     	=> $hel_celular_emp,
+				"hel_fax_emp"     		=> $hel_fax_emp,
+					
 			);
 			
 			if (!$hel_pk_seq_emp) {	
@@ -238,6 +263,8 @@ class Empresa extends CI_Controller {
 		global $hel_seqcid_emp;
 		global $hel_cep_emp;
 		global $hel_ativo_emp;
+		global $hel_email_emp;
+		
 
 		$erros    = FALSE;
 		$mensagem = null;
@@ -247,6 +274,7 @@ class Empresa extends CI_Controller {
 		$hel_endereco_emp 		= trim($hel_endereco_emp);
 		$hel_numero_emp 		= trim($hel_numero_emp);
 		$hel_bairro_emp 		= trim($hel_bairro_emp);
+		$hel_email_emp			= trim($hel_email_emp);
 		
 		if (empty($hel_empresa_emp)) {
 			$erros    = TRUE;
@@ -290,6 +318,14 @@ class Empresa extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_CEP_EMP', 'has-error');
 		}
 		
+		if (!empty($hel_email_emp)){
+			if (!filter_var($hel_email_emp, FILTER_VALIDATE_EMAIL)){
+				$erros    = TRUE;
+				$mensagem .= "- E-mail invalido.\n";
+				$this->session->set_flashdata('ERRO_HEL_EMAIL_EMP', 'has-error');
+			}
+		}
+		
 		if (!$erros and $this->EmpresaModel->getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp)){
 			$erros    = TRUE;
 			$mensagem .= "- Empresa já cadastrada.\n";
@@ -301,6 +337,7 @@ class Empresa extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_SEQCID_EMP', 'has-error');
 			$this->session->set_flashdata('ERRO_HEL_CEP_EMP', 'has-error');
 			$this->session->set_flashdata('ERRO_HEL_ATIVO_EMP', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_EMAIL_EMP', 'has-error');
 		}
 
 		
@@ -320,6 +357,10 @@ class Empresa extends CI_Controller {
 			$this->session->set_flashdata('hel_seqcid_emp', $hel_seqcid_emp);
 			$this->session->set_flashdata('hel_cep_emp', $hel_cep_emp);
 			$this->session->set_flashdata('hel_ativo_emp', $hel_ativo_emp);
+			$this->session->set_flashdata('hel_email_emp', $hel_email_emp);
+			$this->session->set_flashdata('hel_fone_emp', $hel_fone_emp);
+			$this->session->set_flashdata('hel_celular_emp', $hel_celular_emp);
+			$this->session->set_flashdata('hel_fax_emp', $hel_fax_emp);
 		}
 				
 		return !$erros;
@@ -328,11 +369,6 @@ class Empresa extends CI_Controller {
 	private function testarApagar($hel_pk_seq_emp) {
 		$erros    = FALSE;
 		$mensagem = null;
-		
-		if ($this->OrdemServicoModel->getEmpresaOrdemServico($hel_pk_seq_emp)) {
-			$erros    = TRUE;
-			$mensagem .= "- Ordem Serviço cadastrada.\n";
-		}
 		
 		if ($this->SistemaContradoModel->getEmpresaSistemaContratado($hel_pk_seq_emp)) {
 			$erros    = TRUE;
@@ -362,6 +398,8 @@ class Empresa extends CI_Controller {
 		$ERRO_HEL_SEQCID_EMP       	= $this->session->flashdata('ERRO_HEL_SEQCID_EMP');
 		$ERRO_HEL_CEP_EMP       	= $this->session->flashdata('ERRO_HEL_CEP_EMP');
 		$ERRO_HEL_ATIVO_EMP       	= $this->session->flashdata('ERRO_HEL_ATIVO_EMP');
+		$ERRO_HEL_EMAIL_EMP       	= $this->session->flashdata('ERRO_HEL_EMAIL_EMP');
+		
 
 		$hel_empresa_emp     	   = $this->session->flashdata('hel_empresa_emp');
 		$hel_filial_emp     	   = $this->session->flashdata('hel_filial_emp');
@@ -374,6 +412,10 @@ class Empresa extends CI_Controller {
 		$hel_seqcid_emp  	   	   = $this->session->flashdata('hel_seqcid_emp');
 		$hel_cep_emp  	   	   	   = $this->session->flashdata('hel_cep_emp');
 		$hel_ativo_emp  	   	   = $this->session->flashdata('hel_ativo_emp');
+		$hel_email_emp  	   	   = $this->session->flashdata('hel_email_emp');
+		$hel_fone_emp  	   	  	   = $this->session->flashdata('hel_fone_emp');
+		$hel_celular_emp  	   	   = $this->session->flashdata('hel_celular_emp');
+		$hel_fax_emp  	   	   	   = $this->session->flashdata('hel_fax_emp');
 		
 		
 		if ($ERRO_HEL_EMP) {
@@ -388,6 +430,10 @@ class Empresa extends CI_Controller {
 			$dados['hel_seqcid_emp']  	   		= $hel_seqcid_emp;
 			$dados['hel_cep_emp']  		   		= $hel_cep_emp;
 			$dados['hel_ativo_emp']  	   		= $hel_ativo_emp;
+			$dados['hel_email_emp']  	   		= $hel_email_emp;
+			$dados['hel_fone_emp']  	   		= $hel_fone_emp;
+			$dados['hel_celular_emp']  	   		= $hel_celular_emp;
+			$dados['hel_fax_emp']  	   			= $hel_fax_emp;
 			$dados['hel_checkedativo_emp']  	= $hel_ativo_emp == 1 ? 'checked' : '';
 			
 			$dados['ERRO_HEL_EMPRESA_EMP']  	= $ERRO_HEL_EMPRESA_EMP;
@@ -398,6 +444,7 @@ class Empresa extends CI_Controller {
 			$dados['ERRO_HEL_SEQCID_EMP']    	= $ERRO_HEL_SEQCID_EMP;
 			$dados['ERRO_HEL_CEP_EMP']    		= $ERRO_HEL_CEP_EMP;
 			$dados['ERRO_HEL_ATIVO_EMP']    	= $ERRO_HEL_ATIVO_EMP;
+			$dados['ERRO_HEL_EMAIL_EMP']    	= $ERRO_HEL_EMAIL_EMP;
 		}
 	}
 	

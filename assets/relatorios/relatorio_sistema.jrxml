@@ -83,7 +83,7 @@
 			<staticText>
 				<reportElement x="2" y="0" width="47" height="16" uuid="a19588e5-2f8d-4554-8e40-5080b468522a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Seq.]]></text>
 			</staticText>
@@ -101,12 +101,6 @@
 				</textElement>
 				<text><![CDATA[Descrição]]></text>
 			</staticText>
-			<line>
-				<reportElement x="0" y="15" width="555" height="1" uuid="4824f051-2dfd-498f-b91a-07f7e0c43889"/>
-				<graphicElement>
-					<pen lineStyle="Dashed"/>
-				</graphicElement>
-			</line>
 			<staticText>
 				<reportElement x="336" y="0" width="63" height="15" uuid="237cf4d3-f1b8-4eec-aea5-a5bef93fdd74"/>
 				<textElement verticalAlignment="Middle">
@@ -114,6 +108,12 @@
 				</textElement>
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="555" height="1" uuid="4824f051-2dfd-498f-b91a-07f7e0c43889"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>

@@ -87,6 +87,35 @@
 				</div>
 			</div>
 			
+			</br>
+			<div class="{ERRO_HEL_EMAIL_EMP}">
+				<div class="form-group">
+					<label for="hel_email_emp" class="col-sm-1 control-label">Email</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="hel_email_emp" name="hel_email_emp" 
+						   	value="{hel_email_emp}" maxlength="60" autocomplete="off" autofocus/>
+					</div>
+				</div>
+			</div>
+			</br>
+			<div class="form-group">
+				<label for="hel_fone_emp" class="col-sm-1 control-label">Telefone</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control mask-phone" id="hel_fone_emp" name="hel_fone_emp" 
+						       value="{hel_fone_emp}" maxlength="12" autocomplete="off" autofocus/>
+					</div>
+				<label for="hel_celular_emp" class="col-sm-1 control-label">Celular</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control mask-cel" id="hel_celular_emp" name="hel_celular_emp" 
+						       value="{hel_celular_emp}" maxlength="13" autocomplete="off" autofocus/>
+					</div>
+				<label for="hel_fax_emp" class="col-sm-1 control-label">Fax</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control mask-phone" id="hel_fax_emp" name="hel_numero_emp" 
+						       value="{hel_fax_emp}" maxlength="12" autocomplete="off" autofocus/>
+					</div>
+			</div>
+							
 			<div class="form-group">
 				<div class="{ERRO_HEL_ATIVO_EMP}">
 					<div class="col-sm-offset-1 col-sm-10">
