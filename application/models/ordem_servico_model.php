@@ -20,10 +20,11 @@ class Ordem_Servico_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getEmpresa() {
-		$this->db->from('heltbemp');
-		$this->db->join('heltbcid','hel_pk_seq_cid = hel_seqcid_emp','left');
-		$this->db->order_by("hel_nomefantasia_emp", "asc");
+	public function getOrdemServico() {
+		$this->db->from('heltbose');
+		$this->db->join('heltbexc','hel_pk_seq_exc = hel_seqexc_ose','LEFT');
+		$this->db->join('heltbemp','hel_pk_seq_emp = hel_seqemp_exc','LEFT');
+		$this->db->join('heltbcon','hel_pk_seq_con = hel_seqcontec_ose','LEFT');
 		return $this->db->get()->result();
 	}
 	

@@ -311,18 +311,6 @@
 												</a>
 											</li>
 										</ul>
-										<ul class="nav nav-children">
-											<li class="nav-parent">
-												<a>Gerenciador</a>
-												<ul class="nav nav-children">
-													<li>
-														<a href="<?php echo site_url('#');?>">
-															 Programa
-														</a>
-													</li>											
-												</ul>
-											</li>	
-										</ul>	
 									</li>
 									<li class="nav-parent">
 										<a>
@@ -336,7 +324,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="#">
+												<a href="<?php echo site_url('ordem_servico');?>">
 													Ordem de Serviço 
 												</a>
 											</li>
@@ -490,6 +478,7 @@
 		        $('#tb_sistema').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_sistema_contratado').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_menu_sistema_contratado').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_ordem_servico').dataTable({"order": [[ 1, "asc" ]]});
 			});
 		</script>
 
