@@ -109,11 +109,6 @@
 						<input type="text" class="form-control mask-cel" id="hel_celular_emp" name="hel_celular_emp" 
 						       value="{hel_celular_emp}" maxlength="13" autocomplete="off" autofocus/>
 					</div>
-				<label for="hel_fax_emp" class="col-sm-1 control-label">Fax</label>
-					<div class="col-sm-2">
-						<input type="text" class="form-control mask-phone" id="hel_fax_emp" name="hel_numero_emp" 
-						       value="{hel_fax_emp}" maxlength="12" autocomplete="off" autofocus/>
-					</div>
 			</div>
 							
 			<div class="form-group">

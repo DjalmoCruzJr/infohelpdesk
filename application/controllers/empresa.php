@@ -49,7 +49,6 @@ class Empresa extends CI_Controller {
 		$dados['hel_email_emp']			= '';
 		$dados['hel_fone_emp']			= '';
 		$dados['hel_celular_emp']		= '';
-		$dados['hel_fax_emp']			= '';
 		
 		$dados['ACAO'] = 'Novo';
 		
@@ -94,7 +93,6 @@ class Empresa extends CI_Controller {
 		global $hel_email_emp;
 		global $hel_fone_emp;
 		global $hel_celular_emp;
-		global $hel_fax_emp;
 		
 		$hel_pk_seq_emp  		= $this->input->post('hel_pk_seq_emp');			
 		$hel_empresa_emp 		= $this->input->post('hel_empresa_emp');
@@ -111,7 +109,6 @@ class Empresa extends CI_Controller {
 		$hel_email_emp 			= $this->input->post('hel_email_emp');
 		$hel_fone_emp 			= $this->input->post('hel_fone_emp');
 		$hel_celular_emp 		= $this->input->post('hel_celular_emp');
-		$hel_fax_emp 			= $this->input->post('hel_fax_emp');
 		
 		$hel_cnpj_emp 			= str_replace(".", null, $hel_cnpj_emp);
 		$hel_cnpj_emp 			= str_replace("/", null, $hel_cnpj_emp);
@@ -143,7 +140,6 @@ class Empresa extends CI_Controller {
 				"hel_email_emp"     	=> $hel_email_emp,
 				"hel_fone_emp"     	    => $hel_fone_emp,
 				"hel_celular_emp"     	=> $hel_celular_emp,
-				"hel_fax_emp"     		=> $hel_fax_emp,
 					
 			);
 			
@@ -360,7 +356,6 @@ class Empresa extends CI_Controller {
 			$this->session->set_flashdata('hel_email_emp', $hel_email_emp);
 			$this->session->set_flashdata('hel_fone_emp', $hel_fone_emp);
 			$this->session->set_flashdata('hel_celular_emp', $hel_celular_emp);
-			$this->session->set_flashdata('hel_fax_emp', $hel_fax_emp);
 		}
 				
 		return !$erros;
@@ -415,7 +410,7 @@ class Empresa extends CI_Controller {
 		$hel_email_emp  	   	   = $this->session->flashdata('hel_email_emp');
 		$hel_fone_emp  	   	  	   = $this->session->flashdata('hel_fone_emp');
 		$hel_celular_emp  	   	   = $this->session->flashdata('hel_celular_emp');
-		$hel_fax_emp  	   	   	   = $this->session->flashdata('hel_fax_emp');
+		
 		
 		
 		if ($ERRO_HEL_EMP) {
@@ -433,7 +428,6 @@ class Empresa extends CI_Controller {
 			$dados['hel_email_emp']  	   		= $hel_email_emp;
 			$dados['hel_fone_emp']  	   		= $hel_fone_emp;
 			$dados['hel_celular_emp']  	   		= $hel_celular_emp;
-			$dados['hel_fax_emp']  	   			= $hel_fax_emp;
 			$dados['hel_checkedativo_emp']  	= $hel_ativo_emp == 1 ? 'checked' : '';
 			
 			$dados['ERRO_HEL_EMPRESA_EMP']  	= $ERRO_HEL_EMPRESA_EMP;
