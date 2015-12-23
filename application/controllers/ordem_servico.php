@@ -8,6 +8,7 @@ class Ordem_Servico extends CI_Controller {
 		
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
 		$this->load->model('Empresa_Model', 'EmpresaModel');
+		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 		
 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
@@ -28,10 +29,14 @@ class Ordem_Servico extends CI_Controller {
 	public function novo() {
 			
 		$dados = array();
-		$dados['hel_pk_seq_cid']  			= 0;		
+		$dados['hel_pk_seq_ose']  			= 0;		
 		$dados['hel_horarioinicial_ose']    = date("d/m/y H:i:s");
+		$dados['hel_horariofinal_ose']      = date("d/m/y H:i:s");
 		$dados['hel_seqemp_ose']    		= '';
-		$dados['hel_seqcontec_ose']    		= '';
+		$dados['hel_seqcon_ose']    		= '';
+		$dados['hel_kminicial_ose']    		= '';
+		$dados['hel_kmfinal_ose']    		= '';
+		$dados['hel_observacao_ose']        = '';
 				
 		$dados['ACAO'] = 'Novo';
 		$this->setarURL($dados);
@@ -54,7 +59,6 @@ class Ordem_Servico extends CI_Controller {
 		
 		$this->carregarDadosFlash($dados);
 		
-		$this->carregarUf($dados);
 		
 		$this->parser->parse('cidade_cadastro', $dados);	
 	}
@@ -62,37 +66,53 @@ class Ordem_Servico extends CI_Controller {
 	public function salvar() {
 		global $hel_pk_seq_ose;
 		global $hel_seqemp_ose;
-		global $hel_seqcontec_ose;
+		global $hel_seqcon_ose;
+		global $hel_horarioinicial_ose;
+		global $hel_horariofinal_ose;
+		global $hel_kminicial_ose;
+		global $hel_kmfinal_ose;
+		global $hel_observacao_ose;
+		global $hel_seqexc_ose;
 		
-		$hel_pk_seq_ose  	= $this->input->post('hel_pk_seq_ose');			
-		$hel_seqemp_ose    	= $this->input->post('hel_seqemp_ose');
-		$hel_seqcontec_ose 	= $this->input->post('hel_seqcontec_ose');
-
+		$hel_pk_seq_ose  		= $this->input->post('hel_pk_seq_ose');			
+		$hel_seqemp_ose    		= $this->input->post('hel_seqemp_ose');
+		$hel_seqcon_ose 		= $this->input->post('hel_seqcon_ose');
+		$hel_horarioinicial_ose = $this->input->post('hel_horarioinicial_ose');
+		$hel_horariofinal_ose   = $this->input->post('hel_horariofinal_ose');
+		$hel_kminicial_ose      = $this->input->post('hel_kminicial_ose');
+		$hel_kmfinal_ose        = $this->input->post('hel_kmfinal_ose');
+		$hel_observacao_ose     = $this->input->post('hel_observacao_ose');
+		
 		if ($this->testarDados()) {
-			$cidade = array(
-				"hel_nome_cid"   => $hel_nome_cid, 
-				"hel_uf_cid"     => $hel_uf_cid,
-				"hel_codmun_cid" => $hel_codmun_cid
+			
+			$ordem_servico = array(
+				"hel_seqexc_ose"           => $hel_seqexc_ose,
+				"hel_seqcontec_ose"		   => $this->session->userdata('hel_pk_seq_con'),
+				"hel_horarioinicial_ose"   => $hel_horarioinicial_ose, 
+				"hel_horariofinal_ose"     => $hel_horariofinal_ose,
+				"hel_kminicial_ose"        => $hel_kminicial_ose,
+				"hel_kmfinal_ose"  		   => $hel_kmfinal_ose,
+				"hel_observacao_ose" 	   => $hel_observacao_ose
 			);
 			
-			if (!$hel_pk_seq_cid) {	
-				$hel_pk_seq_cid = $this->CidadeModel->insert($cidade);
+			if (!$hel_pk_seq_ose) {	
+				$hel_pk_seq_ose = $this->OrdemServicoModel->insert($ordem_servico);
 			} else {
-				$hel_pk_seq_cid = $this->CidadeModel->update($cidade, $hel_pk_seq_cid);
+				$hel_pk_seq_ose = $this->OrdemServicoModel->update($ordem_servico, $hel_pk_seq_ose);
 			}
 
-			if (is_numeric($hel_pk_seq_cid)) {
-				$this->session->set_flashdata('sucesso', 'Cidade salva com sucesso.');
-				redirect('cidade');
+			if (is_numeric($hel_pk_seq_ose)) {
+				$this->session->set_flashdata('sucesso', 'Ordem de serviço salva com sucesso.');
+				redirect('ordem_servico');
 			} else {
-				$this->session->set_flashdata('erro', $hel_pk_seq_cid);	
-				redirect('cidade');
+				$this->session->set_flashdata('erro', $hel_pk_seq_ose);	
+				redirect('ordem_servico');
 			}
 		} else {
-			if (!$hel_pk_seq_cid) {
-				redirect('cidade/novo/');
+			if (!$hel_pk_seq_ose) {
+				redirect('ordem_servico/novo/');
 			} else {
-				redirect('cidade/editar/'.base64_encode($hel_pk_seq_cid));
+				redirect('ordem_servico/editar/'.base64_encode($hel_pk_seq_ose));
 			}			
 		}
 	}
@@ -110,6 +130,7 @@ class Ordem_Servico extends CI_Controller {
 	private function setarURL(&$dados) {
 		$dados['CONSULTA_ORDEM_SERVICO'] = site_url('ordem_servico');
 		$dados['ACAO_FORM']         	 = site_url('ordem_servico/salvar');
+		$dados['URL_BUSCAR_CONTATO']   	 = site_url('json/json/carregar_contato');
 	}	
 	
 	private function carregarDados(&$dados) {
@@ -160,33 +181,69 @@ class Ordem_Servico extends CI_Controller {
 	private function testarDados() {
 		global $hel_pk_seq_ose;
 		global $hel_seqemp_ose;
-		global $hel_seqcontec_ose;
-
+		global $hel_seqcon_ose;
+		global $hel_seqexc_ose;
+		global $hel_horarioinicial_ose;
+		global $hel_horariofinal_ose;
+		global $hel_kminicial_ose;
+		global $hel_kmfinal_ose;
+		global $hel_observacao_ose;
+		
 		$erros    = FALSE;
 		$mensagem = null;
-
-		$hel_nome_cid = trim($hel_nome_cid);
 		
-		if (empty($hel_nome_cid)) {
+		if (empty($hel_seqemp_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- Nome não preenchido.\n";
-			$this->session->set_flashdata('ERRO_HEL_NOME_CID', 'has-error');
+			$mensagem .= "- Empresa não selecionada.\n";
+			$this->session->set_flashdata('ERRO_HEL_SEQEMP_OSE', 'has-error');
 		}
 
-		if (empty($hel_uf_cid)) {
+		if (empty($hel_seqcon_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- UF não foi selecionada.\n";
-			$this->session->set_flashdata('ERRO_HEL_UF_CID', 'has-error');
+			$mensagem .= "- Contato não foi selecionado.\n";
+			$this->session->set_flashdata('ERRO_HEL_SEQCON_OSE', 'has-error');
 		}
 		
+		if (empty($hel_horarioinicial_ose)) {
+			$erros    = TRUE;
+			$mensagem .= "- Horário inicial não foi informado.\n";
+			$this->session->set_flashdata('ERRO_HEL_HORARIOINCIAL_OSE', 'has-error');
+		}
+		
+		if (empty($hel_horariofinal_ose)) {
+			$erros    = TRUE;
+			$mensagem .= "- Horário final não foi informado.\n";
+			$this->session->set_flashdata('ERRO_HEL_HORARIOFINAL_OSE', 'has-error');
+		}
+
+		if (!empty($hel_kminicial_ose) and !empty($hel_kmfinal_ose)) {
+			if ($hel_kminicial_ose > $hel_kmfinal_ose) {
+				$erros    = TRUE;
+				$mensagem .= "- Km Inicial maior que Km Final.\n";
+				$this->session->set_flashdata('ERRO_HEL_KMINICIAL_OSE', 'has-error');
+				$this->session->set_flashdata('ERRO_HEL_KMFINAL_OSE', 'has-error');
+			}
+		}
+		if (!$erros){
+			$resultado = $this->EmpresaContatoModel->getEmpresaContato3($hel_seqcon_ose,$hel_seqemp_ose);
+			if ($resultado){
+				$hel_seqexc_ose = $resultado->hel_pk_seq_exc; 
+			}
+		}
+				
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
 			$this->session->set_flashdata('ERRO_HEL_OSE', TRUE);				
-			$this->session->set_flashdata('hel_nome_cid', $gab_nome_cid);
-			$this->session->set_flashdata('hel_uf_cid', $gab_uf_cid);
-			$this->session->set_flashdata('hel_codmun_cid', $gab_codmun_cid);
+			$this->session->set_flashdata('hel_seqemp_ose', $hel_seqemp_ose);
+			$this->session->set_flashdata('hel_seqcon_ose', $hel_seqcon_ose);
+			$this->session->set_flashdata('hel_horarioinicial_ose', $hel_horarioinicial_ose);
+			$this->session->set_flashdata('hel_horariofinal_ose', $hel_horariofinal_ose);
+			$this->session->set_flashdata('hel_kminicial_ose', $hel_kminicial_ose);
+			$this->session->set_flashdata('hel_kmfinal_ose', $hel_kmfinal_ose);
+			$this->session->set_flashdata('hel_observacao_ose', $hel_observacao_ose);
+				
 		}
 				
 		return !$erros;
@@ -209,19 +266,68 @@ class Ordem_Servico extends CI_Controller {
 		return !$erros;
 	}
 	
+	private function carregarContatoEmpresa(&$dados) {
+	
+		if ( !empty($dados['hel_seqemp_ose']) ){
+			$resultado = $this->EmpresaContatoModel->getEmpresaContato2($dados['hel_seqemp_ose']);
+				
+			if (reset($resultado)){
+				$dados['BLC_CONTATO_EMPRESA'][] = array(
+						"hel_pk_seq_con"     => '',
+						"hel_nome_con"       => 'Selecione...'
+				);
+			}
+	
+			foreach ($resultado as $registro) {
+				$dados['BLC_CONTATO_EMPRESA'][] = array(
+						"hel_pk_seq_con"     => $registro->hel_pk_seq_con,
+						"hel_nome_con"       => $registro->hel_nome_con,
+						"sel_hel_seqcon_ose" => ($dados['hel_seqcon_ose'] == $registro->hel_pk_seq_con)?'selected':''
+				);
+			}
+		} else {
+			$dados['BLC_CONTATO_EMPRESA'][] = array(
+					"hel_pk_seq_con"     => '',
+					"hel_nome_con"       => 'Selecione...'
+			);
+		}
+	}
+	
+	
 	private function carregarDadosFlash(&$dados) {
-		$ERRO_HEL_OSE   	   = $this->session->flashdata('ERRO_HEL_OSE');
-		$ERRO_HEL_SEQEXC_OSE   = $this->session->flashdata('ERRO_HEL_SEQEXC_OSE');
-		$ERRO_HEL_SEQCON_OSE   = $this->session->flashdata('ERRO_HEL_SEQCON_OSE');
+		$ERRO_HEL_OSE   	  		= $this->session->flashdata('ERRO_HEL_OSE');
+		$ERRO_HEL_SEQEMP_OSE   		= $this->session->flashdata('ERRO_HEL_SEQEMP_OSE');
+		$ERRO_HEL_SEQCON_OSE   		= $this->session->flashdata('ERRO_HEL_SEQCON_OSE');
+		$ERRO_HEL_HORARIOINCIAL_OSE = $this->session->flashdata('ERRO_HEL_HORARIOINCIAL_OSE');
+		$ERRO_HEL_HORARIOFINAL_OSE  = $this->session->flashdata('ERRO_HEL_HORARIOFINAL_OSE');
+		$ERRO_HEL_KMINICIAL_OSE     = $this->session->flashdata('ERRO_HEL_KMINICIAL_OSE');
+		$ERRO_HEL_KMFINAL_OSE       = $this->session->flashdata('ERRO_HEL_KMFINAL_OSE');
 		
-
-		$hel_seqexc_ose        = $this->session->flashdata('hel_seqexc_ose');
-
+		$hel_seqemp_ose       		 = $this->session->flashdata('hel_seqemp_ose');
+		$hel_seqcon_ose     		 = $this->session->flashdata('hel_seqcon_ose');
+		$hel_horarioinicial_ose		 = $this->session->flashdata('hel_horarioinicial_ose');
+		$hel_horariofinal_ose		 = $this->session->flashdata('hel_horariofinal_ose');
+		$hel_kminicial_ose		     = $this->session->flashdata('hel_kminicial_ose');
+		$hel_kmfinal_ose		     = $this->session->flashdata('hel_kmfinal_ose');
+		$hel_observacao_ose		     = $this->session->flashdata('hel_observacao_ose');
+				
 		if ($ERRO_HEL_OSE) {
-			$dados['hel_seqexc_ose']       = $hel_seqexc_ose;
+			$dados['hel_seqemp_ose']       			= $hel_seqemp_ose;
+			$dados['hel_seqcon_ose']       			= $hel_seqcon_ose;
+			$dados['hel_horarioinicial_ose']       	= $hel_horarioinicial_ose;			
+			$dados['hel_horariofinal_ose']       	= $hel_horariofinal_ose;
+			$dados['hel_kminicial_ose']          	= $hel_kminicial_ose;
+			$dados['hel_kmfinal_ose']           	= $hel_kmfinal_ose;
+			$dados['hel_observacao_ose']         	= $hel_observacao_ose;
+				
+			$this->carregarContatoEmpresa($dados);
 
-			$dados['ERRO_HEL_SEQEXC_OSE']  = $ERRO_HEL_SEQEXC_OSE;
-			$dados['ERRO_HEL_SEQCON_OSE']  = $ERRO_HEL_SEQCON_OSE;
+			$dados['ERRO_HEL_SEQEMP_OSE']  			= $ERRO_HEL_SEQEMP_OSE;
+			$dados['ERRO_HEL_SEQCON_OSE']  			= $ERRO_HEL_SEQCON_OSE;
+			$dados['ERRO_HEL_HORARIOINCIAL_OSE']  	= $ERRO_HEL_HORARIOINCIAL_OSE;
+			$dados['ERRO_HEL_HORARIOFINAL_OSE']  	= $ERRO_HEL_HORARIOFINAL_OSE;
+			$dados['ERRO_HEL_KMINICIAL_OSE']  	    = $ERRO_HEL_KMINICIAL_OSE;
+			$dados['ERRO_HEL_KMFINAL_OSE']  		= $ERRO_HEL_KMFINAL_OSE;
 		}
 	}
 	

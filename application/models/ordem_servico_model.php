@@ -50,8 +50,8 @@ class Ordem_Servico_Model extends CI_Model {
 	}
 	
 	
-	public function insert($empresa) {
-		$res = $this->db->insert('heltbemp', $empresa);
+	public function insert($ordem_servico) {
+		$res = $this->db->insert('heltbose', $ordem_servico);
 	
 		if ($res) {
 			return $this->db->insert_id();
@@ -60,20 +60,20 @@ class Ordem_Servico_Model extends CI_Model {
 		}
 	}
 	
-	public function update($empresa, $hel_pk_seq_emp) {
-		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
-		$res = $this->db->update('heltbemp', $empresa);
+	public function update($ordem_servico, $hel_pk_seq_ose) {
+		$this->db->where('hel_pk_seq_ose', $hel_pk_seq_ose, FALSE);
+		$res = $this->db->update('heltbose', $ordem_servico);
 	
 		if ($res) {
-			return $hel_pk_seq_emp;
+			return $hel_pk_seq_ose;
 		} else {
 			return FALSE;
 		}
 	}
 	
-	public function delete($hel_pk_seq_emp) {
-		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
-		return $this->db->delete('heltbemp');
+	public function delete($hel_pk_seq_ose) {
+		$this->db->where('hel_pk_seq_ose', $hel_pk_seq_ose, FALSE);
+		return $this->db->delete('heltbose');
 	}
 		
 }

@@ -2,6 +2,13 @@
 
 class Json extends CI_Controller {
 	
+	public function __construct() {
+		parent::__construct();
+
+		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
+		
+	}
+	
 	public function buscarCEP($cep){
 		$cep            = $cep;
 		$chave          = CHAVE_ACESSO;
@@ -21,6 +28,12 @@ class Json extends CI_Controller {
 	
 		curl_close($ch);
 		return $data;
+	}	
+	
+	
+	public function carregar_contato($empresa) {
+		$resultado = $this->EmpresaContatoModel->getEmpresaContato2($empresa);
+		echo json_encode($resultado, JSON_PRETTY_PRINT);			
 	}	
 
 }

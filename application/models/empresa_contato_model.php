@@ -46,6 +46,14 @@ class Empresa_Contato_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getEmpresaContato3($hel_seqcon_exc,$hel_seqemp_exc) {
+		$this->db->select('hel_pk_seq_exc');
+		$this->db->from('heltbexc');
+		$this->db->where('hel_seqcon_exc', $hel_seqcon_exc, FALSE);
+		$this->db->where('hel_seqemp_exc', $hel_seqemp_exc, FALSE);
+		return $this->db->get()->first_row();
+	}
+	
 	public function insert($empresa_contato) {
 		$res = $this->db->insert('heltbexc', $empresa_contato);
 	
