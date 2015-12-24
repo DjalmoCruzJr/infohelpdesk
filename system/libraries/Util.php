@@ -14,6 +14,24 @@
 			return $hel_tipo_tco <> 0 ? TRUE : FALSE;
 		}
 		
+		function validarDataHora($date, $format = 'Y-m-d H:i:s') {
+			if (!empty($date) && $v_date = date_create_from_format($format, $date)) {
+				$v_date = date_format($v_date, $format);
+				return ($v_date && $v_date == $date);
+			}
+			return false;
+		}
+		
+		public function formatarDateTime($date_time){
+			$data = explode(" ", $date_time);
+			$date = $data[0];
+			$hora = $data[1];
+			
+			$date = implode( "/", array_reverse( explode ( "-", trim( $date ) ) ) );
+			
+			return $date." ".$hora;			
+		}
+		
 		function to_upper($term, $tp) {
 			switch($tp) {
 						  //Converte uma string para minúsculas

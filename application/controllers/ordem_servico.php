@@ -6,8 +6,8 @@ class Ordem_Servico extends CI_Controller {
 				
  		$this->layout = LAYOUT_DASHBOARD;
 		
+ 		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
-		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 		
 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
@@ -27,11 +27,11 @@ class Ordem_Servico extends CI_Controller {
 	}
 	
 	public function novo() {
-			
+
 		$dados = array();
 		$dados['hel_pk_seq_ose']  			= 0;		
-		$dados['hel_horarioinicial_ose']    = date("d/m/y H:i:s");
-		$dados['hel_horariofinal_ose']      = date("d/m/y H:i:s");
+		$dados['hel_horarioinicial_ose']    = '';
+		$dados['hel_horariofinal_ose']      = '';
 		$dados['hel_seqemp_ose']    		= '';
 		$dados['hel_seqcon_ose']    		= '';
 		$dados['hel_kminicial_ose']    		= '';
@@ -82,6 +82,12 @@ class Ordem_Servico extends CI_Controller {
 		$hel_kminicial_ose      = $this->input->post('hel_kminicial_ose');
 		$hel_kmfinal_ose        = $this->input->post('hel_kmfinal_ose');
 		$hel_observacao_ose     = $this->input->post('hel_observacao_ose');
+		
+		$hel_horarioinicial_ose = str_replace("/", null, $hel_horarioinicial_ose);
+		$hel_horarioinicial_ose = str_replace(":", null, $hel_horarioinicial_ose);
+		
+		$hel_horariofinal_ose 	= str_replace("/", null, $hel_horariofinal_ose);
+		$hel_horariofinal_ose 	= str_replace(":", null, $hel_horariofinal_ose);
 		
 		if ($this->testarDados()) {
 			
@@ -140,8 +146,8 @@ class Ordem_Servico extends CI_Controller {
 			$dados['BLC_DADOS'][] = array(
 				"hel_nomefantasia_emp" 	 => $registro->hel_nomefantasia_emp,							
 				"hel_nome_con"         	 => $registro->hel_nome_con,
-				"hel_horarioinicial_ose" => $registro->hel_horarioinicial_ose,
-				"hel_horariofinal_ose" 	 => $registro->hel_horariofinal_ose,
+				"hel_horarioinicial_ose" => $this->util->formatarDateTime($registro->hel_horarioinicial_ose),
+				"hel_horariofinal_ose" 	 => $this->util->formatarDateTime($registro->hel_horariofinal_ose),
 				"EDITAR_ORDEM_SERVICO" 	 => site_url('ordem_servico/editar/'.base64_encode($registro->hel_pk_seq_ose)),
 				"APAGAR_ORDEM_SERVICO" 	 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ose)."')"
 			);
@@ -208,22 +214,29 @@ class Ordem_Servico extends CI_Controller {
 			$erros    = TRUE;
 			$mensagem .= "- Horário inicial não foi informado.\n";
 			$this->session->set_flashdata('ERRO_HEL_HORARIOINCIAL_OSE', 'has-error');
+		} else if ($this->util->validarDataHora($hel_horarioinicial_ose)){
+			$erros    = TRUE;
+			$mensagem .= "- Horário inicial inválido.\n";
+			$this->session->set_flashdata('ERRO_HEL_HORARIOINCIAL_OSE', 'has-error');
 		}
 		
 		if (empty($hel_horariofinal_ose)) {
 			$erros    = TRUE;
 			$mensagem .= "- Horário final não foi informado.\n";
 			$this->session->set_flashdata('ERRO_HEL_HORARIOFINAL_OSE', 'has-error');
+		}else if ($this->util->validarDataHora($hel_horariofinal_ose)){
+			$erros    = TRUE;
+			$mensagem .= "- Horário final inválido.\n";
+			$this->session->set_flashdata('ERRO_HEL_HORARIOFINAL_OSE', 'has-error');
 		}
 
-		if (!empty($hel_kminicial_ose) and !empty($hel_kmfinal_ose)) {
-			if ($hel_kminicial_ose > $hel_kmfinal_ose) {
-				$erros    = TRUE;
-				$mensagem .= "- Km Inicial maior que Km Final.\n";
-				$this->session->set_flashdata('ERRO_HEL_KMINICIAL_OSE', 'has-error');
-				$this->session->set_flashdata('ERRO_HEL_KMFINAL_OSE', 'has-error');
-			}
+		if (!$erros and ($hel_kminicial_ose > $hel_kmfinal_ose)) {
+			$erros    = TRUE;
+			$mensagem .= "- Km Inicial maior que Km Final.\n";
+			$this->session->set_flashdata('ERRO_HEL_KMINICIAL_OSE', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_KMFINAL_OSE', 'has-error');
 		}
+	
 		if (!$erros){
 			$resultado = $this->EmpresaContatoModel->getEmpresaContato3($hel_seqcon_ose,$hel_seqemp_ose);
 			if ($resultado){
@@ -252,11 +265,6 @@ class Ordem_Servico extends CI_Controller {
 	private function testarApagar($hel_pk_seq_cid) {
 		$erros    = FALSE;
 		$mensagem = null;
-	
-		if ($this->EmpresaModel->getEmpresaCidade($hel_pk_seq_cid)) {
-			$erros    = TRUE;
-			$mensagem .= "- Empresa cadastrada.\n";
-		}
 	
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');

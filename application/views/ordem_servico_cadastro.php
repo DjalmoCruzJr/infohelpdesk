@@ -37,14 +37,14 @@
 				<div class="{ERRO_HEL_HORARIOINCIAL_OSE}">
 					<label for="hel_horarioinicial_ose" class="col-sm-1 control-label">Horário Inicial</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" id="hel_horarioinicial_ose" name="hel_horarioinicial_ose" 
+						<input type="text" class="form-control mask-date-time" id="hel_horarioinicial_ose" name="hel_horarioinicial_ose"
 						       value="{hel_horarioinicial_ose}" autocomplete="off" autofocus/>
 					</div>
 				</div>
 				<div class="{ERRO_HEL_HORARIOFINAL_OSE}">
 					<label for="hel_horariofinal_ose" class="col-sm-1 control-label">Horário Final</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" id="hel_horariofinal_ose" name="hel_horariofinal_ose" 
+						<input type="text" class="form-control mask-date-time" id="hel_horariofinal_ose" name="hel_horariofinal_ose" 
 						       value="{hel_horariofinal_ose}" autocomplete="off" autofocus/>
 					</div>
 				</div>
@@ -83,7 +83,6 @@
 	</div>
 </div>		
 <script>
-
 	function carregarContato(){
 		
 		var empresa 	   = document.getElementById("hel_seqemp_ose");
