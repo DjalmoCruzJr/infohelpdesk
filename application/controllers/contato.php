@@ -41,6 +41,7 @@ class Contato extends CI_Controller {
 		$dados['hel_checkedativo_con']  	= 'checked';
 		$dados['hel_dis_senha_con']  		= '';
 		$dados['hel_dis_confirsenha_con']	= '';
+		$dados['hel_email_con']				= '';
 		
 		$dados['ACAO'] = 'Novo';
 		
@@ -77,14 +78,15 @@ class Contato extends CI_Controller {
 		global $hel_senha_con;
 		global $hel_confirsenha_con;
 		global $hel_ativo_con;
-		
-		$hel_pk_seq_con  		= $this->input->post('hel_pk_seq_con');			
-		$hel_nome_con 			= $this->input->post('hel_nome_con');
+		global $hel_email_con;
+
+		$hel_nome_con			= $this->input->post('hel_nome_con');
 		$hel_seqtco_con			= $this->input->post('hel_seqtco_con');
 		$hel_login_con 			= $this->input->post('hel_login_con');
 		$hel_senha_con 			= $this->input->post('hel_senha_con');
 		$hel_confirsenha_con 	= $this->input->post('hel_confirsenha_con');
 		$hel_ativo_con 			= $this->input->post('hel_ativo_con') == 1 ? 1 : 0;
+		$hel_email_con 			= $this->input->post('hel_email_con');
 		
 		if ($this->testarDados()) {
 			$contato = array(
@@ -92,7 +94,8 @@ class Contato extends CI_Controller {
 				"hel_seqtco_con" => $hel_seqtco_con,
 				"hel_login_con"  => $hel_login_con,
 				"hel_senha_con"  => empty($hel_pk_seq_con) ? sha1($hel_senha_con) : $hel_senha_con,
-				"hel_ativo_con"  => $hel_ativo_con
+				"hel_ativo_con"  => $hel_ativo_con,
+				"hel_email_con"  => $hel_email_con
 			);
 			
 			if (!$hel_pk_seq_con) {	
@@ -205,6 +208,7 @@ class Contato extends CI_Controller {
 		global $hel_senha_con;
 		global $hel_confirsenha_con;
 		global $hel_ativo_con;
+		global $hel_email_con;
 
 		$erros    = FALSE;
 		$mensagem = null;
@@ -213,7 +217,8 @@ class Contato extends CI_Controller {
 		$hel_login_con 			= trim($hel_login_con);
 		$hel_senha_con 			= trim($hel_senha_con);
 		$hel_confirsenha_con 	= trim($hel_confirsenha_con);
-		
+		$hel_email_con			= trim($hel_email_con);
+
 		if (empty($hel_nome_con)) {
 			$erros    = TRUE;
 			$mensagem .= "- Nome não foi preenchido.\n";
@@ -251,13 +256,22 @@ class Contato extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_CONFIRSENHA_CON', 'has-error');
 		}
 		
-		if (!$erros and $this->ContatoModel->getLoginCadastro($hel_pk_seq_con, $hel_login_con)){
-			$erros    = TRUE;
+		if (!$erros and $this->ContatoModel->getLoginCadastro($hel_pk_seq_con, $hel_login_con)) {
+			$erros = TRUE;
 			$mensagem .= "- Já existi um contato cadastrado com esse login.\n";
 			$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
 		}
 
-		
+		if (empty($hel_email_con)) {
+			$erros = TRUE;
+			$mensagem .= "- E-mail não preenchido.\n";
+			$this->session->set_flashdata('ERRO_HEL_EMAIL_CON', 'has-error');
+		} else if (!filter_var($hel_email_con, FILTER_VALIDATE_EMAIL) ){
+				$erros     = TRUE;
+				$mensagem .= "- E-mail não é válido.\n";
+				$this->session->set_flashdata('ERRO_HEL_EMAIL_CON', 'has-error');
+			}
+
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
@@ -269,6 +283,7 @@ class Contato extends CI_Controller {
 			$this->session->set_flashdata('hel_confirsenha_con', $hel_confirsenha_con);
 			$this->session->set_flashdata('hel_seqtco_con', $hel_seqtco_con);
 			$this->session->set_flashdata('hel_ativo_con', $hel_ativo_con);
+			$this->session->set_flashdata('hel_email_con', $hel_email_con);
 		}
 				
 		return !$erros;
@@ -305,6 +320,7 @@ class Contato extends CI_Controller {
 		$ERRO_HEL_CONFIRSENHA_CON  	= $this->session->flashdata('ERRO_HEL_CONFIRSENHA_CON');
 		$ERRO_HEL_SEQTCO_CON  		= $this->session->flashdata('ERRO_HEL_SEQTCO_CON');
 		$ERRO_HEL_ATIVO_CON  		= $this->session->flashdata('ERRO_HEL_ATIVO_CON');
+		$ERRO_HEL_EMAIL_CON  		= $this->session->flashdata('ERRO_HEL_EMAIL_CON');
 		
 
 		$hel_nome_con     	   		= $this->session->flashdata('hel_nome_con');
@@ -313,7 +329,7 @@ class Contato extends CI_Controller {
 		$hel_confirsenha_con  		= $this->session->flashdata('hel_confirsenha_con');
 		$hel_seqtco_con  			= $this->session->flashdata('hel_seqtco_con');
 		$hel_ativo_con  	   	   	= $this->session->flashdata('hel_ativo_con');
-		
+		$hel_email_con  	   	   	= $this->session->flashdata('hel_email_con');
 		
 		if ($ERRO_HEL_CON) {
 			$dados['hel_nome_con']      		= $hel_nome_con;
@@ -322,6 +338,7 @@ class Contato extends CI_Controller {
 			$dados['hel_confirsenha_con']  		= $hel_confirsenha_con;
 			$dados['hel_seqtco_con'] 			= $hel_seqtco_con;
 			$dados['hel_ativo_con'] 			= $hel_ativo_con;
+			$dados['hel_email_con'] 			= $hel_email_con;
 			$dados['hel_checkedativo_con']  	= $hel_ativo_con == 1 ? 'checked' : '';
 			$dados['hel_dis_senha_con']  		= empty($dados['hel_dis_senha_con']) ? '' : $dados['hel_dis_senha_con'];
 			$dados['hel_dis_confirsenha_con']  	= empty($dados['hel_dis_confirsenha_con']) ? '' : $dados['hel_dis_confirsenha_con'];
@@ -333,6 +350,7 @@ class Contato extends CI_Controller {
 			$dados['ERRO_HEL_CONFIRSENHA_CON']  = $ERRO_HEL_CONFIRSENHA_CON;
 			$dados['ERRO_HEL_SEQTCO_CON'] 		= $ERRO_HEL_SEQTCO_CON;
 			$dados['ERRO_HEL_ATIVO_CON']    	= $ERRO_HEL_ATIVO_CON;
+			$dados['ERRO_HEL_EMAIL_CON']    	= $ERRO_HEL_EMAIL_CON;
 		}
 	}
 	

@@ -28,6 +28,13 @@
 							</select>   
 					</div>
 				</div>
+				<div class="{ERRO_HEL_EMAIL_CON}">
+					<label for="hel_email_con" class="col-sm-1 control-label">E-mail</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="hel_email_con" name="hel_email_con"
+							   value="{hel_email_con}" maxlength="60" autocomplete="off" autofocus/>
+					</div>
+				</div>
 			</div>
 			<div class="form-group">
 				<div class="{ERRO_HEL_LOGIN_CON}">

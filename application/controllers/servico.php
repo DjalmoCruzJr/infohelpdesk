@@ -26,8 +26,10 @@ class Servico extends CI_Controller {
 	
 	public function novo() {		
 		$dados = array();
-		$dados['hel_pk_seq_ser']  = 0;
-		$dados['hel_desc_ser']    = '';
+		$dados['hel_pk_seq_ser']	    = 0;
+		$dados['hel_desc_ser']    	    = '';
+		$dados['hel_chamado_ser'] 	    = '';
+		$dados['hel_checkechamado_ser'] = 'checked';
 		
 		$dados['ACAO'] 	= 'Novo';
 		$this->setarURL($dados);
@@ -54,13 +56,16 @@ class Servico extends CI_Controller {
 	public function salvar() {
 		global $hel_pk_seq_ser;
 		global $hel_desc_ser;
-		
+		global $hel_chamado_ser;
+
 		$hel_pk_seq_ser  = $this->input->post('hel_pk_seq_ser');			
 		$hel_desc_ser    = $this->input->post('hel_desc_ser');
+		$hel_chamado_ser = $this->input->post('hel_chamado_ser') == 1 ? 1 : 0;
 
 		if ($this->testarDados()) {
 			$servico = array(
-				"hel_desc_ser"   => $hel_desc_ser
+				"hel_desc_ser"   => $hel_desc_ser,
+				"hel_chamado_ser" => $hel_chamado_ser
 			);
 			
 			if (!$hel_pk_seq_ser) {	
@@ -90,7 +95,7 @@ class Servico extends CI_Controller {
 		if ($this->testarApagar(base64_decode($hel_pk_seq_ser))) {
 			$res = $this->ServicoModel->delete(base64_decode($hel_pk_seq_ser));
 			if ($res) {
-				$this->session->set_flashdata('sucesso', 'Servico apagado com sucesso.');
+				$this->session->set_flashdata('sucesso', 'Serviço apagado com sucesso.');
 			} 
 		}				
 		redirect('servico');
@@ -125,10 +130,13 @@ class Servico extends CI_Controller {
 		} else {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');			
 		}
+
+		$dados['hel_checkechamado_ser'] 		= $dados['hel_chamado_ser'] == 1 ? 'checked' : '';
 	}
 
 	private function testarDados() {
 		global $hel_desc_ser;
+		global $hel_chamado_ser;
 
 		$erros    = FALSE;
 		$mensagem = null;
@@ -137,16 +145,17 @@ class Servico extends CI_Controller {
 		
 		if (empty($hel_desc_ser)) {
 			$erros    = TRUE;
-			$mensagem .= "- Descrição não preenchido.\n";
-			$this->session->set_flashdata('ERRO_GAB_DESC_HEL', 'has-error');
+			$mensagem .= "- Descrição não preenchida.\n";
+			$this->session->set_flashdata('ERRO_HEL_DESC_SER', 'has-error');
 		}
 
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
-			$this->session->set_flashdata('ERRO_GAB_HEL', TRUE);				
+			$this->session->set_flashdata('ERRO_HEL_SER', TRUE);
 			$this->session->set_flashdata('hel_desc_ser', $hel_desc_ser);
+			$this->session->set_flashdata('hel_chamado_ser', $hel_chamado_ser);
 		}
 				
 		return !$erros;
@@ -165,15 +174,19 @@ class Servico extends CI_Controller {
 	}
 	
 	private function carregarDadosFlash(&$dados) {
-		$ERRO_GAB_HEL   	   = $this->session->flashdata('ERRO_GAB_HEL');
-		$ERRO_GAB_DESC_HEL     = $this->session->flashdata('ERRO_GAB_DESC_HEL');
-		
-		$hel_desc_hel    	   = $this->session->flashdata('hel_desc_hel');
-	
-		if ($ERRO_GAB_HEL) {
-			$dados['hel_desc_ser']       = $hel_desc_hel;
+		$ERRO_HEL_SER   	   = $this->session->flashdata('ERRO_HEL_SER');
+		$ERRO_HEL_DESC_SER     = $this->session->flashdata('ERRO_HEL_DESC_SER');
 
-			$dados['ERRO_GAB_DESC_HEL']  = $ERRO_GAB_DESC_HEL;
+
+		$hel_desc_ser    	   = $this->session->flashdata('hel_desc_ser');
+		$hel_chamado_ser       = $this->session->flashdata('hel_chamado_ser');
+
+		if ($ERRO_HEL_SER) {
+			$dados['hel_desc_ser']          = $hel_desc_ser;
+			$dados['hel_chamado_ser']       = $hel_chamado_ser;
+			$dados['hel_checkechamado_ser'] = $hel_chamado_ser == 1 ? 'checked' : '';
+
+			$dados['ERRO_HEL_DESC_SER']    = $ERRO_HEL_DESC_SER;
 		}
 	}
 	
