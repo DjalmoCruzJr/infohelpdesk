@@ -1,5 +1,5 @@
 <header class="page-header">
-	<h2>Consulta de Ordem de Serviço</h2>
+	<h2>Consulta dos Itens da Ordem de Serviço</h2>
 </header>
 
 
@@ -8,21 +8,16 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVA_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Nova Ordem de Serviço</a>
-	                <div class="pull-right">
-			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
-			    	</div>
+                    <a href="{NOVO_ITEM_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Nova Ordem de Serviço</a>
                 </div>
                 </br>
                 <div class="table">
-                    <table class="table table-striped table-bordered table-hover table-condensed" id="tb_ordem_servico">
+                    <table class="table table-striped table-bordered table-hover table-condensed" id="tb_item_ordem_servico">
 						<thead>
                             <tr>
-                                <th>Nome Fantasia</th>    
-                                <th>Técnico</th>
-                                <th>Horário Inicial</th>
-                                <th>Horário Final</th>
-                                <th class="coluna-acao" width="140">Itens Ordem de Serviço</th>
+                                <th>Serviço</th>    
+                                <th>Chamado</th>
+                                <th>Sistema</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -30,19 +25,20 @@
                         <tbody>
                         	{BLC_DADOS}
 	                            <tr>
-	                                <td class="vertical-center">{hel_nomefantasia_emp}</td>	    
-	                                <td class="vertical-center">{hel_nome_con}</td>
-	                                <td class="vertical-center">{hel_horarioinicial_ose}</td>
-	                                <td class="vertical-center">{hel_horariofinal_ose}</td>
-									<td class="text-center"><a href="{ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Item da Ordem Serviço"><i class="glyphicon glyphicon-list-alt"></i></a></td>	                                
-	                                <td class="text-center"><a href="{EDITAR_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
-	                                <td class="text-center"><a onclick="{APAGAR_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
+	                                <td class="vertical-center">{hel_desc_ser}</td>	    
+	                                <td class="vertical-center">{hel_seqcha_ios}</td>
+	                                <td class="vertical-center">{hel_desc_sis}</td>
+	                                <td class="text-center"><a href="{EDITAR_ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+	                                <td class="text-center"><a onclick="{APAGAR_ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
                         	{/BLC_DADOS}
                         </tbody>                   
                     </table>
                 </div>
             </div>
+        </div>
+            <div class="text-right">
+            <a href="{VOLTAR_ORDEM_SERVICO}" class="btn btn-info"><i class="glyphicon glyphicon-chevron-left"></i> Voltar Ordem Serviço</a>
         </div>
     </div>
 </div>

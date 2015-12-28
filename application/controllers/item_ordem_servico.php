@@ -1,30 +1,30 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ordem_Servico extends CI_Controller {
+class Item_Ordem_Servico extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 				
  		$this->layout = LAYOUT_DASHBOARD;
 		
- 		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
-		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 		$this->load->model('Item_Ordem_Servico_Model', 'ItemOrdemServicoModel');
-		
 		
 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
-	public function index() {
+	public function index($hel_seqose_ios) {
 		$dados = array();
 		
-		$dados['NOVA_ORDEM_SERVICO']	= site_url('ordem_servico/novo');
+		$dados['NOVO_ITEM_ORDEM_SERVICO']	= site_url('item_ordem_servico/novo/'.$hel_seqose_ios);
+		$dados['VOLTAR_ORDEM_SERVICO']		= site_url('ordem_servico');
 		
 		$dados['BLC_DADOS']  = array();
 		
+		$dados['hel_seqose_ios'] = base64_decode($hel_seqose_ios);
+		
 		$this->carregarDados($dados);
 				
-		$this->parser->parse('ordem_servico_consulta', $dados);
+		$this->parser->parse('item_ordem_servico_consulta', $dados);
 	}
 	
 	public function novo() {
@@ -145,16 +145,15 @@ class Ordem_Servico extends CI_Controller {
 	
 	private function carregarDados(&$dados) {
 				
-		$resultado = $this->OrdemServicoModel->getOrdemServico();	
+		$resultado = $this->ItemOrdemServicoModel->getItemOrdemServico($dados['hel_seqose_ios']);
+			
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
-				"hel_nomefantasia_emp" 	 => $registro->hel_nomefantasia_emp,							
-				"hel_nome_con"         	 => $registro->hel_nome_con,
-				"hel_horarioinicial_ose" => $this->util->formatarDateTime($registro->hel_horarioinicial_ose),
-				"hel_horariofinal_ose" 	 => $this->util->formatarDateTime($registro->hel_horariofinal_ose),
-				"ITEM_ORDEM_SERVICO" 	 => site_url('item_ordem_servico/index/'.base64_encode($registro->hel_pk_seq_ose)),					
-				"EDITAR_ORDEM_SERVICO" 	 => site_url('ordem_servico/editar/'.base64_encode($registro->hel_pk_seq_ose)),
-				"APAGAR_ORDEM_SERVICO" 	 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ose)."')"
+				"hel_desc_ser" 	 		 	 => $registro->hel_desc_ser,							
+				"hel_seqcha_ios"         	 => $registro->hel_seqcha_ios,
+				"hel_desc_sis" 		 	 	 => $registro->hel_desc_sis,			
+				"EDITAR_ITEM_ORDEM_SERVICO"	 => site_url('item_ordem_servico/editar/'.base64_encode($registro->hel_pk_seq_ios).'/'.base64_encode($registro->hel_seqose_ios)),
+				"APAGAR_ITEM_ORDEM_SERVICO"	 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ios)."','".base64_encode($registro->hel_seqose_ios)."')"
 			);
 		}
 	}

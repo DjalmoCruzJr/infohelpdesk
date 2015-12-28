@@ -27,11 +27,12 @@ class Item_Ordem_Servico_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getOrdemServico() {
-		$this->db->from('heltbose');
-		$this->db->join('heltbexc','hel_pk_seq_exc = hel_seqexc_ose','LEFT');
-		$this->db->join('heltbemp','hel_pk_seq_emp = hel_seqemp_exc','LEFT');
-		$this->db->join('heltbcon','hel_pk_seq_con = hel_seqcontec_ose','LEFT');
+	public function getItemOrdemServico($hel_seqose_ios) {
+		$this->db->from('heltbios');
+		$this->db->join('heltbser','hel_pk_seq_ser = hel_seqser_ios','LEFT');
+		$this->db->join('heltbcha','hel_pk_seq_cha = hel_seqcha_ios','LEFT');
+		$this->db->join('heltbsis','hel_pk_seq_sis = hel_seqsis_ios','LEFT');
+		$this->db->where('hel_seqose_ios = ', $hel_seqose_ios, FALSE);
 		return $this->db->get()->result();
 	}
 	

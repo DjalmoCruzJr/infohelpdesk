@@ -479,6 +479,7 @@
 				$('#tb_sistema_contratado').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_menu_sistema_contratado').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_ordem_servico').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_item_ordem_servico').dataTable({"order": [[ 1, "asc" ]]});
 			});
 		</script>
 
