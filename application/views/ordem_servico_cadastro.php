@@ -53,14 +53,14 @@
 				<div class="{ERRO_HEL_KMINICIAL_OSE}">
 					<label for="hel_kminicial_ose" class="col-sm-1 control-label">KM Inicial</label>
 					<div class="col-sm-3">
-						<input type="number" class="form-control" id="hel_kminicial_ose" name="hel_kminicial_ose" 
+						<input type="text" class="form-control mask-km" id="hel_kminicial_ose" name="hel_kminicial_ose" 
 						       value="{hel_kminicial_ose}" autocomplete="off" autofocus/>
 					</div>
 				</div>
 				<div class="{ERRO_HEL_KMFINAL_OSE}">
 					<label for="hel_kmfinal_ose" class="col-sm-1 control-label">KM Final</label>
 					<div class="col-sm-3">
-						<input type="number" class="form-control" id="hel_kmfinal_ose" name="hel_kmfinal_ose" 
+						<input type="text" class="form-control mask-km" id="hel_kmfinal_ose" name="hel_kmfinal_ose" 
 						       value="{hel_kmfinal_ose}" autocomplete="off" autofocus/>
 					</div>
 				</div>

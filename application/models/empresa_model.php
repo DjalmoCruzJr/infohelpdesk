@@ -21,6 +21,13 @@ class Empresa_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getEmpresaAtivo() {
+		$this->db->from('heltbemp');
+		$this->db->where('hel_ativo_emp', EMPRESA_ATIVO, FALSE);
+		$this->db->order_by("hel_nomefantasia_emp", "asc");
+		return $this->db->get()->result();
+	}
+	
 	public function getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp) {
 		$this->db->from('heltbemp');
 		$this->db->where('hel_pk_seq_emp <> ', $hel_pk_seq_emp, FALSE);

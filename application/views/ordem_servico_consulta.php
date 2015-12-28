@@ -142,7 +142,7 @@
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = 'contato/apagar/' + idExclusao;
+        location.href = 'ordem_servico/apagar/' + idExclusao;
     }
 
     function abrirDialogRelatorio(){

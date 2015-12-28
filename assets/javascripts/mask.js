@@ -12,6 +12,7 @@ $(document).ready(function() {
 	$('.mask-cel').mask('(dd) 9dddd-dddd');
 	$('.mask-date').mask('dd/dd/dddd');
 	$('.mask-day').mask('d?d');
+	$('.mask-km').mask('?ddddddddddd');
 	$('.mask-month').mask('d?d');
 	$('.mask-empresa').mask('d?d');
 	$('.mask-cod-mun').mask('dddddd?d');

@@ -9,11 +9,12 @@ class Ordem_Servico extends CI_Controller {
  		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
+		$this->load->model('Item_Ordem_Servico_Model', 'ItemOrdemServicoModel');
+		
 		
 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
-	
 	public function index() {
 		$dados = array();
 		
@@ -48,19 +49,21 @@ class Ordem_Servico extends CI_Controller {
 		$this->parser->parse('ordem_servico_cadastro', $dados);
 	}
 	
-	public function editar($hel_pk_seq_cid) {		
-		$hel_pk_seq_cid = base64_decode($hel_pk_seq_cid);
+	public function editar($hel_pk_seq_ose) {		
+		$hel_pk_seq_ose = base64_decode($hel_pk_seq_ose);
 		$dados = array();
 		
-		$this->carregarCidade($hel_pk_seq_cid, $dados);
+		$this->carregarOrdemServico($hel_pk_seq_ose, $dados);
 		
 		$dados['ACAO'] = 'Editar';
 		$this->setarURL($dados);
 		
 		$this->carregarDadosFlash($dados);
 		
+		$this->carregarEmpresa($dados);
+		$this->carregarContatoEmpresa($dados);
 		
-		$this->parser->parse('cidade_cadastro', $dados);	
+		$this->parser->parse('ordem_servico_cadastro', $dados);	
 	}
 	
 	public function salvar() {
@@ -83,19 +86,20 @@ class Ordem_Servico extends CI_Controller {
 		$hel_kmfinal_ose        = $this->input->post('hel_kmfinal_ose');
 		$hel_observacao_ose     = $this->input->post('hel_observacao_ose');
 		
-		$hel_horarioinicial_ose = str_replace("/", null, $hel_horarioinicial_ose);
-		$hel_horarioinicial_ose = str_replace(":", null, $hel_horarioinicial_ose);
+// 		$hel_horarioinicial_ose = str_replace("/", null, $hel_horarioinicial_ose);
+// 		$hel_horarioinicial_ose = str_replace(":", null, $hel_horarioinicial_ose);
 		
-		$hel_horariofinal_ose 	= str_replace("/", null, $hel_horariofinal_ose);
-		$hel_horariofinal_ose 	= str_replace(":", null, $hel_horariofinal_ose);
+// 		$hel_horariofinal_ose 	= str_replace("/", null, $hel_horariofinal_ose);
+// 		$hel_horariofinal_ose 	= str_replace(":", null, $hel_horariofinal_ose);
+		
 		
 		if ($this->testarDados()) {
 			
 			$ordem_servico = array(
 				"hel_seqexc_ose"           => $hel_seqexc_ose,
 				"hel_seqcontec_ose"		   => $this->session->userdata('hel_pk_seq_con'),
-				"hel_horarioinicial_ose"   => $hel_horarioinicial_ose, 
-				"hel_horariofinal_ose"     => $hel_horariofinal_ose,
+				"hel_horarioinicial_ose"   => $this->util->gravarBancoDateTime($hel_horarioinicial_ose), 
+				"hel_horariofinal_ose"     => $this->util->gravarBancoDateTime($hel_horariofinal_ose),
 				"hel_kminicial_ose"        => $hel_kminicial_ose,
 				"hel_kmfinal_ose"  		   => $hel_kmfinal_ose,
 				"hel_observacao_ose" 	   => $hel_observacao_ose
@@ -123,14 +127,14 @@ class Ordem_Servico extends CI_Controller {
 		}
 	}
 	
-	public function apagar($hel_pk_seq_cid) {		
-		if ($this->testarApagar(base64_decode($hel_pk_seq_cid))) {
-			$res = $this->CidadeModel->delete(base64_decode($hel_pk_seq_cid));
+	public function apagar($hel_pk_seq_ose) {		
+		if ($this->testarApagar(base64_decode($hel_pk_seq_ose))) {
+			$res = $this->OrdemServicoModel->delete(base64_decode($hel_pk_seq_ose));
 			if ($res) {
-				$this->session->set_flashdata('sucesso', 'Cidade apagada com sucesso.');
+				$this->session->set_flashdata('sucesso', 'Ordem de Serviço apagada com sucesso.');
 			} 
 		}				
-		redirect('cidade');
+		redirect('ordem_servico');
 	}
 	
 	private function setarURL(&$dados) {
@@ -154,8 +158,8 @@ class Ordem_Servico extends CI_Controller {
 		}
 	}
 	
-	private function carregarCidade($hel_pk_seq_cid, &$dados) {
-		$resultado = $this->CidadeModel->get($hel_pk_seq_cid);
+	private function carregarOrdemServico($hel_pk_seq_ose, &$dados) {
+		$resultado = $this->OrdemServicoModel->get($hel_pk_seq_ose);
 		
 		if ($resultado) {
 			foreach ($resultado as $chave => $valor) {
@@ -166,12 +170,26 @@ class Ordem_Servico extends CI_Controller {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');			
 		}
 		
-		$dados['gab_selected_uf'] = 'selected';
+		$resultado_empresa = $this->EmpresaContatoModel->get($dados['hel_seqexc_ose']);
+		
+		if ($resultado_empresa){
+			$dados['hel_seqemp_ose'] = $resultado_empresa->hel_seqemp_exc;
+		}else {
+			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');
+		}
+		
+		$resultado_contato = $this->EmpresaContatoModel->get($dados['hel_seqexc_ose']);
+		
+		if ($resultado_contato){
+			$dados['hel_seqcon_ose'] = $resultado_empresa->hel_seqcon_exc;
+		}else {
+			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');
+		}
+				
 	}
 	
-	
 	private function carregarEmpresa(&$dados) {
-		$resultado = $this->EmpresaModel->getEmpresa();
+		$resultado = $this->EmpresaModel->getEmpresaAtivo();
 	
 		foreach ($resultado as $registro) {
 			$dados['BLC_EMPRESA'][] = array(
@@ -180,7 +198,6 @@ class Ordem_Servico extends CI_Controller {
 					"sel_hel_seqemp_ose"	=> ($dados['hel_seqemp_ose'] == $registro->hel_pk_seq_emp)?'selected':''
 			);
 		}
-	
 		!$resultado ? $dados['BLC_EMPRESA'][] = array("hel_nomefantasia_emp" => 'Não existe nenhuma empresa cadastrada') :'';
 	}
 	
@@ -251,8 +268,8 @@ class Ordem_Servico extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_OSE', TRUE);				
 			$this->session->set_flashdata('hel_seqemp_ose', $hel_seqemp_ose);
 			$this->session->set_flashdata('hel_seqcon_ose', $hel_seqcon_ose);
-			$this->session->set_flashdata('hel_horarioinicial_ose', $hel_horarioinicial_ose);
-			$this->session->set_flashdata('hel_horariofinal_ose', $hel_horariofinal_ose);
+			$this->session->set_flashdata('hel_horarioinicial_ose', $this->util->gravarBancoDateTime($hel_horarioinicial_ose, FALSE) );
+			$this->session->set_flashdata('hel_horariofinal_ose', $this->util->gravarBancoDateTime($hel_horariofinal_ose, FALSE));
 			$this->session->set_flashdata('hel_kminicial_ose', $hel_kminicial_ose);
 			$this->session->set_flashdata('hel_kmfinal_ose', $hel_kmfinal_ose);
 			$this->session->set_flashdata('hel_observacao_ose', $hel_observacao_ose);
@@ -262,10 +279,15 @@ class Ordem_Servico extends CI_Controller {
 		return !$erros;
 	}
 	
-	private function testarApagar($hel_pk_seq_cid) {
+	private function testarApagar($hel_pk_seq_ose) {
 		$erros    = FALSE;
 		$mensagem = null;
-	
+		
+		if ($this->ItemOrdemServicoModel->getOrdemServicoItemOrdemServico($hel_pk_seq_ose)){
+			$erros    = TRUE;
+			$mensagem = '. Chamados encerrado para esta Ordem de Serviço';			
+		}
+		
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));

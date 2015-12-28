@@ -131,7 +131,7 @@ class Empresa_Contato extends CI_Controller {
 	}
 	
 	private function carregarEmpresa(&$dados) {
-		$resultado = $this->EmpresaModel->getEmpresa();
+		$resultado = $this->EmpresaModel->getEmpresaAtivo();
 	
 		foreach ($resultado as $registro) {
 			$dados['BLC_EMPRESA'][] = array(

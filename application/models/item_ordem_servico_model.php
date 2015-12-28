@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ordem_Servico_Model extends CI_Model {
+class Item_Ordem_Servico_Model extends CI_Model {
 	
 	public function get($hel_pk_seq_ose) {
 		$this->db->from('heltbose');
@@ -17,6 +17,13 @@ class Ordem_Servico_Model extends CI_Model {
 	public function getContatoEmpresaOrdemServico($hel_pk_seq_exc) {
 		$this->db->from('heltbose');
 		$this->db->where('hel_seqexc_ose', $hel_pk_seq_exc, FALSE);
+		return $this->db->get()->result();
+	}
+	
+	public function getOrdemServicoItemOrdemServico($hel_pk_seq_ose) {
+		$this->db->from('heltbios');
+		$this->db->where('hel_seqose_ios', $hel_pk_seq_ose, FALSE);
+		$this->db->where('hel_seqcha_ios IS NOT NULL');
 		return $this->db->get()->result();
 	}
 	

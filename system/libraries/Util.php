@@ -32,6 +32,24 @@
 			return $date." ".$hora;			
 		}
 		
+		public function gravarBancoDateTime($date_time, $banco = TRUE){
+			$data = explode(" ", $date_time);
+			$date = $data[0];
+			$hora = $data[1];
+			
+			if ($banco){
+				$date = implode("", array_reverse(explode("/", trim($date))));
+				
+				$date = substr_replace($date, "-",4,0);
+				$date = substr_replace($date, "-",7,0);
+			} else {
+				$date = implode("/", array_reverse( explode("-", trim($date))));
+				$hora = str_replace(":","", $hora);
+			}			
+				
+			return $date." ".$hora;
+		}
+		
 		function to_upper($term, $tp) {
 			switch($tp) {
 						  //Converte uma string para minúsculas
