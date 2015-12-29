@@ -38,6 +38,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('CHAVE_ACESSO',							'23J0P5G0NT');
 define('CONTATO_ATIVO',							'A');
 define('EMPRESA_ATIVO',							'1');
+define('CHAMADO_ATIVO',							'1');
 define('LAYOUT_DASHBOARD',						'dashboard');
 
 

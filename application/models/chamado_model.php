@@ -20,9 +20,11 @@ class Chamado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getCidade() {
-		$this->db->from('heltbcid');
-		$this->db->order_by("hel_nome_cid", "asc");
+	public function getChamadosAbertoEmpresa($hel_seqexc_ios, $hel_seqemp_cha) {
+		$this->db->from('heltbcha');
+		$this->db->where('hel_seqexc_cha', $hel_seqexc_ios, FALSE);
+		$this->db->or_where('hel_seqemp_cha', $hel_seqemp_cha, FALSE);
+		$this->db->where('hel_encerrado_cha <> ', CHAMADO_ATIVO, FALSE);
 		return $this->db->get()->result();
 	}
 	

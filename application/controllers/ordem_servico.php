@@ -86,13 +86,6 @@ class Ordem_Servico extends CI_Controller {
 		$hel_kmfinal_ose        = $this->input->post('hel_kmfinal_ose');
 		$hel_observacao_ose     = $this->input->post('hel_observacao_ose');
 		
-// 		$hel_horarioinicial_ose = str_replace("/", null, $hel_horarioinicial_ose);
-// 		$hel_horarioinicial_ose = str_replace(":", null, $hel_horarioinicial_ose);
-		
-// 		$hel_horariofinal_ose 	= str_replace("/", null, $hel_horariofinal_ose);
-// 		$hel_horariofinal_ose 	= str_replace(":", null, $hel_horariofinal_ose);
-		
-		
 		if ($this->testarDados()) {
 			
 			$ordem_servico = array(

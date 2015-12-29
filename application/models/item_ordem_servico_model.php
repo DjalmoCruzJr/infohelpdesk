@@ -2,9 +2,9 @@
 
 class Item_Ordem_Servico_Model extends CI_Model {
 	
-	public function get($hel_pk_seq_ose) {
-		$this->db->from('heltbose');
-		$this->db->where('hel_pk_seq_ose', $hel_pk_seq_ose, FALSE);
+	public function get($hel_pk_seq_ios) {
+		$this->db->from('heltbios');
+		$this->db->where('hel_pk_seq_ios', $hel_pk_seq_ios, FALSE);
 		return $this->db->get()->first_row();
 	}
 	
@@ -41,25 +41,10 @@ class Item_Ordem_Servico_Model extends CI_Model {
 		$this->db->where('hel_pk_seq_emp <> ', $hel_pk_seq_emp, FALSE);
 		$this->db->where('hel_cnpj_emp', $hel_cnpj_emp, FALSE);
 		return $this->db->get()->result();
-	}
+	}	
 	
-	public function getServicoCadastrado($gab_pk_seq_cid) {
-		$this->db->where('gab_seqcid_sec', $gab_pk_seq_cid);
-		$this->db->from('gabtbsec');
-		$this->db->join('gabtbcid', 'gab_pk_seq_cid = gab_seqcid_sec', 'LEFT');
-		return $this->db->get()->result();
-	}
-	
-	public function getComunicacaoCadastrada($gab_pk_seq_cid) {
-		$this->db->where('gab_seqcid_coc', $gab_pk_seq_cid);
-		$this->db->from('gabtbcoc');
-		$this->db->join('gabtbcid', 'gab_pk_seq_cid = gab_seqcid_coc', 'LEFT');
-		return $this->db->get()->result();
-	}
-	
-	
-	public function insert($ordem_servico) {
-		$res = $this->db->insert('heltbose', $ordem_servico);
+	public function insert($item_ordem_servico) {
+		$res = $this->db->insert('heltbios', $item_ordem_servico);
 	
 		if ($res) {
 			return $this->db->insert_id();
@@ -68,20 +53,20 @@ class Item_Ordem_Servico_Model extends CI_Model {
 		}
 	}
 	
-	public function update($ordem_servico, $hel_pk_seq_ose) {
-		$this->db->where('hel_pk_seq_ose', $hel_pk_seq_ose, FALSE);
-		$res = $this->db->update('heltbose', $ordem_servico);
+	public function update($item_ordem_servico, $hel_pk_seq_ios) {
+		$this->db->where('hel_pk_seq_ios', $hel_pk_seq_ios, FALSE);
+		$res = $this->db->update('heltbios', $item_ordem_servico);
 	
 		if ($res) {
-			return $hel_pk_seq_ose;
+			return $hel_pk_seq_ios;
 		} else {
 			return FALSE;
 		}
 	}
 	
-	public function delete($hel_pk_seq_ose) {
-		$this->db->where('hel_pk_seq_ose', $hel_pk_seq_ose, FALSE);
-		return $this->db->delete('heltbose');
+	public function delete($hel_pk_seq_ios) {
+		$this->db->where('hel_pk_seq_ios', $hel_pk_seq_ios, FALSE);
+		return $this->db->delete('heltbios');
 	}
 		
 }

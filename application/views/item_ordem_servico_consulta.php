@@ -51,7 +51,7 @@
                     <h3 class="modal-title" id="myModalLabel">Info Rio Sistemas</h3>
                 </div>
                 <div class="modal-body">
-                    <h4>Deseja realmente apagar esta ordem de serviço ?</h4>
+                    <h4>Deseja realmente apagar este item da ordem de serviço ?</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="apagar()">Sim</button>
@@ -131,16 +131,19 @@
 
 <script type="text/javascript">
 
-	var idExclusao = "";	
+	var idExclusao 		= "";
+	var idOrdemServico 	= "";	
 
-    function abrirConfirmacao(id){
-        idExclusao = id;
+    function abrirConfirmacao(id, idos){
+        idExclusao 		= id;
+        idOrdemServico 	= idos;
         $('#myModal').modal('show');
     }
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = 'ordem_servico/apagar/' + idExclusao;
+        console.log ('{URL_APAGAR}/' + idExclusao + '/' + idOrdemServico);
+        location.href = '{URL_APAGAR}/' + idExclusao + '/' + idOrdemServico;
     }
 
     function abrirDialogRelatorio(){
