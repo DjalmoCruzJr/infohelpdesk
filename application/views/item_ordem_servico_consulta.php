@@ -142,7 +142,6 @@
 
     function apagar(){
         $('#myModal').modal('hide');
-        console.log ('{URL_APAGAR}/' + idExclusao + '/' + idOrdemServico);
         location.href = '{URL_APAGAR}/' + idExclusao + '/' + idOrdemServico;
     }
 

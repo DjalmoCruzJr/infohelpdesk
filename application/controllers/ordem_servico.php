@@ -122,10 +122,13 @@ class Ordem_Servico extends CI_Controller {
 	
 	public function apagar($hel_pk_seq_ose) {		
 		if ($this->testarApagar(base64_decode($hel_pk_seq_ose))) {
-			$res = $this->OrdemServicoModel->delete(base64_decode($hel_pk_seq_ose));
-			if ($res) {
-				$this->session->set_flashdata('sucesso', 'Ordem de Serviço apagada com sucesso.');
-			} 
+			$resp = $this->ItemOrdemServicoModel->deleteItensOrdemServico(base64_decode($hel_pk_seq_ose));
+			if ($resp){
+				$res = $this->OrdemServicoModel->delete(base64_decode($hel_pk_seq_ose));
+				if ($res) {
+					$this->session->set_flashdata('sucesso', 'Ordem de Serviço apagada com sucesso.');
+				}	
+			}
 		}				
 		redirect('ordem_servico');
 	}
