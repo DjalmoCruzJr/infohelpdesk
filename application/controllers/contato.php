@@ -80,6 +80,7 @@ class Contato extends CI_Controller {
 		global $hel_ativo_con;
 		global $hel_email_con;
 
+		$hel_pk_seq_con			= $this->input->post('hel_pk_seq_con');
 		$hel_nome_con			= $this->input->post('hel_nome_con');
 		$hel_seqtco_con			= $this->input->post('hel_seqtco_con');
 		$hel_login_con 			= $this->input->post('hel_login_con');
@@ -300,7 +301,12 @@ class Contato extends CI_Controller {
 
 		if ($this->ChamadoModel->getContatoChamado($hel_pk_seq_con)) {
 			$erros    = TRUE;
-			$mensagem .= "- Chamado cadastro.\n";
+			$mensagem .= "- Chamado aberto com esse contato.\n";
+		}
+		
+		if ($this->ChamadoModel->getContatoChamado2($hel_pk_seq_con)) {
+			$erros    = TRUE;
+			$mensagem .= "- Chamado aberto para este contato.\n";
 		}
 		
 	

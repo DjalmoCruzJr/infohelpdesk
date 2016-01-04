@@ -10,7 +10,13 @@ class Chamado_Model extends CI_Model {
 	
 	public function getContatoChamado($hel_pk_seq_con) {
 		$this->db->from('heltbcha');
-		$this->db->where('hel_seqcon_cha', $hel_pk_seq_con, FALSE);
+		$this->db->where('hel_seqconde_cha', $hel_pk_seq_con, FALSE);
+		return $this->db->get()->result();
+	}
+	
+	public function getContatoChamado2($hel_pk_seq_con) {
+		$this->db->from('heltbcha');
+		$this->db->where('hel_seqconpara_cha', $hel_pk_seq_con, FALSE);
 		return $this->db->get()->result();
 	}
 	

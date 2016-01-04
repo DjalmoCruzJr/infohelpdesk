@@ -183,9 +183,9 @@ class Cidade extends CI_Controller {
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
 			$this->session->set_flashdata('ERRO_HEL_CID', TRUE);				
-			$this->session->set_flashdata('hel_nome_cid', $gab_nome_cid);
-			$this->session->set_flashdata('hel_uf_cid', $gab_uf_cid);
-			$this->session->set_flashdata('hel_codmun_cid', $gab_codmun_cid);
+			$this->session->set_flashdata('hel_nome_cid', $hel_nome_cid);
+			$this->session->set_flashdata('hel_uf_cid', $hel_uf_cid);
+			$this->session->set_flashdata('hel_codmun_cid', $hel_codmun_cid);
 		}
 				
 		return !$erros;
