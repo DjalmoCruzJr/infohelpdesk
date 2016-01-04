@@ -2,9 +2,9 @@
 
 class Sistema_Contratado_Model extends CI_Model {
 	
-	public function get($hel_pk_seq_emp) {
-		$this->db->from('heltbemp');
-		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
+	public function get($hel_pk_seq_sco) {
+		$this->db->from('heltbsco');
+		$this->db->where('hel_pk_seq_sco', $hel_pk_seq_sco, FALSE);
 		return $this->db->get()->first_row();
 	}
 	
@@ -14,37 +14,23 @@ class Sistema_Contratado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getEmpresa() {
-		$this->db->from('heltbemp');
-		$this->db->join('heltbcid','hel_pk_seq_cid = hel_seqcid_emp','left');
-		$this->db->order_by("hel_nomefantasia_emp", "asc");
+	public function getSistemaContratadoCadastrado($hel_pk_seq_sco, $hel_seqemp_sco, $hel_seqsis_sco) {
+		$this->db->from('heltbsco');
+		$this->db->where('hel_pk_seq_sco <> ', $hel_pk_seq_sco, FALSE);
+		$this->db->where('hel_seqemp_sco', $hel_seqemp_sco, FALSE);
+		$this->db->where('hel_seqsis_sco', $hel_seqsis_sco, FALSE);
 		return $this->db->get()->result();
 	}
 	
-	public function getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp) {
-		$this->db->from('heltbemp');
-		$this->db->where('hel_pk_seq_emp <> ', $hel_pk_seq_emp, FALSE);
-		$this->db->where('hel_cnpj_emp', $hel_cnpj_emp, FALSE);
+	public function getSistemaContratadoEmpresa($hel_pk_seq_emp) {
+		$this->db->from('heltbsco');
+		$this->db->join('heltbsis','hel_pk_seq_sis = hel_seqsis_sco','INNER');
+		$this->db->where('hel_seqemp_sco', $hel_pk_seq_emp, FALSE);
 		return $this->db->get()->result();
 	}
 	
-	public function getServicoCadastrado($gab_pk_seq_cid) {
-		$this->db->where('gab_seqcid_sec', $gab_pk_seq_cid);
-		$this->db->from('gabtbsec');
-		$this->db->join('gabtbcid', 'gab_pk_seq_cid = gab_seqcid_sec', 'LEFT');
-		return $this->db->get()->result();
-	}
-	
-	public function getComunicacaoCadastrada($gab_pk_seq_cid) {
-		$this->db->where('gab_seqcid_coc', $gab_pk_seq_cid);
-		$this->db->from('gabtbcoc');
-		$this->db->join('gabtbcid', 'gab_pk_seq_cid = gab_seqcid_coc', 'LEFT');
-		return $this->db->get()->result();
-	}
-	
-	
-	public function insert($empresa) {
-		$res = $this->db->insert('heltbemp', $empresa);
+	public function insert($sistema_contratado) {
+		$res = $this->db->insert('heltbsco', $sistema_contratado);
 	
 		if ($res) {
 			return $this->db->insert_id();
@@ -53,20 +39,20 @@ class Sistema_Contratado_Model extends CI_Model {
 		}
 	}
 	
-	public function update($empresa, $hel_pk_seq_emp) {
-		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
-		$res = $this->db->update('heltbemp', $empresa);
+	public function update($sistema_contratado, $hel_pk_seq_sco) {
+		$this->db->where('hel_pk_seq_sco', $hel_pk_seq_sco, FALSE);
+		$res = $this->db->update('heltbsco', $sistema_contratado);
 	
 		if ($res) {
-			return $hel_pk_seq_emp;
+			return $hel_pk_seq_sco;
 		} else {
 			return FALSE;
 		}
 	}
 	
-	public function delete($hel_pk_seq_emp) {
-		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
-		return $this->db->delete('heltbemp');
+	public function delete($hel_pk_seq_sco) {
+		$this->db->where('hel_pk_seq_sco', $hel_pk_seq_sco, FALSE);
+		return $this->db->delete('heltbsco');
 	}
 		
 }

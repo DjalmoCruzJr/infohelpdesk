@@ -7,7 +7,7 @@ class Sistemas_Contratados extends CI_Controller {
  		$this->layout = LAYOUT_DASHBOARD;
 
 		$this->load->model('Empresa_Model', 'EmpresaModel');
-		$this->load->model('Sistemas_Contratados_Model', 'SistemasContratadosModel');
+		$this->load->model('Sistema_Contratado_Model', 'SistemasContratadosModel');
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Menu_Sistema_Model', 'MenuSistemaModel');
 
@@ -76,15 +76,15 @@ class Sistemas_Contratados extends CI_Controller {
 		$hel_seqsis_sco	= $this->input->post('hel_seqsis_sco');
 
 		if ($this->testarDados()) {
-			$sistemas_cadastrados = array(
+			$sistemas_contratados = array(
 				"hel_seqemp_sco" => $hel_seqemp_sco,
 				"hel_seqsis_sco" => $hel_seqsis_sco,
 			);
 			
 			if (!$hel_pk_seq_sco) {
-				$hel_pk_seq_sco = $this->SistemasContratadosModel->insert($sistemas_cadastrados);
+				$hel_pk_seq_sco = $this->SistemasContratadosModel->insert($sistemas_contratados);
 			} else {
-				$hel_pk_seq_sco = $this->SistemasContratadosModel->update($sistemas_cadastrados, $hel_pk_seq_sco);
+				$hel_pk_seq_sco = $this->SistemasContratadosModel->update($sistemas_contratados, $hel_pk_seq_sco);
 			}
 
 			if (is_numeric($hel_pk_seq_sco)) {
@@ -181,8 +181,6 @@ class Sistemas_Contratados extends CI_Controller {
 		}
 	}
 
-	
-	
 	private function testarDados() {
 		global $hel_pk_seq_sco;
 		global $hel_seqemp_sco;
@@ -195,6 +193,10 @@ class Sistemas_Contratados extends CI_Controller {
 		if (empty($hel_seqsis_sco)){
 			$erros    = TRUE;
 			$mensagem .= "- Sistema não foi selecionado.\n";
+			$this->session->set_flashdata('ERRO_HEL_SEQSIS_SCO', 'has-error');
+		} else if ($this->SistemasContratadosModel->getSistemaContratadoCadastrado($hel_pk_seq_sco, $hel_seqemp_sco, $hel_seqsis_sco)){
+			$erros    = TRUE;
+			$mensagem .= "- Sistema já cadastrado.\n";
 			$this->session->set_flashdata('ERRO_HEL_SEQSIS_SCO', 'has-error');
 		}
 

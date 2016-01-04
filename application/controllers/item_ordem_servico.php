@@ -9,6 +9,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
 		$this->load->model('Servico_Model', 'ServicoModel');
 		$this->load->model('Sistema_Model', 'SistemaModel');
+		$this->load->model('Sistema_Contratado_Model', 'SistemaContratadoModel');
 		$this->load->model('Chamado_Model', 'ChamadoModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 		$this->load->model('Item_Ordem_Servico_Model', 'ItemOrdemServicoModel');
@@ -49,8 +50,9 @@ class Item_Ordem_Servico extends CI_Controller {
 		$this->carregarDadosFlash($dados);
 	
 		$this->carregarServico($dados);
-		$this->carregarSistema($dados);
 		$this->carregarDadosOrdemServico($dados);
+		$this->carregarDadosEmpresa($dados);
+		$this->carregarSistema($dados);
 		$this->carregarChamado($dados);
 		
 		$this->parser->parse('item_ordem_servico_cadastro', $dados);
@@ -70,8 +72,9 @@ class Item_Ordem_Servico extends CI_Controller {
 		$this->carregarDadosFlash($dados);
 		
 		$this->carregarServico($dados);
-		$this->carregarSistema($dados);
 		$this->carregarDadosOrdemServico($dados);
+		$this->carregarDadosEmpresa($dados);
+		$this->carregarSistema($dados);
 		$this->carregarChamado($dados);
 		
 		$this->parser->parse('item_ordem_servico_cadastro', $dados);	
@@ -138,6 +141,18 @@ class Item_Ordem_Servico extends CI_Controller {
 		$dados['CONSULTA_ITEM_ORDEM_SERVICO'] = site_url('item_ordem_servico/index/'.base64_encode($dados['hel_seqose_ios']));
 		$dados['ACAO_FORM']         	 	  = site_url('item_ordem_servico/salvar');
 	}
+	
+	private function carregarDadosEmpresa(&$dados){
+		$resultado = $this->EmpresaContatoModel->get($dados['hel_seqexc_ose']);
+		if ($resultado){
+			foreach ($resultado as $chave => $valor) {
+				$dados[$chave] = $valor;
+			}
+		}else {
+			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');
+		}
+		
+	}
 
 	private function carregarDadosOrdemServico(&$dados) {
 		$resultado = $this->OrdemServicoModel->get($dados['hel_seqose_ios']);
@@ -193,7 +208,7 @@ class Item_Ordem_Servico extends CI_Controller {
 	}
 	
 	private function carregarSistema(&$dados) {
-		$resultado = $this->SistemaModel->getSistema();
+		$resultado = $this->SistemaContratadoModel->getSistemaContratadoEmpresa($dados['hel_seqemp_exc']);
 	
 		foreach ($resultado as $registro) {
 			$dados['BLC_SISTEMA'][] = array(
