@@ -2,7 +2,7 @@
 	class Util {
 		
 		public function validarData($dat){
-			$data = explode("-",$dat); // fatia a string $dat em pedados, usando / como referência
+			$data = explode("-",$dat); // fatia a string $dat em pedaços, usando / como referência
 			$d = $data[2];
 			$m = $data[1];
 			$y = $data[0];

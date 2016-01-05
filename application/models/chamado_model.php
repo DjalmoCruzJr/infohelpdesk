@@ -2,9 +2,9 @@
 
 class Chamado_Model extends CI_Model {
 	
-	public function get($hel_pk_seq_cid) {
-		$this->db->from('heltbcid');
-		$this->db->where('hel_pk_seq_cid', $hel_pk_seq_cid, FALSE);
+	public function get($hel_pk_seq_cha) {
+		$this->db->from('heltbcha');
+		$this->db->where('hel_pk_seq_cha', $hel_pk_seq_cha, FALSE);
 		return $this->db->get()->first_row();
 	}
 	
@@ -29,6 +29,19 @@ class Chamado_Model extends CI_Model {
 	public function getEmpresaContatoChamado($hel_pk_seq_exc) {
 		$this->db->from('heltbcha');
 		$this->db->where('hel_seqexc_cha', $hel_pk_seq_exc, FALSE);
+		return $this->db->get()->result();
+	}
+	
+	public function getChamado($hel_pk_seq_con = NULL) {
+		$this->db->from('heltbcha');
+		$this->db->join('heltbser','hel_pk_seq_ser = hel_seqser_cha','LEFT');
+		$this->db->join('heltbsis','hel_pk_seq_sis = hel_seqsis_cha','LEFT');
+		$this->db->join('heltbexc','hel_pk_seq_exc = hel_seqexc_cha','LEFT');
+		$this->db->join('heltbcon','hel_pk_seq_con = hel_seqcon_exc','LEFT');		
+		$this->db->join('heltbemp','hel_pk_seq_emp = hel_seqemp_exc','LEFT');
+		if (!empty($hel_pk_seq_con)){
+			$this->db->where('hel_seqcon_exc', $hel_pk_seq_con, FALSE);
+		}
 		return $this->db->get()->result();
 	}
 	

@@ -139,7 +139,6 @@
 	var cidade_empresa = document.getElementById('hel_seqcid_emp');
 
 	function carregarCep(){
-		console.log('Passou Aqui');
 		var cep = document.getElementById('hel_cep_emp').value;
 			
 	 	$.ajax({

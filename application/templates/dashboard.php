@@ -319,7 +319,7 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="#">
+												<a href="<?php echo site_url('chamado');?>">
 													Chamado 
 												</a>
 											</li>
@@ -480,6 +480,7 @@
 				$('#tb_menu_sistema_contratado').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_ordem_servico').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_item_ordem_servico').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_chamado').dataTable({"order": [[ 1, "asc" ]]});
 			});
 		</script>
 
