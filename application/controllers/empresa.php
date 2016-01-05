@@ -367,13 +367,19 @@ class Empresa extends CI_Controller {
 		
 		if ($this->SistemaContradoModel->getEmpresaSistemaContratado($hel_pk_seq_emp)) {
 			$erros    = TRUE;
-			$mensagem .= "- Sistema Contratado cadastrada.\n";
+			$mensagem .= "- Sistema Contratado cadastrada para esta empresa.\n";
 		}
 	
 		if ($this->EmpresaContatoModel->getEmpresaContato($hel_pk_seq_emp)) {
 			$erros    = TRUE;
-			$mensagem .= "- Contatos cadastrada.\n";
+			$mensagem .= "- Contato(s) cadastrada para esta empresa.\n";
 		}
+		
+		if ($this->ChamadoModel->getChamadoEmpresa($hel_pk_seq_emp)) {
+			$erros    = TRUE;
+			$mensagem .= "- Chamado(s) Aberto(s) para esta empresa.\n";
+		}
+		
 	
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');

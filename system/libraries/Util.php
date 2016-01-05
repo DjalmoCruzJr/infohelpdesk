@@ -50,6 +50,15 @@
 			return $date." ".$hora;
 		}
 		
+		function validar_senha($senha) {
+			$tamanho = strlen($senha);
+			if ($tamanho >= 8){
+				return TRUE;	
+			}else{
+				return FALSE;
+			}
+		}
+		
 		function to_upper($term, $tp) {
 			switch($tp) {
 						  //Converte uma string para minúsculas

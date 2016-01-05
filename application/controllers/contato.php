@@ -262,16 +262,22 @@ class Contato extends CI_Controller {
 			$mensagem .= "- Já existi um contato cadastrado com esse login.\n";
 			$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
 		}
+		
+		if (!$erros and $this->util->validar_senha($hel_senha_con)){
+			$erros    = TRUE;
+			$mensagem .= "- Senha deve ter conter no mínimo 8 caracter.\n";
+			$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
+		}
 
 		if (empty($hel_email_con)) {
 			$erros = TRUE;
 			$mensagem .= "- E-mail não preenchido.\n";
 			$this->session->set_flashdata('ERRO_HEL_EMAIL_CON', 'has-error');
 		} else if (!filter_var($hel_email_con, FILTER_VALIDATE_EMAIL) ){
-				$erros     = TRUE;
-				$mensagem .= "- E-mail não é válido.\n";
-				$this->session->set_flashdata('ERRO_HEL_EMAIL_CON', 'has-error');
-			}
+			$erros     = TRUE;
+			$mensagem .= "- E-mail não é válido.\n";
+			$this->session->set_flashdata('ERRO_HEL_EMAIL_CON', 'has-error');
+		}
 
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
