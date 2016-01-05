@@ -132,13 +132,6 @@ class MeuPerfil extends CI_Controller{
 			}
 		}
 		
-		
-// 		if (empty($hel_senhaatual_con)) {
-// 			$erros     = TRUE;
-// 			$mensagem .= "- Senha atual não preenchida.\n";
-// 			$this->session->set_flashdata('ERRO_HEL_SENHAATUAL_ALT', 'has-error');
-// 		}
-		
 		if ($hel_senhaatual_con) {
 			
 			$resultado = $this->ContatoModel->get($hel_pk_seq_con);
