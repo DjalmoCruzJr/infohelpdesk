@@ -7,7 +7,9 @@ class Empresa extends CI_Controller {
  		$this->layout = LAYOUT_DASHBOARD;
 		
 		$this->load->model('Empresa_Model', 'EmpresaModel');
+		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Cidade_Model', 'CidadeModel');
+		$this->load->model('Contato_Model', 'ContatoModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 		$this->load->model('Sistema_Contratado_Model', 'SistemaContradoModel');
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
@@ -26,6 +28,8 @@ class Empresa extends CI_Controller {
 		$this->carregarDados($dados);
 		
 		$this->carregarCidadeRelatorio($dados);
+		$this->carregarSistemaRelatorio($dados);
+		$this->carregarContatoRelatorio($dados);
 				
 		$this->parser->parse('empresa_consulta', $dados);
 	}
@@ -229,6 +233,35 @@ class Empresa extends CI_Controller {
 				"dis_hel_cid"  => 'disabled') :'';
 	}
 	
+	private function carregarContatoRelatorio(&$dados) {
+		$resultado = $this->ContatoModel->getContato();
+			
+		foreach ($resultado as $registro) {
+			$dados['BLC_CONTATO_RELATORIO'][] = array(
+					"hel_pk_seq_con" => $registro->hel_pk_seq_con,
+					"hel_nome_con"   => $registro->hel_nome_con,
+					"dis_hel_con"    => ''
+			);
+		}
+	
+		!$resultado ? $dados['BLC_CONTATO_RELATORIO'][] = array("hel_nome_con" => 'Não existe nenhuma contato cadastrado',
+				"dis_hel_con"  => 'disabled') :'';
+	}
+	
+	private function carregarSistemaRelatorio(&$dados) {
+		$resultado = $this->SistemaModel->getSistema();
+			
+		foreach ($resultado as $registro) {
+			$dados['BLC_SISTEMA_RELATORIO'][] = array(
+					"hel_pk_seq_sis"     => $registro->hel_pk_seq_sis,
+					"hel_codigo_sis"     => $registro->hel_codigo_sis,
+					"dis_hel_sis"        => ''
+			);
+		}
+	
+		!$resultado ? $dados['BLC_SISTEMA_RELATORIO'][] = array("hel_codigo_sis" => 'Não existe nenhuma sistema cadastrado',
+				"dis_hel_sis"  => 'disabled') :'';
+	}	
 	
 	private function carregarCidade(&$dados) {
 		$resultado = $this->CidadeModel->getCidade();
@@ -458,10 +491,12 @@ class Empresa extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($order_by, $filtro_cidade, $hel_ativo_emp){	
-		$order_by     = str_replace("%20", " ", $order_by);
-		$clasulaWhere = "";
-		$whereAnd     = " WHERE ";
+	public function relatorio($order_by, $filtro_cidade, $imprimir_sistema_contratado, $filtro_sistema, $hel_ativo_emp){	
+		$order_by     	= str_replace("%20", " ", $order_by);
+		$clasulaWhere 	= "";
+		$whereAnd    	= " WHERE ";
+		$filtros      	= array();
+		$select_sistema = "";
 		
 		if ($filtro_cidade != 0 ){
 			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_cid IN ('.$filtro_cidade.') ';
@@ -476,6 +511,29 @@ class Empresa extends CI_Controller {
 					 $whereAnd = " AND ";
 					 break;
 		}
+		
+		$imprimir_sistema_contratado == 0 ? array_push($filtros,"hel_seqemp_sco")  : "";
+
+		if ($imprimir_sistema_contratado == 1) {
+			$select_sistema = ' SELECT hel_pk_seq_sco,
+									   hel_seqsis_sco,
+								       hel_codigo_sis,
+								       hel_desc_sis,
+								       CASE hel_tipo_sis WHEN 0 THEN "Desktop"
+								                         WHEN 1 THEN "Mobile"
+								                         WHEN 2 THEN "Web"
+										END AS hel_tipo_sis
+								FROM heltbsco
+								LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_sco
+								WHERE hel_seqemp_sco = $P{hel_seqemp_sco} ';
+				
+			$select_sistema .= $filtro_sistema != 0 ? ' AND hel_seqsis_sco IN ('.$filtro_sistema.') ' : '';
+				
+		}
+
+		$consulta_sub = array (
+			"hel_seqemp_sco" => $select_sistema
+		);
 	
 		global $consulta;
 		$consulta = " SELECT hel_pk_seq_emp,
@@ -493,7 +551,7 @@ class Empresa extends CI_Controller {
 		
 	
 		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_empresa.jrxml', $consulta);
+			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_empresa.jrxml', $consulta, $filtros, $consulta_sub);
 		} else {
 			$mensagem = "- Nenhuma empresa foi encontrada.\n";
 			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');

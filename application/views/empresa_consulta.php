@@ -77,6 +77,11 @@
                 <div class="modal-body">
                 	<form class="form-horizontal">
 						<div class="form-group">
+						<div class="form-group col-sm-11 text-center">
+							<label class="checkbox-inline">
+						       	<input type="checkbox" id="imprimir_sistema_contratado" name="imprimir_sistema_contratado" onclick="habilitarSistema()">Imprimir Sistemas Contratados ?
+						    </label>
+					    </div>
 							<label for="ordenacao_relatorio" class="col-sm-2 ">Ordenar por</label>
 								<div class="col-sm-4">
 									<div class="radio-inline">
@@ -119,7 +124,17 @@
 										<option value="{hel_pk_seq_cid}" {dis_hel_cid}>{hel_nome_cid}</option>
 									{/BLC_CIDADE_RELATORIO}
 									</select>	                			
-								</div>	
+								</div>
+	                	</div>
+	                	<div class="form-group">
+	                		<label for="sistema_relatorio" class="col-sm-3 ">Filtro por Sistema</label>
+								<div>
+			                		<select id="sistema_relatorio" disabled class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple" >
+									{BLC_SISTEMA_RELATORIO}
+										<option value="{hel_pk_seq_sis}" {dis_hel_sis}>{hel_codigo_sis}</option>
+									{/BLC_SISTEMA_RELATORIO}
+									</select>	                			
+								</div>
 	                	</div>
 					</form>
 					<br/>					
@@ -137,7 +152,15 @@
 
 <script type="text/javascript">
 
-	var idExclusao = "";	
+	var idExclusao = "";
+
+	function habilitarSistema(){
+		if (document.getElementById("sistema_relatorio").disabled){
+			document.getElementById("sistema_relatorio").disabled = false;
+		}else {
+			document.getElementById("sistema_relatorio").disabled = true;
+		}
+	}	
 
     function abrirConfirmacao(id){
         idExclusao = id;
@@ -154,8 +177,10 @@
     }
 
     function visualizarRelatorio() {
-    	var cidade_relatorio = document.getElementById("cidade_relatorio");
-      	var orderBy 		 = "";
+    	var cidade_relatorio  			= document.getElementById("cidade_relatorio");
+    	var sistema_relatorio 			= document.getElementById("sistema_relatorio");
+    	var imrprimi_sistema_contratado = "";
+      	var orderBy 		  			= "";
 
       	var filtroCidade	 = "";
       	var separadorCidade  = "";
@@ -168,6 +193,25 @@
 
       	if (filtroCidade == ""){
       		filtroCidade = "0";
+        }
+
+      	var filtroSistema	 = "";
+      	var separadorSistema  = "";
+    	for (var i = 0; i < sistema_relatorio.options.length; i++) {
+      		if (sistema_relatorio.options[i].selected){
+      			filtroSistema 	  = filtroSistema + separadorSistema + sistema_relatorio.options[i].value;
+      			separadorSistema  = ",";
+        	}
+      	} 
+
+      	if (filtroSistema == ""){
+      		filtroSistema = "0";
+        }
+
+        if (document.getElementById("imprimir_sistema_contratado").checked){
+        	imrprimi_sistema_contratado = "1";
+        } else {
+        	imrprimi_sistema_contratado = "0";
         }
 
         var status = "";  
@@ -188,7 +232,8 @@
     	
     	$('#relatorio_empresa').modal('hide');
     	
-    	window.open('empresa/relatorio/'+ orderBy+'/'+filtroCidade+'/'+status, '_blank');
+    	
+    	window.open('empresa/relatorio/'+ orderBy+'/'+filtroCidade+'/'+ imrprimi_sistema_contratado +'/'+ filtroSistema +'/'+ status, '_blank');
     }	
 
 </script>
