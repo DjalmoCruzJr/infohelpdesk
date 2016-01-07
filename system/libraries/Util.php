@@ -2,6 +2,16 @@
 	class Util {
 		
 		public function validarData($dat){
+			
+			$dat = str_replace("/", "", $dat);
+			$dat = substr_replace($dat, "/",2,0);
+			$dat = substr_replace($dat, "/",5,0);
+			
+			$dat = implode("", array_reverse(explode("/", trim($dat))));
+			
+			$dat = substr_replace($dat, "-",4,0);
+			$dat = substr_replace($dat, "-",7,0);
+			
 			$data = explode("-",$dat); // fatia a string $dat em pedaços, usando / como referência
 			$d = $data[2];
 			$m = $data[1];
@@ -14,12 +24,36 @@
 			return $hel_tipo_tco <> 0 ? TRUE : FALSE;
 		}
 		
-		function validarDataHora($date, $format = 'Y-m-d H:i:s') {
-			if (!empty($date) && $v_date = date_create_from_format($format, $date)) {
-				$v_date = date_format($v_date, $format);
-				return ($v_date && $v_date == $date);
+		public function validar_cnpj($cnpj){
+			$cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
+			// Valida tamanho
+			if (strlen($cnpj) != 14)
+				return false;
+			// Valida primeiro dígito verificador
+			for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++){
+				$soma += $cnpj{$i} * $j;
+				$j = ($j == 2) ? 9 : $j - 1;
 			}
-			return false;
+			$resto = $soma % 11;
+			if ($cnpj{12} != ($resto < 2 ? 0 : 11 - $resto))
+				return false;
+			// Valida segundo dígito verificador
+			for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++){
+				$soma += $cnpj{$i} * $j;
+				$j = ($j == 2) ? 9 : $j - 1;
+			}
+			$resto = $soma % 11;
+			return $cnpj{13} == ($resto < 2 ? 0 : 11 - $resto);
+		}
+		
+		public function validarHora($hora) {
+			if ( !empty($hora) ) {
+				if ( preg_match('/([01]\d|2[0-3]):[0-5]\d:[0-5]\d/', $hora) )  {
+					return FALSE;
+				} else {
+					return TRUE;
+				}
+			}
 		}
 		
 		public function formatarDateTime($date_time){
@@ -33,21 +67,17 @@
 		}
 		
 		public function gravarBancoDateTime($date_time, $banco = TRUE){
-			$data = explode(" ", $date_time);
-			$date = $data[0];
-			$hora = $data[1];
 			
 			if ($banco){
-				$date = implode("", array_reverse(explode("/", trim($date))));
+				$date_time = implode("", array_reverse(explode("/", trim($date_time))));
 				
-				$date = substr_replace($date, "-",4,0);
-				$date = substr_replace($date, "-",7,0);
+				$date_time = substr_replace($date_time, "-",4,0);
+				$date_time = substr_replace($date_time, "-",7,0);
 			} else {
-				$date = implode("/", array_reverse( explode("-", trim($date))));
-				$hora = str_replace(":","", $hora);
+				$date_time = implode("/", array_reverse( explode("-", trim($date_time))));
 			}			
 				
-			return $date." ".$hora;
+			return $date;
 		}
 		
 		function validar_senha($senha) {

@@ -288,6 +288,10 @@ class Empresa extends CI_Controller {
 			$erros    = TRUE;
 			$mensagem .= "- CNPJ não foi preenchido.\n";
 			$this->session->set_flashdata('ERRO_HEL_CNPJ_EMP', 'has-error');
+		} else if (!$this->util->validar_cnpj($hel_cnpj_emp)){
+			$erros    = TRUE;
+			$mensagem .= "- CNPJ inválido.\n";
+			$this->session->set_flashdata('ERRO_HEL_CNPJ_EMP', 'has-error');
 		}
 		
 		if (empty($hel_razaosocial_emp)) {

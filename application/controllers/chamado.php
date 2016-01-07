@@ -7,7 +7,7 @@ class Chamado extends CI_Controller {
  		$this->layout = LAYOUT_DASHBOARD;
 		
  		$this->load->model('Chamado_Model', 'ChamadoModel');
-		$this->load->model('Cidade_Model', 'CidadeModel');
+		$this->load->model('Sistema_Contratado_Model', 'SistemaContratadoModel');
 		$this->load->model('Empresa_Model', 'EmpresaModel');
 	}
 
@@ -28,19 +28,21 @@ class Chamado extends CI_Controller {
 	public function novo() {
 			
 		$dados = array();
-		$dados['hel_pk_seq_cid']  = 0;		
-		$dados['hel_nome_cid']    = '';
-		$dados['hel_uf_cid']      = '';
-		$dados['hel_codmun_cid']  = '';
+		$dados['hel_pk_seq_cha']  	= 0;		
+		$dados['hel_seqexc_cha']  	= '';
+		$dados['hel_seqsis_cha']  	= '';
+		$dados['hel_seqser_cha']  	= '';
+		$dados['hel_seqemp_cha']  	= '';		
+		$dados['hel_problema_cha']  = '';
 				
 		$dados['ACAO'] = 'Novo';
 		$this->setarURL($dados);
 	
 		$this->carregarDadosFlash($dados);
 		
-		$this->carregarUf($dados);
+		$this->carregarEmpresa($dados);
 		
-		$this->parser->parse('cidade_cadastro', $dados);
+		$this->parser->parse('chamado_cadastro', $dados);
 	}
 	
 	public function editar($hel_pk_seq_cid) {		
@@ -54,7 +56,7 @@ class Chamado extends CI_Controller {
 		
 		$this->carregarDadosFlash($dados);
 		
-		$this->carregarUf($dados);
+		$this->carregarEmpresa($dados);
 		
 		$this->parser->parse('cidade_cadastro', $dados);	
 	}
@@ -110,8 +112,8 @@ class Chamado extends CI_Controller {
 	}
 	
 	private function setarURL(&$dados) {
-		$dados['CONSULTA_CIDADE']   = site_url('cidade');
-		$dados['ACAO_FORM']         = site_url('cidade/salvar');
+		$dados['CONSULTA_CHAMADO']  = site_url('chamado');
+		$dados['ACAO_FORM']         = site_url('chamado/salvar');
 	}	
 	
 	private function carregarDados(&$dados) {
@@ -145,15 +147,18 @@ class Chamado extends CI_Controller {
 		$dados['gab_selected_uf'] = 'selected';
 	}
 	
+	private function carregarEmpresa(&$dados) {
+		$resultado = $this->EmpresaModel->getEmpresaAtivo();
 	
-	private function carregarUf(&$dados) {
-		$uf = array("AC","AL","AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
-		
-		$dados['BLC_UF'] = array();
-		foreach ($uf as $registro) {
-			$dados['BLC_UF'][] = array('uf' => $registro,
-					                   'selected_uf' => ($dados['hel_uf_cid']==$registro)?'selected':'');
+		foreach ($resultado as $registro) {
+			$dados['BLC_EMPRESA'][] = array(
+					"hel_pk_seq_emp"     	=> $registro->hel_pk_seq_emp,
+					"hel_nomefantasia_emp"  => $registro->hel_nomefantasia_emp,
+					"sel_hel_seqemp_cha" 	=> ($dados['hel_seqemp_cha'] == $registro->hel_pk_seq_emp)?'selected':''
+			);
 		}
+	
+		!$resultado ? $dados['BLC_EMPRESA'][] = array("hel_nomefantasia_emp" => 'Não existe nenhuma empresa cadastrada') :'';
 	}
 	
 	private function testarDados() {
@@ -210,21 +215,27 @@ class Chamado extends CI_Controller {
 	}
 	
 	private function carregarDadosFlash(&$dados) {
-		$ERRO_HEL_CID   	   = $this->session->flashdata('ERRO_HEL_CID');
-		$ERRO_HEL_NOME_CID     = $this->session->flashdata('ERRO_HEL_NOME_CID');
-		$ERRO_HEL_UF_CID       = $this->session->flashdata('ERRO_HEL_UF_CID');
+		$ERRO_HEL_CHA   	   = $this->session->flashdata('ERRO_HEL_CHA');
+		$ERRO_HEL_SEQEMP_CHA   = $this->session->flashdata('ERRO_HEL_SEQEMP_CHA');		
+		$ERRO_HEL_SEQSER_CHA   = $this->session->flashdata('ERRO_HEL_SEQSER_CHA');
+		$ERRO_HEL_SEQSIS_CHA   = $this->session->flashdata('ERRO_HEL_SEQSIS_CHA');
+		$ERRO_HEL_PROBLEMA_CHA = $this->session->flashdata('ERRO_HEL_PROBLEMA_CHA');
 
-		$hel_nome_cid     	   = $this->session->flashdata('hel_nome_cid');
-		$hel_uf_cid       	   = $this->session->flashdata('hel_uf_cid');
-		$hel_codmun_cid        = $this->session->flashdata('hel_codmun_cid');
+		$hel_seqemp_cha   	   = $this->session->flashdata('hel_seqemp_cha');
+		$hel_seqser_cha        = $this->session->flashdata('hel_seqser_cha');
+		$hel_seqsis_cha        = $this->session->flashdata('hel_seqsis_cha');
+		$hel_problema_cha      = $this->session->flashdata('hel_problema_cha');
 
-		if ($ERRO_HEL_CID) {
-			$dados['hel_nome_cid']       = $hel_nome_cid;
-			$dados['hel_uf_cid']         = $hel_uf_cid;
-			$dados['hel_codmun_cid']     = $hel_codmun_cid;
+		if ($ERRO_HEL_CHA) {
+			$dados['hel_seqemp_cha']       	 = $hel_seqemp_cha;
+			$dados['hel_seqser_cha']         = $hel_seqser_cha;
+			$dados['hel_seqsis_cha']     	 = $hel_seqsis_cha;
+			$dados['hel_problema_cha']     	 = $hel_problema_cha;
 
-			$dados['ERRO_HEL_NOME_CID']  = $ERRO_HEL_NOME_CID;
-			$dados['ERRO_HEL_UF_CID']    = $ERRO_HEL_UF_CID;
+			$dados['ERRO_HEL_SEQEMP_CHA']  	 = $ERRO_HEL_SEQEMP_CHA;
+			$dados['ERRO_HEL_SEQSER_CHA']  	 = $ERRO_HEL_SEQSER_CHA;
+			$dados['ERRO_HEL_SEQSIS_CHA']  	 = $ERRO_HEL_SEQSIS_CHA;
+			$dados['ERRO_HEL_PROBLEMA_CHA']  = $ERRO_HEL_PROBLEMA_CHA;
 		}
 	}
 	
