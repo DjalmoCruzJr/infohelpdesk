@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.6500000000000252"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="hel_seqcon_exc" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT hel_pk_seq_emp,
+       hel_nomefantasia_emp,
+       hel_nome_cid,
+       case hel_ativo_emp when 1 then 'Ativo'
+       else 'Inativo'
+       end as hel_ativo_emp
+FROM heltbexc
+LEFT JOIN heltbemp ON hel_pk_seq_emp = hel_seqemp_exc
+LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp
+WHERE hel_seqemp_exc = $P{hel_seqcon_exc}]]>
+	</queryString>
+	<field name="hel_pk_seq_emp" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_nomefantasia_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_nome_cid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_ativo_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[0- Inativo
+1- Ativo]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="13">
+			<staticText>
+				<reportElement x="41" y="0" width="87" height="13" uuid="b475c17b-4142-4618-acae-959d7e217cd4"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Fantasia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="0" width="42" height="13" uuid="3fe50a3f-ca09-4be6-922d-8eff08ddad38"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="40" height="13" uuid="caa2f8f0-416f-41af-a0a0-9566330b6cf7"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="0" width="39" height="13" uuid="05c0587c-758d-468d-9fe5-65fdbf087d46"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="41" y="0" width="247" height="15" uuid="5c018044-9844-461f-8b3e-c7696347ee7d"/>
+				<textFieldExpression><![CDATA[$F{hel_nomefantasia_emp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="95" height="15" uuid="3bd70770-3cd4-4d5e-8251-2c5ecf0c9faa"/>
+				<textFieldExpression><![CDATA[$F{hel_ativo_emp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-1" y="0" width="39" height="15" uuid="afdf5b36-e377-4a3d-82dd-fd3898e67028"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hel_pk_seq_emp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="0" width="162" height="15" uuid="4fee31ec-7577-47fb-a30e-216c562712b5"/>
+				<textFieldExpression><![CDATA[$F{hel_nome_cid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

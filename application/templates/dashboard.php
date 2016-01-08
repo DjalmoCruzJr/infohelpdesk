@@ -338,8 +338,8 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="#">
-													Aniversáriantes
+												<a href="<?php echo site_url('relatorio_contato_empresa');?>">
+													Contatos da Empresa
 												</a>
 											</li>
 										</ul>

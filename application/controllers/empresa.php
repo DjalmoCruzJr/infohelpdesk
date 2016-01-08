@@ -7,6 +7,7 @@ class Empresa extends CI_Controller {
  		$this->layout = LAYOUT_DASHBOARD;
 		
 		$this->load->model('Empresa_Model', 'EmpresaModel');
+		$this->load->model('Chamado_Model', 'ChamadoModel');
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Cidade_Model', 'CidadeModel');
 		$this->load->model('Contato_Model', 'ContatoModel');
