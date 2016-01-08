@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.6500000000000252"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="hel_seqemp_sco" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT hel_pk_seq_sco,
+       hel_codigo_sis,
+       hel_desc_sis,
+       CASE hel_tipo_sis WHEN 0 THEN 'Desktop'
+                         WHEN 1 THEN 'Mobile'
+                         WHEN 2 THEN 'Web'
+		END AS hel_tipo_sis
+FROM heltbsco
+LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_sco
+WHERE hel_seqemp_sco = $P{hel_seqemp_sco}]]>
+	</queryString>
+	<field name="hel_pk_seq_sco" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_codigo_sis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_desc_sis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_tipo_sis" class="java.lang.String">
+		<fieldDescription><![CDATA[0- Desktsop
+1- Mobile
+2- Web]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="13">
+			<staticText>
+				<reportElement x="40" y="0" width="44" height="13" uuid="7361e047-58c5-4ada-bfd3-b41ec92fe166"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sigla]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="0" width="59" height="13" uuid="b475c17b-4142-4618-acae-959d7e217cd4"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="0" width="29" height="13" uuid="caa2f8f0-416f-41af-a0a0-9566330b6cf7"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="0" width="39" height="13" uuid="05c0587c-758d-468d-9fe5-65fdbf087d46"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="87" y="0" width="247" height="15" uuid="5c018044-9844-461f-8b3e-c7696347ee7d"/>
+				<textFieldExpression><![CDATA[$F{hel_desc_sis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="0" width="95" height="15" uuid="3bd70770-3cd4-4d5e-8251-2c5ecf0c9faa"/>
+				<textFieldExpression><![CDATA[$F{hel_tipo_sis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="44" height="15" uuid="8fdc8ebe-fab8-4bf2-8afc-26e6047ed8b6"/>
+				<textFieldExpression><![CDATA[$F{hel_codigo_sis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-1" y="0" width="39" height="15" uuid="afdf5b36-e377-4a3d-82dd-fd3898e67028"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hel_pk_seq_sco}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="40" y="0" width="515" height="50" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="03db9d99-8399-4d15-b9f3-ceb6090199d6"/>
+				<subreportParameter name="hel_seqsco_msc">
+					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_sco}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_menu_contratado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

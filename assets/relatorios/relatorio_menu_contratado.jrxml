@@ -7,34 +7,26 @@
 		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT hel_pk_seq_con,
-       hel_pk_seq_tco,
-       hel_nome_con,
-       hel_login_con,
-       hel_desc_tco,
-       CASE hel_ativo_con WHEN 1 THEN 'Ativo'
+		<![CDATA[SELECT hel_pk_seq_emp,
+       hel_nomefantasia_emp,
+       hel_nome_cid,
+       case hel_ativo_emp when 1 then 'Ativo'
        else 'Inativo'
-       END AS hel_ativo_con
-from heltbcon
-LEFT JOIN heltbtco ON hel_pk_seq_tco = hel_seqtco_con]]>
+       end as hel_ativo_emp
+FROM heltbemp
+LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp]]>
 	</queryString>
-	<field name="hel_pk_seq_con" class="java.lang.Integer">
+	<field name="hel_pk_seq_emp" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="hel_pk_seq_tco" class="java.lang.Integer">
+	<field name="hel_nomefantasia_emp" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="hel_nome_con" class="java.lang.String">
+	<field name="hel_nome_cid" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="hel_login_con" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="hel_desc_tco" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="hel_ativo_con" class="java.lang.String">
-		<fieldDescription><![CDATA[0- Invativo
+	<field name="hel_ativo_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[0- Inativo
 1- Ativo]]></fieldDescription>
 	</field>
 	<variable name="TOTAL_REGITRO" class="java.lang.Integer" calculation="Count">
@@ -52,7 +44,7 @@ LEFT JOIN heltbtco ON hel_pk_seq_tco = hel_seqtco_con]]>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Contato da Empresa]]></text>
+				<text><![CDATA[Menu Contratado]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="515" y="16" width="10" height="15" uuid="b514ee71-0ef4-4a2e-ad33-080c9a1776a3"/>
@@ -77,7 +69,7 @@ LEFT JOIN heltbtco ON hel_pk_seq_tco = hel_seqtco_con]]>
 			<staticText>
 				<reportElement x="455" y="33" width="100" height="15" uuid="e7951e62-ef63-4b29-a7ef-ab00de2f8d0d"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[HELPR505]]></text>
+				<text><![CDATA[HELPR510]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="47" width="555" height="1" uuid="3167657a-63e4-4716-bf59-3b451adadbfe"/>
@@ -94,14 +86,14 @@ LEFT JOIN heltbtco ON hel_pk_seq_tco = hel_seqtco_con]]>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tipo Contato]]></text>
+				<text><![CDATA[Cidade]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="48" y="0" width="78" height="15" uuid="5a3250fd-9306-4d1c-8aff-136f900842a2"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isStrikeThrough="false"/>
 				</textElement>
-				<text><![CDATA[Nome]]></text>
+				<text><![CDATA[Nome Fantasia]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="0" width="47" height="15" uuid="a19588e5-2f8d-4554-8e40-5080b468522a"/>
@@ -130,29 +122,29 @@ LEFT JOIN heltbtco ON hel_pk_seq_tco = hel_seqtco_con]]>
 			<textField>
 				<reportElement positionType="Float" x="0" y="0" width="47" height="15" uuid="fcdf3423-c45b-4ac4-8074-9b61c1be9db7"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$F{hel_pk_seq_con}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{hel_pk_seq_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="49" y="0" width="231" height="16" uuid="da332e72-4a2f-440f-a3fe-9fee78683be9"/>
-				<textFieldExpression><![CDATA[$F{hel_nome_con}]]></textFieldExpression>
+				<reportElement x="49" y="0" width="250" height="16" uuid="da332e72-4a2f-440f-a3fe-9fee78683be9"/>
+				<textFieldExpression><![CDATA[$F{hel_nomefantasia_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="308" y="0" width="172" height="15" uuid="4f368ed5-6a93-43bf-9735-d6cf6181572f"/>
-				<textFieldExpression><![CDATA[$F{hel_desc_tco}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{hel_nome_cid}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="486" y="0" width="68" height="15" uuid="abb07111-a648-43a9-8be3-0cb846872901"/>
-				<textFieldExpression><![CDATA[$F{hel_ativo_con}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{hel_ativo_emp}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="50">
 			<subreport>
-				<reportElement x="26" y="0" width="529" height="50" uuid="c23fcc5c-c3cd-41af-a1df-0b342777b029"/>
-				<subreportParameter name="hel_seqcon_exc">
-					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_con}]]></subreportParameterExpression>
+				<reportElement x="24" y="1" width="530" height="49" isRemoveLineWhenBlank="true" uuid="9c5cabee-4abd-47a8-b8cd-ba72a337e1bf"/>
+				<subreportParameter name="hel_seqemp_sco">
+					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_emp}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_empresa.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_sistema_contratado2.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

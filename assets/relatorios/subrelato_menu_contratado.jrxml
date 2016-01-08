@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.239669421487625"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="hel_seqsco_msc" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT hel_pk_seq_msc,
+       hel_desc_men
+FROM heltbmsc
+LEFT JOIN heltbmen ON hel_pk_seq_men = hel_seqmen_msc
+WHERE hel_seqsco_msc = $P{hel_seqsco_msc}]]>
+	</queryString>
+	<field name="hel_pk_seq_msc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_desc_men" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="13">
+			<staticText>
+				<reportElement x="44" y="0" width="100" height="13" uuid="8e26997b-4612-4419-9018-38b3abeb89cb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Menu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="38" height="13" uuid="e9f6fbaa-7a10-47d2-bf42-8d530abede83"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="38" height="15" uuid="e0eeee62-73ca-49f4-8846-fac1fc5c6119"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hel_pk_seq_msc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="0" width="511" height="15" uuid="299409b4-579a-473a-b77f-02f767ab57f9"/>
+				<textFieldExpression><![CDATA[$F{hel_desc_men}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

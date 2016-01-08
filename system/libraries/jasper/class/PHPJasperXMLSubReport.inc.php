@@ -145,6 +145,9 @@ class PHPJasperXMLSubReport{
                         $this->default_handler($bg);
 
                     }
+                case "subDataset":
+                   	$this->subDataset_handler($out);
+                   	break;
                     break;
                 default:
                     foreach ($out as $object) {

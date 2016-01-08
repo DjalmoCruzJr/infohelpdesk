@@ -342,6 +342,11 @@
 													Contatos da Empresa
 												</a>
 											</li>
+											<li>
+												<a href="<?php echo site_url('relatorio_menu_contratado');?>">
+													Menu Contratado
+												</a>
+											</li>
 										</ul>
 									</li>
 								</ul>
