@@ -263,10 +263,13 @@ class Contato extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_LOGIN_CON', 'has-error');
 		}
 		
-		if (!$erros and $this->util->validar_senha($hel_senha_con)){
+		$resultado = $this->util->validar_senha($hel_senha_con);
+		
+		if (!$erros and !empty($resultado)){
 			$erros    = TRUE;
-			$mensagem .= "- Senha deve ter conter no mínimo 8 caracter.\n";
+			$mensagem .= $resultado;
 			$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_CONFIRSENHA_CON', 'has-error');
 		}
 
 		if (empty($hel_email_con)) {
@@ -286,8 +289,8 @@ class Contato extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_CON', TRUE);				
 			$this->session->set_flashdata('hel_nome_con', $hel_nome_con);
 			$this->session->set_flashdata('hel_login_con', $hel_login_con);
-			$this->session->set_flashdata('hel_senha_con', $hel_senha_con);
-			$this->session->set_flashdata('hel_confirsenha_con', $hel_confirsenha_con);
+// 			$this->session->set_flashdata('hel_senha_con', $hel_senha_con);
+// 			$this->session->set_flashdata('hel_confirsenha_con', $hel_confirsenha_con);
 			$this->session->set_flashdata('hel_seqtco_con', $hel_seqtco_con);
 			$this->session->set_flashdata('hel_ativo_con', $hel_ativo_con);
 			$this->session->set_flashdata('hel_email_con', $hel_email_con);

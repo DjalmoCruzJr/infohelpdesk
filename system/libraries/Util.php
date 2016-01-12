@@ -81,12 +81,19 @@
 		}
 		
 		function validar_senha($senha) {
+			$msg = "";
 			$tamanho = strlen($senha);
 			if ($tamanho >= 8){
-				return TRUE;	
-			}else{
-				return FALSE;
+				if (preg_match('/^[a-z]+ $/', $senha)){
+					$msg = $msg." - A senha deve ter pelo menos um caracter Maiusculo ou mais.\n";
+				}
+				if (preg_match('/^[A-Z]+ $/', $senha)){
+					$msg = $msg." - A senha deve ter pelo menos um caracter Maiusculo ou mais.\n";
+				}
+			} else {
+				$msg = $msg." - A senha deve ter oito ou mais caracteres.\n";
 			}
+			return $msg;
 		}
 		
 		function to_upper($term, $tp) {
