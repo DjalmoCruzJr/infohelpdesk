@@ -79,20 +79,28 @@
 				
 			return $date;
 		}
-		
+		/*Função adicionada por Ulysses */
 		function validar_senha($senha) {
 			$msg = "";
-			$tamanho = strlen($senha);
-			if ($tamanho >= 8){
-				if (preg_match('/^[a-z]+ $/', $senha)){
-					$msg = $msg." - A senha deve ter pelo menos um caracter Maiusculo ou mais.\n";
+			if (strlen($senha) >= 8){
+				if (!preg_match('/(?=.*[0-9])/', $senha)){
+					$msg = $msg." - A senha deve conter, pelo menos um número.\n";
 				}
-				if (preg_match('/^[A-Z]+ $/', $senha)){
-					$msg = $msg." - A senha deve ter pelo menos um caracter Maiusculo ou mais.\n";
+
+				if (!preg_match('/(?=.*[A-Z].*)/', $senha)){
+					$msg = $msg." - A senha deve conter, pelo menos uma letra maiúscula.\n";
 				}
+
+				if (!preg_match('/(?=.*[^A-Za-z0-9].*)/', $senha)){
+					$msg = $msg." - A senha deve conter, pelo menos um caracter especial.\n";
+				}
+
 			} else {
 				$msg = $msg." - A senha deve ter oito ou mais caracteres.\n";
 			}
+
+			!empty($msg) ? $msg = $msg." - Exemplo : A1#bcdeg.\n" : '';
+
 			return $msg;
 		}
 		

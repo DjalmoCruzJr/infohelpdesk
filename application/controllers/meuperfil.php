@@ -160,6 +160,8 @@ class MeuPerfil extends CI_Controller{
 				$this->session->set_flashdata('ERRO_HEL_SENHA_ALT', 'has-error');
 				$this->session->set_flashdata('ERRO_HEL_CONFIRSENHA_ALT', 'has-error');
 			}
+
+			
 		}
 		
 		if ($erros) {
