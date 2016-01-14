@@ -111,11 +111,22 @@ class MeuPerfil extends CI_Controller{
 			$mensagem .= "- Nome não preenchida.\n";
 			$this->session->set_flashdata('ERRO_HEL_NOME_ALT', 'has-error');
 		}
-		
+
+
+
 		if (empty($hel_login_con)) {
 			$erros     = TRUE;
-			$mensagem .= "- Login não preenchida.\n";
+			$mensagem .= "- Login não preenchido.\n";
 			$this->session->set_flashdata('ERRO_HEL_LOGIN_ALT', 'has-error');
+		}else {
+			$resultado = $this->util->validarLogin($hel_login_con);
+		}
+
+		if (!$erros and !empty($resultado)){
+			$erros     = TRUE;
+			$mensagem .= $resultado;
+			$this->session->set_flashdata('ERRO_HEL_LOGIN_ALT', 'has-error');
+
 		}
 		
 		if ($this->ContatoModel->getLoginCadastro($hel_pk_seq_con, $hel_login_con)) {
@@ -161,9 +172,8 @@ class MeuPerfil extends CI_Controller{
 				$this->session->set_flashdata('ERRO_HEL_CONFIRSENHA_ALT', 'has-error');
 			}
 
-			
+
 		}
-		
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
