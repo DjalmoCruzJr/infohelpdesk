@@ -122,9 +122,9 @@ class MeuPerfil extends CI_Controller{
 			$resultado = $this->util->validarLogin($hel_login_con);
 		}
 
-		if (!$erros and !empty($resultado)){
+		if (!$erros and empty($resultado)){
 			$erros     = TRUE;
-			$mensagem .= $resultado;
+			$mensagem .= "- O login deve conter apenas números e letras.";
 			$this->session->set_flashdata('ERRO_HEL_LOGIN_ALT', 'has-error');
 
 		}
@@ -142,7 +142,7 @@ class MeuPerfil extends CI_Controller{
 				$this->session->set_flashdata('ERRO_HEL_EMAIL_ALT', 'has-error');
 			}
 		}
-		
+
 		if ($hel_senhaatual_con) {
 			
 			$resultado = $this->ContatoModel->get($hel_pk_seq_con);

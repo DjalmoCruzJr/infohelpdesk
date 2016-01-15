@@ -107,7 +107,7 @@
 
 		function validarLogin($login){
 			$msg = "";
-			if (preg_match('/(?=.*[^A-Za-z0-9].*)(?=.*[A-Za-z0-9].*)/', $login)){
+			if (!preg_match_all('/[^A-Za-z0-9]/', $login)){
 				$msg = $msg." - O login deve conter apenas números e letras.\n";
 			}
 			return $msg;
