@@ -20,29 +20,12 @@
 				<div class="col-sm-offset-1 col-sm-10">
 					<div class="checkbox-inline">
 						<label >
-							<input type="checkbox"  id="hel_chamado_ser"name="hel_chamado_ser" value="1"
-								   {hel_checkechamado_ser} autocomplete="off" autofocus/>Chamado
-						</label>
-					</div>
-					<div class="checkbox-inline">
-						<label >
 							<input type="checkbox"  id="hel_sistema_ser"name="hel_sistema_ser" value="1"
 								   {hel_checkecsistema_ser} autocomplete="off" autofocus/>Sistema
 						</label>
 					</div>
 				</div>
 			</div>
-			
-<!-- 			<div class="form-group"> -->
-<!-- 				<div class="col-sm-offset-1 col-sm-10"> -->
-<!-- 					<div class="checkbox"> -->
-<!-- 						<label > -->
-<!-- 							<input type="checkbox"  id="hel_sistema_ser"name="hel_sistema_ser" value="1" -->
-<!-- 								   {hel_checkecsistema_ser} autocomplete="off" autofocus/>Sistema -->
-<!-- 						</label> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
 
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-11">

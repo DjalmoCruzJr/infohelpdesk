@@ -20,12 +20,6 @@ class Chamado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getChamadoEmpresa($hel_pk_seq_emp) {
-		$this->db->from('heltbcha');
-		$this->db->where('hel_seqemp_cha', $hel_pk_seq_emp, FALSE);
-		return $this->db->get()->result();
-	}
-	
 	public function getEmpresaContatoChamado($hel_pk_seq_exc) {
 		$this->db->from('heltbcha');
 		$this->db->where('hel_seqexc_cha', $hel_pk_seq_exc, FALSE);
@@ -45,11 +39,10 @@ class Chamado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getChamadosAbertoEmpresa($hel_seqexc_ios, $hel_seqemp_cha) {
+	public function getChamadosAbertoEmpresa($hel_seqexc_ios) {
 		$this->db->from('heltbcha');
 		$this->db->where('hel_seqexc_cha', $hel_seqexc_ios, FALSE);
-		$this->db->or_where('hel_seqemp_cha', $hel_seqemp_cha, FALSE);
-		$this->db->where('hel_encerrado_cha <> ', CHAMADO_ATIVO, FALSE);
+		$this->db->where('hel_status_cha <> ', CHAMADO_ATIVO, FALSE);
 		return $this->db->get()->result();
 	}
 	

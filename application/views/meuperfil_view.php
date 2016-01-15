@@ -19,7 +19,7 @@
 				<div class="{ERRO_HEL_LOGIN_ALT}">
 					<label for="hel_login_con" class="col-sm-1 control-label">Login</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="hel_login_con" name="hel_login_con"
+							<input type="text" class="form-control" id="hel_login_con" name="hel_login_con" 
 						        	value="{hel_login_con}" maxlength="30" autocomplete="off" autofocus/>
 						</div>
 				</div>

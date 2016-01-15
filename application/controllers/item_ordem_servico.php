@@ -240,11 +240,11 @@ class Item_Ordem_Servico extends CI_Controller {
 		$resultado_empresa = $this->EmpresaContatoModel->get($dados['hel_seqexc_ose']);
 		
 		if ($resultado_empresa){
-			$resultado = $this->ChamadoModel->getChamadosAbertoEmpresa($dados['hel_seqexc_ose'], $resultado_empresa->hel_seqemp_exc);
+			$resultado = $this->ChamadoModel->getChamadosAbertoEmpresa($dados['hel_seqexc_ose']);
 		
 			foreach ($resultado as $registro) {
 				$dados['BLC_CHAMADO'][] = array(
-						"hel_pk_seq_cha"     => $registro->hel_pk_seq_sis,
+						"hel_pk_seq_cha"     => $registro->hel_pk_seq_cha,
 						"hel_desc_cha" 		 => 'Chamado Nº'.$registro->hel_pk_seq_cha,
 						"sel_hel_seqcha_ios" => ($dados['hel_seqcha_ios'] == $registro->hel_pk_seq_cha)?'selected':''
 				);

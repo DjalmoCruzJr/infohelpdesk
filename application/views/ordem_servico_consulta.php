@@ -20,8 +20,8 @@
                             <tr>
                                 <th>Nome Fantasia</th>    
                                 <th>Técnico</th>
-                                <th>Horário Inicial</th>
-                                <th>Horário Final</th>
+                                <th>Data inicial</th>
+                                <th>Data Final</th>
                                 <th class="coluna-acao" width="140">Itens Ordem de Serviço</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
@@ -32,8 +32,8 @@
 	                            <tr>
 	                                <td class="vertical-center">{hel_nomefantasia_emp}</td>	    
 	                                <td class="vertical-center">{hel_nome_con}</td>
-	                                <td class="vertical-center">{hel_horarioinicial_ose}</td>
-	                                <td class="vertical-center">{hel_horariofinal_ose}</td>
+	                                <td class="vertical-center">{hel_datainicial_ose}</td>
+	                                <td class="vertical-center">{hel_datafinal_ose}</td>
 									<td class="text-center"><a href="{ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Item da Ordem Serviço"><i class="glyphicon glyphicon-list-alt"></i></a></td>	                                
 	                                <td class="text-center"><a href="{EDITAR_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>

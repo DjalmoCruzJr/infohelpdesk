@@ -119,7 +119,7 @@
 				$("#hel_seqcon_ose").empty();
 				for (i = 0; i < data.length; i++) {
 					options += '<option value="' + data[i].hel_pk_seq_con + '">' + data[i].hel_nome_con + '</option>';
-				}    
+				}
 				$("#hel_seqcon_ose").html(options);
 			  },
 			 error    : function(error){

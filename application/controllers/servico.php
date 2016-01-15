@@ -28,8 +28,7 @@ class Servico extends CI_Controller {
 		$dados = array();
 		$dados['hel_pk_seq_ser']	    	= 0;
 		$dados['hel_desc_ser']    	    	= '';
-		$dados['hel_chamado_ser'] 	    	= '';
-		$dados['hel_checkechamado_ser'] 	= '';
+		$dados['hel_sistema_ser'] 	    	= '';
 		$dados['hel_checkecsistema_ser'] 	= '';
 		
 		$dados['ACAO'] 	= 'Novo';
@@ -57,18 +56,15 @@ class Servico extends CI_Controller {
 	public function salvar() {
 		global $hel_pk_seq_ser;
 		global $hel_desc_ser;
-		global $hel_chamado_ser;
 		global $hel_sistema_ser;
 
 		$hel_pk_seq_ser  = $this->input->post('hel_pk_seq_ser');			
 		$hel_desc_ser    = $this->input->post('hel_desc_ser');
-		$hel_chamado_ser = $this->input->post('hel_chamado_ser') == 1 ? 1 : 0;
 		$hel_sistema_ser = $this->input->post('hel_sistema_ser') == 1 ? 1 : 0;
 
 		if ($this->testarDados()) {
 			$servico = array(
 				"hel_desc_ser"   => $hel_desc_ser,
-				"hel_chamado_ser" => $hel_chamado_ser,
 				"hel_sistema_ser" => $hel_sistema_ser
 			);
 			
@@ -142,7 +138,6 @@ class Servico extends CI_Controller {
 	private function testarDados() {
 		global $hel_pk_seq_ser;
 		global $hel_desc_ser;
-		global $hel_chamado_ser;
 		global $hel_sistema_ser;
 
 		$erros    = FALSE;
@@ -162,7 +157,6 @@ class Servico extends CI_Controller {
 			
 			$this->session->set_flashdata('ERRO_HEL_SER', TRUE);
 			$this->session->set_flashdata('hel_desc_ser', $hel_desc_ser);
-			$this->session->set_flashdata('hel_chamado_ser', $hel_chamado_ser);
 			$this->session->set_flashdata('hel_sistema_ser', $hel_sistema_ser);
 		}
 				
@@ -185,7 +179,6 @@ class Servico extends CI_Controller {
 		$ERRO_HEL_SER   	   = $this->session->flashdata('ERRO_HEL_SER');
 		$ERRO_HEL_DESC_SER     = $this->session->flashdata('ERRO_HEL_DESC_SER');
 
-
 		$hel_desc_ser    	   = $this->session->flashdata('hel_desc_ser');
 		$hel_chamado_ser       = $this->session->flashdata('hel_chamado_ser');
 		$hel_sistema_ser       = $this->session->flashdata('hel_sistema_ser');
@@ -194,7 +187,6 @@ class Servico extends CI_Controller {
 			$dados['hel_desc_ser']          	= $hel_desc_ser;
 			$dados['hel_chamado_ser']       	= $hel_chamado_ser;
 			$dados['hel_sistema_ser']       	= $hel_sistema_ser;
-			$dados['hel_checkechamado_ser'] 	= $hel_chamado_ser == 1 ? 'checked' : '';
 			$dados['hel_checkecsistema_ser'] 	= $hel_sistema_ser == 1 ? 'checked' : '';
 
 			$dados['ERRO_HEL_DESC_SER']    		= $ERRO_HEL_DESC_SER;

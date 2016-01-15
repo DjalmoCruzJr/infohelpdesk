@@ -97,8 +97,10 @@ class Ordem_Servico extends CI_Controller {
 			$ordem_servico = array(
 				"hel_seqexc_ose"           => $hel_seqexc_ose,
 				"hel_seqcontec_ose"		   => $this->session->userdata('hel_pk_seq_con'),
-				"hel_horarioinicial_ose"   => $this->util->gravarBancoDateTime($hel_horarioinicial_ose), 
-				"hel_horariofinal_ose"     => $this->util->gravarBancoDateTime($hel_horariofinal_ose),
+				"hel_datainicial_ose"      => $hel_dateinicial_ose,
+				"hel_horarioinicial_ose"   => $hel_horarioinicial_ose,
+				"hel_datafinal_ose"        => $hel_datefinal_ose,
+				"hel_horariofinal_ose"     => $hel_horariofinal_ose,					
 				"hel_kminicial_ose"        => $hel_kminicial_ose,
 				"hel_kmfinal_ose"  		   => $hel_kmfinal_ose,
 				"hel_observacao_ose" 	   => $hel_observacao_ose
@@ -152,8 +154,8 @@ class Ordem_Servico extends CI_Controller {
 			$dados['BLC_DADOS'][] = array(
 				"hel_nomefantasia_emp" 	 => $registro->hel_nomefantasia_emp,							
 				"hel_nome_con"         	 => $registro->hel_nome_con,
-				"hel_horarioinicial_ose" => $this->util->formatarDateTime($registro->hel_horarioinicial_ose),
-				"hel_horariofinal_ose" 	 => $this->util->formatarDateTime($registro->hel_horariofinal_ose),
+				"hel_datainicial_ose" 	 => $registro->hel_datainicial_ose,
+				"hel_datafinal_ose" 	 => $registro->hel_datafinal_ose,
 				"ITEM_ORDEM_SERVICO" 	 => site_url('item_ordem_servico/index/'.base64_encode($registro->hel_pk_seq_ose)),					
 				"EDITAR_ORDEM_SERVICO" 	 => site_url('ordem_servico/editar/'.base64_encode($registro->hel_pk_seq_ose)),
 				"APAGAR_ORDEM_SERVICO" 	 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ose)."')"
