@@ -20,14 +20,16 @@
 							</select>   
 					</div>
 				</div>
-				<label for="hel_seqsis_ios" class="col-sm-1 control-label">Sistema</label>
-				<div class="col-sm-5">
-						<select class="form-control" id="hel_seqsis_ios" name="hel_seqsis_ios" autofocus="autofocus" >
-							<option value="">Selecione...</option>
-								{BLC_SISTEMA}
-							    	<option value="{hel_pk_seq_sis}" {sel_hel_seqsis_ios}>{hel_desc_sis}<small> ({hel_tipo_sis}) </small></option>
-							    {/BLC_SISTEMA}
-						</select>   
+				<div class="{ERRO_HEL_SEQSIS_IOS}">
+					<label for="hel_seqsis_ios" class="col-sm-1 control-label">Sistema</label>
+					<div class="col-sm-5">
+							<select class="form-control" id="hel_seqsis_ios" name="hel_seqsis_ios" autofocus="autofocus" >
+								<option value="">Selecione...</option>
+									{BLC_SISTEMA}
+										<option value="{hel_pk_seq_sis}" {sel_hel_seqsis_ios}>{hel_desc_sis}<small> ({hel_tipo_sis}) </small></option>
+									{/BLC_SISTEMA}
+							</select>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">

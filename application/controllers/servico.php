@@ -130,8 +130,6 @@ class Servico extends CI_Controller {
 		} else {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');			
 		}
-
-		$dados['hel_checkechamado_ser'] 	= $dados['hel_chamado_ser'] == 1 ? 'checked' : '';
 		$dados['hel_checkecsistema_ser'] 	= $dados['hel_sistema_ser'] == 1 ? 'checked' : '';
 	}
 

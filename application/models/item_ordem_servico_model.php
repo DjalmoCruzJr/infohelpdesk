@@ -41,8 +41,8 @@ class Item_Ordem_Servico_Model extends CI_Model {
 		$this->db->where('hel_pk_seq_emp <> ', $hel_pk_seq_emp, FALSE);
 		$this->db->where('hel_cnpj_emp', $hel_cnpj_emp, FALSE);
 		return $this->db->get()->result();
-	}	
-	
+	}
+
 	public function insert($item_ordem_servico) {
 		$res = $this->db->insert('heltbios', $item_ordem_servico);
 	

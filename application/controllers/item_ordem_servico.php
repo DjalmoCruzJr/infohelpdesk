@@ -263,7 +263,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		
 		$erros    = FALSE;
 		$mensagem = null;
-		
+
 		$hel_seqser_ios = empty($hel_seqser_ios) ? null : $hel_seqser_ios;
 		$hel_seqsis_ios = empty($hel_seqsis_ios) ? null : $hel_seqsis_ios;
 		$hel_seqcha_ios = empty($hel_seqcha_ios) ? null : $hel_seqcha_ios;
@@ -272,8 +272,20 @@ class Item_Ordem_Servico extends CI_Controller {
 			$erros    = TRUE;
 			$mensagem .= "- Serviço não foi selecionada.\n";
 			$this->session->set_flashdata('ERRO_HEL_SEQSER_IOS', 'has-error');
+		}else {
+			$resultado = $this->ServicoModel->get($hel_seqser_ios);
+
+			if ($resultado) {
+
+				if ($resultado->hel_sistema_ser == 1) {
+					$erros = TRUE;
+					$mensagem .= "- Para serviço selecionado, necessário informar o sistema.\n";
+					$this->session->set_flashdata('ERRO_HEL_SEQSIS_IOS', 'has-error');
+
+				}
+			}
 		}
-				
+
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
@@ -305,7 +317,8 @@ class Item_Ordem_Servico extends CI_Controller {
 	private function carregarDadosFlash(&$dados) {
 		$ERRO_HEL_IOS   	 = $this->session->flashdata('ERRO_HEL_IOS');
 		$ERRO_HEL_SEQSER_IOS = $this->session->flashdata('ERRO_HEL_SEQSER_IOS');
-		
+		$ERRO_HEL_SEQSIS_IOS = $this->session->flashdata('ERRO_HEL_SEQSIS_IOS');
+
 		$hel_seqose_ios      = $this->session->flashdata('hel_seqose_ios');
 		$hel_seqser_ios      = $this->session->flashdata('hel_seqser_ios');
 		$hel_seqsis_ios      = $this->session->flashdata('hel_seqsis_ios');
@@ -320,6 +333,7 @@ class Item_Ordem_Servico extends CI_Controller {
 			$dados['hel_complemento_ios']   = $hel_complemento_ios;
 
 			$dados['ERRO_HEL_SEQSER_IOS']  	= $ERRO_HEL_SEQSER_IOS;
+			$dados['ERRO_HEL_SEQSIS_IOS']  	= $ERRO_HEL_SEQSIS_IOS;
 		}
 	}
 	

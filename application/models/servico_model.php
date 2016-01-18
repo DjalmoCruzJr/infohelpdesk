@@ -14,7 +14,7 @@ class Servico_Model extends CI_Model {
 		$this->db->order_by ( "hel_desc_ser", "asc" );
 		return $this->db->get ()->result ();
 	}
-	
+
 	public function insert($servico) {
 		$res = $this->db->insert ( 'heltbser', $servico );
 		
