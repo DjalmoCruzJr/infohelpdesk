@@ -8,6 +8,12 @@ class assunto_sistema_model extends CI_Model {
 		return $this->db->get()->first_row();
 	}
 	
+	public function getAssunto() {
+		$this->db->from('heltbasu');
+		$this->db->join('heltbsis','hel_pk_seq_sis = hel_seqsis_asu','LEFT');
+		return $this->db->get()->result();
+	}
+	
 	// 	Por favor não apague esse métado por que ele está sendo usado por cadastro de sistema.
 	public function getAssuntoSistema($hel_pk_seq_sis) {
 		$this->db->from('heltbasu');
@@ -71,9 +77,9 @@ class assunto_sistema_model extends CI_Model {
 		}
 	}
 	
-	public function delete($hel_pk_seq_emp) {
-		$this->db->where('hel_pk_seq_emp', $hel_pk_seq_emp, FALSE);
-		return $this->db->delete('heltbemp');
+	public function delete($hel_pk_seq_asu) {
+		$this->db->where('hel_pk_seq_asu', $hel_pk_seq_asu, FALSE);
+		return $this->db->delete('heltbasu');
 	}
 		
 }
