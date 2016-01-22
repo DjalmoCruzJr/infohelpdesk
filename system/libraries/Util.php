@@ -57,11 +57,15 @@
 		}
 		
 		public function formatarDateTime($date_time){
-			$data = explode(" ", $date_time);
-			$date = $data[0];
-			$hora = $data[1];
-			
-			$date = implode( "/", array_reverse( explode ( "-", trim( $date ) ) ) );
+			$date = '';
+			$hora = '';
+			if (!empty($date_time)){
+				$data = explode(" ", $date_time);
+				$date = $data[0];
+				$hora = $data[1];
+					
+				$date = implode( "/", array_reverse( explode ( "-", trim( $date ) ) ) );
+			}			
 			
 			return $date." ".$hora;			
 		}

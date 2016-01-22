@@ -39,6 +39,8 @@ define('CHAVE_ACESSO',							'23J0P5G0NT');
 define('CONTATO_ATIVO',							'1');
 define('EMPRESA_ATIVO',							'1');
 define('CHAMADO_ATIVO',							'1');
+define('CHAMADO',								'1');
+define('TECNICO',								'0');
 define('LAYOUT_DASHBOARD',						'dashboard');
 
 

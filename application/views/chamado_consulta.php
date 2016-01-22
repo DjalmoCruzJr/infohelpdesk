@@ -21,8 +21,9 @@
                                 <th>Número</th>    
                                 <th>Empresa</th>
                                 <th>Contato</th>
-                                <th>Sistema</th>
-                                <th>Serviço</th>
+                                <th>Data Abertura</th>
+                                <th>Status</th>
+                                <th class="coluna-acao" width="40">Itens</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -33,9 +34,10 @@
 	                                <td class="vertical-center">{hel_pk_seq_cha}</td>	    
 	                                <td class="vertical-center">{hel_nomefantasia_emp}</td>
 	                                <td class="vertical-center">{hel_nome_con}</td>
-	                                <td class="vertical-center">{hel_codigo_sis}</td>
-	                                <td class="vertical-center">{hel_desc_ser}</td>
-	                                <td class="text-center"><a href="{EDITAR_CHAMDO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+	                                <td class="vertical-center">{hel_horarioabertura_cha}</td>
+	                                <td class="vertical-center">{hel_status_cha}</td>
+	                                <td class="text-center"><a href="{ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Itens do Chamado"><i class="glyphicon glyphicon-list-alt""></i></a></td>
+	                                <td class="text-center"><a href="{EDITAR_CHAMADO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_CHAMADO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
                         	{/BLC_DADOS}
