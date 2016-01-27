@@ -106,6 +106,8 @@ class Ordem_Servico extends CI_Controller {
 				"hel_observacao_ose" 	   => $hel_observacao_ose
 			);
 			
+			
+			
 			if (!$hel_pk_seq_ose) {	
 				$hel_pk_seq_ose = $this->OrdemServicoModel->insert($ordem_servico);
 			} else {

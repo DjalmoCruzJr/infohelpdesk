@@ -28,14 +28,13 @@ class Chamado_Model extends CI_Model {
 	
 	public function getChamado($hel_pk_seq_con = NULL) {
 		$this->db->from('heltbcha');
-		$this->db->join('heltbser','hel_pk_seq_ser = hel_seqser_cha','LEFT');
-		$this->db->join('heltbsis','hel_pk_seq_sis = hel_seqsis_cha','LEFT');
 		$this->db->join('heltbexc','hel_pk_seq_exc = hel_seqexc_cha','LEFT');
 		$this->db->join('heltbcon','hel_pk_seq_con = hel_seqcon_exc','LEFT');		
 		$this->db->join('heltbemp','hel_pk_seq_emp = hel_seqemp_exc','LEFT');
 		if (!empty($hel_pk_seq_con)){
 			$this->db->where('hel_seqcon_exc', $hel_pk_seq_con, FALSE);
 		}
+		$this->db->order_by("hel_pk_seq_cha", "asc");
 		return $this->db->get()->result();
 	}
 	
@@ -46,8 +45,8 @@ class Chamado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function insert($cidade) {
-		$res = $this->db->insert('heltbcid', $cidade);
+	public function insert($chamado) {
+		$res = $this->db->insert('heltbcha', $chamado);
 	
 		if ($res) {
 			return $this->db->insert_id();
@@ -56,20 +55,20 @@ class Chamado_Model extends CI_Model {
 		}
 	}
 	
-	public function update($cidade, $hel_pk_seq_cid) {
-		$this->db->where('hel_pk_seq_cid', $hel_pk_seq_cid, FALSE);
-		$res = $this->db->update('heltbcid', $cidade);
+	public function update($chamado, $hel_pk_seq_cha) {
+		$this->db->where('hel_pk_seq_cha', $hel_pk_seq_cha, FALSE);
+		$res = $this->db->update('heltbcha', $chamado);
 	
 		if ($res) {
-			return $hel_pk_seq_cid;
+			return $hel_pk_seq_cha;
 		} else {
 			return FALSE;
 		}
 	}
 	
-	public function delete($hel_pk_seq_cid) {
-		$this->db->where('hel_pk_seq_cid', $hel_pk_seq_cid, FALSE);
-		return $this->db->delete('heltbcid');
+	public function delete($hel_pk_seq_cha) {
+		$this->db->where('hel_pk_seq_cha', $hel_pk_seq_cha, FALSE);
+		return $this->db->delete('heltbcha');
 	}
 		
 }

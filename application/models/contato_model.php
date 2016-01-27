@@ -23,6 +23,15 @@ class Contato_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getContatoTecnico() {
+		$this->db->from('heltbcon');
+		$this->db->join('heltbtco', 'hel_pk_seq_tco = hel_seqtco_con', 'LEFT');
+		$this->db->where('hel_tipo_tco', TECNICO, FALSE);
+		$this->db->where('hel_ativo_con', CONTATO_ATIVO, FALSE);
+		$this->db->order_by("hel_nome_con", "asc");
+		return $this->db->get()->result();
+	}
+	
 	public function insert($contato) {
 		$res = $this->db->insert('heltbcon', $contato);
 	

@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 <html class="fixed">
 	<head>
-
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
@@ -26,6 +25,15 @@
 		
 		<link href="<?php echo base_url('assets/vendor/bootstrap-chosen/bootstrap-chosen.css') ?>" rel="stylesheet">
 		
+		<link href="<?php echo base_url('assets/stylesheets/jquery-upload/jquery.fileupload.css') ?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/stylesheets/jquery-upload/jquery.fileupload-ui.css') ?>" rel="stylesheet">
+		
+		<noscript>
+			<link href="<?php echo base_url('assets/stylesheets/jquery-upload/jquery.fileupload-noscript.css') ?>" rel="stylesheet">
+		</noscript>
+		<noscript>
+			<link href="<?php echo base_url('assets/stylesheets/jquery-upload/jquery.fileupload-ui-noscript.css') ?>" rel="stylesheet">
+		</noscript>
 	</head>
 	<body>
 		<section class="body">
@@ -439,7 +447,27 @@
 		</section>
 		
 		<input type="hidden" id="siteURL" value="<?php echo site_url();?>">
-
+		
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.ui.widget.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/tmpl.min.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/load-image.min.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/canvas-to-blob.min.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/bootstrap.min.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.blueimp-gallery.min.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.iframe-transport.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.fileupload.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.fileupload-image.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-validate.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-ui.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-process.js') ?>"></script>
+		
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.fileupload-angular.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-audio.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-jquery-ui.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-video.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.iframe-transport.js') ?>"></script>
+		<script src="<?php echo base_url('assets/javascripts/jquery-upload/tmpl.min.js') ?>"></script>
+		
 		<script src="<?php echo base_url('assets/vendor/jquery/jquery.js') ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.js') ?>"></script>
@@ -486,6 +514,9 @@
 				$('#tb_ordem_servico').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_item_ordem_servico').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_chamado').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_assunto').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_item_chamado').dataTable({"order": [[ 1, "asc" ]]});
+				
 			});
 		</script>
 
