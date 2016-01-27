@@ -134,7 +134,7 @@ class Item_Chamado extends CI_Controller {
 		if ($this->testarApagar(base64_decode($hel_pk_seq_ios))) {
 			$res = $this->ItemChamadoModel->delete(base64_decode($hel_pk_seq_ios));
 			if ($res) {
-				$this->session->set_flashdata('sucesso', 'Item do chamado apagada com sucesso.');
+				$this->session->set_flashdata('sucesso', 'Item do chamado apagado com sucesso.');
 			} 
 		}				
 		redirect('item_chamado/index/'.$hel_seqcha_ios);
@@ -199,7 +199,9 @@ class Item_Chamado extends CI_Controller {
 		
 		$dados['hel_hiddensolucao_ios']			= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '' ;
 		$dados['hel_disabledencerrado_ios']		= $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
-		$dados['hel_disabledcomplemento_ios']	= $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
+		$dados['hel_disabledseqsis_ios']		= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
+		$dados['hel_disabledseqser_ios']		= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
+		$dados['hel_disabledcomplemento_ios']	= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
 	}
 	
 	private function carregarServico(&$dados) {
@@ -233,11 +235,11 @@ class Item_Chamado extends CI_Controller {
 		$tipo = "";
 		switch ($hel_tipo_sis) {
 			case 0 : $tipo = "Desktop";
-			break;
+					 break;
 			case 1 : $tipo = "Mobile";
-			break;
+					 break;
 			case 2 : $tipo = "Web";
-			break;
+					 break;
 		}
 	
 		return $tipo;
@@ -255,8 +257,7 @@ class Item_Chamado extends CI_Controller {
 		
 		$erros    = FALSE;
 		$mensagem = null;
-
-		$hel_seqser_ios = empty($hel_seqser_ios) ? null : $hel_seqser_ios;
+		
 		$hel_seqsis_ios = empty($hel_seqsis_ios) ? null : $hel_seqsis_ios;
 		
 		if (empty($hel_seqser_ios)) {
@@ -273,9 +274,20 @@ class Item_Chamado extends CI_Controller {
 					$mensagem .= "- Para serviço selecionado, necessário informar o sistema.\n";
 					$this->session->set_flashdata('ERRO_HEL_SEQSER_IOS', 'has-error');
 					$this->session->set_flashdata('ERRO_HEL_SEQSIS_IOS', 'has-error');
-
 				}
 			}
+		}
+		
+		if (empty($hel_complemento_ios)){
+			$erros    = TRUE;
+			$mensagem .= "- Complemento não foi preenchido.\n";
+			$this->session->set_flashdata('ERRO_HEL_COMPLEMENTO_IOS', 'has-error');
+		}
+		
+		if ( ($this->session->userdata('hel_tipo_tco') == 0) and (empty($hel_solucao_ios))){
+			$erros    = TRUE;
+			$mensagem .= "- Solução não foi preenchida.\n";
+			$this->session->set_flashdata('ERRO_HEL_SOLUCAO_IOS', 'has-error');			
 		}
 		
 		if ( (!$erros) and ($hel_encerrado_ios == 1) and (empty($hel_solucao_ios)) ){
@@ -299,7 +311,6 @@ class Item_Chamado extends CI_Controller {
 			$this->session->set_flashdata('hel_seqcha_ios', $hel_seqcha_ios);
 			$this->session->set_flashdata('hel_seqser_ios', $hel_seqser_ios);
 			$this->session->set_flashdata('hel_seqsis_ios', $hel_seqsis_ios);
-			$this->session->set_flashdata('hel_seqcha_ios', $hel_seqcha_ios);
 			$this->session->set_flashdata('hel_complemento_ios', $hel_complemento_ios);
 			$this->session->set_flashdata('hel_solucao_ios', $hel_solucao_ios);
 			$this->session->set_flashdata('hel_encerrado_ios', $hel_encerrado_ios);
@@ -321,11 +332,12 @@ class Item_Chamado extends CI_Controller {
 	}	
 	
 	private function carregarDadosFlash(&$dados) {
-		$ERRO_HEL_IOS   	 	= $this->session->flashdata('ERRO_HEL_IOS');
-		$ERRO_HEL_SEQSER_IOS 	= $this->session->flashdata('ERRO_HEL_SEQSER_IOS');
-		$ERRO_HEL_SEQSIS_IOS 	= $this->session->flashdata('ERRO_HEL_SEQSIS_IOS');
-		$ERRO_HEL_SOLUCAO_IOS 	= $this->session->flashdata('ERRO_HEL_SOLUCAO_IOS');
-		$ERRO_HEL_STATUS_IOS 	= $this->session->flashdata('ERRO_HEL_STATUS_IOS');
+		$ERRO_HEL_IOS   	 		= $this->session->flashdata('ERRO_HEL_IOS');
+		$ERRO_HEL_SEQSER_IOS 		= $this->session->flashdata('ERRO_HEL_SEQSER_IOS');
+		$ERRO_HEL_SEQSIS_IOS 		= $this->session->flashdata('ERRO_HEL_SEQSIS_IOS');
+		$ERRO_HEL_SOLUCAO_IOS 		= $this->session->flashdata('ERRO_HEL_SOLUCAO_IOS');
+		$ERRO_HEL_STATUS_IOS 		= $this->session->flashdata('ERRO_HEL_STATUS_IOS');
+		$ERRO_HEL_COMPLEMENTO_IOS 	= $this->session->flashdata('ERRO_HEL_COMPLEMENTO_IOS');
 
 		$hel_tipo_ios      	 	= $this->session->flashdata('hel_tipo_ios');
 		$hel_seqcha_ios      	= $this->session->flashdata('hel_seqcha_ios');
@@ -346,7 +358,9 @@ class Item_Chamado extends CI_Controller {
 			$dados['hel_encerrado_ios']   			= $hel_encerrado_ios;
 			$dados['hel_hiddensolucao_ios']			= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '' ;
 			$dados['hel_disabledencerrado_ios']		= $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
-			$dados['hel_disabledcomplemento_ios']	= $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
+			$dados['hel_disabledcomplemento_ios']	= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
+			$dados['hel_disabledseqsis_ios']		= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
+			$dados['hel_disabledseqser_ios']		= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
 			$dados['hel_checkedencerrado_ios']		= $hel_encerrado_ios == 1 ? 'checked' : '' ;
 			
 
@@ -354,6 +368,7 @@ class Item_Chamado extends CI_Controller {
 			$dados['ERRO_HEL_SEQSIS_IOS']  			= $ERRO_HEL_SEQSIS_IOS;
 			$dados['ERRO_HEL_SOLUCAO_IOS'] 			= $ERRO_HEL_SOLUCAO_IOS;
 			$dados['ERRO_HEL_STATUS_IOS']  			= $ERRO_HEL_STATUS_IOS;
+			$dados['ERRO_HEL_COMPLEMENTO_IOS']		= $ERRO_HEL_COMPLEMENTO_IOS;
 		}
 	}	
 }

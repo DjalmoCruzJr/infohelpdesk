@@ -8,9 +8,6 @@
             <div class="col-lg-12">
                 <div>
                     <a href="{NOVO_ASSUNTO_SISTEMA}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Novo Assunto de Sitema</a>
-	                <div class="pull-right">
-			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a>
-			    	</div>
                 </div>
                 </br>
                 <div class="table">
@@ -42,69 +39,6 @@
     </div>
 </div>
 
-
-
-<div class="modal fade" id="relatorio_tipo_contato" tabindex="-1" role="dialog" aria-labelledby="relatorio_tipo_contato_label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
-                <h3 class="modal-title" id="relatorio_tipo_contato_label">Relatório - Tipo de Contato</h3>
-            </div>
-            <div class="modal-body">
-                <div class="form-group col-sm-11">
-                    <label for="hel_ativo_emp" class="col-sm-3 control-label">Filtro por tipo</label>
-                    <div class="col-sm-9">
-                        <div class="radio-inline">
-                            <label>
-                                <input type="radio" id="hel_statustecnico_tco" name="status_relatorio" value="0" checked/>Técnico
-                            </label>
-                        </div>
-                        <div class="radio-inline">
-                            <label>
-                                <input type="radio" id="hel_statusresponsavel_tco" name="status_relatorio" value="1"/>Responsável
-                            </label>
-                        </div>
-                        <div class="radio-inline">
-                            <label>
-                                <input type="radio" id="hel_statusoutros_tco" name="status_relatorio" value="2" />Outros
-                            </label>
-                        </div>
-                        <div class="radio-inline">
-                            <label>
-                                <input type="radio" id="hel_statustodos_tco" name="status_relatorio" value="3" checked />Todos
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="ordenacao_relatorio" class="col-sm-2 ">Ordenar por</label>
-                        <div class="col-sm-4">
-                            <div class="radio-inline">
-                                <label>
-                                    <input type="radio" id="ordenacao_codigo" name="ordenacao_relatorio" value="0" checked/>Código
-                                </label>
-                            </div>
-                            <div class="radio-inline">
-                                <label>
-                                    <input type="radio" id="ordenacao_nome" name="ordenacao_relatorio" value="1"/>Descrição
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <br/>
-                <div class="form-group">
-                    <center>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
             <div class="modal-content">
@@ -127,44 +61,17 @@
 <script type="text/javascript">
 
     var idExclusao = "";
+    var idSistema = "";
 
-    function abrirConfirmacao(id){
+    function abrirConfirmacao(id, idSis){
         idExclusao = id;
+        idSistema  = idSis;
         $('#myModal').modal('show');
     }
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = 'assunto_sistema/apagar/' + idExclusao;
-    }
-
-    function abrirDialogRelatorio(){
-        $('#relatorio_tipo_contato').modal('show');
-    }
-
-    function visualizarRelatorio() {
-        var orderBy = "";
-        var status = "";
-
-        if (document.getElementById('hel_statustecnico_tco').checked) {
-            status = "0";
-        } else if (document.getElementById('hel_statusresponsavel_tco').checked) {
-            status = "1";
-        } else if (document.getElementById('hel_statusoutros_tco').checked) {
-            status = "2";
-        }else {
-            status = "3";
-        }
-
-        if (document.getElementById('ordenacao_codigo').checked) {
-            orderBy = " ORDER BY hel_pk_seq_tco";
-        } else {
-            orderBy = " ORDER BY hel_desc_tco";
-        }
-
-        $('#relatorio_tipo_contato').modal('hide');
-
-        window.open('tipo_contato/relatorio/'+ orderBy+'/'+status,'_blank');
+        location.href = '{URL_APAGAR}/' + idExclusao + '/' + idSistema;
     }
 
 </script>

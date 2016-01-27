@@ -12,7 +12,7 @@
 			<div class="form-group">
 				<div class="{ERRO_HEL_SEQSER_IOS}">
 					<label for="hel_seqemp_ios" class="col-sm-1 control-label">Serviço</label>
-					<div class="col-sm-5">
+					<div class="col-sm-5" >
 							<select class="form-control" id="hel_seqser_ios" name="hel_seqser_ios" autofocus="autofocus" >
 								<option value="">Selecione...</option>
 									{BLC_SERVICO}
@@ -34,14 +34,16 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="hel_complemento_ios" class="col-sm-1 control-label">Complemento</label>
-					<div class="col-sm-11">
-						<textarea class="form-control" id="hel_complemento_ios" name="hel_complemento_ios" {hel_disabledcomplemento_ios} 
-						          autocomplete="off" autofocus>{hel_complemento_ios}</textarea>
-					</div>
+				<div class="{ERRO_HEL_COMPLEMENTO_IOS}">
+					<label for="hel_complemento_ios" class="col-sm-1 control-label">Complemento</label>
+						<div class="col-sm-11">
+							<textarea class="form-control" id="hel_complemento_ios" name="hel_complemento_ios" readonly  
+							          autocomplete="off" autofocus>{hel_complemento_ios}</textarea>
+						</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<div class="{ERRO_HEL_STATUS_IOS}">
+			<div class="form-group" {hel_hiddensolucao_ios}>
+				<div class="{ERRO_HEL_SOLUCAO_IOS}">
 					<label for="hel_solucao_ios" class="col-sm-1 control-label">Solução</label>
 						<div class="col-sm-11">
 							<textarea {hel_hiddensolucao_ios} class="form-control" id="hel_solucao_ios" name="hel_solucao_ios" 
@@ -65,7 +67,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-11">
 					<button type="submit" name="salvar_cidade" class="btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Salvar</button>
-		        	<a type="button" href="{CONSULTA_ITEM_ORDEM_SERVICO}" class="btn btn-default">Cancelar</a>
+		        	<a type="button" href="{CONSULTA_ITEM_CHAMADO}" class="btn btn-default">Cancelar</a>
 				</div>
 			</div>
 		</form>

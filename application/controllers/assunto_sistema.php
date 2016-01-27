@@ -9,24 +9,26 @@ class Assunto_Sistema extends CI_Controller {
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Assunto_Sistema_Model', 'AssuntoSistemaModel');
 		
-// 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
+		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
-	public function index() {
+	public function index($hel_seqsis_asu) {
 		$dados = array();
 		
-		$dados['NOVO_ASSUNTO_SISTEMA']    = site_url('assunto_sistema/novo');
+		$dados['NOVO_ASSUNTO_SISTEMA']    = site_url('assunto_sistema/novo/'.$hel_seqsis_asu);
+		$dados['URL_APAGAR']    		  = site_url('assunto_sistema/apagar');
 		$dados['BLC_DADOS']   		   	  = array();
+		$dados['hel_seqsis_asu']		  = base64_decode($hel_seqsis_asu);
 
 		$this->carregarDados($dados);
 		
 		$this->parser->parse('assunto_sistema_consulta', $dados);
 	}
 	
-	public function novo() {		
+	public function novo($hel_seqsis_asu) {		
 		$dados = array();
 		$dados['hel_pk_seq_asu']  	= 0;
-		$dados['hel_seqsis_asu']    = 0;
+		$dados['hel_seqsis_asu']    = base64_decode($hel_seqsis_asu);
 		$dados['hel_titulo_asu']    = '';
 		$dados['hel_link_asu']    	= '';
 
@@ -40,11 +42,11 @@ class Assunto_Sistema extends CI_Controller {
 	}
 	
 	private function setarURL(&$dados) {
-		$dados['CONSULTA_ASSUNTO_SISTEMA']= site_url('assunto_sistema');
-		$dados['ACAO_FORM']            = site_url('assunto_sistema/salvar');
+		$dados['CONSULTA_ASSUNTO_SISTEMA']	= site_url('assunto_sistema/index/'.base64_encode($dados['hel_seqsis_asu']));
+		$dados['ACAO_FORM']            		= site_url('assunto_sistema/salvar');
 	}
 	
-	public function editar($hel_pk_seq_asu) {
+	public function editar($hel_pk_seq_asu, $hel_seqsis_asu) {
 		$hel_pk_seq_asu = base64_decode($hel_pk_seq_asu);
 		$dados = array();
 
@@ -56,74 +58,71 @@ class Assunto_Sistema extends CI_Controller {
 
 		$this->setarURL($dados);
 
-		$this->parser->parse('assunto_istema_cadastro', $dados);
+		$this->parser->parse('assunto_sistema_cadastro', $dados);
 	}
 	
 	public function salvar() {
-		global $hel_pk_seq_tco;
-		global $hel_desc_tco;
-		global $hel_tipo_tco;
-
-		$hel_pk_seq_tco  = $this->input->post('hel_pk_seq_tco');
-		$hel_desc_tco    = $this->input->post('hel_desc_tco');
-		$hel_tipo_tco    = $this->input->post('hel_tipo_tco');
+		global $hel_pk_seq_asu;
+		global $hel_seqsis_asu;
+		global $hel_titulo_asu;
+		
+		$hel_pk_seq_asu  = $this->input->post('hel_pk_seq_asu');
+		$hel_seqsis_asu  = $this->input->post('hel_seqsis_asu');
+		$hel_titulo_asu  = $this->input->post('hel_titulo_asu');
 
 		if ($this->testarDados()) {
-			$tipo_contato = array(
-				"hel_desc_tco"   => $hel_desc_tco,
-				"hel_tipo_tco"   => $hel_tipo_tco
+			$assunto = array(
+				"hel_seqsis_asu"   => $hel_seqsis_asu,
+				"hel_titulo_asu"   => $hel_titulo_asu
 			);
 			
-			if (!$hel_pk_seq_tco) {
-				$hel_pk_seq_tco = $this->Tipo_ContatoModel->insert($tipo_contato);
+			if (!$hel_pk_seq_asu) {
+				$hel_pk_seq_asu = $this->AssuntoSistemaModel->insert($assunto);
 			} else {
-				$hel_pk_seq_tco = $this->Tipo_ContatoModel->update($tipo_contato, $hel_pk_seq_tco);
+				$hel_pk_seq_asu = $this->AssuntoSistemaModel->update($assunto, $hel_pk_seq_asu);
 			}
 
-			if (is_numeric($hel_pk_seq_tco)) {
-				$this->session->set_flashdata('sucesso', 'Tipo de Contato salvo com sucesso.');
-				redirect('tipo_contato');
+			if (is_numeric($hel_pk_seq_asu)) {
+				$this->session->set_flashdata('sucesso', 'Assunto do Sistema salvo com sucesso.');
+				redirect('assunto_sistema/index/'.base64_encode($hel_seqsis_asu));
 			} else {
-				$this->session->set_flashdata('erro', $hel_pk_seq_tco);
-				redirect('tipo_contato');
+				$this->session->set_flashdata('erro', $hel_pk_seq_asu);
+				redirect('assunto_sistema/index/'.base64_encode($hel_seqsis_asu));
 			}
 		} else {
-			if (!$hel_pk_seq_tco) {
-				redirect('tipo_contato/novo/');
+			if (!$hel_pk_seq_asu) {
+				redirect('assunto_sistema/novo/'.base64_encode($hel_seqsis_asu));
 			} else {
-				redirect('tipo_contato/editar/'.base64_encode($hel_pk_seq_tco));
+				redirect('assunto_sistema/editar/'.base64_encode($hel_pk_seq_asu).'/'.base64_encode($hel_seqsis_asu));
 			}			
 		}
 	}
 	
-	public function apagar($hel_pk_seq_asu) {
-
+	public function apagar($hel_pk_seq_asu, $hel_seqsis_asu) {
 		$res = $this->AssuntoSistemaModel->delete(base64_decode($hel_pk_seq_asu));
-		
-		if ($res) {	$this->session->set_flashdata('sucesso', 'Assunto do sistema apagado com sucesso.'); }			
-		redirect('assunto_sistema');
+		if ($res) {
+			$this->session->set_flashdata('sucesso', 'Assunto do sistema apagado com sucesso.'); 
+		}			
+		redirect('assunto_sistema/index/'.$hel_seqsis_asu);
 	}
-	
-	
-	
 	
 	private function carregarDados(&$dados) {
 
-		$resultado = $this->AssuntoSistemaModel->getAssunto();
+		$resultado = $this->AssuntoSistemaModel->getAssunto($dados['hel_seqsis_asu']);
 
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
 				"hel_codigo_sis"			=> $registro->hel_codigo_sis,
 				"hel_desc_sis"				=> $registro->hel_desc_sis,
 				"hel_titulo_asu"			=> $registro->hel_titulo_asu,
-				"EDITAR_ASSUNTO_SISTEMA"	=> 'assunto_sistema/editar/'.base64_encode($registro->hel_pk_seq_asu),
-				"APAGAR_ASSUNTO_SISTEMA"	=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_asu)."')"
+				"EDITAR_ASSUNTO_SISTEMA"	=> site_url('assunto_sistema/editar/'.base64_encode($registro->hel_pk_seq_asu).'/'.base64_encode($registro->hel_seqsis_asu)),
+				"APAGAR_ASSUNTO_SISTEMA"	=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_asu)."','".base64_encode($dados['hel_seqsis_asu'])."')"
 			);
 		}
 	}
 	
 	private function carregarAssuntoSistema($hel_pk_seq_asu, &$dados) {
-		$resultado = $this->AssuntoSistemaModel->getAssuntoSistema($hel_pk_seq_asu);
+		$resultado = $this->AssuntoSistemaModel->get($hel_pk_seq_asu);
 
 		if ($resultado) {
 			foreach ($resultado as $chave => $valor) {
@@ -136,25 +135,19 @@ class Assunto_Sistema extends CI_Controller {
 	
 
 	private function testarDados() {
-		global $hel_pk_seq_tco;
-		global $hel_desc_tco;
-		global $hel_tipo_tco;
+		global $hel_pk_seq_asu;
+		global $hel_seqsis_asu;
+		global $hel_titulo_asu;
 
 		$erros    = FALSE;
 		$mensagem = null;
 
-		$hel_desc_tco = trim($hel_desc_tco);
+		$hel_titulo_asu = trim($hel_titulo_asu);
 		
-		if (empty($hel_desc_tco)) {
+		if (empty($hel_titulo_asu)) {
 			$erros    = TRUE;
-			$mensagem .= "- Descrição não preenchida.\n";
-			$this->session->set_flashdata('ERRO_HEL_DESC_TCO', 'has-error');
-		}
-
-		if ($hel_tipo_tco == '') {
-			$erros    = TRUE;
-			$mensagem .= "- Tipo de contado não preenchido.\n";
-			$this->session->set_flashdata('ERRO_HEL_TIPO_TCO', 'has-error');
+			$mensagem .= "- Titulo não foi preenchido.\n";
+			$this->session->set_flashdata('ERRO_HEL_TITULO_ASU', 'has-error');
 		}
 
 
@@ -162,38 +155,19 @@ class Assunto_Sistema extends CI_Controller {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
-			$this->session->set_flashdata('ERRO_HEL_TCO', TRUE);
-			$this->session->set_flashdata('hel_desc_tco', $hel_desc_tco);
-			$this->session->set_flashdata('hel_tipo_tco', $hel_tipo_tco);
+			$this->session->set_flashdata('ERRO_HEL_ASU', TRUE);
+			$this->session->set_flashdata('hel_seqsis_asu', $hel_seqsis_asu);
+			$this->session->set_flashdata('hel_titulo_asu', $hel_titulo_asu);
 
 		}
 				
 		return !$erros;
 	}
 	
-// 	private function testarApagar($hel_pk_seq_tco) {
-// 		$erros    = FALSE;
-// 		$mensagem = null;
-	
-// 		if ($this->ContatoModel->getContatoCadastrado($hel_pk_seq_tco)) {
-// 			$erros    = TRUE;
-// 			$mensagem .= "- Contato cadastrado.\n";
-// 		}
-		
-// 		if ($erros) {
-// 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');
-// 			$this->session->set_flashdata('erro', nl2br($mensagem));
-// 		}
-	
-// 		return !$erros;
-// 	}
-	
 	private function carregarDadosFlash(&$dados) {
-			
-		$ERRO_HEL_ASU   	   = $this->session->flashdata('ERRO_HEL_TCO');
+		$ERRO_HEL_ASU   	   = $this->session->flashdata('ERRO_HEL_ASU');
 		$ERRO_HEL_SEQSIS_ASU   = $this->session->flashdata('ERRO_HEL_SEQSIS_ASU');
 		$ERRO_HEL_TITULO_ASU   = $this->session->flashdata('ERRO_HEL_TITULO_ASU');
-		$ERRO_HEL_LINK_ASU     = $this->session->flashdata('ERRO_HEL_LINK_ASU');
 
 		$hel_seqsis_asu			= $this->session->flashdata('hel_seqsis_asu');
 		$hel_titulo_asu			= $this->session->flashdata('hel_titulo_asu');
@@ -205,9 +179,7 @@ class Assunto_Sistema extends CI_Controller {
 			$dados['hel_link_asu']		   = $hel_link_asu;
 			
 			$dados['ERRO_HEL_SEQSIS_ASU']  = $ERRO_HEL_SEQSIS_ASU;
-			$dados['ERRO_HEL_TITULO_ASU']  = $ERRO_HEL_TITULO_ASU;
-			$dados['ERRO_HEL_LINK_ASU']    = $ERRO_HEL_LINK_ASU;
-			
+			$dados['ERRO_HEL_TITULO_ASU']  = $ERRO_HEL_TITULO_ASU;			
 		}
 	}
 

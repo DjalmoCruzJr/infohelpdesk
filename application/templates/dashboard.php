@@ -318,11 +318,6 @@
 													Menu
 												</a>
 											</li>
-											<li>
-												<a href="<?php echo site_url('assunto_sistema');?>">
-													Assunto Sistema
-												</a>
-											</li>
 										</ul>
 									</li>
 									<li class="nav-parent">

@@ -27,19 +27,19 @@ class Item_Ordem_Servico_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getChamadoOrdemServico($hel_pk_seq_cha) {
+		$this->db->from('heltbios');
+		$this->db->where('hel_tipo_ios <> ', CHAMADO, FALSE);
+		$this->db->where('hel_seqcha_ios = ', $hel_pk_seq_cha, FALSE);
+		return $this->db->get()->result();
+	}
+	
 	public function getItemOrdemServico($hel_seqose_ios) {
 		$this->db->from('heltbios');
 		$this->db->join('heltbser','hel_pk_seq_ser = hel_seqser_ios','LEFT');
 		$this->db->join('heltbcha','hel_pk_seq_cha = hel_seqcha_ios','LEFT');
 		$this->db->join('heltbsis','hel_pk_seq_sis = hel_seqsis_ios','LEFT');
 		$this->db->where('hel_seqose_ios = ', $hel_seqose_ios, FALSE);
-		return $this->db->get()->result();
-	}
-	
-	public function getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp) {
-		$this->db->from('heltbemp');
-		$this->db->where('hel_pk_seq_emp <> ', $hel_pk_seq_emp, FALSE);
-		$this->db->where('hel_cnpj_emp', $hel_cnpj_emp, FALSE);
 		return $this->db->get()->result();
 	}
 

@@ -57,7 +57,7 @@
                     <h3 class="modal-title" id="myModalLabel">Info Rio Sistemas</h3>
                 </div>
                 <div class="modal-body">
-                    <h4>Deseja realmente apagar este contato ?</h4>
+                    <h4>Deseja realmente apagar este chamado ?</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="apagar()">Sim</button>
@@ -146,7 +146,7 @@
 
     function apagar(){
         $('#myModal').modal('hide');
-        location.href = 'contato/apagar/' + idExclusao;
+        location.href = 'chamado/apagar/' + idExclusao;
     }
 
     function abrirDialogRelatorio(){

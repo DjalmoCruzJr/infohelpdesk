@@ -28,28 +28,6 @@ class Ordem_Servico_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp) {
-		$this->db->from('heltbemp');
-		$this->db->where('hel_pk_seq_emp <> ', $hel_pk_seq_emp, FALSE);
-		$this->db->where('hel_cnpj_emp', $hel_cnpj_emp, FALSE);
-		return $this->db->get()->result();
-	}
-	
-	public function getServicoCadastrado($gab_pk_seq_cid) {
-		$this->db->where('gab_seqcid_sec', $gab_pk_seq_cid);
-		$this->db->from('gabtbsec');
-		$this->db->join('gabtbcid', 'gab_pk_seq_cid = gab_seqcid_sec', 'LEFT');
-		return $this->db->get()->result();
-	}
-	
-	public function getComunicacaoCadastrada($gab_pk_seq_cid) {
-		$this->db->where('gab_seqcid_coc', $gab_pk_seq_cid);
-		$this->db->from('gabtbcoc');
-		$this->db->join('gabtbcid', 'gab_pk_seq_cid = gab_seqcid_coc', 'LEFT');
-		return $this->db->get()->result();
-	}
-	
-	
 	public function insert($ordem_servico) {
 		$res = $this->db->insert('heltbose', $ordem_servico);
 	

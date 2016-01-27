@@ -7,6 +7,7 @@ class Chamado extends CI_Controller {
  		$this->layout = LAYOUT_DASHBOARD;
 		
  		$this->load->model('Chamado_Model', 'ChamadoModel');
+ 		$this->load->model('Item_Ordem_Servico_Model', 'ItemOrdemServicoModel');
  		$this->load->model('Contato_Model', 'ContatoModel');
  		$this->load->model('Item_Chamado_Model', 'ItemChamadoModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
@@ -296,6 +297,7 @@ class Chamado extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_SEQCON_CHA', 'has-error');
 		}
 		
+		
 		if (empty($hel_seqconde_cha) and ($this->session->userdata('hel_tipo_tco') == 0) ) {
 			$erros    = TRUE;
 			$mensagem .= "- Informe para quem está abrindo o chamado.\n";
@@ -317,7 +319,7 @@ class Chamado extends CI_Controller {
 				$hel_seqexc_cha = $resultado->hel_pk_seq_exc;
 			}
 			
-			if ( $hel_seqconde_cha == $hel_seqconpara_cha ){
+			if ( !empty($hel_seqconde_cha) and !empty($hel_seqconpara_cha) and ($hel_seqconde_cha == $hel_seqconpara_cha) ){
 				$erros    = TRUE;
 				$mensagem .= "- Não pode abrir o chamado para você mesmo.\n";
 				$this->session->set_flashdata('ERRO_HEL_SEQCONPARA_CHA', 'has-error');
@@ -347,15 +349,19 @@ class Chamado extends CI_Controller {
 		return !$erros;
 	}
 	
-	private function testarApagar($hel_pk_seq_cid) {
+	private function testarApagar($hel_pk_seq_cha) {
 		$erros    = FALSE;
 		$mensagem = null;
 		
-		if ($this->ItemChamadoModel->){
-			
+		if ($this->ItemChamadoModel->getChamadoItem($hel_pk_seq_cha)){
+			$erros    = TRUE;
+			$mensagem = " - Chamado com iten(s) aberto(s) .\n";
 		}
-	
-		
+
+		if ($this->ItemOrdemServicoModel->getChamadoOrdemServico($hel_pk_seq_cha)){
+			$erros    = TRUE;
+			$mensagem = " - Ordem de Serviço para este chamado .\n";
+		}
 	
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');

@@ -121,6 +121,7 @@ class Sistema extends CI_Controller {
 				"hel_desc_sis"       => $registro->hel_desc_sis,
 				"hel_tipo_sis"       => $this->carregarTipoSistema($registro->hel_tipo_sis),
 				"EDITAR_SISTEMA"	 => 'sistema/editar/'.base64_encode($registro->hel_pk_seq_sis),
+				"ASSUNTO_SISTEMA"	 => 'assunto_sistema/index/'.base64_encode($registro->hel_pk_seq_sis),
 				"APAGAR_SISTEMA" 	 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_sis)."')"
 			);
 		}
