@@ -340,18 +340,18 @@
 									</li>
 									
 									<li class="nav-parent">
-										<a>
+										<a {desabilita}>
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
 											<span>Relatórios</span>
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="<?php echo site_url('relatorio_contato_empresa');?>">
+												<a href="<?php echo site_url('relatorio_contato_empresa');?>" {desabilita}>
 													Contatos da Empresa
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('relatorio_menu_contratado');?>">
+												<a href="<?php echo site_url('relatorio_menu_contratado');?>" {desabilita}>
 													Menu Contratado
 												</a>
 											</li>
