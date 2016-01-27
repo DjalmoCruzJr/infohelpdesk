@@ -88,7 +88,10 @@ class Template {
 		
 	private function carregarDadosSessao($CI, &$html) {
 		$html	= str_replace("{hel_login_con}", $CI->session->userdata('hel_login_con'), $html);
-		$html	= str_replace("{hel_desc_tco}", $CI->session->userdata('hel_desc_tco'), $html); 		
+		$html	= str_replace("{hel_desc_tco}", $CI->session->userdata('hel_desc_tco'), $html);
+		$html	= str_replace("{desabilita}", $CI->session->userdata('hel_tipo_tco') <> 0 ? 'style="display:none"' : '', $html);
 	}
-	
+
+
+
 }

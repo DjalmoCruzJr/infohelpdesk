@@ -258,7 +258,7 @@
 							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 						</div>
 					</div>
-				
+
 					<div class="nano">
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
@@ -270,43 +270,43 @@
 										</a>
 									</li>								
 									<li class="nav-parent">
-										<a>
+										<a {desabilita}>
 											<i class="fa fa-file-o" aria-hidden="true"></i>
 											<span>Cadastros</span>
 										</a>
-										<ul class="nav nav-children">
+										<ul class="nav nav-children" >
 											<li>
-												<a href="<?php echo site_url('cidade')?>">
-													 Cidades
+												<a href="<?php echo site_url('cidade')?>" {desabilita}>
+													 	 Cidades
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('empresa')?>">
+												<a href="<?php echo site_url('empresa')?>" {desabilita}>
 													 Empresa
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('tipo_contato');?>">
+												<a href="<?php echo site_url('tipo_contato');?>"{desabilita}>
 													Tipo contato
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('contato');?>">
+												<a href="<?php echo site_url('contato');?>" {desabilita}>
 													Contato
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('servico');?>">
+												<a href="<?php echo site_url('servico');?>"{desabilita}>
 													Serviço
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('sistema');?>">
+												<a href="<?php echo site_url('sistema');?>"{desabilita}>
 													Sistema
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('menu');?>">
+												<a href="<?php echo site_url('menu');?>"{desabilita}>
 													Menu
 												</a>
 											</li>
@@ -324,7 +324,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('ordem_servico');?>">
+												<a href="<?php echo site_url('ordem_servico');?>"{desabilita}>
 													Ordem de Serviço 
 												</a>
 											</li>
