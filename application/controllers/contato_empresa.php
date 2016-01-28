@@ -42,7 +42,7 @@ class Contato_Empresa extends CI_Controller {
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
 				"hel_nome_con"  => $registro->hel_nome_con,
-				"hel_desc_tco"	=> $registro->hel_desc_tco,
+				//"hel_desc_con"	=> $registro->hel_desc_con,
 				"hel_ativo_con"	=> $registro->hel_ativo_con == 1 ? 'Ativo' : 'Inativo'
 			);
 		}
