@@ -9,13 +9,29 @@
 			<input type="hidden" id="hel_seqsis_asu" name="hel_seqsis_asu" value="{hel_seqsis_asu}"/>
 			<div class="form-group">
 				<div class="{ERRO_HEL_TITULO_ASU}">
-					<label for="hel_desc_tco" class="col-sm-1 control-label">Assunto</label>
+					<label for="hel_desc_tco" class="col-sm-1 control-label">Título</label>
 					<div class="col-sm-11">
 						<input type="text" class="form-control" id="hel_titulo_asu" name="hel_titulo_asu" 
 							   value="{hel_titulo_asu}" maxlength="100" autocomplete="off" autofocus/>
 					</div>
 				</div>
 			</div>
+			
+			<div class="btn btn-success fileinput-button">
+			 	<i class="glyphicon glyphicon-plus"></i>
+			    	<span>Escolher Arquivo ...</span>
+			        <input id="hel_link_asu" type="file" name="hel_link_asu">
+			</div>
+			<div class="btn btn-danger fileinput-button">
+			 	<i class="glyphicon glyphicon-trash"></i>
+			    	<span>Apagar</span>
+			        <input id="filedanger" type="file">
+			</div>
+			<div id="progress" class="progress" hidden="hidden">
+				<div class="progress-bar progress-bar-success"></div>
+			</div>
+			<div id="files" class="files"></div>
+			<br>
 			
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-11">

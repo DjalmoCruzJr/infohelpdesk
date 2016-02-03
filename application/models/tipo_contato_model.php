@@ -14,13 +14,6 @@ class Tipo_Contato_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-	public function getContatoCadastrado($gab_pk_seq_tco) {
-		$this->db->where('gab_seqtco_con', $gab_pk_seq_tco);
-		$this->db->from('gabtbcon');
-		$this->db->join('gabtbcto', 'gab_pk_seq_tco = gab_seqto_con', 'LEFT');
-		return $this->db->get()->result();
-	}
-
 	public function insert($tipo_contato) {
 		$res = $this->db->insert('heltbtco', $tipo_contato);
 	

@@ -5,7 +5,8 @@ class Assunto_Sistema extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
-		$this->layout = LAYOUT_DASHBOARD;
+// 		$this->layout = LAYOUT_DASHBOARD;
+
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Assunto_Sistema_Model', 'AssuntoSistemaModel');
 		
@@ -17,6 +18,7 @@ class Assunto_Sistema extends CI_Controller {
 		
 		$dados['NOVO_ASSUNTO_SISTEMA']    = site_url('assunto_sistema/novo/'.$hel_seqsis_asu);
 		$dados['URL_APAGAR']    		  = site_url('assunto_sistema/apagar');
+		$dados['VOLTAR_SISTEMA']   		  = site_url('sistema');
 		$dados['BLC_DADOS']   		   	  = array();
 		$dados['hel_seqsis_asu']		  = base64_decode($hel_seqsis_asu);
 
@@ -65,37 +67,53 @@ class Assunto_Sistema extends CI_Controller {
 		global $hel_pk_seq_asu;
 		global $hel_seqsis_asu;
 		global $hel_titulo_asu;
+		global $hel_link_asu;
+		$config = array();
 		
 		$hel_pk_seq_asu  = $this->input->post('hel_pk_seq_asu');
 		$hel_seqsis_asu  = $this->input->post('hel_seqsis_asu');
 		$hel_titulo_asu  = $this->input->post('hel_titulo_asu');
-
-		if ($this->testarDados()) {
-			$assunto = array(
-				"hel_seqsis_asu"   => $hel_seqsis_asu,
-				"hel_titulo_asu"   => $hel_titulo_asu
-			);
-			
-			if (!$hel_pk_seq_asu) {
-				$hel_pk_seq_asu = $this->AssuntoSistemaModel->insert($assunto);
-			} else {
-				$hel_pk_seq_asu = $this->AssuntoSistemaModel->update($assunto, $hel_pk_seq_asu);
-			}
-
-			if (is_numeric($hel_pk_seq_asu)) {
-				$this->session->set_flashdata('sucesso', 'Assunto do Sistema salvo com sucesso.');
-				redirect('assunto_sistema/index/'.base64_encode($hel_seqsis_asu));
-			} else {
-				$this->session->set_flashdata('erro', $hel_pk_seq_asu);
-				redirect('assunto_sistema/index/'.base64_encode($hel_seqsis_asu));
-			}
-		} else {
-			if (!$hel_pk_seq_asu) {
-				redirect('assunto_sistema/novo/'.base64_encode($hel_seqsis_asu));
-			} else {
-				redirect('assunto_sistema/editar/'.base64_encode($hel_pk_seq_asu).'/'.base64_encode($hel_seqsis_asu));
-			}			
+		
+		$config['upload_path'] 	 	= base_url().'uploads/';
+		$config['allowed_types'] 	= 'jpg|png|pdf|btmp|jpeg|doc';
+		$config['max_size']     	= '100';
+		$config['max_width'] 		= '1024';
+		$config['max_height'] 		= '768';
+		
+		$this->load->library('upload', $config);
+		
+		if ($this->upload->do_upload('hel_link_asu')){
+			echo 'Caminho do arquivo -> '.$config['upload_path'].$hel_titulo_asu;
+		}else {
+			echo $this->upload->display_errors();
 		}
+
+// 		if ($this->testarDados()) {
+// 			$assunto = array(
+// 				"hel_seqsis_asu"   => $hel_seqsis_asu,
+// 				"hel_titulo_asu"   => $hel_titulo_asu
+// 			);
+			
+// 			if (!$hel_pk_seq_asu) {
+// 				$hel_pk_seq_asu = $this->AssuntoSistemaModel->insert($assunto);
+// 			} else {
+// 				$hel_pk_seq_asu = $this->AssuntoSistemaModel->update($assunto, $hel_pk_seq_asu);
+// 			}
+
+// 			if (is_numeric($hel_pk_seq_asu)) {
+// 				$this->session->set_flashdata('sucesso', 'Assunto do Sistema salvo com sucesso.');
+// 				redirect('assunto_sistema/index/'.base64_encode($hel_seqsis_asu));
+// 			} else {
+// 				$this->session->set_flashdata('erro', $hel_pk_seq_asu);
+// 				redirect('assunto_sistema/index/'.base64_encode($hel_seqsis_asu));
+// 			}
+// 		} else {
+// 			if (!$hel_pk_seq_asu) {
+// 				redirect('assunto_sistema/novo/'.base64_encode($hel_seqsis_asu));
+// 			} else {
+// 				redirect('assunto_sistema/editar/'.base64_encode($hel_pk_seq_asu).'/'.base64_encode($hel_seqsis_asu));
+// 			}			
+// 		}
 	}
 	
 	public function apagar($hel_pk_seq_asu, $hel_seqsis_asu) {

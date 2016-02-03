@@ -36,7 +36,8 @@ class Item_Ordem_Servico extends CI_Controller {
 	public function novo($hel_seqose_ios) {
 
 		$dados = array();
-		$dados['hel_pk_seq_ios']  		= 0;		
+		$dados['hel_pk_seq_ios']  		= 0;
+		$dados['hel_tipo_ios']  		= ORDEM_SERVICO;
 		$dados['hel_seqose_ios']    	= base64_decode($hel_seqose_ios);
 		$dados['hel_seqser_ios']      	= '';
 		$dados['hel_seqcha_ios']      	= '';
@@ -82,13 +83,15 @@ class Item_Ordem_Servico extends CI_Controller {
 	
 	public function salvar() {
 		global $hel_pk_seq_ios;
+		global $hel_tipo_ios;
 		global $hel_seqose_ios;
 		global $hel_seqser_ios;
 		global $hel_seqsis_ios;
 		global $hel_seqcha_ios;
 		global $hel_complemento_ios;
 		
-		$hel_pk_seq_ios  		= $this->input->post('hel_pk_seq_ios');			
+		$hel_pk_seq_ios  		= $this->input->post('hel_pk_seq_ios');
+		$hel_tipo_ios    		= $this->input->post('hel_tipo_ios');
 		$hel_seqose_ios    		= $this->input->post('hel_seqose_ios');
 		$hel_seqser_ios 		= $this->input->post('hel_seqser_ios');
 		$hel_seqsis_ios 		= $this->input->post('hel_seqsis_ios');
@@ -98,6 +101,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		if ($this->testarDados()) {
 			
 			$item_ordem_servico = array(
+				"hel_tipo_ios"       	=> $hel_tipo_ios,					
 				"hel_seqose_ios"        => $hel_seqose_ios,
 				"hel_seqser_ios"		=> $hel_seqser_ios,
 				"hel_seqsis_ios"   		=> $hel_seqsis_ios, 
@@ -255,6 +259,7 @@ class Item_Ordem_Servico extends CI_Controller {
 	
 	private function testarDados() {
 		global $hel_pk_seq_ios;
+		global $hel_tipo_ios;
 		global $hel_seqose_ios;
 		global $hel_seqser_ios;
 		global $hel_seqsis_ios;
@@ -267,6 +272,11 @@ class Item_Ordem_Servico extends CI_Controller {
 		$hel_seqser_ios = empty($hel_seqser_ios) ? null : $hel_seqser_ios;
 		$hel_seqsis_ios = empty($hel_seqsis_ios) ? null : $hel_seqsis_ios;
 		$hel_seqcha_ios = empty($hel_seqcha_ios) ? null : $hel_seqcha_ios;
+		
+		if ($hel_tipo_ios <> 0){
+			$erros    = TRUE;
+			$mensagem .= "- Tipo de Ordem de Serviço inválido.\n";
+		}
 		
 		if (empty($hel_seqser_ios)) {
 			$erros    = TRUE;
@@ -290,7 +300,8 @@ class Item_Ordem_Servico extends CI_Controller {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
-			$this->session->set_flashdata('ERRO_HEL_IOS', TRUE);				
+			$this->session->set_flashdata('ERRO_HEL_IOS', TRUE);
+			$this->session->set_flashdata('hel_tipo_ios', $hel_tipo_ios);
 			$this->session->set_flashdata('hel_seqose_ios', $hel_seqose_ios);
 			$this->session->set_flashdata('hel_seqser_ios', $hel_seqser_ios);
 			$this->session->set_flashdata('hel_seqsis_ios', $hel_seqsis_ios);
@@ -319,6 +330,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		$ERRO_HEL_SEQSER_IOS = $this->session->flashdata('ERRO_HEL_SEQSER_IOS');
 		$ERRO_HEL_SEQSIS_IOS = $this->session->flashdata('ERRO_HEL_SEQSIS_IOS');
 
+		$hel_tipo_ios      	 = $this->session->flashdata('hel_tipo_ios');
 		$hel_seqose_ios      = $this->session->flashdata('hel_seqose_ios');
 		$hel_seqser_ios      = $this->session->flashdata('hel_seqser_ios');
 		$hel_seqsis_ios      = $this->session->flashdata('hel_seqsis_ios');
@@ -326,6 +338,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		$hel_complemento_ios = $this->session->flashdata('hel_complemento_ios');
 				
 		if ($ERRO_HEL_IOS) {
+			$dados['hel_tipo_ios']       	= $hel_tipo_ios;
 			$dados['hel_seqose_ios']       	= $hel_seqose_ios;
 			$dados['hel_seqser_ios']       	= $hel_seqser_ios;
 			$dados['hel_seqsis_ios']       	= $hel_seqsis_ios;

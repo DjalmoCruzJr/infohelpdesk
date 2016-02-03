@@ -21,7 +21,7 @@
 								<th>Código</th>
 								<th>Descrição</th>
 								<th>Tipo</th>
-								<th class="coluna-acao" width="80"></th>
+								<th class="coluna-acao" width="105">Assunto Sistema</th>
 								<th class="coluna-acao" width="80"></th>
 								<th class="coluna-acao" width="80"></th>
 							</tr>
@@ -32,8 +32,8 @@
 								<td class="vertical-center">{hel_codigo_sis}</td>
 								<td class="vertical-center">{hel_desc_sis}</td>
 								<td class="vertical-center">{hel_tipo_sis}</td>
+								<td class="text-center"><a href="{ASSUNTO_SISTEMA}" class="btn btn-link btn-xs {dis_alterar}" title="Assunto Sistema"><i class="glyphicon glyphicon-list-alt"></i></a></td>
 								<td class="text-center"><a href="{EDITAR_SISTEMA}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
-								<td class="text-center"><a href="{ASSUNTO_SISTEMA}" class="btn btn-link btn-xs {dis_alterar}" title="Assunto Sistema"><i class="glyphicon glyphicon-list-alt"></i></a></td>								
 								<td class="text-center"><a onclick="{APAGAR_SISTEMA}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 							</tr>
 							{/BLC_DADOS}

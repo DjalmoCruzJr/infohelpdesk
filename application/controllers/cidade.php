@@ -140,8 +140,6 @@ class Cidade extends CI_Controller {
 		} else {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');			
 		}
-		
-		$dados['gab_selected_uf'] = 'selected';
 	}
 	
 	

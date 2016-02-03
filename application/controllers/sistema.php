@@ -8,6 +8,7 @@ class Sistema extends CI_Controller {
  		$this->layout = LAYOUT_DASHBOARD;
 		
 		$this->load->model('Sistema_Model', 'SistemaModel');
+		$this->load->model('Sistema_Contratado_Model', 'SistemaContratadoModel');
 		$this->load->model('assunto_sistema_model', 'AssuntoSistemaModel');
 		
 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
@@ -212,9 +213,9 @@ class Sistema extends CI_Controller {
 		$erros    = FALSE;
 		$mensagem = null;
 		
-		if ($this->AssuntoSistemaModel->getAssuntoSistema($hel_pk_seq_sis)) {
+		if ($this->SistemaContratadoModel->getContradoSistema($hel_pk_seq_sis)) {
 			$erros    = TRUE;
-			$mensagem .= "- Assunto do sistema cadastrado.\n";
+			$mensagem .= "- Sistema Contradado para empresa(s).\n";
 		}
 		
 		if ($this->AssuntoSistemaModel->getAssuntoSistema($hel_pk_seq_sis)) {

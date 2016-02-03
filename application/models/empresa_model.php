@@ -35,21 +35,6 @@ class Empresa_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getServicoCadastrado($gab_pk_seq_cid) {
-		$this->db->where('gab_seqcid_sec', $gab_pk_seq_cid);
-		$this->db->from('gabtbsec');
-		$this->db->join('gabtbcid', 'gab_pk_seq_cid = gab_seqcid_sec', 'LEFT');
-		return $this->db->get()->result();
-	}
-	
-	public function getComunicacaoCadastrada($gab_pk_seq_cid) {
-		$this->db->where('gab_seqcid_coc', $gab_pk_seq_cid);
-		$this->db->from('gabtbcoc');
-		$this->db->join('gabtbcid', 'gab_pk_seq_cid = gab_seqcid_coc', 'LEFT');
-		return $this->db->get()->result();
-	}
-	
-	
 	public function insert($empresa) {
 		$res = $this->db->insert('heltbemp', $empresa);
 	

@@ -36,6 +36,9 @@
                 </div>
             </div>
         </div>
+        <div class="text-right">
+        	<a href="{VOLTAR_SISTEMA}" class="btn btn-info"><i class="glyphicon glyphicon-chevron-left"></i> Voltar Sistema</a>
+        </div>
     </div>
 </div>
 

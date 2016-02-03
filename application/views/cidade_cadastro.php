@@ -9,7 +9,7 @@
 			<input type="hidden" id="hel_pk_seq_cid" name="hel_pk_seq_cid" value="{hel_pk_seq_cid}"/>				
 			<div class="form-group">
 				<div class="{ERRO_HEL_NOME_CID}">
-					<label for="gab_nome_cid" class="col-sm-1 control-label">Nome</label>
+					<label for="hel_nome_cid" class="col-sm-1 control-label">Nome</label>
 					<div class="col-sm-11">
 						<input type="text" class="form-control" id="hel_nome_cid" name="hel_nome_cid" 
 						       value="{hel_nome_cid}" maxlength="60" autocomplete="off" autofocus/>

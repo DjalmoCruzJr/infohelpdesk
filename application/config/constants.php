@@ -42,6 +42,7 @@ define('CHAMADO_ATIVO',							'1');
 define('CHAMADO',								'1');
 define('TECNICO',								'0');
 define('ABERTO',								'0');
+define('ORDEM_SERVICO',							'0');
 define('LAYOUT_DASHBOARD',						'dashboard');
 
 

@@ -22,6 +22,13 @@ class Sistema_Contratado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getContradoSistema($hel_pk_seq_sis) {
+		$this->db->from('heltbsco');
+		$this->db->where('hel_seqsis_sco', $hel_pk_seq_sis, FALSE);
+		return $this->db->get()->result();
+	}
+	
+	
 	public function getSistemasContratados($hel_pk_seq_emp) {
 		$this->db->from('heltbsco');
 		$this->db->join('heltbsis','hel_pk_seq_sis = hel_seqsis_sco','INNER');

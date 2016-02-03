@@ -1,5 +1,5 @@
 <header class="page-header">
-	<h2>Servico - {ACAO}</h2>
+	<h2>Serviço - {ACAO}</h2>
 </header>
 
 <div class="panel panel-default">
