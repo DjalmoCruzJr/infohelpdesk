@@ -38,7 +38,7 @@
 					<label for="hel_dateinicial_ose" class="col-sm-1 control-label">Data Inicial</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control mask-date" id="hel_dateinicial_ose" name="hel_dateinicial_ose"
-						       value="{hel_dateinicial_ose}" autocomplete="off" autofocus/>
+						       value="{hel_datainicial_ose}" autocomplete="off" autofocus/>
 					</div>
 				</div>
 				<div class="{ERRO_HEL_HORARIOINCIAL_OSE}">
@@ -54,7 +54,7 @@
 					<label for="hel_datefinal_ose" class="col-sm-1 control-label">Data Final</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control mask-date" id="hel_datefinal_ose" name="hel_datefinal_ose"
-						       value="{hel_datefinal_ose}" autocomplete="off" autofocus/>
+						       value="{hel_datafinal_ose}" autocomplete="off" autofocus/>
 					</div>
 				</div>
 				<div class="{ERRO_HEL_HORARIOFINAL_OSE}">

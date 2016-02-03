@@ -12,14 +12,38 @@
 			$dat = substr_replace($dat, "-",4,0);
 			$dat = substr_replace($dat, "-",7,0);
 			
-			$data = explode("-",$dat); // fatia a string $dat em pedaços, usando / como referência
+			$data = explode("-",$dat); // fatia a string $dat em pedaços, usando - como referência
 			$d = $data[2];
 			$m = $data[1];
 			$y = $data[0];
 			
 			return checkdate($m,$d,$y);
 		}
-		
+
+		function inverteData($data){
+			if(count(explode("/",$data)) > 1){
+				return implode("-",array_reverse(explode("/",$data)));
+			}elseif(count(explode("-",$data)) > 1){
+				return implode("/",array_reverse(explode("-",$data)));
+			}
+			return $data;
+		}
+
+
+		public function inverteDataPadrao($data){
+			if(count(explode("-",$data)) > 1){
+				return implode("",array_reverse(explode("-",$data)));
+			}
+		}
+
+		public function gravar_data_banco($dat){
+			$dat = implode("", array_reverse(explode("/", trim($dat))));
+			$dat = substr_replace($dat, "-",4,0);
+			$dat = substr_replace($dat, "-",7,0);
+			return $dat;
+		}
+
+
 		public function autorizacao($hel_tipo_tco){
 			return $hel_tipo_tco <> 0 ? TRUE : FALSE;
 		}

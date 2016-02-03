@@ -34,6 +34,16 @@ class Json extends CI_Controller {
 	public function carregar_contato($empresa) {
 		$resultado = $this->EmpresaContatoModel->getEmpresaContato2($empresa);
 		echo json_encode($resultado, JSON_PRETTY_PRINT);			
-	}	
+	}
+
+	public function carregar_contato_relatorio($empresa) {
+		$filtro_empresa = array ();
+		$data = explode(",",$empresa);
+		for ($i = 0; $i < sizeof($data); $i ++){
+			$filtro_empresa[$i] = $data[$i];
+		}
+		$resultado = $this->EmpresaContatoModel->getEmpresaContatoRelatorio($filtro_empresa);
+		echo json_encode($resultado, JSON_PRETTY_PRINT);
+	}
 
 }

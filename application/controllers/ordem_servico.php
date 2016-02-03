@@ -4,7 +4,7 @@ class Ordem_Servico extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 				
- 		$this->layout = LAYOUT_DASHBOARD;
+		$this->layout = LAYOUT_DASHBOARD;
 		
  		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
@@ -19,10 +19,12 @@ class Ordem_Servico extends CI_Controller {
 		$dados = array();
 		
 		$dados['NOVA_ORDEM_SERVICO']	= site_url('ordem_servico/novo');
+		$dados['URL_BUSCAR_CONTATO']   	= site_url('json/json/carregar_contato_relatorio');
 		
 		$dados['BLC_DADOS']  = array();
 		
 		$this->carregarDados($dados);
+		$this->carregarEmpresaRelatorio($dados);
 				
 		$this->parser->parse('ordem_servico_consulta', $dados);
 	}
@@ -31,9 +33,9 @@ class Ordem_Servico extends CI_Controller {
 
 		$dados = array();
 		$dados['hel_pk_seq_ose']  			= 0;
-		$dados['hel_dateinicial_ose']    	= '';
+		$dados['hel_datainicial_ose']    	= '';
 		$dados['hel_horarioinicial_ose']    = '';
-		$dados['hel_datefinal_ose']    		= '';
+		$dados['hel_datafinal_ose']    		= '';
 		$dados['hel_horariofinal_ose']      = '';
 		$dados['hel_seqemp_ose']    		= '';
 		$dados['hel_seqcon_ose']    		= '';
@@ -51,12 +53,12 @@ class Ordem_Servico extends CI_Controller {
 		$this->parser->parse('ordem_servico_cadastro', $dados);
 	}
 	
-	public function editar($hel_pk_seq_ose) {		
+	public function editar($hel_pk_seq_ose) {
 		$hel_pk_seq_ose = base64_decode($hel_pk_seq_ose);
 		$dados = array();
-		
+
 		$this->carregarOrdemServico($hel_pk_seq_ose, $dados);
-		
+
 		$dados['ACAO'] = 'Editar';
 		$this->setarURL($dados);
 		
@@ -65,7 +67,7 @@ class Ordem_Servico extends CI_Controller {
 		$this->carregarEmpresa($dados);
 		$this->carregarContatoEmpresa($dados);
 		
-		$this->parser->parse('ordem_servico_cadastro', $dados);	
+		$this->parser->parse('ordem_servico_cadastro', $dados);
 	}
 	
 	public function salvar() {
@@ -97,18 +99,15 @@ class Ordem_Servico extends CI_Controller {
 			$ordem_servico = array(
 				"hel_seqexc_ose"           => $hel_seqexc_ose,
 				"hel_seqcontec_ose"		   => $this->session->userdata('hel_pk_seq_con'),
-				"hel_datainicial_ose"      => $hel_dateinicial_ose,
+				"hel_datainicial_ose"      => $this->util->gravar_data_banco($hel_dateinicial_ose),
 				"hel_horarioinicial_ose"   => $hel_horarioinicial_ose,
-				"hel_datafinal_ose"        => $hel_datefinal_ose,
+				"hel_datafinal_ose"        => $this->util->gravar_data_banco($hel_datefinal_ose),
 				"hel_horariofinal_ose"     => $hel_horariofinal_ose,					
 				"hel_kminicial_ose"        => $hel_kminicial_ose,
 				"hel_kmfinal_ose"  		   => $hel_kmfinal_ose,
 				"hel_observacao_ose" 	   => $hel_observacao_ose
 			);
-			
-			
-			
-			if (!$hel_pk_seq_ose) {	
+			if (!$hel_pk_seq_ose) {
 				$hel_pk_seq_ose = $this->OrdemServicoModel->insert($ordem_servico);
 			} else {
 				$hel_pk_seq_ose = $this->OrdemServicoModel->update($ordem_servico, $hel_pk_seq_ose);
@@ -118,7 +117,7 @@ class Ordem_Servico extends CI_Controller {
 				$this->session->set_flashdata('sucesso', 'Ordem de serviço salva com sucesso.');
 				redirect('ordem_servico');
 			} else {
-				$this->session->set_flashdata('erro', $hel_pk_seq_ose);	
+				$this->session->set_flashdata('erro', $hel_pk_seq_ose);
 				redirect('ordem_servico');
 			}
 		} else {
@@ -156,8 +155,8 @@ class Ordem_Servico extends CI_Controller {
 			$dados['BLC_DADOS'][] = array(
 				"hel_nomefantasia_emp" 	 => $registro->hel_nomefantasia_emp,							
 				"hel_nome_con"         	 => $registro->hel_nome_con,
-				"hel_datainicial_ose" 	 => $registro->hel_datainicial_ose,
-				"hel_datafinal_ose" 	 => $registro->hel_datafinal_ose,
+				"hel_datainicial_ose" 	 => $this->util->inverteData($registro->hel_datainicial_ose),
+				"hel_datafinal_ose" 	 => $this->util->inverteData($registro->hel_datafinal_ose),
 				"ITEM_ORDEM_SERVICO" 	 => site_url('item_ordem_servico/index/'.base64_encode($registro->hel_pk_seq_ose)),					
 				"EDITAR_ORDEM_SERVICO" 	 => site_url('ordem_servico/editar/'.base64_encode($registro->hel_pk_seq_ose)),
 				"APAGAR_ORDEM_SERVICO" 	 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ose)."')"
@@ -192,7 +191,21 @@ class Ordem_Servico extends CI_Controller {
 		}else {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');
 		}
-				
+
+		$dados['hel_datainicial_ose'] = $this->util->inverteDataPadrao($dados['hel_datainicial_ose']);
+		$dados['hel_datafinal_ose']   = $this->util->inverteDataPadrao($dados['hel_datafinal_ose']);
+	}
+
+	private function carregarEmpresaRelatorio(&$dados) {
+		$resultado = $this->EmpresaModel->getEmpresaAtivo();
+
+		foreach ($resultado as $registro) {
+			$dados['BLC_EMPRESA_RELATORIO'][] = array(
+				"hel_pk_seq_emp"     	=> $registro->hel_pk_seq_emp,
+				"hel_nomefantasia_emp" 	=> $registro->hel_nomefantasia_emp
+			);
+		}
+		!$resultado ? $dados['BLC_EMPRESA_RELATORIO'][] = array("hel_nomefantasia_emp" => 'Não existe nenhuma empresa cadastrada') :'';
 	}
 	
 	private function carregarEmpresa(&$dados) {
@@ -238,7 +251,7 @@ class Ordem_Servico extends CI_Controller {
 		
 		if (empty($hel_dateinicial_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- Data inicial não foi informado.\n";
+			$mensagem .= "- Data inicial não foi informada.\n";
 			$this->session->set_flashdata('ERRO_HEL_DATEINCIAL_OSE', 'has-error');
 		} else if (!$this->util->validarData($hel_dateinicial_ose)){
 			$erros    = TRUE;
@@ -248,7 +261,7 @@ class Ordem_Servico extends CI_Controller {
 		
 		if (empty($hel_horarioinicial_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- Horário inicial não foi informado.\n";
+			$mensagem .= "- Horário inicial não foi informada.\n";
 			$this->session->set_flashdata('ERRO_HEL_HORARIOINCIAL_OSE', 'has-error');
 		} else if ($this->util->validarHora($hel_horarioinicial_ose)){
 			$erros    = TRUE;
@@ -297,9 +310,9 @@ class Ordem_Servico extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_OSE', TRUE);				
 			$this->session->set_flashdata('hel_seqemp_ose', $hel_seqemp_ose);
 			$this->session->set_flashdata('hel_seqcon_ose', $hel_seqcon_ose);
-			$this->session->set_flashdata('hel_dateinicial_ose', $hel_dateinicial_ose );
+			$this->session->set_flashdata('hel_datainicial_ose', $hel_dateinicial_ose );
 			$this->session->set_flashdata('hel_horarioinicial_ose', $hel_horarioinicial_ose);
-			$this->session->set_flashdata('hel_datefinal_ose', $hel_datefinal_ose);
+			$this->session->set_flashdata('hel_datafinal_ose', $hel_datefinal_ose);
 			$this->session->set_flashdata('hel_horariofinal_ose', $hel_horariofinal_ose);
 			$this->session->set_flashdata('hel_kminicial_ose', $hel_kminicial_ose);
 			$this->session->set_flashdata('hel_kmfinal_ose', $hel_kmfinal_ose);
@@ -368,20 +381,20 @@ class Ordem_Servico extends CI_Controller {
 		
 		$hel_seqemp_ose       		 = $this->session->flashdata('hel_seqemp_ose');
 		$hel_seqcon_ose     		 = $this->session->flashdata('hel_seqcon_ose');
-		$hel_dateinicial_ose		 = $this->session->flashdata('hel_dateinicial_ose');
+		$hel_dateinicial_ose		 = $this->session->flashdata('hel_datainicial_ose');
 		$hel_horarioinicial_ose		 = $this->session->flashdata('hel_horarioinicial_ose');
-		$hel_datefinal_ose		 	 = $this->session->flashdata('hel_datefinal_ose');
+		$hel_datefinal_ose		 	 = $this->session->flashdata('hel_datafinal_ose');
 		$hel_horariofinal_ose	 	 = $this->session->flashdata('hel_horariofinal_ose');
 		$hel_kminicial_ose		     = $this->session->flashdata('hel_kminicial_ose');
 		$hel_kmfinal_ose		     = $this->session->flashdata('hel_kmfinal_ose');
 		$hel_observacao_ose		     = $this->session->flashdata('hel_observacao_ose');
-				
+
 		if ($ERRO_HEL_OSE) {
 			$dados['hel_seqemp_ose']       			= $hel_seqemp_ose;
 			$dados['hel_seqcon_ose']       			= $hel_seqcon_ose;
-			$dados['hel_dateinicial_ose']         	= $hel_dateinicial_ose;
+			$dados['hel_datainicial_ose']         	= $hel_dateinicial_ose;
 			$dados['hel_horarioinicial_ose']       	= $hel_horarioinicial_ose;
-			$dados['hel_datefinal_ose']        		= $hel_datefinal_ose;
+			$dados['hel_datafinal_ose']        		= $hel_datefinal_ose;
 			$dados['hel_horariofinal_ose']       	= $hel_horariofinal_ose;
 			$dados['hel_kminicial_ose']          	= $hel_kminicial_ose;
 			$dados['hel_kmfinal_ose']           	= $hel_kmfinal_ose;
@@ -393,7 +406,7 @@ class Ordem_Servico extends CI_Controller {
 			$dados['ERRO_HEL_SEQCON_OSE']  			= $ERRO_HEL_SEQCON_OSE;
 			$dados['ERRO_HEL_DATEINCIAL_OSE']  		= $ERRO_HEL_DATEINCIAL_OSE;
 			$dados['ERRO_HEL_HORARIOINCIAL_OSE']  	= $ERRO_HEL_HORARIOINCIAL_OSE;
-			$dados['ERRO_HEL_DATEFINAL_OSE']  		= $ERRO_HEL_DATEINCIAL_OSE;
+			$dados['ERRO_HEL_DATEFINAL_OSE']  		= $ERRO_HEL_DATEFINAL_OSE;
 			$dados['ERRO_HEL_HORARIOFINAL_OSE']  	= $ERRO_HEL_HORARIOFINAL_OSE;
 			$dados['ERRO_HEL_KMINICIAL_OSE']  	    = $ERRO_HEL_KMINICIAL_OSE;
 			$dados['ERRO_HEL_KMFINAL_OSE']  		= $ERRO_HEL_KMFINAL_OSE;
@@ -407,17 +420,47 @@ class Ordem_Servico extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($order_by){
-		$order_by = str_replace("%20", " ", $order_by);
-	
+	public function relatorio($filtro_tecnico, $filtro_empresa, $filtro_contato_empresa ){
+
+
+			$select_item_ordem_servico = 'SELECT hel_desc_ser,
+												 hel_desc_sis,
+												 hel_complemento_ios,
+												 hel_seqcha_ios,
+												 hel_seqioscha_ios
+									      FROM heltbios
+										  LEFT OUTER JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
+										  LEFT OUTER JOIN heltbsis ON hel_seqsis_ios = hel_pk_seq_sis
+										  WHERE hel_seqose_ios = $P{hel_seqose_ios}
+										    AND hel_tipo_ios   = 0';
+
+			$consulta_sub = array (
+				"hel_seqose_ios" => $select_item_ordem_servico
+			);
+
+
 		global $consulta;
-		$consulta = " SELECT * FROM heltbcid ".$order_by;
-	
+		$consulta = " SELECT hel_nomefantasia_emp,
+						     heltbcon.hel_nome_con as contato_empresa,
+						     tec.hel_nome_con as tecnico_nome,
+						     TIMEDIFF(hel_horariofinal_ose, hel_horarioinicial_ose) as horas_analista,
+						     (hel_kmfinal_ose - hel_kminicial_ose) as distancia,
+						     heltbose.hel_observacao_ose,
+						     hel_pk_seq_ose,
+						     hel_datainicial_ose,
+						     hel_datafinal_ose,
+						     hel_horarioinicial_ose,
+						     hel_horariofinal_ose
+					FROM heltbose
+					LEFT JOIN heltbexc     ON hel_seqexc_ose    = hel_pk_seq_exc
+					LEFT JOIN heltbemp     ON hel_seqemp_exc    = hel_pk_seq_emp
+					LEFT JOIN heltbcon     ON hel_seqcon_exc    = hel_pk_seq_con
+					LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con ";
+
 		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_cidade.jrxml', $consulta);
+			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_ordem_servico.jrxml', $consulta, NULL, $consulta_sub);
 		} else {
-			$mensagem = "- Nenhum cidade foi encontrada.\n";
-			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
+			$mensagem = "- Nenhuma ordem de serviço foi encontrada.\n";
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			redirect('erro_relatorio');
 		}
