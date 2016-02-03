@@ -92,7 +92,7 @@
 	<detail>
 		<band height="15">
 			<textField>
-				<reportElement positionType="Float" x="52" y="0" width="503" height="15" uuid="19cf4a68-dc59-4463-80b8-d74539f77556"/>
+				<reportElement positionType="Float" x="72" y="0" width="431" height="15" uuid="19cf4a68-dc59-4463-80b8-d74539f77556"/>
 				<textElement>
 					<font isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
@@ -106,7 +106,7 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="17">
+		<band height="18">
 			<line>
 				<reportElement x="2" y="0" width="555" height="1" uuid="f5011f39-f7d7-44e4-9a9c-bc4ac076a650"/>
 				<graphicElement>

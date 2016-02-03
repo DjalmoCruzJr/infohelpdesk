@@ -411,21 +411,53 @@ class Chamado extends CI_Controller {
 	
 	private function gerarRelatorio(){
 		global $consulta;
-	
 		$result = $this->db->query($consulta);
 		return $result->result();
 	}
 	
-	public function relatorio($order_by){
-		$order_by = str_replace("%20", " ", $order_by);
-	
+	public function relatorio(){
+		$consulta_sub        = array();
+		$select_item_chamado = '';
+		
 		global $consulta;
-		$consulta = " SELECT * FROM heltbcid ".$order_by;
-	
+		$consulta = "select hel_pk_seq_cha,
+       						hel_nomefantasia_emp,
+       						hel_nome_con,
+       						hel_horarioabertura_cha,
+    						CASE hel_status_cha
+        						WHEN 0 THEN 'Aberto'
+        						ELSE 'Encerrado'
+    						END AS hel_ativo_emp
+					from heltbcha
+					left join heltbexc on hel_pk_seq_exc = hel_seqexc_cha
+					left join heltbcon on hel_pk_seq_con = hel_seqcon_exc
+					left join heltbemp on hel_pk_seq_emp = hel_seqemp_exc";
+		
+
+		$select_item_chamado = ' select hel_pk_seq_ios,
+									    hel_desc_ser,
+									    hel_desc_sis,
+									    hel_horaricioencerrado_ios,
+									    CASE hel_encerrado_ios WHEN 0 THEN "Aberto"
+									    ELSE 
+											"Encerrado"
+									    END AS hel_encerrado_ios,
+									    hel_complemento_ios,
+									    hel_solucao_ios
+									from heltbios
+									left join heltbser on hel_pk_seq_ser = hel_seqser_ios
+									left join heltbsis on hel_pk_seq_sis = hel_seqsis_ios
+									where hel_seqcha_ios = $P{hel_seqcha_ios}
+									  AND hel_tipo_ios   =  1 ';
+		$consulta_sub = array(
+			"hel_seqcha_ios" => $select_item_chamado
+		);
+		
+		
 		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_cidade.jrxml', $consulta);
+			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_chamado.jrxml', $consulta, NULL, $consulta_sub);
 		} else {
-			$mensagem = "- Nenhum cidade foi encontrada.\n";
+			$mensagem = "- Nenhum chamado foi encontrado.\n";
 			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			redirect('erro_relatorio');
