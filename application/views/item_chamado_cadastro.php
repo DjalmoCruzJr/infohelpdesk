@@ -37,16 +37,16 @@
 				<div class="{ERRO_HEL_COMPLEMENTO_IOS}">
 					<label for="hel_complemento_ios" class="col-sm-1 control-label">Complemento</label>
 						<div class="col-sm-11">
-							<textarea class="form-control" id="hel_complemento_ios" name="hel_complemento_ios" readonly  
+							<textarea class="form-control" id="hel_complemento_ios" name="hel_complemento_ios"  
 							          autocomplete="off" autofocus>{hel_complemento_ios}</textarea>
 						</div>
 				</div>
 			</div>
 			<div class="form-group" {hel_hiddensolucao_ios}>
-				<div class="{ERRO_HEL_SOLUCAO_IOS}">
+				<div class="{ERRO_HEL_SOLUCAO_IOS}" >
 					<label for="hel_solucao_ios" class="col-sm-1 control-label">Solução</label>
 						<div class="col-sm-11">
-							<textarea {hel_hiddensolucao_ios} class="form-control" id="hel_solucao_ios" name="hel_solucao_ios" 
+							<textarea  class="form-control" id="hel_solucao_ios" name="hel_solucao_ios" {hel_readonlysolucao_ios} 
 							          autocomplete="off" autofocus>{hel_solucao_ios}</textarea>
 						</div>
 				</div>
@@ -58,7 +58,7 @@
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" id="hel_status_ios" name="hel_encerrado_ios" value="1"  
-								{hel_checkedencerrado_ios} autocomplete="off" autofocus {hel_disabledencerrado_ios}/>Encerrado
+								{hel_checkedencerrado_ios} autocomplete="off" autofocus {hel_readonlyencerrado_ios}/>Encerrado
 							</label>										
 						</div>
 					</div>

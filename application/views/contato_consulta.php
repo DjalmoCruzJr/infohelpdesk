@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVO_CONTATO}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Nova Contato</a>
+                    <a href="{NOVO_CONTATO}" class="btn btn-primary {dis_incluir}"><i class="glyphicon glyphicon-plus"></i> Novo Contato</a>
 	                <div class="pull-right">
 			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary {dis_imprimir}"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>

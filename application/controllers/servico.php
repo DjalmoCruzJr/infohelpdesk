@@ -202,7 +202,11 @@ class Servico extends CI_Controller {
 		$order_by = str_replace("%20", " ", $order_by);
 	
 		global $consulta;
-		$consulta = " SELECT * FROM heltbser ".$order_by;
+		$consulta = " SELECT hel_pk_seq_ser,
+						     hel_desc_ser,
+						     case hel_sistema_ser when 1 then 'X'
+						     else '' end as hel_sistema_ser
+					   FROM heltbser ".$order_by;
 	
 		if ($this->gerarRelatorio()) {
 			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_servico.jrxml', $consulta);

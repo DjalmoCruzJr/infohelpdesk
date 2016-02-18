@@ -7,6 +7,7 @@
 	<div class="panel-body">
 		<form action="{ACAO_FORM}" method="post" class="form-horizontal">
 			<input type="hidden" id="hel_pk_seq_ios" name="hel_pk_seq_ios" value="{hel_pk_seq_ios}"/>
+			<input type="hidden" id="hel_tipo_ios" name="hel_tipo_ios" value="{hel_tipo_ios}"/>
 			<input type="hidden" id="hel_seqose_ios" name="hel_seqose_ios" value="{hel_seqose_ios}"/>				
 			<div class="form-group">
 				<div class="{ERRO_HEL_SEQSER_IOS}">
@@ -33,15 +34,27 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="hel_seqcha_ios" class="col-sm-1 control-label">Chamado</label>
-					<div class="col-sm-7">
-						<select class="form-control chosen-select" id="hel_seqcha_ios" name="hel_seqcha_ios" autofocus="autofocus">
-							<option value="">Selecione...</option>
-							{BLC_CHAMADO}
-								<option value="{hel_pk_seq_cha}" {sel_hel_seqcha_ios}>{hel_desc_cha}</option>
-							{/BLC_CHAMADO}
-						</select>   
-					</div>
+				<div class="{ERRO_HEL_SEQCHA_IOS}">
+					<label for="hel_seqcha_ios" class="col-sm-1 control-label">Chamado</label>
+						<div class="col-sm-4">
+							<select class="form-control chosen-select" id="hel_seqcha_ios" name="hel_seqcha_ios" onchange="carregarItemChamado()" autofocus="autofocus">
+								<option value="">Selecione...</option>
+								{BLC_CHAMADO}
+									<option value="{hel_pk_seq_cha}" {sel_hel_seqcha_ios}>{hel_desc_cha}</option>
+								{/BLC_CHAMADO}
+							</select>   
+						</div>
+				</div>
+				<div class="{ERRO_HEL_SEQCHAIOS_IOS}">
+					<label for="hel_seqioscha_ios" class="col-sm-1 control-label">Item</label>
+						<div class="col-sm-6">
+							<select class="form-control" id="hel_seqioscha_ios" name="hel_seqioscha_ios" autofocus="autofocus">
+								{BLC_ITEM_CHAMADO}
+									<option value="{hel_pk_seq_ios}" {sel_hel_seqioscha_ios}>{hel_complemento1_ios}</option>
+								{/BLC_ITEM_CHAMADO}
+							</select>   
+						</div>
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="hel_observacao_ose" class="col-sm-1 control-label">Complemento</label>
@@ -59,4 +72,35 @@
 		</form>
 		</div>
 	</div>
-</div>		
+</div>
+<script type="text/javascript">
+
+	function carregarItemChamado(){		
+		var chamado 	   = document.getElementById("hel_seqcha_ios");
+		var filtro_chamado = "";
+		
+		for (var i = 0; i < chamado.options.length; i++) {
+	  		if (chamado.options[i].selected){
+	  			filtro_chamado = chamado.options[i].value; 
+	    	}
+	  	}
+
+	  	$.ajax({
+	  		  url      : '{URL_BUSCAR_CHAMADO}/' + filtro_chamado,
+			  dataType : "json",
+			  async    : true,
+			  success  : function(data) {
+				var options = '<option value="">Selecione...</option>';
+				$("#hel_seqioscha_ios").empty();
+				for (i = 0; i < data.length; i++) {
+					options += '<option value="' + data[i].hel_pk_seq_ios + '">' + data[i].hel_complemento1_ios + '</option>';
+				}
+				$("#hel_seqioscha_ios").html(options);
+			  },
+			 error    : function(error){
+				console.log('Error na function carregarContato()');
+		    }	
+		});			
+	}
+
+</script>		

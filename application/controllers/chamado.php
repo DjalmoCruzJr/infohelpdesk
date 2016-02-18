@@ -104,8 +104,8 @@ class Chamado extends CI_Controller {
 			}
 
 			if (is_numeric($hel_pk_seq_cha)) {
-				$this->session->set_flashdata('sucesso', 'Chamado salva com sucesso.');
-				redirect('chamado');
+				$this->session->set_flashdata('sucesso', 'Para coninuar insira os itens');
+				redirect('item_chamado/novo/'.base64_encode($hel_pk_seq_cha));
 			} else {
 				$this->session->set_flashdata('erro', $hel_pk_seq_cha);	
 				redirect('chamado');
@@ -146,7 +146,7 @@ class Chamado extends CI_Controller {
 				"hel_nome_con"         		=> $registro->hel_nome_con,
 				"hel_horarioabertura_cha" 	=> $this->util->formatarDateTime($registro->hel_horarioabertura_cha),
 				"hel_status_cha" 			=> $registro->hel_status_cha == 0 ? 'Aberto' : 'Encerrado',
-				"ITEM_CHAMADO" 	 			=> site_url('item_chamado/index/'.base64_encode($registro->hel_pk_seq_cha)),
+				"ITEM_CHAMADO" 	 			=> site_url('item_chamado/index/'.base64_encode($registro->hel_pk_seq_cha)),					
 				"EDITAR_CHAMADO" 	 		=> site_url('chamado/editar/'.base64_encode($registro->hel_pk_seq_cha)),
 				"APAGAR_CHAMADO" 	 		=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_cha)."')"
 			);
@@ -411,53 +411,21 @@ class Chamado extends CI_Controller {
 	
 	private function gerarRelatorio(){
 		global $consulta;
+	
 		$result = $this->db->query($consulta);
 		return $result->result();
 	}
 	
-	public function relatorio(){
-		$consulta_sub        = array();
-		$select_item_chamado = '';
-		
+	public function relatorio($order_by){
+		$order_by = str_replace("%20", " ", $order_by);
+	
 		global $consulta;
-		$consulta = "select hel_pk_seq_cha,
-       						hel_nomefantasia_emp,
-       						hel_nome_con,
-       						hel_horarioabertura_cha,
-    						CASE hel_status_cha
-        						WHEN 0 THEN 'Aberto'
-        						ELSE 'Encerrado'
-    						END AS hel_ativo_emp
-					from heltbcha
-					left join heltbexc on hel_pk_seq_exc = hel_seqexc_cha
-					left join heltbcon on hel_pk_seq_con = hel_seqcon_exc
-					left join heltbemp on hel_pk_seq_emp = hel_seqemp_exc";
-		
-
-		$select_item_chamado = ' select hel_pk_seq_ios,
-									    hel_desc_ser,
-									    hel_desc_sis,
-									    hel_horaricioencerrado_ios,
-									    CASE hel_encerrado_ios WHEN 0 THEN "Aberto"
-									    ELSE 
-											"Encerrado"
-									    END AS hel_encerrado_ios,
-									    hel_complemento_ios,
-									    hel_solucao_ios
-									from heltbios
-									left join heltbser on hel_pk_seq_ser = hel_seqser_ios
-									left join heltbsis on hel_pk_seq_sis = hel_seqsis_ios
-									where hel_seqcha_ios = $P{hel_seqcha_ios}
-									  AND hel_tipo_ios   =  1 ';
-		$consulta_sub = array(
-			"hel_seqcha_ios" => $select_item_chamado
-		);
-		
-		
+		$consulta = " SELECT * FROM heltbcid ".$order_by;
+	
 		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_chamado.jrxml', $consulta, NULL, $consulta_sub);
+			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_cidade.jrxml', $consulta);
 		} else {
-			$mensagem = "- Nenhum chamado foi encontrado.\n";
+			$mensagem = "- Nenhum cidade foi encontrada.\n";
 			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			redirect('erro_relatorio');

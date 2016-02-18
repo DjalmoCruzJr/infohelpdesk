@@ -82,6 +82,7 @@ class Ordem_Servico extends CI_Controller {
 		global $hel_kmfinal_ose;
 		global $hel_observacao_ose;
 		global $hel_seqexc_ose;
+		$inserir = FALSE;
 		
 		$hel_pk_seq_ose  		= $this->input->post('hel_pk_seq_ose');			
 		$hel_seqemp_ose    		= $this->input->post('hel_seqemp_ose');
@@ -96,6 +97,8 @@ class Ordem_Servico extends CI_Controller {
 		
 		if ($this->testarDados()) {
 			
+			$inserir = empty($hel_pk_seq_ose) ? TRUE : FALSE;
+			
 			$ordem_servico = array(
 				"hel_seqexc_ose"           => $hel_seqexc_ose,
 				"hel_seqcontec_ose"		   => $this->session->userdata('hel_pk_seq_con'),
@@ -107,19 +110,24 @@ class Ordem_Servico extends CI_Controller {
 				"hel_kmfinal_ose"  		   => $hel_kmfinal_ose,
 				"hel_observacao_ose" 	   => $hel_observacao_ose
 			);
+			
 			if (!$hel_pk_seq_ose) {
 				$hel_pk_seq_ose = $this->OrdemServicoModel->insert($ordem_servico);
 			} else {
 				$hel_pk_seq_ose = $this->OrdemServicoModel->update($ordem_servico, $hel_pk_seq_ose);
 			}
 
-			if (is_numeric($hel_pk_seq_ose)) {
-				$this->session->set_flashdata('sucesso', 'Ordem de serviço salva com sucesso.');
+			if (is_numeric($hel_pk_seq_ose) and $inserir) {
+				$this->session->set_flashdata('sucesso', 'Para continuar insira os itens');
+				redirect('item_ordem_servico/novo/'.base64_encode($hel_pk_seq_ose));
+			} else if (is_numeric($hel_pk_seq_ose)) {
+				$this->session->set_flashdata('sucesso', 'Ordem de Serviço salvo com sucesso');
 				redirect('ordem_servico');
 			} else {
 				$this->session->set_flashdata('erro', $hel_pk_seq_ose);
 				redirect('ordem_servico');
 			}
+			
 		} else {
 			if (!$hel_pk_seq_ose) {
 				redirect('ordem_servico/novo/');

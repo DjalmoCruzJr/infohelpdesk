@@ -6,7 +6,7 @@ class Json extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
-		
+		$this->load->model('Item_Chamado_Model', 'ItemChamadoModel');
 	}
 	
 	public function buscarCEP($cep){
@@ -43,6 +43,11 @@ class Json extends CI_Controller {
 			$filtro_empresa[$i] = $data[$i];
 		}
 		$resultado = $this->EmpresaContatoModel->getEmpresaContatoRelatorio($filtro_empresa);
+		echo json_encode($resultado, JSON_PRETTY_PRINT);
+	}
+	
+	public function carregar_item_chamado($hel_seqcha_ios){
+		$resultado = $this->ItemChamadoModel->getItemChamadoEncerrado($hel_seqcha_ios);
 		echo json_encode($resultado, JSON_PRETTY_PRINT);
 	}
 

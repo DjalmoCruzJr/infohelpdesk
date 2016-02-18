@@ -11,7 +11,7 @@
 					<label for="hel_desc_ser" class="col-sm-1 control-label">Descrição</label>
 					<div class="col-sm-11">
 						<input type="text" class="form-control" id="hel_desc_ser" name="hel_desc_ser" 
-						       value="{hel_desc_ser}" maxlength="30"autocomplete="off" autofocus />
+						       value="{hel_desc_ser}" maxlength="50"autocomplete="off" autofocus />
 					</div>
 				</div>
 			</div>

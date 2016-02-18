@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVA_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Nova Ordem de Serviço</a>
+                    <a href="{NOVA_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nova Ordem de Serviço</a>
 	                <div class="pull-right">
 			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>

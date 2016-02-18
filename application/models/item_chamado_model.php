@@ -25,6 +25,15 @@ class Item_Chamado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getItemChamadoEncerrado($hel_seqcha_ios) {
+		$this->db->select('hel_pk_seq_ios, substr(hel_complemento_ios, 1, 50) as hel_complemento1_ios', FALSE);
+		$this->db->from('heltbios');
+		$this->db->where('hel_seqcha_ios = ', $hel_seqcha_ios, FALSE);
+		$this->db->where('hel_tipo_ios = ', CHAMADO, FALSE);
+		$this->db->where('hel_encerrado_ios = 0 ');
+		return $this->db->get()->result();
+	}
+	
 	public function insert($item_chamado) {
 		$res = $this->db->insert('heltbios', $item_chamado);
 	

@@ -12,7 +12,6 @@ class Item_Chamado extends CI_Controller {
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Sistema_Contratado_Model', 'SistemaContratadoModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
-	
 	}
 
 	public function index($hel_seqcha_ios) {
@@ -42,7 +41,7 @@ class Item_Chamado extends CI_Controller {
 		$dados['hel_complemento_ios']		= '';
 		$dados['hel_solucao_ios']			= '';
 		$dados['hel_hiddensolucao_ios']		= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '' ;
-		$dados['hel_disabledencerrado_ios']	= $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
+		$dados['hel_readonlyencerrado_ios']	= $this->session->userdata('hel_tipo_tco') <> 0 ? 'onclick="return false;"' : '' ;
 		
 		$dados['ACAO'] = 'Novo';
 		$this->setarURL($dados);
@@ -172,6 +171,8 @@ class Item_Chamado extends CI_Controller {
 	private function carregarDados(&$dados) {
 				
 		$resultado = $this->ItemChamadoModel->getItemChamado($dados['hel_seqcha_ios']);
+		
+		$dados['hel_disabledencerraritemchamado_ios'] = $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
 			
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
@@ -179,6 +180,7 @@ class Item_Chamado extends CI_Controller {
 				"hel_desc_sis" 		  			=> $registro->hel_desc_sis,
 				"hel_horaricioencerrado_ios"  	=> $this->util->formatarDateTime($registro->hel_horaricioencerrado_ios),					
 				"hel_encerrado_ios"	  			=> $registro->hel_encerrado_ios == 0 ? 'Aberto' : 'Encerrado',
+				"ENCERRAR_ITEM_CHAMADO"			=> site_url('encerramento_chamado/index/'.base64_encode($registro->hel_pk_seq_ios)),					
 				"EDITAR_ITEM_CHAMADO" 			=> site_url('item_chamado/editar/'.base64_encode($registro->hel_pk_seq_ios).'/'.base64_encode($registro->hel_seqcha_ios)),
 				"APAGAR_ITEM_CHAMADO" 			=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ios)."','".base64_encode($dados['hel_seqcha_ios'])."')"
 			);
@@ -197,11 +199,20 @@ class Item_Chamado extends CI_Controller {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');			
 		}
 		
-		$dados['hel_hiddensolucao_ios']			= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '' ;
-		$dados['hel_disabledencerrado_ios']		= $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
-		$dados['hel_disabledseqsis_ios']		= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
-		$dados['hel_disabledseqser_ios']		= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
-		$dados['hel_disabledcomplemento_ios']	= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
+		$dados['hel_checkedencerrado_ios']	= $dados['hel_encerrado_ios'] == 1 ? 'checked' : '' ;
+		
+		if (($dados['hel_encerrado_ios'] == 1) or ($this->session->userdata('hel_tipo_tco') <> 0)){
+			$dados['hel_readonlysolucao_ios'] = 'readonly';
+		} else {
+			$dados['hel_readonlysolucao_ios'] = '';
+		}
+		
+		if (($dados['hel_encerrado_ios'] == 1) or ($this->session->userdata('hel_tipo_tco') <> 0)){
+			$dados['hel_readonlyencerrado_ios'] = 'onclick="return false;"';
+		} else {
+			$dados['hel_readonlyencerrado_ios'] = '';
+		}
+		
 	}
 	
 	private function carregarServico(&$dados) {
@@ -228,7 +239,7 @@ class Item_Chamado extends CI_Controller {
 					"sel_hel_seqsis_ios" => ($dados['hel_seqsis_ios'] == $registro->hel_pk_seq_sis)?'selected':''
 			);
 		}
-		!$resultado ? $dados['BLC_SERVICO'][] = array("hel_desc_sis" => 'Não existe sistema cadastrado') :'';
+		!$resultado ? $dados['BLC_SISTEMA'][] = array("hel_pk_seq_sis" => NULL ,"hel_desc_sis" => 'Não existe sistema contratado', "hel_tipo_sis" => '') :'';
 	}
 	
 	private function carregarTipoSistema($hel_tipo_sis){
@@ -259,6 +270,8 @@ class Item_Chamado extends CI_Controller {
 		$mensagem = null;
 		
 		$hel_seqsis_ios = empty($hel_seqsis_ios) ? null : $hel_seqsis_ios;
+		$hel_complemento_ios = trim($hel_complemento_ios);
+		$hel_solucao_ios 	 = trim($hel_solucao_ios);
 		
 		if (empty($hel_seqser_ios)) {
 			$erros    = TRUE;
@@ -284,7 +297,7 @@ class Item_Chamado extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_COMPLEMENTO_IOS', 'has-error');
 		}
 		
-		if ( ($this->session->userdata('hel_tipo_tco') == 0) and (empty($hel_solucao_ios))){
+		if ( ($this->session->userdata('hel_tipo_tco') == 0) and (empty($hel_solucao_ios)) and (!empty($hel_pk_seq_ios))){
 			$erros    = TRUE;
 			$mensagem .= "- Solução não foi preenchida.\n";
 			$this->session->set_flashdata('ERRO_HEL_SOLUCAO_IOS', 'has-error');			
@@ -358,9 +371,6 @@ class Item_Chamado extends CI_Controller {
 			$dados['hel_encerrado_ios']   			= $hel_encerrado_ios;
 			$dados['hel_hiddensolucao_ios']			= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '' ;
 			$dados['hel_disabledencerrado_ios']		= $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
-			$dados['hel_disabledcomplemento_ios']	= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
-			$dados['hel_disabledseqsis_ios']		= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
-			$dados['hel_disabledseqser_ios']		= $this->session->userdata('hel_tipo_tco') == 0 ? 'disabled' : '' ;
 			$dados['hel_checkedencerrado_ios']		= $hel_encerrado_ios == 1 ? 'checked' : '' ;
 			
 
