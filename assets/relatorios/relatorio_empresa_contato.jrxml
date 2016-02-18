@@ -147,7 +147,7 @@ LEFT JOIN heltbtco ON hel_pk_seq_tco = hel_seqtco_con]]>
 		</band>
 		<band height="50">
 			<subreport>
-				<reportElement x="26" y="0" width="529" height="50" isRemoveLineWhenBlank="true" uuid="c23fcc5c-c3cd-41af-a1df-0b342777b029"/>
+				<reportElement x="26" y="0" width="529" height="50" uuid="c23fcc5c-c3cd-41af-a1df-0b342777b029"/>
 				<subreportParameter name="hel_seqcon_exc">
 					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_con}]]></subreportParameterExpression>
 				</subreportParameter>

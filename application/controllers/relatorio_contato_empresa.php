@@ -61,7 +61,7 @@ class Relatorio_Contato_Empresa extends CI_Controller {
 		$order_by     	= str_replace("%20", " ", $order_by);
 		$whereAnd 		= " WHERE ";
 		$clasuraWehre   = "";
-		$select_empresa = "";
+		$select_empresa = '';
 		
 		if (!empty($filtro_contato)){
 			$clasuraWehre = $clasuraWehre.$whereAnd.'hel_pk_seq_con IN ('.$filtro_contato.')';
@@ -79,7 +79,7 @@ class Relatorio_Contato_Empresa extends CI_Controller {
 							LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp
 							WHERE hel_seqcon_exc = $P{hel_seqcon_exc} ';
 		
-		$select_empresa = $filtro_empresa != 0 ? $select_empresa.' AND hel_seqemp_exc IN ('.$filtro_empresa.')' : '';
+		$select_empresa .= $filtro_empresa != 0 ? ' AND hel_seqemp_exc IN ('.$filtro_empresa.')' : '';
 	
 		global $consulta;
 		$consulta = " SELECT hel_pk_seq_con,
@@ -95,7 +95,7 @@ class Relatorio_Contato_Empresa extends CI_Controller {
 		
 		$select_sub = array (
 			"hel_seqcon_exc" => $select_empresa		
-		);
+		);		
 		
 		if ($this->gerarRelatorio()) {
 			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_empresa_contato.jrxml', $consulta, NULL, $select_sub);
