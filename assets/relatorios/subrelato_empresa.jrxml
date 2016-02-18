@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
-	<property name="ireport.zoom" value="1.6500000000000252"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="hel_seqcon_exc" class="java.lang.Integer">
@@ -16,7 +16,7 @@
 FROM heltbexc
 LEFT JOIN heltbemp ON hel_pk_seq_emp = hel_seqemp_exc
 LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp
-WHERE hel_seqemp_exc = $P{hel_seqcon_exc}]]>
+WHERE hel_seqcon_exc = $P{hel_seqcon_exc}]]>
 	</queryString>
 	<field name="hel_pk_seq_emp" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>

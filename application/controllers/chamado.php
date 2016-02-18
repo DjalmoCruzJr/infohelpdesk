@@ -104,7 +104,7 @@ class Chamado extends CI_Controller {
 			}
 
 			if (is_numeric($hel_pk_seq_cha)) {
-				$this->session->set_flashdata('sucesso', 'Para coninuar insira os itens');
+				$this->session->set_flashdata('sucesso', 'Para continuar insira os itens');
 				redirect('item_chamado/novo/'.base64_encode($hel_pk_seq_cha));
 			} else {
 				$this->session->set_flashdata('erro', $hel_pk_seq_cha);	
