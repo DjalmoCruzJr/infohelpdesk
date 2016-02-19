@@ -19,7 +19,7 @@
                                 <th>Sistema</th>
                                 <th>Horário Encerramento</th>
                                 <th>Status</th>
-                                <th class="coluna-acao" width="80">Encerrar</th>
+                                <th class="coluna-acao" width="80" {hel_hiddenencerraritemchamado_ios}>Encerrar</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -31,7 +31,7 @@
 	                                <td class="vertical-center">{hel_desc_sis}</td>
 	                                <td class="vertical-center">{hel_horaricioencerrado_ios}</td>
 	                                <td class="vertical-center">{hel_encerrado_ios}</td>
-	                                <td class="text-center"><a href="{ENCERRAR_ITEM_CHAMADO}" {hel_disabledencerraritemchamado_ios} class="btn btn-link btn-xs" title="Encerrar"><i class="glyphicon glyphicon-ok"></i></a></td>
+	                                <td {hel_hiddenencerraritemchamado_ios} class="text-center"><a href="{ENCERRAR_ITEM_CHAMADO}" {hel_disabledencerraritemchamado_ios} class="btn btn-link btn-xs" title="Encerrar"><i class="glyphicon glyphicon-ok"></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>

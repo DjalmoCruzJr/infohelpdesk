@@ -4,7 +4,7 @@ class Encerramento_Chamado extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 				
-//  		$this->layout = LAYOUT_DASHBOARD;
+ 		$this->layout = LAYOUT_DASHBOARD;
 		
  		$this->load->model('Tipo_Contato_Model', 'TipoContatoModel');
  		$this->load->model('Contato_Model', 'ContatoModel');

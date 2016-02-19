@@ -172,7 +172,7 @@ class Item_Chamado extends CI_Controller {
 				
 		$resultado = $this->ItemChamadoModel->getItemChamado($dados['hel_seqcha_ios']);
 		
-		$dados['hel_disabledencerraritemchamado_ios'] = $this->session->userdata('hel_tipo_tco') <> 0 ? 'disabled' : '' ;
+		$dados['hel_hiddenencerraritemchamado_ios'] = $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '' ;
 			
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
