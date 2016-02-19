@@ -178,7 +178,8 @@ class Item_Chamado extends CI_Controller {
 			$dados['BLC_DADOS'][] = array(
 				"hel_desc_ser" 	 	  			=> $registro->hel_desc_ser,							
 				"hel_desc_sis" 		  			=> $registro->hel_desc_sis,
-				"hel_horaricioencerrado_ios"  	=> $this->util->formatarDateTime($registro->hel_horaricioencerrado_ios),					
+				"hel_horaricioencerrado_ios"  	=> $this->util->formatarDateTime($registro->hel_horaricioencerrado_ios),
+				"hel_nometec_con"  				=> $registro->hel_nome_con,
 				"hel_encerrado_ios"	  			=> $registro->hel_encerrado_ios == 0 ? 'Aberto' : 'Encerrado',
 				"ENCERRAR_ITEM_CHAMADO"			=> site_url('encerramento_chamado/index/'.base64_encode($registro->hel_pk_seq_ios)),					
 				"EDITAR_ITEM_CHAMADO" 			=> site_url('item_chamado/editar/'.base64_encode($registro->hel_pk_seq_ios).'/'.base64_encode($registro->hel_seqcha_ios)),
@@ -335,6 +336,13 @@ class Item_Chamado extends CI_Controller {
 	private function testarApagar($hel_pk_seq_ios) {
 		$erros    = FALSE;
 		$mensagem = null;
+		
+		$resultado = $this->ItemChamadoModel->get($hel_pk_seq_ios);
+		
+		if ($resultado->hel_encerrado_ios == 1){
+			$erros     = TRUE;
+			$mensagem .= "- Item do Chamado já encerrado.\n";
+		}
 		
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');

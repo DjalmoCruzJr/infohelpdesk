@@ -33,7 +33,7 @@ class Chamado extends CI_Controller {
 		$dados = array();
 		$dados['hel_pk_seq_cha']  					= 0;		
 		$dados['hel_seqemp_cha']  					= '';
-		$dados['hel_seqcon_cha'] 					= $this->session->userdata('hel_tipo_tco') <> 0 ? $this->session->userdata('hel_pk_seq_con') : '';
+		$dados['hel_seqcon_cha'] 					= '';
 		$dados['hel_hiddenseqconpara_cha'] 			= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '';
 		$dados['hel_hiddenseqconsolicitante_cha'] 	= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '';
 		$dados['hel_seqconde_cha'] 					= $this->session->userdata('hel_tipo_tco') <> 0 ? '' : $this->session->userdata('hel_pk_seq_con');
@@ -104,8 +104,11 @@ class Chamado extends CI_Controller {
 			}
 
 			if (is_numeric($hel_pk_seq_cha)) {
-				$this->session->set_flashdata('sucesso', 'Para continuar insira os itens');
+				$this->session->set_flashdata('sucesso', 'Para continuar, insira os itens');
 				redirect('item_chamado/novo/'.base64_encode($hel_pk_seq_cha));
+			} else if (is_numeric($hel_pk_seq_cha)) {
+				$this->session->set_flashdata('sucesso', 'Ordem de Serviço salvo com sucesso');
+				redirect('ordem_servico');
 			} else {
 				$this->session->set_flashdata('erro', $hel_pk_seq_cha);	
 				redirect('chamado');
@@ -361,6 +364,13 @@ class Chamado extends CI_Controller {
 		if ($this->ItemOrdemServicoModel->getChamadoOrdemServico($hel_pk_seq_cha)){
 			$erros    = TRUE;
 			$mensagem = " - Ordem de Serviço para este chamado .\n";
+		}
+		
+		$resultado = $this->ChamadoModel->get($hel_pk_seq_cha);
+		
+		if ($resultado->hel_status_cha == 1){
+			$erros     = TRUE;
+			$mensagem .= "- Chamado já encerrado.\n";
 		}
 	
 		if ($erros) {
