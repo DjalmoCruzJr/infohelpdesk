@@ -33,7 +33,7 @@ class Chamado extends CI_Controller {
 		$dados = array();
 		$dados['hel_pk_seq_cha']  					= 0;		
 		$dados['hel_seqemp_cha']  					= '';
-		$dados['hel_seqcon_cha'] 					= '';
+		$dados['hel_seqcon_cha'] 					= $this->session->userdata('hel_tipo_tco') <> 0 ? $this->session->userdata('hel_pk_seq_con') : '';
 		$dados['hel_hiddenseqconpara_cha'] 			= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '';
 		$dados['hel_hiddenseqconsolicitante_cha'] 	= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '';
 		$dados['hel_seqconde_cha'] 					= $this->session->userdata('hel_tipo_tco') <> 0 ? '' : $this->session->userdata('hel_pk_seq_con');
