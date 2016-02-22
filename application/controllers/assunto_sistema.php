@@ -45,7 +45,7 @@ class Assunto_Sistema extends CI_Controller {
 	
 	private function setarURL(&$dados) {
 		$dados['CONSULTA_ASSUNTO_SISTEMA']	= site_url('assunto_sistema/index/'.base64_encode($dados['hel_seqsis_asu']));
-		$dados['ACAO_FORM']            		= site_url('assunto_sistema/salvar');
+		$dados['ACAO_FORM']            		= site_url('assunto_sistema/salvar');		
 	}
 	
 	public function editar($hel_pk_seq_asu, $hel_seqsis_asu) {
@@ -73,17 +73,21 @@ class Assunto_Sistema extends CI_Controller {
 		$hel_pk_seq_asu  = $this->input->post('hel_pk_seq_asu');
 		$hel_seqsis_asu  = $this->input->post('hel_seqsis_asu');
 		$hel_titulo_asu  = $this->input->post('hel_titulo_asu');
+		$hel_link_asu  	 = $this->input->post('hel_link_asu');
 		
 		$config['upload_path'] 	 	= base_url().'uploads/';
 		$config['allowed_types'] 	= 'jpg|png|pdf|btmp|jpeg|doc';
-		$config['max_size']     	= '100';
-		$config['max_width'] 		= '1024';
-		$config['max_height'] 		= '768';
+// 		$config['max_size']     	= '100';
+// 		$config['max_width'] 		= '1024';
+// 		$config['max_height'] 		= '768';
+		
+		echo '<pre>';
+		print_r($config);
 		
 		$this->load->library('upload', $config);
 		
 		if ($this->upload->do_upload('hel_link_asu')){
-			echo 'Caminho do arquivo -> '.$config['upload_path'].$hel_titulo_asu;
+			echo 'Upload com sucesso'.$config['upload_path'].$hel_titulo_asu;
 		}else {
 			echo $this->upload->display_errors();
 		}
