@@ -274,6 +274,14 @@ class Item_Chamado extends CI_Controller {
 		$hel_complemento_ios = trim($hel_complemento_ios);
 		$hel_solucao_ios 	 = trim($hel_solucao_ios);
 		
+		if (empty($hel_tipo_ios)){
+			$erros    = TRUE;
+			$mensagem .= "- Tipo não informado, contacte a Info Rio Sistemas LTDA.\n";
+		} else if ($hel_tipo_ios <> CHAMADO){
+			$erros    = TRUE;
+			$mensagem .= "- Tipo inválido, contacte a Info Rio Sistemas LTDA.\n";
+		}
+		
 		if (empty($hel_seqser_ios)) {
 			$erros    = TRUE;
 			$mensagem .= "- Serviço não foi selecionada.\n";

@@ -323,7 +323,10 @@ class Item_Ordem_Servico extends CI_Controller {
 		$hel_seqioscha_ios 	 = empty($hel_seqioscha_ios) ? null : $hel_seqioscha_ios;
 		$hel_complemento_ios = trim($hel_complemento_ios);
 		
-		if ($hel_tipo_ios <> 0){
+		if (empty($hel_tipo_ios)){
+			$erros    = TRUE;
+			$mensagem .= "- Tipo não informado, contacte a Info Rio Sistemas LTDA.\n";
+		} else if ($hel_tipo_ios <> 0){
 			$erros    = TRUE;
 			$mensagem .= "- Tipo de Ordem de Serviço inválido.\n";
 		}
