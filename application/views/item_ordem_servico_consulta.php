@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVO_ITEM_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Nova Ordem de Serviço</a>
+                    <a href="{NOVO_ITEM_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Novo Item</a>
                 </div>
                 </br>
                 <div class="table">

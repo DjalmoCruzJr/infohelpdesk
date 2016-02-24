@@ -24,6 +24,7 @@ class Ordem_Servico extends CI_Controller {
 		$dados['BLC_DADOS']  = array();
 		
 		$this->carregarDados($dados);
+
 		$this->carregarEmpresaRelatorio($dados);
 				
 		$this->parser->parse('ordem_servico_consulta', $dados);
@@ -157,17 +158,18 @@ class Ordem_Servico extends CI_Controller {
 	}	
 	
 	private function carregarDados(&$dados) {
-				
+						
 		$resultado = $this->OrdemServicoModel->getOrdemServico();	
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
-				"hel_nomefantasia_emp" 	 => $registro->hel_nomefantasia_emp,							
-				"hel_nome_con"         	 => $registro->hel_nome_con,
-				"hel_datainicial_ose" 	 => $this->util->inverteData($registro->hel_datainicial_ose),
-				"hel_datafinal_ose" 	 => $this->util->inverteData($registro->hel_datafinal_ose),
-				"ITEM_ORDEM_SERVICO" 	 => site_url('item_ordem_servico/index/'.base64_encode($registro->hel_pk_seq_ose)),					
-				"EDITAR_ORDEM_SERVICO" 	 => site_url('ordem_servico/editar/'.base64_encode($registro->hel_pk_seq_ose)),
-				"APAGAR_ORDEM_SERVICO" 	 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ose)."')"
+				"hel_nomefantasia_emp" 	  => $registro->hel_nomefantasia_emp,							
+				"hel_nome_con"         	  => $registro->hel_nome_con,
+				"hel_datainicial_ose" 	  => $this->util->inverteData($registro->hel_datainicial_ose),
+				"hel_datafinal_ose" 	  => $this->util->inverteData($registro->hel_datafinal_ose),
+				"hel_disabledexcluir_ose" => $this->session->userdata('hel_pk_seq_con') <> $registro->hel_seqcontec_ose ? 'disabled' : '',	
+				"ITEM_ORDEM_SERVICO" 	  => site_url('item_ordem_servico/index/'.base64_encode($registro->hel_pk_seq_ose)),
+				"EDITAR_ORDEM_SERVICO" 	  => site_url('ordem_servico/editar/'.base64_encode($registro->hel_pk_seq_ose)),
+				"APAGAR_ORDEM_SERVICO" 	  => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ose)."')"
 			);
 		}
 	}
@@ -335,9 +337,16 @@ class Ordem_Servico extends CI_Controller {
 		$erros    = FALSE;
 		$mensagem = null;
 		
-		if ($this->ItemOrdemServicoModel->getOrdemServicoItemOrdemServico($hel_pk_seq_ose)){
+		$resultado = $this->OrdemServicoModel->get($hel_pk_seq_ose);
+		
+// 		if ($this->ItemOrdemServicoModel->getOrdemServicoItemOrdemServico($hel_pk_seq_ose)){
+// 			$erros    = TRUE;
+// 			$mensagem = '- Chamados encerrado para esta Ordem de Serviço';			
+// 		}
+		
+		if ( $resultado->hel_seqcontec_ose <> $this->session->userdata('hel_pk_seq_con') ){
 			$erros    = TRUE;
-			$mensagem = '. Chamados encerrado para esta Ordem de Serviço';			
+			$mensagem = '- Técnico diferente na Ordem de Serviço';
 		}
 		
 		if ($erros) {

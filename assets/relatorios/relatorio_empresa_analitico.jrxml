@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
-	<property name="ireport.zoom" value="1.8150000000000273"/>
-	<property name="ireport.x" value="53"/>
+	<property name="ireport.zoom" value="1.650000000000027"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
@@ -21,7 +21,6 @@
        hel_numero_emp,
        hel_bairro_emp,
        hel_cep_emp,
-       hel_ativo_emp,
        hel_email_emp,
        hel_celular_emp,
        hel_fone_emp,
@@ -80,7 +79,7 @@ LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp]]>
 		<variableExpression><![CDATA[]]></variableExpression>
 	</variable>
 	<pageHeader>
-		<band height="56">
+		<band height="53">
 			<staticText>
 				<reportElement x="455" y="2" width="100" height="15" uuid="77aee1f6-2e61-4180-ad5e-85de0871255d"/>
 				<textElement textAlignment="Right"/>
@@ -124,7 +123,7 @@ LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp]]>
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="120">
+		<band height="96">
 			<line>
 				<reportElement x="2" y="0" width="555" height="1" uuid="4824f051-2dfd-498f-b91a-07f7e0c43889"/>
 				<graphicElement>
@@ -132,84 +131,172 @@ LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="2" y="118" width="555" height="1" uuid="3167657a-63e4-4716-bf59-3b451adadbfe"/>
+				<reportElement x="2" y="95" width="555" height="1" uuid="3167657a-63e4-4716-bf59-3b451adadbfe"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="0" y="1" width="33" height="15" uuid="d494657e-1aa9-4e03-b457-611ae668c14b"/>
+				<reportElement x="0" y="3" width="33" height="15" uuid="d494657e-1aa9-4e03-b457-611ae668c14b"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Seq.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="23" y="1" width="33" height="15" uuid="46e2dcb8-ac12-4071-9668-29b1b491c092"/>
+				<reportElement x="23" y="3" width="33" height="15" uuid="46e2dcb8-ac12-4071-9668-29b1b491c092"/>
 				<textFieldExpression><![CDATA[$F{hel_pk_seq_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="57" y="1" width="29" height="15" uuid="d9c80b90-b6d4-432c-9e86-39233033346a"/>
+				<reportElement x="57" y="3" width="29" height="15" uuid="d9c80b90-b6d4-432c-9e86-39233033346a"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Emp.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="86" y="1" width="26" height="15" uuid="e4ceb2bc-aca6-4f88-84d7-3d313f070a20"/>
+				<reportElement x="86" y="3" width="26" height="15" uuid="e4ceb2bc-aca6-4f88-84d7-3d313f070a20"/>
 				<textFieldExpression><![CDATA[$F{hel_empresa_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="112" y="1" width="20" height="15" uuid="a46b3c93-9b94-455e-8fbb-8ee2fd8d495b"/>
+				<reportElement x="112" y="3" width="20" height="15" uuid="a46b3c93-9b94-455e-8fbb-8ee2fd8d495b"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fil.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="132" y="1" width="28" height="15" uuid="f5c62f58-dd0f-4bd0-9c11-226fec62f437"/>
+				<reportElement x="132" y="3" width="28" height="15" uuid="f5c62f58-dd0f-4bd0-9c11-226fec62f437"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_filial_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="160" y="1" width="36" height="15" uuid="774d702a-cb52-47ae-b1e4-5e0ec49e1ee7"/>
+				<reportElement x="160" y="3" width="36" height="15" uuid="774d702a-cb52-47ae-b1e4-5e0ec49e1ee7"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CNPJ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="196" y="1" width="100" height="15" uuid="1df5284f-ad81-4236-b054-e324296d36e3"/>
+				<reportElement x="196" y="3" width="100" height="15" uuid="1df5284f-ad81-4236-b054-e324296d36e3"/>
 				<textFieldExpression><![CDATA[$F{hel_cnpj_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="2" y="36" width="80" height="15" uuid="7468e1d4-5d5f-4fe5-b9b6-c5fa22cbe1da"/>
+				<reportElement x="0" y="33" width="80" height="15" uuid="7468e1d4-5d5f-4fe5-b9b6-c5fa22cbe1da"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome Fantasia]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="82" y="36" width="472" height="15" uuid="e6ecbf0a-fc39-4e08-91a2-9ddf4edca16d"/>
+				<reportElement x="81" y="33" width="472" height="15" uuid="e6ecbf0a-fc39-4e08-91a2-9ddf4edca16d"/>
 				<textFieldExpression><![CDATA[$F{hel_nomefantasia_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="2" y="18" width="80" height="15" uuid="400c2134-b117-4615-adb2-6626e34aaeb9"/>
+				<reportElement x="0" y="18" width="80" height="15" uuid="400c2134-b117-4615-adb2-6626e34aaeb9"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Razão Social]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="82" y="18" width="472" height="15" uuid="bc7e35b1-8263-4add-b0b4-852879d419b7"/>
+				<reportElement x="81" y="18" width="472" height="15" uuid="bc7e35b1-8263-4add-b0b4-852879d419b7"/>
 				<textFieldExpression><![CDATA[$F{hel_razaosocial_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="412" y="3" width="41" height="15" uuid="ecaa9da6-07c8-43a6-9cf6-31839126b71a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="453" y="3" width="100" height="15" uuid="b7e18a2e-1c07-4c8f-8820-0c9ee6ee7f7f"/>
+				<textFieldExpression><![CDATA[$F{hel_ativo_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="63" width="55" height="15" uuid="870d9a75-3de3-4139-a761-48e90e11f4cf"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="63" width="201" height="15" uuid="164abac2-43c1-4c81-9fb1-8957aae04544"/>
+				<textFieldExpression><![CDATA[$F{hel_nome_cid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="48" width="54" height="15" uuid="384e002d-cfdd-4622-b1e1-b3c5c938d66a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="48" width="201" height="15" uuid="dc4bea40-c7b8-438e-87bc-3ad21529ab44"/>
+				<textFieldExpression><![CDATA[$F{hel_endereco_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="283" y="48" width="41" height="15" uuid="90f19eb4-3059-4fcb-b566-1cb43f306b61"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="324" y="48" width="191" height="15" uuid="56a1c9cf-60fd-4950-bc46-5be93f9cda2d"/>
+				<textFieldExpression><![CDATA[$F{hel_bairro_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="283" y="63" width="41" height="15" uuid="0f33d24b-084f-422d-a443-fcf9469a6a33"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CEP]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="325" y="63" width="100" height="15" uuid="c75f8e2c-06d8-4f41-a147-4e26846b85d7"/>
+				<textFieldExpression><![CDATA[$F{hel_cep_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="78" width="33" height="15" uuid="95af3400-9a36-44b0-9d84-443835157469"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fone]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="33" y="78" width="100" height="15" uuid="0a800c87-9d55-4fb6-a51c-067ca7f7d1bf"/>
+				<textFieldExpression><![CDATA[$F{hel_fone_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="134" y="78" width="46" height="15" uuid="e9e28f2a-b8b7-4b3e-8b21-2778d78884e9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="182" y="78" width="100" height="15" uuid="cffc4347-2b87-42a0-a352-7a07d593c8c7"/>
+				<textFieldExpression><![CDATA[$F{hel_celular_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="283" y="78" width="37" height="15" uuid="ae5cdfb7-41e4-4d7c-b6eb-2fe37182e3a2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-mail]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="78" width="233" height="15" uuid="870012b6-15ff-4cca-a274-3e10c764bcd6"/>
+				<textFieldExpression><![CDATA[$F{hel_email_emp}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="50">
 			<subreport>
-				<reportElement x="33" y="0" width="521" height="50" uuid="85136454-3d47-44b8-a255-7a6449f3fd86"/>
+				<reportElement x="33" y="0" width="522" height="50" uuid="85136454-3d47-44b8-a255-7a6449f3fd86"/>
 				<subreportParameter name="hel_seqemp_sco">
 					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_emp}]]></subreportParameterExpression>
 				</subreportParameter>

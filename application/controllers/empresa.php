@@ -508,7 +508,7 @@ class Empresa extends CI_Controller {
 		$whereAnd    	= " WHERE ";
 		$filtros      	= array();
 		$select_sistema = "";
-		$arquivo        = $layout ==0 ? 'assets/relatorios/relatorio_empresa.jrxml' : 'assets/relatorios/relatorio_empresa_analitico.jrxml';
+		$arquivo        = $layout == 0 ? 'assets/relatorios/relatorio_empresa.jrxml' : 'assets/relatorios/relatorio_empresa_analitico.jrxml';
 		
 		if ($filtro_cidade != 0 ){
 			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_cid IN ('.$filtro_cidade.') ';
@@ -549,28 +549,26 @@ class Empresa extends CI_Controller {
 	
 		global $consulta;
 		$consulta = " SELECT hel_pk_seq_emp,
-							 hel_pk_seq_cid,
-							 hel_empresa_emp,
-							 hel_filial_emp,
-							 CONCAT(SUBSTRING(hel_cnpj_emp, 1,2), '.', SUBSTRING(hel_cnpj_emp,3,3), '.', SUBSTRING(hel_cnpj_emp,6,3), '/', SUBSTRING(hel_cnpj_emp,9,4), '-', SUBSTRING(hel_cnpj_emp,13, 2)) AS hel_cnpj_emp,
-							 hel_nomefantasia_emp,
-							 hel_nome_cid,
-							 CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
-							 else 'Inativo'
-							 END AS hel_ativo_emp,
-							 hel_razaosocial_emp,
-							 hel_endereco_emp,
-							 hel_numero_emp,
-							 hel_bairro_emp,
-							 hel_cep_emp,
-							 hel_ativo_emp,
-							 hel_email_emp,
-							 hel_celular_emp,
-							 hel_fone_emp,
-							 hel_email_emp,
-							 hel_razaosocial_emp
-						FROM heltbemp
-						LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp ".$clasulaWhere.$order_by;
+						     hel_empresa_emp,
+						     hel_filial_emp,
+						     CONCAT(SUBSTRING(hel_cnpj_emp, 1,2), '.', SUBSTRING(hel_cnpj_emp,3,3), '.', SUBSTRING(hel_cnpj_emp,6,3), '/', SUBSTRING(hel_cnpj_emp,9,4), '-', SUBSTRING(hel_cnpj_emp,13, 2)) AS hel_cnpj_emp,
+						     hel_nomefantasia_emp,
+						     hel_nome_cid,
+						     CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
+						     else 'Inativo'
+						     END AS hel_ativo_emp,
+						     hel_razaosocial_emp,
+						     hel_endereco_emp,
+						     hel_numero_emp,
+						     hel_bairro_emp,
+						     hel_cep_emp,
+						     hel_email_emp,
+						     hel_celular_emp,
+						     hel_fone_emp,
+						     hel_email_emp,
+						     hel_razaosocial_emp
+					  FROM heltbemp
+					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp ".$clasulaWhere.$order_by;
 		
 	
 		if ($this->gerarRelatorio()) {

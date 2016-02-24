@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <div>
                     <a href="{NOVA_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nova Ordem de Serviço</a>
-	                <div class="pull-right">
+	                <div class="pull-right" >
 			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>
                 </div>
@@ -35,8 +35,8 @@
 	                                <td class="vertical-center">{hel_datainicial_ose}</td>
 	                                <td class="vertical-center">{hel_datafinal_ose}</td>
 									<td class="text-center"><a href="{ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Item da Ordem Serviço"><i class="glyphicon glyphicon-list-alt"></i></a></td>	                                
-	                                <td class="text-center"><a href="{EDITAR_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
-	                                <td class="text-center"><a onclick="{APAGAR_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
+	                                <td class="text-center"><a href="{EDITAR_ORDEM_SERVICO}" class="btn btn-link btn-xs"  title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+	                                <td class="text-center"><a onclick="{APAGAR_ORDEM_SERVICO}" class="btn btn-link btn-xs {hel_disabledexcluir_ose}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
                         	{/BLC_DADOS}
                         </tbody>                   

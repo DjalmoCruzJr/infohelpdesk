@@ -27,12 +27,7 @@
 			    	<span>Apagar</span>
 			        <input id="filedanger" type="file">
 			</div>
-			<div id="progress" class="progress" hidden="hidden">
-				<div class="progress-bar progress-bar-success"></div>
-			</div>
-			<div id="files" class="files"></div>
-			<br>
-			
+						
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-11">
 					<button type="submit" name="salvar_tipo_contato" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Salvar</button>

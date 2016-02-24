@@ -106,6 +106,8 @@ class Item_Ordem_Servico extends CI_Controller {
 		
 		if ($this->testarDados()) {
 			
+			$parameter_procedure = array();
+			
 			$item_ordem_servico = array(
 				"hel_tipo_ios"       	=> $hel_tipo_ios,					
 				"hel_seqose_ios"        => $hel_seqose_ios,
@@ -116,10 +118,18 @@ class Item_Ordem_Servico extends CI_Controller {
 				"hel_seqioscha_ios"		=> $hel_seqioscha_ios
 			);
 			
+			if (!empty($hel_seqioscha_ios)){
+				$parameter_procedure = array (
+					"idChamado" => $hel_seqioscha_ios,
+					"idTecnico"	=> $this->session->userdata('hel_pk_seq_con'),
+					"solucao"   => $hel_complemento_ios		
+				);
+			}
+			
 			if (!$hel_pk_seq_ios) {	
-				$hel_pk_seq_ios = $this->ItemOrdemServicoModel->insert($item_ordem_servico);
+				$hel_pk_seq_ios = $this->ItemOrdemServicoModel->insert($item_ordem_servico, $parameter_procedure);
 			} else {
-				$hel_pk_seq_ios = $this->ItemOrdemServicoModel->update($item_ordem_servico, $hel_pk_seq_ios);
+				$hel_pk_seq_ios = $this->ItemOrdemServicoModel->update($item_ordem_servico, $hel_pk_seq_ios, $parameter_procedure);
 			}
 
 			if (is_numeric($hel_pk_seq_ios)) {
@@ -307,9 +317,11 @@ class Item_Ordem_Servico extends CI_Controller {
 		$erros    = FALSE;
 		$mensagem = null;
 
-		$hel_seqser_ios = empty($hel_seqser_ios) ? null : $hel_seqser_ios;
-		$hel_seqsis_ios = empty($hel_seqsis_ios) ? null : $hel_seqsis_ios;
-		$hel_seqcha_ios = empty($hel_seqcha_ios) ? null : $hel_seqcha_ios;
+		$hel_seqser_ios 	 = empty($hel_seqser_ios) ? null : $hel_seqser_ios;
+		$hel_seqsis_ios 	 = empty($hel_seqsis_ios) ? null : $hel_seqsis_ios;
+		$hel_seqcha_ios 	 = empty($hel_seqcha_ios) ? null : $hel_seqcha_ios;
+		$hel_seqioscha_ios 	 = empty($hel_seqioscha_ios) ? null : $hel_seqioscha_ios;
+		$hel_complemento_ios = trim($hel_complemento_ios);
 		
 		if ($hel_tipo_ios <> 0){
 			$erros    = TRUE;
@@ -337,6 +349,13 @@ class Item_Ordem_Servico extends CI_Controller {
 		if (!empty($hel_seqcha_ios) and empty($hel_seqioscha_ios)){
 			$erros    = TRUE;
 			$mensagem .= "- Chamado informado, mas nenhum item selecionado.\n";
+			$this->session->set_flashdata('ERRO_HEL_SEQCHA_IOS', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_SEQCHAIOS_IOS', 'has-error');
+		}
+		
+		if (!empty($hel_seqcha_ios) and empty($hel_complemento_ios)){
+			$erros    = TRUE;
+			$mensagem .= "- Chamado informado, mas complemento não foi informada.\n";
 			$this->session->set_flashdata('ERRO_HEL_SEQCHA_IOS', 'has-error');
 			$this->session->set_flashdata('ERRO_HEL_SEQCHAIOS_IOS', 'has-error');
 		}
@@ -372,11 +391,12 @@ class Item_Ordem_Servico extends CI_Controller {
 	}	
 	
 	private function carregarDadosFlash(&$dados) {
-		$ERRO_HEL_IOS   	 	= $this->session->flashdata('ERRO_HEL_IOS');
-		$ERRO_HEL_SEQSER_IOS 	= $this->session->flashdata('ERRO_HEL_SEQSER_IOS');
-		$ERRO_HEL_SEQSIS_IOS 	= $this->session->flashdata('ERRO_HEL_SEQSIS_IOS');
-		$ERRO_HEL_SEQCHA_IOS 	= $this->session->flashdata('ERRO_HEL_SEQCHA_IOS');
-		$ERRO_HEL_SEQCHAIOS_IOS = $this->session->flashdata('ERRO_HEL_SEQCHAIOS_IOS');
+		$ERRO_HEL_IOS   	 	  = $this->session->flashdata('ERRO_HEL_IOS');
+		$ERRO_HEL_SEQSER_IOS 	  = $this->session->flashdata('ERRO_HEL_SEQSER_IOS');
+		$ERRO_HEL_SEQSIS_IOS 	  = $this->session->flashdata('ERRO_HEL_SEQSIS_IOS');
+		$ERRO_HEL_SEQCHA_IOS 	  = $this->session->flashdata('ERRO_HEL_SEQCHA_IOS');
+		$ERRO_HEL_SEQCHAIOS_IOS   = $this->session->flashdata('ERRO_HEL_SEQCHAIOS_IOS');
+		$ERRO_HEL_COMPLEMENTO_IOS = $this->session->flashdata('ERRO_HEL_COMPLEMENTO_IOS');
 
 		$hel_tipo_ios      	 = $this->session->flashdata('hel_tipo_ios');
 		$hel_seqose_ios      = $this->session->flashdata('hel_seqose_ios');
@@ -400,6 +420,7 @@ class Item_Ordem_Servico extends CI_Controller {
 			$dados['ERRO_HEL_SEQSIS_IOS']  		= $ERRO_HEL_SEQSIS_IOS;
 			$dados['ERRO_HEL_SEQCHA_IOS']  		= $ERRO_HEL_SEQCHA_IOS;
 			$dados['ERRO_HEL_SEQCHAIOS_IOS']  	= $ERRO_HEL_SEQCHAIOS_IOS;
+			$dados['ERRO_HEL_COMPLEMENTO_IOS'] 	= $ERRO_HEL_COMPLEMENTO_IOS;
 		}
 	}
 	

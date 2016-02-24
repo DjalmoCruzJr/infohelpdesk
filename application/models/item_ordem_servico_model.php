@@ -43,21 +43,29 @@ class Item_Ordem_Servico_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-	public function insert($item_ordem_servico) {
+	public function insert($item_ordem_servico, $parameter_procedure = NULL) {
 		$res = $this->db->insert('heltbios', $item_ordem_servico);
 	
 		if ($res) {
+			if (!empty($parameter_procedure)){
+				$store_procedure = 'CALL SP_ENCERRAR_ITEM_CHAMADO (?, ?, ?)';
+				$this->db->query($store_procedure, $parameter_procedure);
+			}
 			return $this->db->insert_id();
 		} else {
 			return FALSE;
 		}
 	}
 	
-	public function update($item_ordem_servico, $hel_pk_seq_ios) {
+	public function update($item_ordem_servico, $hel_pk_seq_ios, $parameter_procedure = NULL) {
 		$this->db->where('hel_pk_seq_ios', $hel_pk_seq_ios, FALSE);
 		$res = $this->db->update('heltbios', $item_ordem_servico);
 	
 		if ($res) {
+			if (!empty($parameter_procedure)){
+				$store_procedure = 'CALL SP_ENCERRAR_ITEM_CHAMADO (?, ?, ?)';
+				$this->db->query($store_procedure, $parameter_procedure);
+			}
 			return $hel_pk_seq_ios;
 		} else {
 			return FALSE;

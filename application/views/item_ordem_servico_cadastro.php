@@ -6,7 +6,7 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 		<form action="{ACAO_FORM}" method="post" class="form-horizontal">
-			<input type="hidden" id="hel_pk_seq_ios" name="hel_pk_seq_ios" value="{hel_pk_seq_ios}"/>
+			<input type="hidden"  id="hel_pk_seq_ios" name="hel_pk_seq_ios" value="{hel_pk_seq_ios}"/>
 			<input type="hidden" id="hel_tipo_ios" name="hel_tipo_ios" value="{hel_tipo_ios}"/>
 			<input type="hidden" id="hel_seqose_ios" name="hel_seqose_ios" value="{hel_seqose_ios}"/>				
 			<div class="form-group">
@@ -56,13 +56,16 @@
 						</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="hel_observacao_ose" class="col-sm-1 control-label">Complemento</label>
-					<div class="col-sm-11">
-						<textarea class="form-control" id="hel_complemento_ios" name="hel_complemento_ios" 
-						      maxlength="499" autocomplete="off" autofocus>{hel_complemento_ios}</textarea>
-					</div>
+			<div class="{ERRO_HEL_COMPLEMENTO_IOS}">
+				<div class="form-group">
+					<label for="hel_observacao_ose" class="col-sm-1 control-label">Complemento</label>
+						<div class="col-sm-11">
+							<textarea class="form-control" id="hel_complemento_ios" name="hel_complemento_ios" 
+							      maxlength="499" autocomplete="off" autofocus>{hel_complemento_ios}</textarea>
+						</div>
+				</div>
 			</div>
+			<br/>
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-11">
 					<button type="submit" name="salvar_cidade" class="btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Salvar</button>

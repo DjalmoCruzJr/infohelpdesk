@@ -87,12 +87,12 @@
 								<div class="col-sm-11">
 									<div class="radio-inline">
 										<label>
-											<input type="radio" id="layout" name="opcao_layout" value="0" checked/>Sintético
+											<input type="radio" id="hel_sintetico_emp" name="layout" value="0" checked/>Sintético
 										</label>
 									</div>
 									<div class="radio-inline">
 										<label>
-											<input type="radio" id="layout" name="opcao_layout" value="1"/>Analítico
+											<input type="radio" id="hel_analitico_emp" name="layout" value="1"/>Analítico
 										</label>
 									</div>
 								</div>
@@ -210,7 +210,7 @@
     	var sistema_relatorio 			= document.getElementById("sistema_relatorio");
     	var imrprimi_sistema_contratado = "";
       	var orderBy 		  			= "";
-		var layout                      = document.getElementById("layout").value;
+		var layout                      = "0";
 
       	var filtroCidade	 = "";
       	var separadorCidade  = "";
@@ -259,9 +259,14 @@
     	} else {
     		orderBy = " ORDER BY hel_nomefantasia_emp";
 		}
+
+		if (document.getElementById("hel_sintetico_emp").checked){
+			layout = "0"
+		} else {
+			layout = "1";
+		}
     	
     	$('#relatorio_empresa').modal('hide');
-    	
     	
     	window.open('empresa/relatorio/'+ layout +'/' + orderBy +'/'+ filtroCidade+'/'+ imrprimi_sistema_contratado +'/'+ filtroSistema +'/'+ status, '_blank');
     }	
