@@ -77,13 +77,30 @@
                 <div class="modal-body">
                 	<form class="form-horizontal">
 						<div class="form-group">
-						<div class="form-group col-sm-11 text-center">
-							<label class="checkbox-inline">
-						       	<input type="checkbox" id="imprimir_sistema_contratado" name="imprimir_sistema_contratado" onclick="habilitarSistema()">Imprimir Sistemas Contratados ?
-						    </label>
-					    </div>
-							<label for="ordenacao_relatorio" class="col-sm-2 ">Ordenar por</label>
-								<div class="col-sm-4">
+							<div class="form-group col-sm-11 text-center">
+								<label class="checkbox-inline">
+									<input type="checkbox" id="imprimir_sistema_contratado" name="imprimir_sistema_contratado" onclick="habilitarSistema()">Imprimir Sistemas Contratados ?
+								</label>
+							</div>
+
+							<div class="form-group col-sm-11 text-center">
+								<div class="col-sm-11">
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="layout" name="opcao_layout" value="0" checked/>Sintético
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="layout" name="opcao_layout" value="1"/>Analítico
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-11">
+  								<label for="ordenacao_relatorio" class="col-sm-1 control-label">Ordena</label>
+								<div class="col-sm-11">
 									<div class="radio-inline">
 										<label>
 											<input type="radio" id="ordenacao_codigo" name="ordenacao_relatorio" value="0" checked/>Código
@@ -95,7 +112,9 @@
 										</label>
 									</div>
 								</div>
+							</div>
 						</div>
+
 						<div class="form-group col-sm-11">
 						    <label for="hel_ativo_emp" class="col-sm-1 control-label">Status</label>
 								<div class="col-sm-11">
@@ -115,8 +134,18 @@
 										</label>
 									</div>
 								</div>
+						</div>
+							<div class="form-group">
+								<label for="empresa_relatorio" class="col-sm-3 ">Filtro por Empresa</label>
+								<div>
+									<select id="empresa_relatorio" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple">
+										{BLC_EMPRESA_RELATORIO}
+											<option value="{hel_pk_seq_emp}" {dis_hel_emp}>{hel_nomefantasia_emp}</option>
+										{/BLC_EMPRESA_RELATORIO}
+									</select>
+								</div>
 							</div>
-						<div class="form-group">
+							<div class="form-group">
 							<label for="cidade_relatorio" class="col-sm-3 ">Filtro por Cidade</label>
 								<div>
 			                		<select id="cidade_relatorio" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple">
@@ -181,6 +210,7 @@
     	var sistema_relatorio 			= document.getElementById("sistema_relatorio");
     	var imrprimi_sistema_contratado = "";
       	var orderBy 		  			= "";
+		var layout                      = document.getElementById("layout").value;
 
       	var filtroCidade	 = "";
       	var separadorCidade  = "";
@@ -233,7 +263,7 @@
     	$('#relatorio_empresa').modal('hide');
     	
     	
-    	window.open('empresa/relatorio/'+ orderBy+'/'+filtroCidade+'/'+ imrprimi_sistema_contratado +'/'+ filtroSistema +'/'+ status, '_blank');
+    	window.open('empresa/relatorio/'+ layout +'/' + orderBy +'/'+ filtroCidade+'/'+ imrprimi_sistema_contratado +'/'+ filtroSistema +'/'+ status, '_blank');
     }	
 
 </script>

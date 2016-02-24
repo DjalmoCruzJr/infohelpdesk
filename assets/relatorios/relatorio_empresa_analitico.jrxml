@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
+	<property name="ireport.zoom" value="1.8150000000000273"/>
+	<property name="ireport.x" value="53"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT hel_pk_seq_emp,
+       hel_empresa_emp,
+       hel_filial_emp,
+       CONCAT(SUBSTRING(hel_cnpj_emp, 1,2), '.', SUBSTRING(hel_cnpj_emp,3,3), '.', SUBSTRING(hel_cnpj_emp,6,3), '/', SUBSTRING(hel_cnpj_emp,9,4), '-', SUBSTRING(hel_cnpj_emp,13, 2)) AS hel_cnpj_emp,
+       hel_nomefantasia_emp,
+       hel_nome_cid,
+       CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
+       else 'Inativo'
+       END AS hel_ativo_emp,
+       hel_razaosocial_emp,
+       hel_endereco_emp,
+       hel_numero_emp,
+       hel_bairro_emp,
+       hel_cep_emp,
+       hel_ativo_emp,
+       hel_email_emp,
+       hel_celular_emp,
+       hel_fone_emp,
+       hel_email_emp,
+       hel_razaosocial_emp
+FROM heltbemp
+LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp]]>
+	</queryString>
+	<field name="hel_pk_seq_emp" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_empresa_emp" class="java.lang.Integer">
+		<fieldDescription><![CDATA[CÓDIGO DA EMPRESA]]></fieldDescription>
+	</field>
+	<field name="hel_filial_emp" class="java.lang.Integer">
+		<fieldDescription><![CDATA[CODIGO DA FILIAL]]></fieldDescription>
+	</field>
+	<field name="hel_cnpj_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_nomefantasia_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_nome_cid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_ativo_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[0- Inativo
+1- Ativo]]></fieldDescription>
+	</field>
+	<field name="hel_razaosocial_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_endereco_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_numero_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_bairro_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_cep_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_email_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_celular_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_fone_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="TOTAL_REGITRO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<pageHeader>
+		<band height="56">
+			<staticText>
+				<reportElement x="455" y="2" width="100" height="15" uuid="77aee1f6-2e61-4180-ad5e-85de0871255d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Info Rio Sistemas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="13" width="113" height="20" uuid="5168f16c-d8aa-4c1f-bdc5-edf2333c0b22"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="515" y="16" width="10" height="15" uuid="b514ee71-0ef4-4a2e-ad33-080c9a1776a3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="17" width="41" height="15" uuid="3d31b837-4f42-4254-89b1-b1d96d2f3330"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="525" y="17" width="17" height="15" uuid="8144e2f5-ac89-497d-9623-66521b449f81"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="540" y="16" width="35" height="15" uuid="df856cb8-6884-4e38-b148-72f3ed50292e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="455" y="33" width="100" height="15" uuid="e7951e62-ef63-4b29-a7ef-ab00de2f8d0d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[HELPR502]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="120">
+			<line>
+				<reportElement x="2" y="0" width="555" height="1" uuid="4824f051-2dfd-498f-b91a-07f7e0c43889"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="2" y="118" width="555" height="1" uuid="3167657a-63e4-4716-bf59-3b451adadbfe"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="1" width="33" height="15" uuid="d494657e-1aa9-4e03-b457-611ae668c14b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="23" y="1" width="33" height="15" uuid="46e2dcb8-ac12-4071-9668-29b1b491c092"/>
+				<textFieldExpression><![CDATA[$F{hel_pk_seq_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="57" y="1" width="29" height="15" uuid="d9c80b90-b6d4-432c-9e86-39233033346a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Emp.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="1" width="26" height="15" uuid="e4ceb2bc-aca6-4f88-84d7-3d313f070a20"/>
+				<textFieldExpression><![CDATA[$F{hel_empresa_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="112" y="1" width="20" height="15" uuid="a46b3c93-9b94-455e-8fbb-8ee2fd8d495b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fil.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="1" width="28" height="15" uuid="f5c62f58-dd0f-4bd0-9c11-226fec62f437"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_filial_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="1" width="36" height="15" uuid="774d702a-cb52-47ae-b1e4-5e0ec49e1ee7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="196" y="1" width="100" height="15" uuid="1df5284f-ad81-4236-b054-e324296d36e3"/>
+				<textFieldExpression><![CDATA[$F{hel_cnpj_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="36" width="80" height="15" uuid="7468e1d4-5d5f-4fe5-b9b6-c5fa22cbe1da"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Fantasia]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="82" y="36" width="472" height="15" uuid="e6ecbf0a-fc39-4e08-91a2-9ddf4edca16d"/>
+				<textFieldExpression><![CDATA[$F{hel_nomefantasia_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="18" width="80" height="15" uuid="400c2134-b117-4615-adb2-6626e34aaeb9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Razão Social]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="82" y="18" width="472" height="15" uuid="bc7e35b1-8263-4add-b0b4-852879d419b7"/>
+				<textFieldExpression><![CDATA[$F{hel_razaosocial_emp}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="33" y="0" width="521" height="50" uuid="85136454-3d47-44b8-a255-7a6449f3fd86"/>
+				<subreportParameter name="hel_seqemp_sco">
+					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_emp}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_sistema_contratado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="17">
+			<line>
+				<reportElement x="2" y="0" width="555" height="1" uuid="f5011f39-f7d7-44e4-9a9c-bc4ac076a650"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField pattern="d/M/yyyy">
+				<reportElement x="0" y="1" width="100" height="15" uuid="848b8a7a-1c20-4a86-9e64-37e852cf4ed8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="539" y="0" width="15" height="15" uuid="9b0c30b6-f33f-4cf0-9a29-b80cc2373939"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="15" splitType="Stretch"/>
+	</summary>
+</jasperReport>
