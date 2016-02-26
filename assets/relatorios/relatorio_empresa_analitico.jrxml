@@ -173,14 +173,14 @@ LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp]]>
 				<textFieldExpression><![CDATA[$F{hel_filial_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="160" y="3" width="36" height="15" uuid="774d702a-cb52-47ae-b1e4-5e0ec49e1ee7"/>
+				<reportElement x="284" y="3" width="36" height="15" uuid="774d702a-cb52-47ae-b1e4-5e0ec49e1ee7"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CNPJ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="196" y="3" width="100" height="15" uuid="1df5284f-ad81-4236-b054-e324296d36e3"/>
+				<reportElement x="320" y="3" width="100" height="15" uuid="1df5284f-ad81-4236-b054-e324296d36e3"/>
 				<textFieldExpression><![CDATA[$F{hel_cnpj_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -206,14 +206,14 @@ LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp]]>
 				<textFieldExpression><![CDATA[$F{hel_razaosocial_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="412" y="3" width="41" height="15" uuid="ecaa9da6-07c8-43a6-9cf6-31839126b71a"/>
+				<reportElement x="448" y="3" width="41" height="15" uuid="ecaa9da6-07c8-43a6-9cf6-31839126b71a"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Status]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="453" y="3" width="100" height="15" uuid="b7e18a2e-1c07-4c8f-8820-0c9ee6ee7f7f"/>
+				<reportElement x="489" y="3" width="62" height="15" uuid="b7e18a2e-1c07-4c8f-8820-0c9ee6ee7f7f"/>
 				<textFieldExpression><![CDATA[$F{hel_ativo_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>

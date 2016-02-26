@@ -15,12 +15,17 @@ class Item_Chamado extends CI_Controller {
 	}
 
 	public function index($hel_seqcha_ios) {
+		
+// 		$resultado = $this->ChamadoModel->get(base64_decode($hel_seqcha_ios));
+		
+// 		if ($resultado->hel_status_cha == 1){redirect('chamado');}
+		
 		$dados = array();
 		
 		$dados['NOVO_ITEM_CHAMADO']	= site_url('item_chamado/novo/'.$hel_seqcha_ios);
 		$dados['URL_APAGAR']		= site_url('item_chamado/apagar');
 		$dados['VOLTAR_CHAMADO']	= site_url('chamado');
-		
+
 		$dados['BLC_DADOS']  = array();
 		
 		$dados['hel_seqcha_ios'] = base64_decode($hel_seqcha_ios);

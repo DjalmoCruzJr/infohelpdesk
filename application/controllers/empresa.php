@@ -502,13 +502,19 @@ class Empresa extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($layout, $order_by, $filtro_cidade, $imprimir_sistema_contratado, $filtro_sistema, $hel_ativo_emp){
+	public function relatorio($layout, $filtro_empresa, $order_by, $filtro_cidade, $imprimir_sistema_contratado, $filtro_sistema, $hel_ativo_emp){
 		$order_by     	= str_replace("%20", " ", $order_by);
 		$clasulaWhere 	= "";
 		$whereAnd    	= " WHERE ";
 		$filtros      	= array();
 		$select_sistema = "";
 		$arquivo        = $layout == 0 ? 'assets/relatorios/relatorio_empresa.jrxml' : 'assets/relatorios/relatorio_empresa_analitico.jrxml';
+		
+		if ($filtro_empresa != 0){
+			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_emp IN ('.$filtro_empresa.') ';
+			$whereAnd = " AND ";
+		
+		}
 		
 		if ($filtro_cidade != 0 ){
 			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_cid IN ('.$filtro_cidade.') ';
@@ -523,6 +529,7 @@ class Empresa extends CI_Controller {
 					 $whereAnd = " AND ";
 					 break;
 		}
+		
 		
 		$imprimir_sistema_contratado == 0 ? array_push($filtros,"hel_seqemp_sco")  : "";
 
@@ -568,8 +575,7 @@ class Empresa extends CI_Controller {
 						     hel_email_emp,
 						     hel_razaosocial_emp
 					  FROM heltbemp
-					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp ".$clasulaWhere.$order_by;
-		
+					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp ".$clasulaWhere.$order_by;		
 	
 		if ($this->gerarRelatorio()) {
 			$this->jasper->gerar_relatorio($arquivo, $consulta, $filtros, $consulta_sub);

@@ -11,7 +11,6 @@ class Ordem_Servico extends CI_Controller {
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 		$this->load->model('Item_Ordem_Servico_Model', 'ItemOrdemServicoModel');
 		
-		
 		if ($this->util->autorizacao($this->session->userdata('hel_tipo_tco'))) {redirect('');}
 	}
 
@@ -140,13 +139,10 @@ class Ordem_Servico extends CI_Controller {
 	
 	public function apagar($hel_pk_seq_ose) {		
 		if ($this->testarApagar(base64_decode($hel_pk_seq_ose))) {
-			$resp = $this->ItemOrdemServicoModel->deleteItensOrdemServico(base64_decode($hel_pk_seq_ose));
-			if ($resp){
-				$res = $this->OrdemServicoModel->delete(base64_decode($hel_pk_seq_ose));
-				if ($res) {
-					$this->session->set_flashdata('sucesso', 'Ordem de Serviço apagada com sucesso.');
-				}	
-			}
+			$resultado = $this->OrdemServicoModel->delete(base64_decode($hel_pk_seq_ose));
+			if ($resultado) {
+				$this->session->set_flashdata('sucesso', 'Ordem de Serviço apagada com sucesso.');
+			}	
 		}				
 		redirect('ordem_servico');
 	}

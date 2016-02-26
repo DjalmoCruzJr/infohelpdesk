@@ -36,7 +36,7 @@
 	                                <td class="vertical-center">{hel_nome_con}</td>
 	                                <td class="vertical-center">{hel_horarioabertura_cha}</td>
 	                                <td class="vertical-center">{hel_status_cha}</td>
-	                                <td class="text-center"><a href="{ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Itens do Chamado"><i class="glyphicon glyphicon-list-alt""></i></a></td>
+	                                <td class="text-center"><a href="{ITEM_CHAMADO}" class="btn btn-link btn-xs {hel_disableditemencerrado_cha}" title="Itens do Chamado"><i class="glyphicon glyphicon-list-alt""></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_CHAMADO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_CHAMADO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>

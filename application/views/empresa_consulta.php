@@ -206,6 +206,7 @@
     }
 
     function visualizarRelatorio() {
+    	var empresa_relatorio 			= document.getElementById("empresa_relatorio");
     	var cidade_relatorio  			= document.getElementById("cidade_relatorio");
     	var sistema_relatorio 			= document.getElementById("sistema_relatorio");
     	var imrprimi_sistema_contratado = "";
@@ -223,6 +224,19 @@
 
       	if (filtroCidade == ""){
       		filtroCidade = "0";
+        }
+
+      	var filtroEmpresa	 = "";
+      	var separadorEmpresa  = "";
+    	for (var i = 0; i < empresa_relatorio.options.length; i++) {
+      		if (empresa_relatorio.options[i].selected){
+      			filtroEmpresa 	 = filtroEmpresa + separadorEmpresa + empresa_relatorio.options[i].value;
+      			separadorEmpresa  = ",";
+        	}
+      	} 
+
+      	if (filtroEmpresa == ""){
+      		filtroEmpresa = "0";
         }
 
       	var filtroSistema	 = "";
@@ -268,7 +282,7 @@
     	
     	$('#relatorio_empresa').modal('hide');
     	
-    	window.open('empresa/relatorio/'+ layout +'/' + orderBy +'/'+ filtroCidade+'/'+ imrprimi_sistema_contratado +'/'+ filtroSistema +'/'+ status, '_blank');
+    	window.open('empresa/relatorio/'+ layout +'/'+ filtroEmpresa +'/' + orderBy +'/'+ filtroCidade+'/'+ imrprimi_sistema_contratado +'/'+ filtroSistema +'/'+ status, '_blank');
     }	
 
 </script>

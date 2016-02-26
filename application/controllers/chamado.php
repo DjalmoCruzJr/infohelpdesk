@@ -107,8 +107,8 @@ class Chamado extends CI_Controller {
 				$this->session->set_flashdata('sucesso', 'Para continuar, insira os itens');
 				redirect('item_chamado/novo/'.base64_encode($hel_pk_seq_cha));
 			} else if (is_numeric($hel_pk_seq_cha)) {
-				$this->session->set_flashdata('sucesso', 'Ordem de Serviço salvo com sucesso');
-				redirect('ordem_servico');
+				$this->session->set_flashdata('sucesso', 'Chamado salvo com sucesso');
+				redirect('chamado');
 			} else {
 				$this->session->set_flashdata('erro', $hel_pk_seq_cha);	
 				redirect('chamado');
@@ -144,14 +144,15 @@ class Chamado extends CI_Controller {
 		$resultado = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) ? $this->ChamadoModel->getChamado($this->session->userdata('hel_pk_seq_con')) : $this->ChamadoModel->getChamado() ;	
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
-				"hel_pk_seq_cha"      		=> 'Nº '.$registro->hel_pk_seq_cha,
-				"hel_nomefantasia_emp"  	=> $registro->hel_nomefantasia_emp,
-				"hel_nome_con"         		=> $registro->hel_nome_con,
-				"hel_horarioabertura_cha" 	=> $this->util->formatarDateTime($registro->hel_horarioabertura_cha),
-				"hel_status_cha" 			=> $registro->hel_status_cha == 0 ? 'Aberto' : 'Encerrado',
-				"ITEM_CHAMADO" 	 			=> site_url('item_chamado/index/'.base64_encode($registro->hel_pk_seq_cha)),					
-				"EDITAR_CHAMADO" 	 		=> site_url('chamado/editar/'.base64_encode($registro->hel_pk_seq_cha)),
-				"APAGAR_CHAMADO" 	 		=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_cha)."')"
+				"hel_pk_seq_cha"      			=> 'Nº '.$registro->hel_pk_seq_cha,
+				"hel_nomefantasia_emp"  		=> $registro->hel_nomefantasia_emp,
+				"hel_nome_con"         			=> $registro->hel_nome_con,
+				"hel_horarioabertura_cha" 		=> $this->util->formatarDateTime($registro->hel_horarioabertura_cha),
+				"hel_status_cha" 				=> $registro->hel_status_cha == 0 ? 'Aberto' : 'Encerrado',
+				"hel_disableditemencerrado_cha" => 	$registro->hel_status_cha == 0 ? '' : 'disabled',
+				"ITEM_CHAMADO" 	 				=> site_url('item_chamado/index/'.base64_encode($registro->hel_pk_seq_cha)),					
+				"EDITAR_CHAMADO" 	 			=> site_url('chamado/editar/'.base64_encode($registro->hel_pk_seq_cha)),
+				"APAGAR_CHAMADO" 	 			=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_cha)."')"
 			);
 		}
 	}
