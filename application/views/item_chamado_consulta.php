@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVO_ITEM_CHAMADO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Novo Item</a>
+                    <a href="{NOVO_ITEM_CHAMADO}" class="btn btn-primary {hel_hiddenovoitemchamado_ios}"><i class="glyphicon glyphicon-plus"></i> Novo Item</a>
                 </div>
                 </br>
                 <div class="table">
@@ -20,6 +20,7 @@
                                 <th>Status</th>
                                 <th>Técnico</th>
                                 <th class="coluna-acao" width="80" {hel_hiddenencerraritemchamado_ios}>Encerrar</th>
+                                <th class="coluna-acao" width="80" {hel_hiddenmenusolucao_ios}>Solução</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -31,8 +32,9 @@
 	                                <td class="vertical-center">{hel_desc_sis}</td>
 	                                <td class="vertical-center">{hel_horaricioencerrado_ios}</td>
 	                                <td class="vertical-center">{hel_encerrado_ios}</td>
-	                                <td class="vertical-center">{hel_nometec_con}</td>	                                
+	                                <td class="vertical-center">{hel_nometec_con}</td>
 	                                <td {hel_hiddenencerraritemchamado_ios} class="text-center"><a href="{ENCERRAR_ITEM_CHAMADO}" {hel_disabledencerraritemchamado_ios} class="btn btn-link btn-xs" title="Encerrar"><i class="glyphicon glyphicon-ok"></i></a></td>
+	                                <td {hel_hiddensolucao_ios} class="text-center"><a href="{SOLUCAO}" class="btn btn-link btn-xs" title="Solução"><i class="glyphicon glyphicon-info-sign"></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>

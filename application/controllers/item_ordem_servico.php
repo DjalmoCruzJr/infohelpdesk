@@ -323,7 +323,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		$hel_seqioscha_ios 	 = empty($hel_seqioscha_ios) ? null : $hel_seqioscha_ios;
 		$hel_complemento_ios = trim($hel_complemento_ios);
 		
-		if (empty($hel_tipo_ios)){
+		if ($hel_tipo_ios == ''){
 			$erros    = TRUE;
 			$mensagem .= "- Tipo não informado, contacte a Info Rio Sistemas LTDA.\n";
 		} else if ($hel_tipo_ios <> 0){
@@ -340,7 +340,7 @@ class Item_Ordem_Servico extends CI_Controller {
 
 			if ($resultado) {
 
-				if ($resultado->hel_sistema_ser == 1) {
+				if ( ($resultado->hel_sistema_ser == 1) and (empty($hel_seqsis_ios)) ) {
 					$erros = TRUE;
 					$mensagem .= "- Para serviço selecionado, necessário informar o sistema.\n";
 					$this->session->set_flashdata('ERRO_HEL_SEQSIS_IOS', 'has-error');
@@ -384,6 +384,22 @@ class Item_Ordem_Servico extends CI_Controller {
 	private function testarApagar($hel_pk_seq_ios) {
 		$erros    = FALSE;
 		$mensagem = null;
+		
+		$resultado = $this->ItemOrdemServicoModel->get($hel_pk_seq_ios);
+		
+		if ($resultado){
+			if (!empty($resultado->hel_seqioscha_ios)){
+				$item_chamado = array (
+					"hel_encerrado_ios" => 0,
+					"hel_seqcontec_ios" => NULL,
+					"hel_solucao_ios"	=> NULL	 		
+				);
+								
+				$this->ItemChamadoModel->update($item_chamado, $resultado->hel_seqioscha_ios);
+			}
+		} else {
+			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');
+		}
 		
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');

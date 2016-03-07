@@ -14,21 +14,19 @@ class Item_Chamado extends CI_Controller {
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 	}
 
-	public function index($hel_seqcha_ios) {
+	public function index($hel_seqcha_ios) {		
+		$dados = array();		
 		
-// 		$resultado = $this->ChamadoModel->get(base64_decode($hel_seqcha_ios));
+		$resultado = $this->ChamadoModel->get(base64_decode($hel_seqcha_ios));
 		
-// 		if ($resultado->hel_status_cha == 1){redirect('chamado');}
-		
-		$dados = array();
-		
-		$dados['NOVO_ITEM_CHAMADO']	= site_url('item_chamado/novo/'.$hel_seqcha_ios);
-		$dados['URL_APAGAR']		= site_url('item_chamado/apagar');
-		$dados['VOLTAR_CHAMADO']	= site_url('chamado');
+		$dados['hel_hiddenovoitemchamado_ios']  = $resultado->hel_status_cha == 1 ? 'hidden' : '';
+		$dados['NOVO_ITEM_CHAMADO']				= site_url('item_chamado/novo/'.$hel_seqcha_ios);
+		$dados['URL_APAGAR']					= site_url('item_chamado/apagar');
+		$dados['VOLTAR_CHAMADO']				= site_url('chamado');
 
 		$dados['BLC_DADOS']  = array();
 		
-		$dados['hel_seqcha_ios'] = base64_decode($hel_seqcha_ios);
+		$dados['hel_seqcha_ios'] 				= base64_decode($hel_seqcha_ios);
 		
 		$this->carregarDados($dados);
 				
@@ -36,7 +34,11 @@ class Item_Chamado extends CI_Controller {
 	}
 	
 	public function novo($hel_seqcha_ios) {
-
+		
+		$resultado = $this->ChamadoModel->get(base64_decode($hel_seqcha_ios));
+		
+		if ($resultado->hel_status_cha == 1){redirect('chamado');}
+		
 		$dados = array();
 		$dados['hel_pk_seq_ios']  			= 0;
 		$dados['hel_tipo_ios']    			= CHAMADO;
@@ -61,7 +63,37 @@ class Item_Chamado extends CI_Controller {
 		$this->parser->parse('item_chamado_cadastro', $dados);
 	}
 	
-	public function editar($hel_pk_seq_ios, $hel_seqcha_ios) {		
+	public function solucao($hel_seqcha_ios, $hel_pk_seq_ios) {
+	
+		$resultado = $this->ItemChamadoModel->get(base64_decode($hel_pk_seq_ios));
+	
+		if ($resultado->hel_encerrado_ios == 1){			
+			if ($resultado) {
+				foreach ($resultado as $chave => $valor) {
+					$dados[$chave] = $valor;
+				}
+			} else {
+				show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');
+			}
+			
+			$dados['VOLTAR_ITEM_CHAMADO'] 		= site_url('item_chamado/index/'.base64_encode($dados['hel_seqcha_ios']));
+	
+			$this->carregarServico($dados);
+			$this->carregarDadosChamado($dados);
+			$this->carregarDadosEmpresa($dados);
+			$this->carregarSistema($dados);
+			
+			$this->parser->parse('consulta_solucao_view', $dados);
+		} else {
+			redirect('item_chamado/index/'.$hel_seqcha_ios);
+		}
+	}
+	
+	public function editar($hel_pk_seq_ios, $hel_seqcha_ios) {
+
+		$resultado = $this->ChamadoModel->get(base64_decode($hel_seqcha_ios));
+		
+		if ( ($resultado->hel_status_cha == 1) and ($this->session->userdata('hel_tipo_tco') <> 0 )){redirect('item_chamado/index/'.$hel_seqcha_ios);}
 		
 		$dados = array();
 		$hel_pk_seq_ios 		 = base64_decode($hel_pk_seq_ios);
@@ -178,15 +210,20 @@ class Item_Chamado extends CI_Controller {
 		$resultado = $this->ItemChamadoModel->getItemChamado($dados['hel_seqcha_ios']);
 		
 		$dados['hel_hiddenencerraritemchamado_ios'] = $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '' ;
-			
+		
+		$encerrado = $this->ItemChamadoModel->getItemChamdoEncerrado2($dados['hel_seqcha_ios']);
+		
+		$dados['hel_hiddenmenusolucao_ios'] = $encerrado = 0 ? 'hidden' : '';		
+		
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
 				"hel_desc_ser" 	 	  			=> $registro->hel_desc_ser,							
 				"hel_desc_sis" 		  			=> $registro->hel_desc_sis,
 				"hel_horaricioencerrado_ios"  	=> $this->util->formatarDateTime($registro->hel_horaricioencerrado_ios),
 				"hel_nometec_con"  				=> $registro->hel_nome_con,
-				"hel_encerrado_ios"	  			=> $registro->hel_encerrado_ios == 0 ? 'Aberto' : 'Encerrado',
-				"ENCERRAR_ITEM_CHAMADO"			=> site_url('encerramento_chamado/index/'.base64_encode($registro->hel_pk_seq_ios)),					
+				"hel_encerrado_ios"	  			=> $registro->hel_encerrado_ios == 0 ? 'Aberto' : 'Encerrado',					
+				"ENCERRAR_ITEM_CHAMADO"			=> site_url('encerramento_chamado/index/'.base64_encode($registro->hel_pk_seq_ios)),
+					"SOLUCAO"						=> $registro->hel_encerrado_ios == 1 ? site_url('item_chamado/solucao/'.base64_encode($registro->hel_seqcha_ios).'/'.base64_encode($registro->hel_pk_seq_ios)) : '',
 				"EDITAR_ITEM_CHAMADO" 			=> site_url('item_chamado/editar/'.base64_encode($registro->hel_pk_seq_ios).'/'.base64_encode($registro->hel_seqcha_ios)),
 				"APAGAR_ITEM_CHAMADO" 			=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ios)."','".base64_encode($dados['hel_seqcha_ios'])."')"
 			);
