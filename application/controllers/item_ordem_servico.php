@@ -8,6 +8,8 @@ class Item_Ordem_Servico extends CI_Controller {
 		
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
 		$this->load->model('Servico_Model', 'ServicoModel');
+		$this->load->model('Contato_Model', 'ContatoModel');
+		$this->load->model('Tipo_Contato_Model', 'TipoContatoModel');
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Sistema_Contratado_Model', 'SistemaContratadoModel');
 		$this->load->model('Chamado_Model', 'ChamadoModel');
@@ -35,6 +37,12 @@ class Item_Ordem_Servico extends CI_Controller {
 	}
 	
 	public function novo($hel_seqose_ios) {
+		
+		$resultado = $this->OrdemServicoModel->get(base64_decode($hel_seqose_ios));
+		
+		if ($this->util->permissao($resultado->hel_seqcontec_ose, $this->session->userdata('hel_pk_seq_con'))){
+			redirect('item_ordem_servico/index/'.$hel_seqose_ios);
+		}	
 
 		$dados = array();
 		$dados['hel_pk_seq_ios']  		= 0;
@@ -57,12 +65,18 @@ class Item_Ordem_Servico extends CI_Controller {
 		$this->carregarDadosEmpresa($dados);
 		$this->carregarSistema($dados);
 		$this->carregarChamado($dados);
-		$this->carregarItemChamado($dados);
 		
 		$this->parser->parse('item_ordem_servico_cadastro', $dados);
 	}
 	
-	public function editar($hel_pk_seq_ios, $hel_seqose_ios) {		
+	public function editar($hel_pk_seq_ios, $hel_seqose_ios) {
+		
+		$resultado = $this->OrdemServicoModel->get(base64_decode($hel_seqose_ios));
+		
+		if ($this->util->permissao($resultado->hel_seqcontec_ose, $this->session->userdata('hel_pk_seq_con'))){
+			redirect('item_ordem_servico/index/'.$hel_seqose_ios);
+		}		
+		
 		$dados = array();
 		$hel_pk_seq_ios 			= base64_decode($hel_pk_seq_ios);
 		$dados['hel_seqose_ios']	= base64_decode($hel_seqose_ios);
@@ -79,7 +93,6 @@ class Item_Ordem_Servico extends CI_Controller {
 		$this->carregarDadosEmpresa($dados);
 		$this->carregarSistema($dados);
 		$this->carregarChamado($dados);
-		$this->carregarItemChamado($dados);
 		
 		$this->parser->parse('item_ordem_servico_cadastro', $dados);	
 	}
@@ -125,6 +138,19 @@ class Item_Ordem_Servico extends CI_Controller {
 					"solucao"   => $hel_complemento_ios		
 				);
 			}
+
+			$resultado = $this->ItemOrdemServicoModel->get($hel_pk_seq_ios);
+			
+			if ($resultado->hel_seqioscha_ios <> $hel_seqioscha_ios){
+				
+				$item_chamado = array (
+				  "hel_encerrado_ios" => 0,
+				  "hel_seqcontec_ios" => NULL,
+				  "hel_solucao_ios"   => NULL				
+				);
+				
+				$this->ItemChamadoModel->update($item_chamado, hel_seqioscha_ios);
+			}
 			
 			if (!$hel_pk_seq_ios) {	
 				$hel_pk_seq_ios = $this->ItemOrdemServicoModel->insert($item_ordem_servico, $parameter_procedure);
@@ -148,7 +174,14 @@ class Item_Ordem_Servico extends CI_Controller {
 		}
 	}
 	
-	public function apagar($hel_pk_seq_ios, $hel_seqose_ios) {		
+	public function apagar($hel_pk_seq_ios, $hel_seqose_ios) {
+
+		$resultado = $this->OrdemServicoModel->get(base64_decode($hel_seqose_ios));
+		
+		if ($this->util->permissao($resultado->hel_seqcontec_ose, $this->session->userdata('hel_pk_seq_con'))){
+			redirect('item_ordem_servico/index/'.$hel_seqose_ios);
+		}	
+		
 		if ($this->testarApagar(base64_decode($hel_pk_seq_ios))) {
 			$res = $this->ItemOrdemServicoModel->delete(base64_decode($hel_pk_seq_ios));
 			if ($res) {
@@ -191,6 +224,8 @@ class Item_Ordem_Servico extends CI_Controller {
 	private function carregarDados(&$dados) {
 				
 		$resultado = $this->ItemOrdemServicoModel->getItemOrdemServico($dados['hel_seqose_ios']);
+
+		$dados['hel_disabled_ios'] = $this->contatoEhTecnico($dados) <> $this->session->userdata('hel_pk_seq_con') ? 'disabled' : '';
 			
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
@@ -201,6 +236,23 @@ class Item_Ordem_Servico extends CI_Controller {
 				"APAGAR_ITEM_ORDEM_SERVICO"	 => "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ios)."','".base64_encode($dados['hel_seqose_ios'])."')"
 			);
 		}
+	}
+	
+	private function contatoEhTecnico(&$dados) {
+		$resultado = $this->OrdemServicoModel->get($dados['hel_seqose_ios']);
+		$tecnico   = '0';
+	
+		if ($resultado) {
+			$contato = $this->ContatoModel->getEhContatoTecnico($resultado->hel_seqcontec_ose);
+			if ($contato){
+				$tecnico = $contato->hel_pk_seq_con;				
+			} else {
+				show_error('Não foram encontrados dados da Contato.', 500, 'Ops, erro encontrado');
+			}
+		} else {
+			show_error('Não foram encontrados dados da Ordem de Serviço.', 500, 'Ops, erro encontrado');
+		}		
+		return $tecnico;
 	}
 	
 	private function carregarOrdemServico($hel_pk_seq_ios, &$dados) {
@@ -229,11 +281,11 @@ class Item_Ordem_Servico extends CI_Controller {
 		!$resultado ? $dados['BLC_SERVICO'][] = array("hel_desc_ser" => 'Não existe serviço cadastrado') :'';
 	}
 	
-	private function carregarItemChamado(&$dados) {		
+	private function carregarItemChamado(&$dados, $erro) {
 		if ( !empty($dados['hel_seqcha_ios']) ){
 			$resultado = $this->ItemChamadoModel->getItemChamadoEncerrado($dados['hel_seqcha_ios']);
 		
-			if (reset($resultado)){
+			if (reset($resultado) and !$erro){
 				$dados['BLC_ITEM_CHAMADO'][] = array(
 						"hel_pk_seq_ios"      => '',
 						"hel_complemento1_ios" => 'Selecione...'
@@ -243,7 +295,7 @@ class Item_Ordem_Servico extends CI_Controller {
 			foreach ($resultado as $registro) {
 				$dados['BLC_ITEM_CHAMADO'][] = array(
 						"hel_pk_seq_ios"        => $registro->hel_pk_seq_ios,
-						"hel_complemento1_ios"   => $registro->hel_complemento1_ios,
+						"hel_complemento1_ios"  => $registro->hel_complemento1_ios,
 						"sel_hel_seqioscha_ios" => ($dados['hel_seqioscha_ios'] == $registro->hel_pk_seq_ios)?'selected':''
 				);
 			}
@@ -253,7 +305,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		} else {
 			$dados['BLC_ITEM_CHAMADO'][] = array(
 					"hel_pk_seq_ios"     	=> '',
-					"hel_complemento1_ios"   => 'Selecione...'
+					"hel_complemento1_ios"  => 'Selecione...'
 			);
 		}
 	}
@@ -333,7 +385,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		
 		if (empty($hel_seqser_ios)) {
 			$erros    = TRUE;
-			$mensagem .= "- Serviço não foi selecionada.\n";
+			$mensagem .= "- Serviço não selecionado.\n";
 			$this->session->set_flashdata('ERRO_HEL_SEQSER_IOS', 'has-error');
 		} else {
 			$resultado = $this->ServicoModel->get($hel_seqser_ios);
@@ -344,7 +396,10 @@ class Item_Ordem_Servico extends CI_Controller {
 					$erros = TRUE;
 					$mensagem .= "- Para serviço selecionado, necessário informar o sistema.\n";
 					$this->session->set_flashdata('ERRO_HEL_SEQSIS_IOS', 'has-error');
-
+				} else if ( ($resultado->hel_sistema_ser == 0) and (!empty($hel_seqsis_ios)) ) {
+					$erros = TRUE;
+					$mensagem .= "- Para serviço selecionado, não é necessário informar o sistema.\n";
+					$this->session->set_flashdata('ERRO_HEL_SEQSER_IOS', 'has-error');
 				}
 			}
 		}
@@ -356,15 +411,14 @@ class Item_Ordem_Servico extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_SEQCHAIOS_IOS', 'has-error');
 		}
 		
-		if (!empty($hel_seqcha_ios) and empty($hel_complemento_ios)){
+		if (!empty($hel_seqcha_ios) and !empty($hel_seqioscha_ios) and empty($hel_complemento_ios)){
 			$erros    = TRUE;
 			$mensagem .= "- Chamado informado, mas complemento não foi informada.\n";
-			$this->session->set_flashdata('ERRO_HEL_SEQCHA_IOS', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_SEQCHAIOS_IOS', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_COMPLEMENTO_IOS', 'has-error');
 		}
 
 		if ($erros) {
-			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
+			$this->session->set_flashdata('titulo_erro', 'Para continuar, corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
 			$this->session->set_flashdata('ERRO_HEL_IOS', TRUE);
@@ -424,16 +478,18 @@ class Item_Ordem_Servico extends CI_Controller {
 		$hel_seqcha_ios		 = $this->session->flashdata('hel_seqcha_ios');
 		$hel_complemento_ios = $this->session->flashdata('hel_complemento_ios');
 		$hel_seqioscha_ios   = $this->session->flashdata('hel_seqioscha_ios');
+		$this->carregarItemChamado($dados, FALSE);
 				
 		if ($ERRO_HEL_IOS) {
-			$dados['hel_tipo_ios']       		= $hel_tipo_ios;
-			$dados['hel_seqose_ios']       		= $hel_seqose_ios;
-			$dados['hel_seqser_ios']       		= $hel_seqser_ios;
-			$dados['hel_seqsis_ios']       		= $hel_seqsis_ios;
-			$dados['hel_seqcha_ios']       		= $hel_seqcha_ios;			
-			$dados['hel_complemento_ios']   	= $hel_complemento_ios;
-			$dados['hel_seqioscha_ios']   		= $hel_seqioscha_ios;
-			$this->carregarItemChamado($dados);
+			$dados['hel_tipo_ios']       	= $hel_tipo_ios;
+			$dados['hel_seqose_ios']       	= $hel_seqose_ios;
+			$dados['hel_seqser_ios']       	= $hel_seqser_ios;
+			$dados['hel_seqsis_ios']       	= $hel_seqsis_ios;
+			$dados['hel_seqcha_ios']       	= $hel_seqcha_ios;			
+			$dados['hel_complemento_ios']   = $hel_complemento_ios;
+			$dados['hel_seqioscha_ios']   	= $hel_seqioscha_ios;
+			
+			$this->carregarItemChamado($dados, TRUE);
 
 			$dados['ERRO_HEL_SEQSER_IOS']  		= $ERRO_HEL_SEQSER_IOS;
 			$dados['ERRO_HEL_SEQSIS_IOS']  		= $ERRO_HEL_SEQSIS_IOS;

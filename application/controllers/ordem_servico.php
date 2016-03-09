@@ -30,7 +30,7 @@ class Ordem_Servico extends CI_Controller {
 	}
 	
 	public function novo() {
-
+		
 		$dados = array();
 		$dados['hel_pk_seq_ose']  			= 0;
 		$dados['hel_datainicial_ose']    	= '';
@@ -54,6 +54,7 @@ class Ordem_Servico extends CI_Controller {
 	}
 	
 	public function editar($hel_pk_seq_ose) {
+		
 		$hel_pk_seq_ose = base64_decode($hel_pk_seq_ose);
 		$dados = array();
 
@@ -118,7 +119,7 @@ class Ordem_Servico extends CI_Controller {
 			}
 
 			if (is_numeric($hel_pk_seq_ose) and $inserir) {
-				$this->session->set_flashdata('sucesso', 'Para continuar insira os itens');
+				$this->session->set_flashdata('sucesso', 'Para continuar, insira os itens');
 				redirect('item_ordem_servico/novo/'.base64_encode($hel_pk_seq_ose));
 			} else if (is_numeric($hel_pk_seq_ose)) {
 				$this->session->set_flashdata('sucesso', 'Ordem de Serviço salvo com sucesso');
@@ -251,13 +252,13 @@ class Ordem_Servico extends CI_Controller {
 
 		if (empty($hel_seqcon_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- Contato não foi selecionado.\n";
+			$mensagem .= "- Contato não selecionado.\n";
 			$this->session->set_flashdata('ERRO_HEL_SEQCON_OSE', 'has-error');
 		}
 		
 		if (empty($hel_dateinicial_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- Data inicial não foi informada.\n";
+			$mensagem .= "- Data inicial não informada.\n";
 			$this->session->set_flashdata('ERRO_HEL_DATEINCIAL_OSE', 'has-error');
 		} else if (!$this->util->validarData($hel_dateinicial_ose)){
 			$erros    = TRUE;
@@ -267,7 +268,7 @@ class Ordem_Servico extends CI_Controller {
 		
 		if (empty($hel_horarioinicial_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- Horário inicial não foi informada.\n";
+			$mensagem .= "- Horário inicial não informada.\n";
 			$this->session->set_flashdata('ERRO_HEL_HORARIOINCIAL_OSE', 'has-error');
 		} else if ($this->util->validarHora($hel_horarioinicial_ose)){
 			$erros    = TRUE;
@@ -277,7 +278,7 @@ class Ordem_Servico extends CI_Controller {
 
 		if (empty($hel_datefinal_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- Data final não foi informado.\n";
+			$mensagem .= "- Data final não informado.\n";
 			$this->session->set_flashdata('ERRO_HEL_DATEFINAL_OSE', 'has-error');
 		} else if (!$this->util->validarData($hel_datefinal_ose)){
 			$erros    = TRUE;
@@ -287,7 +288,7 @@ class Ordem_Servico extends CI_Controller {
 		
 		if (empty($hel_horariofinal_ose)) {
 			$erros    = TRUE;
-			$mensagem .= "- Horário final não foi informado.\n";
+			$mensagem .= "- Horário final não informado.\n";
 			$this->session->set_flashdata('ERRO_HEL_HORARIOFINAL_OSE', 'has-error');
 		} else if ($this->util->validarHora($hel_horariofinal_ose)){
 			$erros    = TRUE;
@@ -310,7 +311,7 @@ class Ordem_Servico extends CI_Controller {
 		}
 				
 		if ($erros) {
-			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
+			$this->session->set_flashdata('titulo_erro', 'Para continuar, corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
 			$this->session->set_flashdata('ERRO_HEL_OSE', TRUE);				

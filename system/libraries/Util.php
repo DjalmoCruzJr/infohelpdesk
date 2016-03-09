@@ -48,6 +48,10 @@
 			return $hel_tipo_tco <> 0 ? TRUE : FALSE;
 		}
 		
+		public function permissao($tecnico, $session){
+			return $tecnico <> $session ? TRUE : FALSE;
+		}
+		
 		public function validar_cnpj($cnpj){
 			$cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
 			// Valida tamanho

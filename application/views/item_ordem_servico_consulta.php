@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
-                    <a href="{NOVO_ITEM_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Novo Item</a>
+                    <a href="{NOVO_ITEM_ORDEM_SERVICO}" class="btn btn-primary {hel_disabled_ios}"><i class="glyphicon glyphicon-plus"></i> Novo Item</a>
                 </div>
                 </br>
                 <div class="table">
@@ -28,8 +28,8 @@
 	                                <td class="vertical-center">{hel_desc_ser}</td>	    
 	                                <td class="vertical-center">{hel_seqcha_ios}</td>
 	                                <td class="vertical-center">{hel_desc_sis}</td>
-	                                <td class="text-center"><a href="{EDITAR_ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
-	                                <td class="text-center"><a onclick="{APAGAR_ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
+	                                <td class="text-center"><a href="{EDITAR_ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs {hel_disabled_ios}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+	                                <td class="text-center"><a onclick="{APAGAR_ITEM_ORDEM_SERVICO}" class="btn btn-link btn-xs {hel_disabled_ios}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
                         	{/BLC_DADOS}
                         </tbody>                   

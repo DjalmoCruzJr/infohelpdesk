@@ -338,6 +338,11 @@ class Item_Chamado extends CI_Controller {
 					$mensagem .= "- Para serviço selecionado, necessário informar o sistema.\n";
 					$this->session->set_flashdata('ERRO_HEL_SEQSER_IOS', 'has-error');
 					$this->session->set_flashdata('ERRO_HEL_SEQSIS_IOS', 'has-error');
+				} else if ( ($resultado->hel_sistema_ser == 0) and (!empty($hel_seqsis_ios)) ) {
+					$erros = TRUE;
+					$mensagem .= "- Para serviço selecionado, não é necessário informar o sistema.\n";
+					$this->session->set_flashdata('ERRO_HEL_SEQSER_IOS', 'has-error');
+					$this->session->set_flashdata('ERRO_HEL_SEQSIS_IOS', 'has-error');
 				}
 			}
 		}
