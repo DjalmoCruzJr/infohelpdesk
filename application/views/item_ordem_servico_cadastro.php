@@ -50,7 +50,7 @@
 						<div class="col-sm-6">
 							<select class="form-control" id="hel_seqioscha_ios" name="hel_seqioscha_ios" autofocus="autofocus">
 								{BLC_ITEM_CHAMADO}
-									<option value="{hel_pk_seq_ios}" {sel_hel_seqioscha_ios}>{hel_complemento1_ios}</option>
+									<option value="{hel_pk_seq1_ios}" {sel_hel_seqioscha_ios}>{hel_complemento1_ios}</option>
 								{/BLC_ITEM_CHAMADO}
 							</select>   
 						</div>

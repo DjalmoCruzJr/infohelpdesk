@@ -149,7 +149,7 @@ class Item_Ordem_Servico extends CI_Controller {
 				  "hel_solucao_ios"   => NULL				
 				);
 				
-				$this->ItemChamadoModel->update($item_chamado, hel_seqioscha_ios);
+				$this->ItemChamadoModel->update($item_chamado, $resultado->hel_seqioscha_ios);
 			}
 			
 			if (!$hel_pk_seq_ios) {	
@@ -281,22 +281,22 @@ class Item_Ordem_Servico extends CI_Controller {
 		!$resultado ? $dados['BLC_SERVICO'][] = array("hel_desc_ser" => 'Não existe serviço cadastrado') :'';
 	}
 	
-	private function carregarItemChamado(&$dados, $erro) {
+	public function carregarItemChamado(&$dados) {
 		if ( !empty($dados['hel_seqcha_ios']) ){
 			$resultado = $this->ItemChamadoModel->getItemChamadoEncerrado($dados['hel_seqcha_ios']);
 		
-			if (reset($resultado) and !$erro){
+			if (reset($resultado)){
 				$dados['BLC_ITEM_CHAMADO'][] = array(
-						"hel_pk_seq_ios"      => '',
+						"hel_pk_seq1_ios"      => '',
 						"hel_complemento1_ios" => 'Selecione...'
 				);
 			}
 		
 			foreach ($resultado as $registro) {
 				$dados['BLC_ITEM_CHAMADO'][] = array(
-						"hel_pk_seq_ios"        => $registro->hel_pk_seq_ios,
+						"hel_pk_seq1_ios"       => $registro->hel_pk_seq1_ios,
 						"hel_complemento1_ios"  => $registro->hel_complemento1_ios,
-						"sel_hel_seqioscha_ios" => ($dados['hel_seqioscha_ios'] == $registro->hel_pk_seq_ios)?'selected':''
+						"sel_hel_seqioscha_ios" => ($dados['hel_seqcha_ios'] == $registro->hel_pk_seq1_ios)?'selected':''
 				);
 			}
 			
@@ -304,7 +304,7 @@ class Item_Ordem_Servico extends CI_Controller {
 			
 		} else {
 			$dados['BLC_ITEM_CHAMADO'][] = array(
-					"hel_pk_seq_ios"     	=> '',
+					"hel_pk_seq1_ios"     	=> '',
 					"hel_complemento1_ios"  => 'Selecione...'
 			);
 		}
@@ -478,7 +478,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		$hel_seqcha_ios		 = $this->session->flashdata('hel_seqcha_ios');
 		$hel_complemento_ios = $this->session->flashdata('hel_complemento_ios');
 		$hel_seqioscha_ios   = $this->session->flashdata('hel_seqioscha_ios');
-		$this->carregarItemChamado($dados, FALSE);
+		$this->carregarItemChamado($dados);
 				
 		if ($ERRO_HEL_IOS) {
 			$dados['hel_tipo_ios']       	= $hel_tipo_ios;
@@ -489,7 +489,7 @@ class Item_Ordem_Servico extends CI_Controller {
 			$dados['hel_complemento_ios']   = $hel_complemento_ios;
 			$dados['hel_seqioscha_ios']   	= $hel_seqioscha_ios;
 			
-			$this->carregarItemChamado($dados, TRUE);
+			$this->carregarItemChamado($dados);
 
 			$dados['ERRO_HEL_SEQSER_IOS']  		= $ERRO_HEL_SEQSER_IOS;
 			$dados['ERRO_HEL_SEQSIS_IOS']  		= $ERRO_HEL_SEQSIS_IOS;
