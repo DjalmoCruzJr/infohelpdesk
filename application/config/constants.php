@@ -43,6 +43,7 @@ define('CHAMADO',								'1');
 define('TECNICO',								'0');
 define('ABERTO',								'0');
 define('ORDEM_SERVICO',							'0');
+define('CHAVE_JSON',							'52b964aecd013d598c5ea4f92a2d25e0');
 define('LAYOUT_DASHBOARD',						'dashboard');
 
 

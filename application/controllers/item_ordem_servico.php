@@ -23,9 +23,10 @@ class Item_Ordem_Servico extends CI_Controller {
 	public function index($hel_seqose_ios) {
 		$dados = array();
 		
-		$dados['NOVO_ITEM_ORDEM_SERVICO']	= site_url('item_ordem_servico/novo/'.$hel_seqose_ios);
-		$dados['VOLTAR_ORDEM_SERVICO']		= site_url('ordem_servico');
-		$dados['URL_APAGAR']				= site_url('item_ordem_servico/apagar');
+		$dados['NOVO_ITEM_ORDEM_SERVICO']		= site_url('item_ordem_servico/novo/'.$hel_seqose_ios);
+		$dados['VOLTAR_ORDEM_SERVICO']			= site_url('ordem_servico');
+		$dados['URL_APAGAR']					= site_url('item_ordem_servico/apagar');
+		$dados['URL_BUSCAR_ITEM_ORDEM_SERVICO'] = site_url('json/json/carregar_servico_sistema_item_chamado/'.CHAVE_JSON);
 		
 		$dados['BLC_DADOS']  = array();
 		
@@ -133,9 +134,10 @@ class Item_Ordem_Servico extends CI_Controller {
 			
 			if (!empty($hel_seqioscha_ios)){
 				$parameter_procedure = array (
-					"idChamado" => $hel_seqioscha_ios,
-					"idTecnico"	=> $this->session->userdata('hel_pk_seq_con'),
-					"solucao"   => $hel_complemento_ios		
+					"idChamado" 	 => $hel_seqioscha_ios,
+					"idTecnico"		 => $this->session->userdata('hel_pk_seq_con'),
+					"solucao"   	 => $hel_complemento_ios,
+					"idOrdemServico" => $hel_seqose_ios			
 				);
 			}
 

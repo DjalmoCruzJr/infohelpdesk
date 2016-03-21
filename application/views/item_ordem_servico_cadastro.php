@@ -8,7 +8,30 @@
 		<form action="{ACAO_FORM}" method="post" class="form-horizontal">
 			<input type="hidden"  id="hel_pk_seq_ios" name="hel_pk_seq_ios" value="{hel_pk_seq_ios}"/>
 			<input type="hidden" id="hel_tipo_ios" name="hel_tipo_ios" value="{hel_tipo_ios}"/>
-			<input type="hidden" id="hel_seqose_ios" name="hel_seqose_ios" value="{hel_seqose_ios}"/>				
+			<input type="hidden" id="hel_seqose_ios" name="hel_seqose_ios" value="{hel_seqose_ios}"/>
+			<div class="form-group">
+				<div class="{ERRO_HEL_SEQCHA_IOS}">
+					<label for="hel_seqcha_ios" class="col-sm-1 control-label">Chamado</label>
+						<div class="col-sm-4">
+							<select class="form-control chosen-select" id="hel_seqcha_ios" name="hel_seqcha_ios" onchange="carregarItemChamado()" autofocus="autofocus">
+								<option value="">Selecione...</option>
+								{BLC_CHAMADO}
+									<option value="{hel_pk_seq_cha}" {sel_hel_seqcha_ios}>{hel_desc_cha}</option>
+								{/BLC_CHAMADO}
+							</select>   
+						</div>
+				</div>
+				<div class="{ERRO_HEL_SEQCHAIOS_IOS}">
+					<label for="hel_seqioscha_ios" class="col-sm-1 control-label">Item</label>
+						<div class="col-sm-6">
+							<select class="form-control" id="hel_seqioscha_ios" name="hel_seqioscha_ios" autofocus="autofocus">
+								{BLC_ITEM_CHAMADO}
+									<option value="{hel_pk_seq1_ios}" {sel_hel_seqioscha_ios}>{hel_complemento1_ios}</option>
+								{/BLC_ITEM_CHAMADO}
+							</select>   
+						</div>
+				</div>
+			</div>				
 			<div class="form-group">
 				<div class="{ERRO_HEL_SEQSER_IOS}">
 					<label for="hel_seqser_ios" class="col-sm-1 control-label">Serviço</label>
@@ -31,29 +54,6 @@
 									{/BLC_SISTEMA}
 							</select>
 					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="{ERRO_HEL_SEQCHA_IOS}">
-					<label for="hel_seqcha_ios" class="col-sm-1 control-label">Chamado</label>
-						<div class="col-sm-4">
-							<select class="form-control chosen-select" id="hel_seqcha_ios" name="hel_seqcha_ios" onchange="carregarItemChamado()" autofocus="autofocus">
-								<option value="">Selecione...</option>
-								{BLC_CHAMADO}
-									<option value="{hel_pk_seq_cha}" {sel_hel_seqcha_ios}>{hel_desc_cha}</option>
-								{/BLC_CHAMADO}
-							</select>   
-						</div>
-				</div>
-				<div class="{ERRO_HEL_SEQCHAIOS_IOS}">
-					<label for="hel_seqioscha_ios" class="col-sm-1 control-label">Item</label>
-						<div class="col-sm-6">
-							<select class="form-control" id="hel_seqioscha_ios" name="hel_seqioscha_ios" autofocus="autofocus">
-								{BLC_ITEM_CHAMADO}
-									<option value="{hel_pk_seq1_ios}" {sel_hel_seqioscha_ios}>{hel_complemento1_ios}</option>
-								{/BLC_ITEM_CHAMADO}
-							</select>   
-						</div>
 				</div>
 			</div>
 			<div class="{ERRO_HEL_COMPLEMENTO_IOS}">
@@ -96,7 +96,7 @@
 				var options = '<option value="">Selecione...</option>';
 				$("#hel_seqioscha_ios").empty();
 				for (i = 0; i < data.length; i++) {
-					options += '<option value="' + data[i].hel_pk_seq_ios + '">' + data[i].hel_complemento1_ios + '</option>';
+					options += '<option value="' + data[i].hel_pk_seq1_ios + '">' + data[i].hel_complemento1_ios + '</option>';
 				}
 				$("#hel_seqioscha_ios").html(options);
 			  },

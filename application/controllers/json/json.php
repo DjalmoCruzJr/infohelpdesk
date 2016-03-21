@@ -50,5 +50,13 @@ class Json extends CI_Controller {
 		$resultado = $this->ItemChamadoModel->getItemChamadoEncerrado($hel_seqcha_ios);
 		echo json_encode($resultado, JSON_PRETTY_PRINT);
 	}
+	
+	public function carregar_servico_sistema_item_chamado($chave, $hel_seqcha_ios){
+		$resultado = array();
+		if ($chave === CHAVE_JSON){
+			$resultado = $this->ItemChamadoModel->get($hel_seqcha_ios);
+		}		
+		echo json_encode($resultado, JSON_PRETTY_PRINT);
+	}
 
 }
