@@ -24,7 +24,7 @@
 				<div class="{ERRO_HEL_SEQCHAIOS_IOS}">
 					<label for="hel_seqioscha_ios" class="col-sm-1 control-label">Item</label>
 						<div class="col-sm-6">
-							<select class="form-control" id="hel_seqioscha_ios" name="hel_seqioscha_ios" autofocus="autofocus">
+							<select class="form-control" id="hel_seqioscha_ios" name="hel_seqioscha_ios" autofocus="autofocus" onchange="carregarDados()">
 								{BLC_ITEM_CHAMADO}
 									<option value="{hel_pk_seq1_ios}" {sel_hel_seqioscha_ios}>{hel_complemento1_ios}</option>
 								{/BLC_ITEM_CHAMADO}
@@ -36,7 +36,7 @@
 				<div class="{ERRO_HEL_SEQSER_IOS}">
 					<label for="hel_seqser_ios" class="col-sm-1 control-label">Serviço</label>
 					<div class="col-sm-5">
-							<select class="form-control" id="hel_seqemp_ose" name="hel_seqser_ios" autofocus="autofocus" >
+							<select class="form-control" id="hel_seqser_ios" name="hel_seqser_ios" autofocus="autofocus">
 								<option value="">Selecione...</option>
 									{BLC_SERVICO}
 								    	<option value="{hel_pk_seq_ser}" {sel_hel_seqser_ios}>{hel_desc_ser}</option>
@@ -50,7 +50,7 @@
 							<select class="form-control" id="hel_seqsis_ios" name="hel_seqsis_ios" autofocus="autofocus" >
 								<option value="">Selecione...</option>
 									{BLC_SISTEMA}
-										<option value="{hel_pk_seq_sis}" {sel_hel_seqsis_ios}>{hel_desc_sis}<small> ({hel_tipo_sis}) </small></option>
+										<option value="{hel_pk_seq_sis}"  {sel_hel_seqsis_ios}>{hel_desc_sis}<small> ({hel_tipo_sis}) </small></option>
 									{/BLC_SISTEMA}
 							</select>
 					</div>
@@ -60,7 +60,7 @@
 				<div class="form-group">
 					<label for="hel_observacao_ose" class="col-sm-1 control-label">Complemento</label>
 						<div class="col-sm-11">
-							<textarea class="form-control" id="hel_complemento_ios" name="hel_complemento_ios" 
+							<textarea class="form-control" id="hel_complemento_ios" name="hel_complemento_ios"
 							      maxlength="499" autocomplete="off" autofocus>{hel_complemento_ios}</textarea>
 						</div>
 				</div>
@@ -106,4 +106,60 @@
 		});			
 	}
 
+	function carregarDados(){
+		var item_chamado 	   = document.getElementById("hel_seqioscha_ios");
+		var filtro_item_chamado = "";
+
+		for (var i = 0; i < item_chamado.options.length; i++) {
+			if (item_chamado.options[i].selected){
+				filtro_item_chamado = item_chamado.options[i].value;
+			}
+		}
+
+		if (filtro_item_chamado == ""){
+			filtro_item_chamado = 0
+		}
+
+		$.ajax({
+			url      : '{URL_BUSCAR_ITEM_ORDEM_SERVICO}/' + filtro_item_chamado,
+			dataType : "json",
+			async    : true,
+			success  : function(data) {
+				var servico = document.getElementById("hel_seqser_ios");
+				var sistema = document.getElementById("hel_seqsis_ios");
+
+				for (var i = 0; i < servico.options.length; i++) {
+					if (servico.options[i].value == data.hel_seqser_ios){
+						servico.options[i].selected = true;
+						document.getElementById("hel_seqser_ios").disabled = true;
+					}else {
+						document.getElementById("hel_seqser_ios").disabled = false;
+						servico.options[i].selected = false;
+					}
+				}
+
+
+
+				for (var i = 0; i < sistema.options.length; i++) {
+					if (sistema.options[i].value == data.hel_seqsis_ios){
+						sistema.options[i].selected = true;
+					}
+				}
+
+			},
+			error    : function(error){
+				console.log('Error na function carregarDados()');
+			}
+		});
+	}
+
+//	function DesabilitarCampos() {
+//
+//		var A = document.getElementById("hel_seqser_ios");
+//		if (!isEmpty(A)) {
+//			hel_seqser_ios.disabled = true;
+//		} else {
+//			hel_seqser_ios.disabled = true;
+//		}
+//	}
 </script>		

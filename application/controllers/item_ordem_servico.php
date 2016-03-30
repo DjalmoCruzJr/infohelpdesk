@@ -26,7 +26,6 @@ class Item_Ordem_Servico extends CI_Controller {
 		$dados['NOVO_ITEM_ORDEM_SERVICO']		= site_url('item_ordem_servico/novo/'.$hel_seqose_ios);
 		$dados['VOLTAR_ORDEM_SERVICO']			= site_url('ordem_servico');
 		$dados['URL_APAGAR']					= site_url('item_ordem_servico/apagar');
-		$dados['URL_BUSCAR_ITEM_ORDEM_SERVICO'] = site_url('json/json/carregar_servico_sistema_item_chamado/'.CHAVE_JSON);
 		
 		$dados['BLC_DADOS']  = array();
 		
@@ -197,6 +196,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		$dados['CONSULTA_ITEM_ORDEM_SERVICO'] = site_url('item_ordem_servico/index/'.base64_encode($dados['hel_seqose_ios']));
 		$dados['ACAO_FORM']         	 	  = site_url('item_ordem_servico/salvar');
 		$dados['URL_BUSCAR_CHAMADO']		  = site_url('json/json/carregar_item_chamado');
+		$dados['URL_BUSCAR_ITEM_ORDEM_SERVICO'] = site_url('json/json/carregar_servico_sistema_item_chamado/'.CHAVE_JSON);
 	}
 	
 	private function carregarDadosEmpresa(&$dados){
