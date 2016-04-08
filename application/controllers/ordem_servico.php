@@ -66,7 +66,6 @@ class Ordem_Servico extends CI_Controller {
 		$this->carregarDadosFlash($dados);
 		
 		$this->carregarEmpresa($dados);
-		$this->carregarContatoEmpresa($dados);
 		
 		$this->parser->parse('ordem_servico_cadastro', $dados);
 	}
@@ -402,6 +401,9 @@ class Ordem_Servico extends CI_Controller {
 		$hel_kminicial_ose		     = $this->session->flashdata('hel_kminicial_ose');
 		$hel_kmfinal_ose		     = $this->session->flashdata('hel_kmfinal_ose');
 		$hel_observacao_ose		     = $this->session->flashdata('hel_observacao_ose');
+		if (!$ERRO_HEL_OSE){
+			$this->carregarContatoEmpresa($dados);
+		}
 
 		if ($ERRO_HEL_OSE) {
 			$dados['hel_seqemp_ose']       			= $hel_seqemp_ose;

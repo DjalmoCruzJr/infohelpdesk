@@ -26,6 +26,8 @@ class Encerramento_Chamado extends CI_Controller {
 		
 		$this->carregarItemChamado($hel_pk_seq_ios,$dados);
 		
+		if ($this->session->userdata('hel_pk_seq_con') <> $dados['hel_seqcontec_ios']) {redirect('item_chamado/index/'.base64_encode($dados['hel_seqcha_ios']));}
+		
 		$dados['BLC_DADOS']  			= array();
 		$dados['VOLTAR_ITEM_CHAMADO']	= site_url('item_chamado/index/'.base64_encode($dados['hel_seqcha_ios']));
 		$dados['ACAO_FORM']         	= site_url('encerramento_chamado/salvar/'.base64_encode($encerrado));
@@ -37,7 +39,7 @@ class Encerramento_Chamado extends CI_Controller {
 		$this->carregarDadosEmpresa($dados);
 		$this->carregarSistema($dados);
 		
-		$this->carregarDadosFlash($dados);
+		$this->carregarDadosFlash($dados);	
 
 		$this->parser->parse('encerrar_chamado_view', $dados);		
 	}
@@ -177,9 +179,18 @@ class Encerramento_Chamado extends CI_Controller {
 		global $hel_encerrado_ios;
 		global $hel_seqcontec_ios;
 		global $hel_encerrado;
+		global $hel_seqioscha_ios;
 
 		$erros    = FALSE;
 		$mensagem = null;
+		
+		$resultado = $this->ItemChamadoModel->get($hel_pk_seq_ios);
+		
+		if ($resultado){
+			$hel_seqioscha_ios = $resultado->hel_seqioscha_ios;
+		}else{
+			show_error('Não foram encontrados item do chamado.', 500, 'Ops, erro encontrado');
+		}
 		
 		$hel_solucao_ios = trim($hel_solucao_ios);
 		
@@ -207,7 +218,13 @@ class Encerramento_Chamado extends CI_Controller {
 			$erros    = TRUE;
 			$mensagem .= "- Solução não foi preenchida.\n";
 			$this->session->set_flashdata('ERRO_HEL_SOLUCAO_IOS', 'has-error');
-		} 
+		}
+
+		if (!empty($hel_seqioscha_ios) and (empty($hel_solucao_ios))){
+			$erros    = TRUE;
+			$mensagem .= "- Existe uma ordem de serviço para esse item do chamado.\n";
+			$this->session->set_flashdata('ERRO_HEL_SOLUCAO_IOS', 'has-error');
+		}
 		
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');

@@ -48,7 +48,8 @@ class Item_Ordem_Servico_Model extends CI_Model {
 	
 		if ($res) {
 			if (!empty($parameter_procedure)){
-				$store_procedure = 'CALL SP_ENCERRAR_ITEM_CHAMADO (?, ?, ?)';
+				$store_procedure = 'CALL SP_ENCERRAR_ITEM_CHAMADO (?, ?, ?, ?)';
+				array_push($parameter_procedure, $this->db->insert_id());
 				$this->db->query($store_procedure, $parameter_procedure);
 			}
 			return $this->db->insert_id();
@@ -63,7 +64,8 @@ class Item_Ordem_Servico_Model extends CI_Model {
 	
 		if ($res) {
 			if (!empty($parameter_procedure)){
-				$store_procedure = 'CALL SP_ENCERRAR_ITEM_CHAMADO (?, ?, ?)';
+				$store_procedure = 'CALL SP_ENCERRAR_ITEM_CHAMADO (?, ?, ?, ?)';
+				array_push($parameter_procedure, $hel_pk_seq_ios);
 				$this->db->query($store_procedure, $parameter_procedure);
 			}
 			return $hel_pk_seq_ios;

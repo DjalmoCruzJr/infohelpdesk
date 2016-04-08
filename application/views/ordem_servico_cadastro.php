@@ -25,7 +25,6 @@
 						<label for="hel_seqcon_ose" class="col-sm-1 control-label">Contato</label>
 						<div class="col-sm-7">
 								<select class="form-control" id="hel_seqcon_ose" name="hel_seqcon_ose" autofocus="autofocus">
-									<option value="">Selecione...</option>
 									{BLC_CONTATO_EMPRESA}
 										<option value="{hel_pk_seq_con}" {sel_hel_seqcon_ose}>{hel_nome_con}</option>
 									{/BLC_CONTATO_EMPRESA}

@@ -36,7 +36,7 @@
 				<div class="{ERRO_HEL_SEQSER_IOS}">
 					<label for="hel_seqser_ios" class="col-sm-1 control-label">Serviço</label>
 					<div class="col-sm-5">
-							<select class="form-control" id="hel_seqser_ios" name="hel_seqser_ios" autofocus="autofocus">
+							<select class="form-control" id="hel_seqser_ios" name="hel_seqser_ios" autofocus="autofocus" {hel_disabledseqser_ios}>
 								<option value="">Selecione...</option>
 									{BLC_SERVICO}
 								    	<option value="{hel_pk_seq_ser}" {sel_hel_seqser_ios}>{hel_desc_ser}</option>
@@ -47,7 +47,7 @@
 				<div class="{ERRO_HEL_SEQSIS_IOS}">
 					<label for="hel_seqsis_ios" class="col-sm-1 control-label">Sistema</label>
 					<div class="col-sm-5">
-							<select class="form-control" id="hel_seqsis_ios" name="hel_seqsis_ios" autofocus="autofocus" >
+							<select class="form-control" id="hel_seqsis_ios" name="hel_seqsis_ios" autofocus="autofocus" {hel_disabledseqsis_ios}>
 								<option value="">Selecione...</option>
 									{BLC_SISTEMA}
 										<option value="{hel_pk_seq_sis}"  {sel_hel_seqsis_ios}>{hel_desc_sis}<small> ({hel_tipo_sis}) </small></option>
@@ -88,6 +88,10 @@
 	    	}
 	  	}
 
+	  	if (filtro_chamado == ""){
+	  		filtro_chamado = "0";
+		}
+
 	  	$.ajax({
 	  		  url      : '{URL_BUSCAR_CHAMADO}/' + filtro_chamado,
 			  dataType : "json",
@@ -103,11 +107,13 @@
 			 error    : function(error){
 				console.log('Error na function carregarContato()');
 		    }	
-		});			
+		});
+
+	  	desabilitarHabilitarComponentes();					
 	}
 
 	function carregarDados(){
-		var item_chamado 	   = document.getElementById("hel_seqioscha_ios");
+		var item_chamado 	    = document.getElementById("hel_seqioscha_ios");
 		var filtro_item_chamado = "";
 
 		for (var i = 0; i < item_chamado.options.length; i++) {
@@ -117,7 +123,7 @@
 		}
 
 		if (filtro_item_chamado == ""){
-			filtro_item_chamado = 0
+			filtro_item_chamado = "0"
 		}
 
 		$.ajax({
@@ -125,26 +131,38 @@
 			dataType : "json",
 			async    : true,
 			success  : function(data) {
-				var servico = document.getElementById("hel_seqser_ios");
-				var sistema = document.getElementById("hel_seqsis_ios");
+				var disabled_servico = false;
+				var disabled_sistema = false;
+				var servico	         = document.getElementById("hel_seqser_ios");
+				var sistema          = document.getElementById("hel_seqsis_ios");
 
+				desabilitarHabilitarComponentes();				
+					
 				for (var i = 0; i < servico.options.length; i++) {
 					if (servico.options[i].value == data.hel_seqser_ios){
 						servico.options[i].selected = true;
-						document.getElementById("hel_seqser_ios").disabled = true;
-					}else {
-						document.getElementById("hel_seqser_ios").disabled = false;
-						servico.options[i].selected = false;
-					}
+						disabled_servico = true;
+					} 
 				}
 
+				document.getElementById("hel_seqser_ios").disabled = disabled_servico;
 
+				if (!disabled_servico){
+					document.getElementById("hel_seqser_ios").selected = disabled_servico;	
+				} 
 
 				for (var i = 0; i < sistema.options.length; i++) {
 					if (sistema.options[i].value == data.hel_seqsis_ios){
 						sistema.options[i].selected = true;
+						disabled_sistema = true;
 					}
 				}
+
+				document.getElementById("hel_seqsis_ios").disabled = disabled_sistema;
+
+				if (!disabled_sistema){
+					document.getElementById("hel_seqsis_ios").selected = disabled_sistema;	
+				} 
 
 			},
 			error    : function(error){
@@ -153,13 +171,25 @@
 		});
 	}
 
-//	function DesabilitarCampos() {
-//
-//		var A = document.getElementById("hel_seqser_ios");
-//		if (!isEmpty(A)) {
-//			hel_seqser_ios.disabled = true;
-//		} else {
-//			hel_seqser_ios.disabled = true;
-//		}
-//	}
+	function desabilitarHabilitarComponentes(){
+		var servico	 = document.getElementById("hel_seqser_ios");
+		var sistema  = document.getElementById("hel_seqsis_ios");
+
+		for (var i = 0; i < servico.options.length; i++) {
+			servico.options[i].selected = false;
+		}
+
+		for (var i = 0; i < sistema.options.length; i++) {
+			sistema.options[i].selected = false;
+		}
+
+	  	if (document.getElementById("hel_seqsis_ios").disabled){
+			document.getElementById("hel_seqsis_ios").disabled = false;	
+		}
+
+		if (document.getElementById("hel_seqser_ios").disabled){
+			document.getElementById("hel_seqser_ios").disabled = false;	
+		}
+	}
+
 </script>		

@@ -312,11 +312,11 @@ class Item_Chamado extends CI_Controller {
 		$erros    = FALSE;
 		$mensagem = null;
 		
-		$hel_seqsis_ios = empty($hel_seqsis_ios) ? null : $hel_seqsis_ios;
+		$hel_seqsis_ios      = empty($hel_seqsis_ios) ? null : $hel_seqsis_ios;
 		$hel_complemento_ios = trim($hel_complemento_ios);
 		$hel_solucao_ios 	 = trim($hel_solucao_ios);
 		
-		if (empty($hel_tipo_ios)){
+		if ($hel_tipo_ios == ''){
 			$erros    = TRUE;
 			$mensagem .= "- Tipo não informado, contacte a Info Rio Sistemas LTDA.\n";
 		} else if ($hel_tipo_ios <> CHAMADO){
@@ -397,6 +397,11 @@ class Item_Chamado extends CI_Controller {
 		if ($resultado->hel_encerrado_ios == 1){
 			$erros     = TRUE;
 			$mensagem .= "- Item do Chamado já encerrado.\n";
+		}
+		
+		if (!empty($resultado->hel_seqioscha_ios)){
+			$erros     = TRUE;
+			$mensagem .= "- Existe uma ordem de serviço para esse chamado.\n";
 		}
 		
 		if ($erros) {
