@@ -16,7 +16,7 @@ $(document).ready(function() {
 	$('.mask-month').mask('d?d');
 	$('.mask-empresa').mask('d?d');
 	$('.mask-cod-mun').mask('dddddd?d');
-	$('.mask-time').mask('dd:dd:dd');
+	$('.mask-time').mask('dd:dd');
 	
 });
 

@@ -18,6 +18,7 @@
                     <table class="table table-striped table-bordered table-hover table-condensed" id="tb_ordem_servico">
 						<thead>
                             <tr>
+                            	<th>Número</th>
                                 <th>Nome Fantasia</th>    
                                 <th>Técnico</th>
                                 <th>Data inicial</th>
@@ -30,6 +31,7 @@
                         <tbody>
                         	{BLC_DADOS}
 	                            <tr>
+	                            	<td class="vertical-center">{hel_pk_seq_ose}</td>
 	                                <td class="vertical-center">{hel_nomefantasia_emp}</td>	    
 	                                <td class="vertical-center">{hel_nome_con}</td>
 	                                <td class="vertical-center">{hel_datainicial_ose}</td>
@@ -92,6 +94,17 @@
 									 <input type="radio" id="hel_statustodos_con" name="status_relatorio" value="2" checked="checked" />Todos
 								 </label>
 							 </div>
+						 </div>
+					 </div>
+					 
+					 <div class="form-group">
+						 <label for="ordem_servico_relatorio" class="col-sm-3 ">Filtro por O.S</label>
+						 <div>
+							 <select id="ordem_servico_relatorio" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple" >
+								 {BLC_ORDEM_SERVICO_RELATORIO}
+								 	<option value="{hel_pk_seq_ose}" >{hel_numero_ose}</option>
+								 {/BLC_ORDEM_SERVICO_RELATORIO}
+							 </select>
 						 </div>
 					 </div>
 
@@ -197,10 +210,11 @@
     }
 
     function visualizarRelatorio() {
-    	var tecnico_relatorio = document.getElementById("tecnico_relatorio");
-		var empresa_relatorio = document.getElementById("empresa_relatorio");
-		var contato_relatorio = document.getElementById("contato_relatorio");
-      	var orderBy 		 	  = "";
+    	var tecnico_relatorio 		= document.getElementById("tecnico_relatorio");
+		var empresa_relatorio		= document.getElementById("empresa_relatorio");
+		var contato_relatorio 		= document.getElementById("contato_relatorio");
+		var ordem_servico_relatorio = document.getElementById("ordem_servico_relatorio");
+      	var orderBy 		 	    = "";
 
       	var filtroTecnico	 = "";
       	var separadorTecnico = "";
@@ -244,10 +258,23 @@
 			filtroContato = "0";
 		}
 
+		var filtroOrdemServico	  = "";
+      	var separadorOrdemServico = "";
+
+		for (var i = 0; i < ordem_servico_relatorio.options.length; i++) {
+      		if (ordem_servico_relatorio.options[i].selected){
+      			filtroOrdemServico 	 = filtroOrdemServico + separadorOrdemServico + ordem_servico_relatorio.options[i].value;
+				separadorOrdemServico = ",";
+        	}
+      	} 
+
+      	if (filtroOrdemServico == ""){
+      		filtroOrdemServico = "0";
+        }
 
     	$('#relatorio_ordem_servico').modal('hide');
     	
-    	window.open('ordem_servico/relatorio/'+ filtroTecnico + '/' + filtroEmpresa + '/' + filtroContato, '_blank');
+    	window.open('ordem_servico/relatorio/'+ filtroOrdemServico +'/'+ filtroTecnico + '/' + filtroEmpresa + '/' + filtroContato, '_blank');
     }	
 
 </script>

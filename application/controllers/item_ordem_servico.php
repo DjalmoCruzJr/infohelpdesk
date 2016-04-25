@@ -120,11 +120,19 @@ class Item_Ordem_Servico extends CI_Controller {
 		
 		
 		if ($this->testarDados()) {
-
-			$resultado = $this->ItemChamadoModel->get($hel_seqioscha_ios);
 			
-			$hel_seqser_ios = $resultado->hel_seqser_ios;
-			$hel_seqsis_ios = !empty($resultado->hel_seqsis_ios) ? $resultado->hel_seqsis_ios : NULL; 
+			if (!empty($hel_seqioscha_ios)){
+				
+				$resultado = $this->ItemChamadoModel->get($hel_seqioscha_ios);
+					
+				if ($resultado){
+					$hel_seqser_ios = $resultado->hel_seqser_ios;
+					$hel_seqsis_ios = !empty($resultado->hel_seqsis_ios) ? $resultado->hel_seqsis_ios : NULL;
+				}else {
+					show_error('Não foram encontrados dados do Item do Chamado.', 500, 'Ops, erro encontrado');
+				}	
+				
+			} 
 			
 			$item_ordem_servico = array(
 				"hel_tipo_ios"       	=> $hel_tipo_ios,					
@@ -325,7 +333,7 @@ class Item_Ordem_Servico extends CI_Controller {
 			
 			if ($resultado){
 				$dados['hel_seqser_ios'] 		 = $resultado->hel_seqser_ios;
-				$dados['hel_seqsis_ios'] 		 = !empty($dados['hel_seqsis_ios']) ? $dados['hel_seqsis_ios'] : $resultado->hel_seqser_ios;
+				$dados['hel_seqsis_ios'] 		 = !empty($dados['hel_seqsis_ios']) ? $dados['hel_seqsis_ios'] : $resultado->hel_seqsis_ios;
 				$dados['hel_disabledseqser_ios'] = 'disabled';
 				$dados['hel_disabledseqsis_ios'] = !empty($resultado->hel_seqsis_ios) ? 'disabled' : '';
 			}else {
@@ -377,7 +385,7 @@ class Item_Ordem_Servico extends CI_Controller {
 						"sel_hel_seqcha_ios" => ($dados['hel_seqcha_ios'] == $registro->hel_pk_seq_cha)?'selected':''
 				);
 			}
-			!$resultado ? $dados['BLC_CHAMADO'][] = array("hel_desc_cha" => 'Não existe chamado aberto') :'';
+			!$resultado ? $dados['BLC_CHAMADO'][] = array("hel_pk_seq_cha" => NULL, "hel_desc_cha" => 'Não existe chamado aberto') :'';
 		}
 	}
 	
@@ -487,7 +495,8 @@ class Item_Ordem_Servico extends CI_Controller {
 				$item_chamado = array (
 					"hel_encerrado_ios" => 0,
 					"hel_seqcontec_ios" => NULL,
-					"hel_solucao_ios"	=> NULL	 		
+					"hel_solucao_ios"	=> NULL,
+					"hel_seqioscha_ios" => NULL						
 				);
 								
 				$this->ItemChamadoModel->update($item_chamado, $resultado->hel_seqioscha_ios);

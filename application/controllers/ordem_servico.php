@@ -25,6 +25,7 @@ class Ordem_Servico extends CI_Controller {
 		$this->carregarDados($dados);
 
 		$this->carregarEmpresaRelatorio($dados);
+		$this->carregarOrdemServicoRelatorio($dados);
 				
 		$this->parser->parse('ordem_servico_consulta', $dados);
 	}
@@ -158,6 +159,7 @@ class Ordem_Servico extends CI_Controller {
 		$resultado = $this->OrdemServicoModel->getOrdemServico();	
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
+				"hel_pk_seq_ose" 	 	  => $registro->hel_pk_seq_ose,					
 				"hel_nomefantasia_emp" 	  => $registro->hel_nomefantasia_emp,							
 				"hel_nome_con"         	  => $registro->hel_nome_con,
 				"hel_datainicial_ose" 	  => $this->util->inverteData($registro->hel_datainicial_ose),
@@ -212,6 +214,18 @@ class Ordem_Servico extends CI_Controller {
 			);
 		}
 		!$resultado ? $dados['BLC_EMPRESA_RELATORIO'][] = array("hel_nomefantasia_emp" => 'Não existe nenhuma empresa cadastrada') :'';
+	}
+	
+	private function carregarOrdemServicoRelatorio(&$dados) {
+		$resultado = $this->OrdemServicoModel->getOrdemServico();
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_ORDEM_SERVICO_RELATORIO'][] = array(
+					"hel_pk_seq_ose" => $registro->hel_pk_seq_ose,
+					"hel_numero_ose" => 'Nº '.$registro->hel_pk_seq_ose
+			);
+		}
+		!$resultado ? $dados['BLC_ORDEM_SERVICO_RELATORIO'][] = array("hel_numero_ose" => 'Não existe nenhuma ordem de serviço') :'';
 	}
 	
 	private function carregarEmpresa(&$dados) {
@@ -335,14 +349,28 @@ class Ordem_Servico extends CI_Controller {
 		
 		$resultado = $this->OrdemServicoModel->get($hel_pk_seq_ose);
 		
-// 		if ($this->ItemOrdemServicoModel->getOrdemServicoItemOrdemServico($hel_pk_seq_ose)){
-// 			$erros    = TRUE;
-// 			$mensagem = '- Chamados encerrado para esta Ordem de Serviço';			
-// 		}
-		
 		if ( $resultado->hel_seqcontec_ose <> $this->session->userdata('hel_pk_seq_con') ){
 			$erros    = TRUE;
 			$mensagem = '- Técnico diferente na Ordem de Serviço';
+		}
+		
+		if (!$erros){
+			
+			$update = ' UPDATE heltbios SET
+							   hel_encerrado_ios = 0,
+							   hel_seqioscha_ios = NULL,
+							   hel_seqcontec_ios = NULL,
+							   hel_solucao_ios   = NULL    		
+						WHERE hel_pk_seq_ios IN ( SELECT hel_seqioscha_ios FROM ( SELECT hel_seqioscha_ios FROM heltbios
+																				  WHERE hel_tipo_ios   = 0
+																                    AND hel_seqose_ios = '.$hel_pk_seq_ose.'
+																                    AND hel_seqioscha_ios IS NOT NULL ) AS temp_hetbios ) ';		
+			
+			if (!$this->ItemOrdemServicoModel->update_ordem_servico($update)){
+				$erros    = TRUE;
+				$mensagem = '- Aconteceu um Erro grave, entre em contato com a Info Rio Sistemas LTDA';
+			}		
+			
 		}
 		
 		if ($erros) {
@@ -436,19 +464,28 @@ class Ordem_Servico extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($filtro_tecnico, $filtro_empresa, $filtro_contato_empresa ){
+	public function relatorio($filtro_ordem_servico, $filtro_tecnico, $filtro_empresa, $filtro_contato_empresa ){
+		$clasuraWhere = "";
+		$whereAnd     = " WHERE "; 
+		
+		if (!empty($filtro_ordem_servico)){
+			$clasuraWhere .= $clasuraWhere.$whereAnd." hel_pk_seq_ose IN (".$filtro_ordem_servico.") ";
+			$whereAnd = " AND ";
+		}
 
 
-			$select_item_ordem_servico = 'SELECT hel_desc_ser,
-												 hel_desc_sis,
-												 hel_complemento_ios,
-												 hel_seqcha_ios,
-												 hel_seqioscha_ios
-									      FROM heltbios
-										  LEFT OUTER JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
-										  LEFT OUTER JOIN heltbsis ON hel_seqsis_ios = hel_pk_seq_sis
-										  WHERE hel_seqose_ios = $P{hel_seqose_ios}
-										    AND hel_tipo_ios   = 0';
+			$select_item_ordem_servico = 'SELECT hel_pk_seq_ios,
+											     concat(hel_desc_sis, " ( ",hel_codigo_sis, " )") as hel_desc_sis,
+											     hel_desc_ser,
+											     hel_seqcha_ios,
+											     hel_seqioscha_ios,
+											     hel_complemento_ios
+										  FROM heltbios
+										  LEFT JOIN heltbose ON hel_pk_seq_ose = hel_seqose_ios
+										  LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
+										  LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
+										  WHERE hel_tipo_ios   = 0
+											AND hel_seqose_ios = $P{hel_seqose_ios} ';
 
 			$consulta_sub = array (
 				"hel_seqose_ios" => $select_item_ordem_servico
@@ -467,11 +504,12 @@ class Ordem_Servico extends CI_Controller {
 						     hel_datafinal_ose,
 						     hel_horarioinicial_ose,
 						     hel_horariofinal_ose
-					FROM heltbose
-					LEFT JOIN heltbexc     ON hel_seqexc_ose    = hel_pk_seq_exc
-					LEFT JOIN heltbemp     ON hel_seqemp_exc    = hel_pk_seq_emp
-					LEFT JOIN heltbcon     ON hel_seqcon_exc    = hel_pk_seq_con
-					LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con ";
+					  FROM heltbose
+					  LEFT JOIN heltbexc     ON hel_seqexc_ose    = hel_pk_seq_exc
+					  LEFT JOIN heltbemp     ON hel_seqemp_exc    = hel_pk_seq_emp
+					  LEFT JOIN heltbcon     ON hel_seqcon_exc    = hel_pk_seq_con
+					  LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con ".$clasuraWhere;
+	
 
 		if ($this->gerarRelatorio()) {
 			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_ordem_servico.jrxml', $consulta, NULL, $consulta_sub);

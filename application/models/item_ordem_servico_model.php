@@ -74,6 +74,15 @@ class Item_Ordem_Servico_Model extends CI_Model {
 		}
 	}
 	
+	public function update_ordem_servico($update) {
+		$res = $this->db->query($update);	
+		if ($res) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	
 	public function delete($hel_pk_seq_ios) {
 		$this->db->where('hel_pk_seq_ios', $hel_pk_seq_ios, FALSE);
 		return $this->db->delete('heltbios');
