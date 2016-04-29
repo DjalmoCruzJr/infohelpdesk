@@ -298,7 +298,7 @@ class Ordem_Servico extends CI_Controller {
 			$mensagem .= "- Data final inválido.\n";
 			$this->session->set_flashdata('ERRO_HEL_DATEFINAL_OSE', 'has-error');
 		}
-		
+			
 		if (empty($hel_horariofinal_ose)) {
 			$erros    = TRUE;
 			$mensagem .= "- Horário final não informado.\n";
@@ -308,6 +308,21 @@ class Ordem_Servico extends CI_Controller {
 			$mensagem .= "- Horário final inválido.\n";
 			$this->session->set_flashdata('ERRO_HEL_HORARIOFINAL_OSE', 'has-error');
 		}
+		
+		if (!$erros and ($hel_horarioinicial_ose > $hel_horariofinal_ose) ){
+			$erros    = TRUE;
+			$mensagem .= "- Horário inicial maior que Horário final.\n";
+			$this->session->set_flashdata('ERRO_HEL_HORARIOINCIAL_OSE', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_HORARIOFINAL_OSE', 'has-error');
+		}
+		
+		if ($hel_dateinicial_ose > $hel_datefinal_ose){
+			$erros    = TRUE;
+			$mensagem .= "- Data inicial maior que Data final.\n";
+			$this->session->set_flashdata('ERRO_HEL_DATEINCIAL_OSE', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_DATEFINAL_OSE', 'has-error');
+		}
+		
 
 		if (!$erros and ($hel_kminicial_ose > $hel_kmfinal_ose)) {
 			$erros    = TRUE;

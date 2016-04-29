@@ -29,18 +29,11 @@ LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con]]>
 	</field>
 	<field name="contato_empresa" class="java.lang.String"/>
 	<field name="tecnico_nome" class="java.lang.String"/>
-	<field name="horas_analista" class="java.sql.Time"/>
 	<field name="distancia" class="java.lang.Long"/>
 	<field name="hel_observacao_ose" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="hel_pk_seq_ose" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="hel_datainicial_ose" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="hel_datafinal_ose" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="hel_horarioinicial_ose" class="java.sql.Time">
