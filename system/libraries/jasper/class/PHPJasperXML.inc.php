@@ -148,7 +148,7 @@ class PHPJasperXML {
         $i=0;
        // echo $i++."<br/>";
         foreach ($xml as $k=>$out) {
-            //echo $i++."$k<br/>";
+//             echo $i++."$k<br/>";
             switch($k) {
                 case "parameter":
                     $this->parameter_handler($out);
@@ -651,12 +651,12 @@ class PHPJasperXML {
     }
 
     public function element_image($data) {
-        $imagepath=$data->imageExpression;
+        $imagepath= $data->imageExpression;
         //$imagepath= substr($data->imageExpression, 1, -1);
         //$imagetype= substr($imagepath,-3);
-$data->hyperlinkReferenceExpression=$this->analyse_expression($data->hyperlinkReferenceExpression);
-$data->hyperlinkReferenceExpression=trim(str_replace(array(" ",'"'),"",$data->hyperlinkReferenceExpression));
- 
+		$data->hyperlinkReferenceExpression=$this->analyse_expression($data->hyperlinkReferenceExpression);
+		$data->hyperlinkReferenceExpression=trim(str_replace(array(" ",'"'),"",$data->hyperlinkReferenceExpression));
+ 	
         switch($data[scaleImage]) {
             case "FillFrame":
                 $this->pointer[]=array("type"=>"Image","path"=>$imagepath,"x"=>$data->reportElement["x"]+0,"y"=>$data->reportElement["y"]+0,"width"=>$data->reportElement["width"]+0,
@@ -664,9 +664,9 @@ $data->hyperlinkReferenceExpression=trim(str_replace(array(" ",'"'),"",$data->hy
                         "hidden_type"=>"image","linktarget"=>$data["hyperlinkTarget"]."");
                 break;
             default:
-                $this->pointer[]=array("type"=>"Image","path"=>$imagepath,"x"=>$data->reportElement["x"]+0,"y"=>$data->reportElement["y"]+0,"width"=>$data->reportElement["width"]+0,
-                        "height"=>$data->reportElement["height"]+0,"imgtype"=>$imagetype,"link"=>$data->hyperlinkReferenceExpression,
-                        "hidden_type"=>"image","linktarget"=>$data["hyperlinkTarget"]."");
+            	$this->pointer[]=array("type"=>"Image","path"=>$imagepath,"x"=>$data->reportElement["x"]+0,"y"=>$data->reportElement["y"]+0,"width"=>$data->reportElement["width"]+0,
+            			"height"=>$data->reportElement["height"]+0,"imgtype"=>$imagetype,"link"=>$data->hyperlinkReferenceExpression,
+            			"hidden_type"=>"image","linktarget"=>$data["hyperlinkTarget"]."");
                 break;
         }
     }
@@ -3849,7 +3849,6 @@ foreach($this->arrayVariable as $name=>$value){
 // 	            	echo $resultado.'<br>';
 	            	return $resultado;
 	            } else {
-// 	            	echo $this->pdf->GetY().'<br>';
 	            	return $this->pdf->GetY();
 	            }
 //         	}
@@ -4949,13 +4948,11 @@ foreach($this->arrayVariable as $name=>$value){
     public function passAllArrayDatatoSubReport($PHPJasperXMLSubReport,$d,$current_y,$data){
         
                 $PHPJasperXMLSubReport->arrayMainPageSetting=$this->arrayPageSetting;
+//                 print_r($this->arrayPageSetting);
                 if(isset($this->arraypageHeader)) {
                     $PHPJasperXMLSubReport->arrayPageSetting["subreportpageHeight"]=$PHPJasperXMLSubReport->arrayPageSetting["pageHeight"];
                     $PHPJasperXMLSubReport->arrayMainpageHeader=$this->arraypageHeader;
                     $PHPJasperXMLSubReport->arrayMainpageFooter=$this->arraypageFooter;
-                    
-//                     echo $current_y."<br/>";
-//                     echo $PHPJasperXMLSubReport->TopHeightFromMainPage."<br/>";
                     
                     if ($this->currentband=='pageHeader'){ ///here need to add more conditions to fulfill different band subreport
                         $PHPJasperXMLSubReport->TopHeightFromMainPage=$PHPJasperXMLSubReport->arrayMainPageSetting["topMargin"]+$d['y'];
@@ -4968,9 +4965,11 @@ foreach($this->arrayVariable as $name=>$value){
                 if($current_y>$PHPJasperXMLSubReport->TopHeightFromMainPage) {
                 	$PHPJasperXMLSubReport->TopHeightFromMainPage=$current_y+$d['y'];
                 }
+              
                 
                 $PHPJasperXMLSubReport->BottomHeightFromMainPage=$PHPJasperXMLSubReport->arrayMainPageSetting["bottomMargin"]
                                                                                                 +$PHPJasperXMLSubReport->arrayMainpageFooter[0]["height"];
+
                 $PHPJasperXMLSubReport->arrayPageSetting["leftMargin"]=$PHPJasperXMLSubReport->arrayPageSetting["leftMargin"]+$this->arrayPageSetting["leftMargin"];
 ###Set fixed pageHeight constant despite the changes of $PHPJasperXMLSubReport->TopHeightFromMainPage due to subreport in Detail band
                 $PHPJasperXMLSubReport->arrayPageSetting["pageHeight"]=$this->arrayPageSetting["pageHeight"]

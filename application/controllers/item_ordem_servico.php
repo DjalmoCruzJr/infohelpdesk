@@ -209,7 +209,7 @@ class Item_Ordem_Servico extends CI_Controller {
 	private function setarURL(&$dados) {
 		$dados['CONSULTA_ITEM_ORDEM_SERVICO'] 	= site_url('item_ordem_servico/index/'.base64_encode($dados['hel_seqose_ios']));
 		$dados['ACAO_FORM']         	 	  	= site_url('item_ordem_servico/salvar');
-		$dados['URL_BUSCAR_CHAMADO']		  	= site_url('json/json/carregar_item_chamado');
+		$dados['URL_BUSCAR_CHAMADO']		  	= site_url('json/json/carregar_item_chamado/'.CHAVE_JSON);
 		$dados['URL_BUSCAR_ITEM_ORDEM_SERVICO'] = site_url('json/json/carregar_servico_sistema_item_chamado/'.CHAVE_JSON);
 	}
 	

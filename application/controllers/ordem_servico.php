@@ -151,7 +151,7 @@ class Ordem_Servico extends CI_Controller {
 	private function setarURL(&$dados) {
 		$dados['CONSULTA_ORDEM_SERVICO'] = site_url('ordem_servico');
 		$dados['ACAO_FORM']         	 = site_url('ordem_servico/salvar');
-		$dados['URL_BUSCAR_CONTATO']   	 = site_url('json/json/carregar_contato');
+		$dados['URL_BUSCAR_CONTATO']   	 = site_url('json/json/carregar_contato/'.CHAVE_JSON);
 	}	
 	
 	private function carregarDados(&$dados) {
@@ -481,7 +481,7 @@ class Ordem_Servico extends CI_Controller {
 	
 	public function relatorio($filtro_ordem_servico, $filtro_tecnico, $filtro_empresa, $filtro_contato_empresa ){
 		$clasuraWhere = "";
-		$whereAnd     = " WHERE "; 
+		$whereAnd     = " WHERE ";
 		
 		if (!empty($filtro_ordem_servico)){
 			$clasuraWhere .= $clasuraWhere.$whereAnd." hel_pk_seq_ose IN (".$filtro_ordem_servico.") ";

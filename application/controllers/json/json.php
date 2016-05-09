@@ -31,8 +31,11 @@ class Json extends CI_Controller {
 	}	
 	
 	
-	public function carregar_contato($empresa) {
-		$resultado = $this->EmpresaContatoModel->getEmpresaContato2($empresa);
+	public function carregar_contato($chave,$empresa) {
+		$resultado = array();
+		if ($chave === CHAVE_JSON){
+			$resultado = $this->EmpresaContatoModel->getEmpresaContato2($empresa);
+		}
 		echo json_encode($resultado, JSON_PRETTY_PRINT);			
 	}
 
@@ -46,8 +49,11 @@ class Json extends CI_Controller {
 		echo json_encode($resultado, JSON_PRETTY_PRINT);
 	}
 	
-	public function carregar_item_chamado($hel_seqcha_ios){
-		$resultado = $this->ItemChamadoModel->getItemChamadoEncerrado($hel_seqcha_ios);
+	public function carregar_item_chamado($chave, $hel_seqcha_ios){
+		$resultado = array();
+		if ($chave === CHAVE_JSON){
+			$resultado = $this->ItemChamadoModel->getItemChamadoEncerrado($hel_seqcha_ios);
+		}
 		echo json_encode($resultado, JSON_PRETTY_PRINT);
 	}
 	

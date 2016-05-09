@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
-	<property name="ireport.zoom" value="1.500000000000041"/>
+	<property name="ireport.zoom" value="1.5000000000000415"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
@@ -22,7 +22,8 @@ FROM heltbose
 LEFT JOIN heltbexc ON hel_seqexc_ose = hel_pk_seq_exc
 LEFT JOIN heltbemp ON hel_seqemp_exc = hel_pk_seq_emp
 LEFT JOIN heltbcon ON hel_seqcon_exc = hel_pk_seq_con
-LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con]]>
+LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con
+WHERE hel_pk_seq_ose = 23]]>
 	</queryString>
 	<field name="hel_nomefantasia_emp" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -248,31 +249,10 @@ LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con]]>
 					<pen lineWidth="0.5" lineStyle="Double"/>
 				</graphicElement>
 			</line>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="53" y="72" width="109" height="12" uuid="e2ef0680-5725-4643-8cce-82c62160033d"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{hel_datainicial_ose}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="235" y="72" width="100" height="12" uuid="24a68992-baf8-42d5-852d-c1d5faad9b41"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{hel_datafinal_ose}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="242" y="97" width="100" height="12" uuid="d732569a-b4e1-4b25-b112-356478621703"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{horas_analista}]]></textFieldExpression>
-			</textField>
 		</band>
 		<band height="50">
 			<subreport>
-				<reportElement x="2" y="0" width="552" height="50" isPrintWhenDetailOverflows="true" uuid="53370815-f1d1-437f-8a84-ffa7530f2f25"/>
+				<reportElement isPrintRepeatedValues="false" x="2" y="0" width="552" height="50" uuid="e61b310f-4ad0-4793-9519-2a322c322a08"/>
 				<subreportParameter name="hel_seqose_ios">
 					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_ose}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -349,7 +329,4 @@ LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con]]>
 			</textField>
 		</band>
 	</columnFooter>
-	<summary>
-		<band splitType="Stretch"/>
-	</summary>
 </jasperReport>
