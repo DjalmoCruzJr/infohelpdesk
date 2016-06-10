@@ -36,6 +36,23 @@ class Empresa_Contato_Model extends CI_Model {
 		$this->db->where('hel_ativo_con', CONTATO_ATIVO);
 		return $this->db->get()->result();
 	}
+	
+	public function getEmpresaContato4($hel_seqemp_exc) {
+		$this->db->from('heltbexc');
+		$this->db->join('heltbcon', 'hel_seqcon_exc = hel_pk_seq_con', 'LEFT');
+		$this->db->join('heltbtco', 'hel_seqtco_con = hel_pk_seq_tco', 'LEFT');
+		$this->db->where('hel_seqemp_exc', $hel_seqemp_exc, FALSE);
+		$this->db->where('hel_ativo_con', CONTATO_ATIVO);
+		return $this->db->get()->result();
+	}
+	
+	public function getEmpresaContatos($hel_seqemp_exc) {
+		$this->db->from('heltbexc');
+		$this->db->join('heltbcon', 'hel_seqcon_exc = hel_pk_seq_con', 'LEFT');
+		$this->db->where('hel_seqemp_exc', $hel_seqemp_exc, FALSE);
+		$this->db->where('hel_ativo_con', CONTATO_ATIVO);
+		return $this->db->get()->result();
+	}
 
 	public function getEmpresaContatoRelatorio($hel_seqemp_exc) {
 		$this->db->from('heltbexc');
@@ -44,6 +61,13 @@ class Empresa_Contato_Model extends CI_Model {
 		$this->db->where_in('hel_seqemp_exc', $hel_seqemp_exc);
 		$this->db->where('hel_ativo_con', CONTATO_ATIVO);
 		$this->db->group_by('hel_pk_seq_con');
+		return $this->db->get()->result();
+	}
+	
+	public function getEmpresaContatoRelatorio2($hel_seqcon_exc) {
+		$this->db->from('heltbexc');
+		$this->db->join('heltbemp', 'hel_seqemp_exc = hel_pk_seq_emp', 'LEFT');
+		$this->db->where('hel_seqcon_exc', $hel_seqcon_exc);
 		return $this->db->get()->result();
 	}
 	

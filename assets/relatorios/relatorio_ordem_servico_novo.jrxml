@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
+	<property name="ireport.zoom" value="1.0245201830476411"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT heltbemp.hel_nomefantasia_emp,
+       heltbcon.hel_nome_con as contato_empresa,
+       tec.hel_nome_con as tecnico_nome,
+       TIMEDIFF(hel_horariofinal_ose, hel_horarioinicial_ose) as horas_analista,
+       (hel_kmfinal_ose - hel_kminicial_ose) as distancia,
+       heltbose.hel_observacao_ose,
+       hel_pk_seq_ose,
+       hel_datainicial_ose,
+       hel_datafinal_ose,
+       hel_horarioinicial_ose,
+       hel_horariofinal_ose,
+       'Cliente: ' as lb_cliente,
+       'Clontato: ' as lb_contato,
+       'Consultor: ' as lb_consultor,
+       'Autorizador por: ' as lb_autorizado,
+       'Data Inicial: ' as lb_dataini,
+       'Hora Inicial: ' as lb_horaini,
+       'Data Final: ' as lb_datafim,
+       'Hora Final: ' as lb_horafim,
+       'Distância Percorrida: ' as lb_distancia,
+       'Hora analista: ' as lb_horasana
+FROM heltbose
+LEFT JOIN heltbexc ON hel_seqexc_ose = hel_pk_seq_exc
+LEFT JOIN heltbemp ON hel_seqemp_exc = hel_pk_seq_emp
+LEFT JOIN heltbcon ON hel_seqcon_exc = hel_pk_seq_con
+LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con]]>
+	</queryString>
+	<field name="hel_nomefantasia_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="contato_empresa" class="java.lang.String"/>
+	<field name="tecnico_nome" class="java.lang.String"/>
+	<field name="horas_analista" class="java.sql.Time"/>
+	<field name="distancia" class="java.lang.Long"/>
+	<field name="hel_observacao_ose" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_pk_seq_ose" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_datainicial_ose" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_datafinal_ose" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_horarioinicial_ose" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_horariofinal_ose" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lb_cliente" class="java.lang.String"/>
+	<field name="lb_contato" class="java.lang.String"/>
+	<field name="lb_consultor" class="java.lang.String"/>
+	<field name="lb_autorizado" class="java.lang.String"/>
+	<field name="lb_dataini" class="java.lang.String"/>
+	<field name="lb_horaini" class="java.lang.String"/>
+	<field name="lb_datafim" class="java.lang.String"/>
+	<field name="lb_horafim" class="java.lang.String"/>
+	<field name="lb_distancia" class="java.lang.String"/>
+	<field name="lb_horasana" class="java.lang.String"/>
+	<variable name="TOTAL_REGITRO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<group name="group_ordem_servico" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{hel_pk_seq_ose}]]></groupExpression>
+		<groupHeader>
+			<band height="79">
+				<line>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="78" width="555" height="1" isPrintWhenDetailOverflows="true" uuid="a119cec4-df90-45f3-b9ec-e268bc5e162a"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Double"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="257" y="0" width="77" height="16" uuid="74cd52c1-81c3-4a7d-8f85-c3938888b258"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{hel_pk_seq_ose}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="18" width="555" height="1" isPrintWhenDetailOverflows="true" uuid="973eb1de-b48e-400b-a1df-dae24f7a4dfa"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Double"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="239" y="0" width="48" height="16" uuid="e7821132-7c7e-447b-afdc-ca6876f469b3"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[N°]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="68" y="36" width="195" height="12" uuid="6b463e5d-b614-4cec-8e76-3de2bbdb7199"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{contato_empresa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="312" y="36" width="239" height="12" uuid="202d708e-f692-456a-8479-1263459bbd22"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tecnico_nome}]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement x="433" y="51" width="64" height="12" uuid="7afb4ac7-b2e4-46a6-b133-6d9b973bb7fd"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{hel_horariofinal_ose}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="312" y="22" width="239" height="12" uuid="b8f6d35d-e228-484d-8570-7d37f3a60c87"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{contato_empresa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="37" y="22" width="227" height="12" uuid="9cbfe6bf-1fed-4f9a-98af-05aeed8fd68b"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{hel_nomefantasia_emp}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="91" y="65" width="67" height="12" uuid="d020801d-6d31-4f7a-830c-c3c0947ffed1"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{distancia}]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement x="167" y="51" width="70" height="12" uuid="efe6cd1b-8dbd-4e6f-ae68-752b5c55ab59"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{hel_horarioinicial_ose}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="22" width="47" height="12" uuid="b81a9344-0089-4681-9ca7-1d6f06ecc327"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_cliente}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="269" y="22" width="43" height="12" uuid="3a3ea824-f98b-4b4b-89aa-2f8c60c2d79f"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_contato}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="36" width="63" height="12" uuid="0ba9fb8b-337d-4383-b726-6ff1eaa0b322"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_autorizado}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="269" y="36" width="43" height="12" uuid="6294dd27-ad19-418a-9f32-5c07a4650788"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_consultor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="51" width="47" height="12" uuid="804c5ffe-c0cb-4864-9907-26adec8e0bbb"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_dataini}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="49" y="51" width="66" height="12" uuid="273539b2-d67a-4e1a-a836-a0467d0763d6"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{hel_datainicial_ose}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="119" y="51" width="48" height="12" uuid="62ba3717-e096-43a5-80b5-fde4bb122335"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_horaini}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="269" y="51" width="43" height="12" uuid="504c6eb3-64ba-44f2-9f15-571129160956"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_datafim}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="312" y="51" width="67" height="12" uuid="03c38ad3-e756-42db-8d41-f3c111841a41"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{hel_datafinal_ose}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="390" y="51" width="43" height="12" uuid="0c20d9a6-7482-41b6-b579-bcd4b8e0c63d"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_horafim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="65" width="89" height="12" uuid="cee27cc8-b450-4569-b08f-6b8ec9040bd1"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_distancia}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="248" y="65" width="64" height="12" uuid="e4c4c5cc-4867-4589-adab-ed8cdbaf2ac7"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lb_horasana}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="312" y="65" width="100" height="12" uuid="83a3d8f7-a799-47ac-bd5a-5a49be9e1e7c"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{horas_analista}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<line>
+					<reportElement x="23" y="33" width="220" height="1" uuid="0ccbdcf3-cca4-4cb3-a46f-f06887d8178b"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="49" y="34" width="147" height="15" uuid="7a82d7f5-cddf-4ce2-bc0e-7715f8fe2969"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{contato_empresa}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="305" y="32" width="220" height="1" uuid="78accf74-899a-4004-b5c1-b185244e48a8"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="343" y="33" width="147" height="15" uuid="2bb72280-c696-4d31-bc56-6840e698a291"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tecnico_nome}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="36">
+			<staticText>
+				<reportElement x="473" y="24" width="81" height="12" uuid="e7951e62-ef63-4b29-a7ef-ab00de2f8d0d"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HELPR602]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="537" y="12" width="37" height="12" uuid="df856cb8-6884-4e38-b148-72f3ed50292e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="514" y="12" width="13" height="12" uuid="b514ee71-0ef4-4a2e-ad33-080c9a1776a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="473" y="12" width="41" height="12" uuid="3d31b837-4f42-4254-89b1-b1d96d2f3330"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="0" width="100" height="12" uuid="77aee1f6-2e61-4180-ad5e-85de0871255d"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Info Rio Sistemas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="527" y="12" width="25" height="12" uuid="8144e2f5-ac89-497d-9623-66521b449f81"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="6" width="172" height="21" uuid="5168f16c-d8aa-4c1f-bdc5-edf2333c0b22"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORDEM DE SERVIÇO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="50">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="2" y="0" width="552" height="50" uuid="e61b310f-4ad0-4793-9519-2a322c322a08"/>
+				<subreportParameter name="hel_seqose_ios">
+					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_ose}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_item_ordem_servico.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="13">
+			<staticText>
+				<reportElement x="4" y="1" width="57" height="12" uuid="620223f2-f404-48d6-b8ca-eb20166a03b7"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observação:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="59" y="1" width="493" height="12" isPrintWhenDetailOverflows="true" uuid="732c4c90-2632-4a61-b1fa-d820ff7585a3"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_observacao_ose}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="13">
+			<line>
+				<reportElement x="2" y="0" width="555" height="1" uuid="f5011f39-f7d7-44e4-9a9c-bc4ac076a650"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="537" y="0" width="15" height="12" uuid="9b0c30b6-f33f-4cf0-9a29-b80cc2373939"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yyyy">
+				<reportElement x="1" y="1" width="100" height="12" uuid="848b8a7a-1c20-4a86-9e64-37e852cf4ed8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

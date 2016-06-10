@@ -1,5 +1,5 @@
 <header class="page-header">
-	<h2>Consulta de assunto do sistema</h2>
+	<h2>Consulta de assunto do sistema - {NOME_SISTEMA}</h2>
 </header>
 
 <div class="panel panel-default">
@@ -15,7 +15,6 @@
 						<thead>
                             <tr>
                             	<th>Código Sistema</th>
-                            	<th>Sistema</th>
                                 <th>Título</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
@@ -25,7 +24,6 @@
                         	{BLC_DADOS}
 	                            <tr>
 	                            	<td class="vertical-center">{hel_codigo_sis}</td>
-	                            	<td class="vertical-center">{hel_desc_sis}</td>
 	                                <td class="vertical-center">{hel_titulo_asu}</td>
 	                                <td class="text-center"><a href="{EDITAR_ASSUNTO_SISTEMA}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_ASSUNTO_SISTEMA}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>

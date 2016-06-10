@@ -141,7 +141,8 @@ class Item_Chamado extends CI_Controller {
 				"hel_seqsis_ios"   		=> $hel_seqsis_ios, 
 				"hel_complemento_ios"	=> $hel_complemento_ios,
 				"hel_solucao_ios"		=> $hel_solucao_ios,
-				"hel_encerrado_ios"		=> $hel_encerrado_ios
+				"hel_encerrado_ios"		=> $hel_encerrado_ios,
+				"hel_seqcontec_ios"		=> $hel_encerrado_ios == 1 ? $this->session->userdata('hel_pk_seq_con') : NULL
 			);
 			
 			if (!$hel_pk_seq_ios) {	
@@ -222,8 +223,9 @@ class Item_Chamado extends CI_Controller {
 				"hel_horaricioencerrado_ios"  	=> $this->util->formatarDateTime($registro->hel_horaricioencerrado_ios),
 				"hel_nometec_con"  				=> $registro->hel_nome_con,
 				"hel_encerrado_ios"	  			=> $registro->hel_encerrado_ios == 0 ? 'Aberto' : 'Encerrado',					
+				"hel_seqose_ios"	  			=> $registro->hel_seqose_ios,					
 				"ENCERRAR_ITEM_CHAMADO"			=> site_url('encerramento_chamado/index/'.base64_encode($registro->hel_pk_seq_ios)),
-					"SOLUCAO"						=> $registro->hel_encerrado_ios == 1 ? site_url('item_chamado/solucao/'.base64_encode($registro->hel_seqcha_ios).'/'.base64_encode($registro->hel_pk_seq_ios)) : '',
+				"SOLUCAO"						=> $registro->hel_encerrado_ios == 1 ? site_url('item_chamado/solucao/'.base64_encode($registro->hel_seqcha_ios).'/'.base64_encode($registro->hel_pk_seq_ios)) : '',
 				"EDITAR_ITEM_CHAMADO" 			=> site_url('item_chamado/editar/'.base64_encode($registro->hel_pk_seq_ios).'/'.base64_encode($registro->hel_seqcha_ios)),
 				"APAGAR_ITEM_CHAMADO" 			=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ios)."','".base64_encode($dados['hel_seqcha_ios'])."')"
 			);

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.771561000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="hel_seqcha_ios" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ios1.hel_pk_seq_ios,
+       hel_desc_ser,
+       hel_desc_sis,
+       hel_nome_con,
+       DATE_FORMAT(ios1.hel_horaricioencerrado_ios, "%d/%l/%Y %H:%m:%s") AS hel_horaricioencerrado_ios,
+       CASE ios1.hel_encerrado_ios WHEN 0 THEN "Aberto"
+       ELSE "Encerrado"
+       END AS hel_encerrado_ios,
+       ios1.hel_complemento_ios,
+       ios1.hel_solucao_ios,
+       (SELECT ios.hel_seqose_ios FROM heltbios as ios WHERE ios.hel_pk_seq_ios = ios1.hel_seqioscha_ios) as hel_seqose_ios
+FROM heltbios as ios1
+LEFT JOIN heltbser ON hel_pk_seq_ser = ios1.hel_seqser_ios
+LEFT JOIN heltbsis ON hel_pk_seq_sis = ios1.hel_seqsis_ios
+LEFT JOIN heltbcon on hel_pk_seq_con = ios1.hel_seqcontec_ios
+WHERE ios1.hel_seqcha_ios = $P{hel_seqcha_ios}
+  AND ios1.hel_tipo_ios   =  1]]>
+	</queryString>
+	<field name="hel_pk_seq_ios" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_desc_ser" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_desc_sis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_nome_con" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_horaricioencerrado_ios" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_encerrado_ios" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_complemento_ios" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_solucao_ios" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_seqose_ios" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="60" y="6" width="81" height="12" uuid="f63094ba-1db4-43ff-abb0-ccced3b48c51"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_pk_seq_ios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="331" y="31" width="219" height="12" uuid="80f2174e-f0d4-403c-a7e0-d7ba749e79e4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_desc_sis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="31" width="210" height="12" uuid="b87c3356-61a6-4715-a18e-a71c52881f58"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_desc_ser}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="61" y="45" width="210" height="12" isPrintWhenDetailOverflows="true" uuid="6e7e4af1-01d4-4564-9eda-14264d08e9a1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_complemento_ios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="6" width="44" height="12" uuid="0fb7bad9-111b-4585-8c01-1c634970976b"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seq.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="32" width="57" height="12" uuid="f7068220-f82a-4c69-bc81-4d9e231f73e2"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serviço:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="32" width="40" height="12" uuid="6440d6f6-27a9-4f8c-b0c2-5e5b34fa4f4b"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sistema:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="45" width="58" height="12" uuid="183ffab7-ec21-4103-8517-b12442d9cee7"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Complemento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="20" width="64" height="12" uuid="9434e1bb-21f5-49e5-b7f9-ec16badb6fbc"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Encerrado em:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="330" y="19" width="81" height="12" uuid="4609c26a-8229-46b8-ae0f-ac5ae0eed86f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_horaricioencerrado_ios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="19" width="56" height="12" uuid="ed2c691b-d66b-48cd-ad1b-624f1ed795fb"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Técnico:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="61" y="18" width="210" height="12" uuid="1606f05b-e98f-4cf3-922a-6aa27bdc44d4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_nome_con}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="412" y="20" width="28" height="12" uuid="f632218a-e9f5-47ff-9640-307381d07f5a"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[O.S. :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="438" y="19" width="112" height="12" uuid="5d4f3f73-6230-48b1-813e-f8bfb391d5dd"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_seqose_ios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="294" y="45" width="38" height="12" uuid="5afb014a-61ee-42b7-bfbc-20eb2d978833"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solução:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="331" y="45" width="219" height="12" uuid="b107fe4e-c6c6-4536-bb6c-1b422267d413"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_solucao_ios}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -114,13 +114,14 @@ class PHPJasperXMLSubReport{
     }
 
     /* Linha alterada por Esdras, Luiz, Pablo 19/08/2015 */
-    public function xml_dismantle($xml, $arrayNoSubSelect, $select) {
+    public function xml_dismantle($xml, $arrayNoSubSelect, $select, $arrayParameter = NULL) {
     	
         $this->page_setting($xml);
         foreach ($xml as $k=>$out) {
             switch($k) {
                 case "parameter":
-                    $this->parameter_handler($out, $arrayNoSubSelect);
+                	/* Linha alterada por Pablo e Luiz 31/05/2016 */
+                    $this->parameter_handler($out, $arrayNoSubSelect, $arrayParameter);
                     break;
                 case "queryString":
 //                 	print_r($select);
@@ -145,9 +146,6 @@ class PHPJasperXMLSubReport{
                         $this->default_handler($bg);
 
                     }
-                case "subDataset":
-                   	$this->subDataset_handler($out);
-                   	break;
                     break;
                 default:
                     foreach ($out as $object) {
@@ -189,7 +187,8 @@ class PHPJasperXMLSubReport{
         $this->arrayPageSetting["bottomMargin"]=$xml_path["bottomMargin"];
     }
 
-    public function parameter_handler($xml_path, $arrayNoSubSelect) {
+    /* function alterada por Pablo e Luiz 31/05/2016  */
+    public function parameter_handler($xml_path, $arrayNoSubSelect, $arrayParameter) {
             $defaultValueExpression=str_replace('"','',$xml_path->defaultValueExpression);
        if($defaultValueExpression!='')
         $this->arrayParameter[$xml_path["name"].'']=$defaultValueExpression;
@@ -203,6 +202,10 @@ class PHPJasperXMLSubReport{
        				$this->printSubRelato = false;
        			}
        		}
+       }
+       
+       if ($arrayParameter != NULL){
+       	$this->arrayParameter = $arrayParameter;
        }
        
 //        echo $xml_path["name"].'<br/>';

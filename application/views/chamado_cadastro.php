@@ -97,8 +97,6 @@
 	  			filtro_empresa = empresa.options[i].value; 
 	    	}
 	  	}
-
-	  	console.log("Filtro Empresa -> " + filtro_empresa);
 	
 		$.ajax({
 	  		  url      : '{URL_BUSCAR_CONTATO}/' + filtro_empresa,

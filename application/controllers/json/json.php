@@ -7,6 +7,7 @@ class Json extends CI_Controller {
 
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
 		$this->load->model('Item_Chamado_Model', 'ItemChamadoModel');
+		$this->load->model('Chamado_Model', 'ChamadoModel');
 	}
 	
 	public function buscarCEP($cep){
@@ -38,14 +39,25 @@ class Json extends CI_Controller {
 		}
 		echo json_encode($resultado, JSON_PRETTY_PRINT);			
 	}
+	
+	public function carregar_chamado($chave,$status = NULL) {
+		$resultado = array();
+		if ($chave === CHAVE_JSON){
+			$resultado = $this->ChamadoModel->getChamadosStatus($status);
+		}
+		echo json_encode($resultado, JSON_PRETTY_PRINT);
+	}
 
-	public function carregar_contato_relatorio($empresa) {
+	public function carregar_contato_relatorio($chave,$empresa) {
+		$resultado      = array();
 		$filtro_empresa = array ();
-		$data = explode(",",$empresa);
+		$data           = explode(",",$empresa);
 		for ($i = 0; $i < sizeof($data); $i ++){
 			$filtro_empresa[$i] = $data[$i];
 		}
-		$resultado = $this->EmpresaContatoModel->getEmpresaContatoRelatorio($filtro_empresa);
+		if ($chave === CHAVE_JSON){
+			$resultado = $this->EmpresaContatoModel->getEmpresaContatoRelatorio($filtro_empresa);
+		}
 		echo json_encode($resultado, JSON_PRETTY_PRINT);
 	}
 	

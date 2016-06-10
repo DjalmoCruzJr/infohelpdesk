@@ -37,12 +37,12 @@ class Contato_Empresa extends CI_Controller {
 	}
 	
 	private function carregarDados(&$dados) {
-		$resultado = $this->EmpresaContatoModel->getEmpresaContato2($dados['hel_seqemp_exc']);
+		$resultado = $this->EmpresaContatoModel->getEmpresaContato4($dados['hel_seqemp_exc']);
 			
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
 				"hel_nome_con"  => $registro->hel_nome_con,
-				//"hel_desc_con"	=> $registro->hel_desc_con,
+				"hel_desc_tco"	=> $registro->hel_desc_tco,
 				"hel_ativo_con"	=> $registro->hel_ativo_con == 1 ? 'Ativo' : 'Inativo'
 			);
 		}

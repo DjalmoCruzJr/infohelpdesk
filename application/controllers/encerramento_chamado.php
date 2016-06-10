@@ -26,7 +26,9 @@ class Encerramento_Chamado extends CI_Controller {
 		
 		$this->carregarItemChamado($hel_pk_seq_ios,$dados);
 		
-		if ($this->session->userdata('hel_pk_seq_con') <> $dados['hel_seqcontec_ios']) {redirect('item_chamado/index/'.base64_encode($dados['hel_seqcha_ios']));}
+		if ( ($this->session->userdata('hel_pk_seq_con') <> $dados['hel_seqcontec_ios']) and ( !empty($dados['hel_seqcontec_ios']) ) ) {
+			redirect('item_chamado/index/'.base64_encode($dados['hel_seqcha_ios']));
+		}
 		
 		$dados['BLC_DADOS']  			= array();
 		$dados['VOLTAR_ITEM_CHAMADO']	= site_url('item_chamado/index/'.base64_encode($dados['hel_seqcha_ios']));

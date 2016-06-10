@@ -9,10 +9,18 @@ class Item_Chamado_Model extends CI_Model {
 	}
 	
 	public function getItemChamado($hel_seqcha_ios) {
-		$this->db->from('heltbios');
-		$this->db->join('heltbser','hel_pk_seq_ser = hel_seqser_ios','LEFT');
-		$this->db->join('heltbsis','hel_pk_seq_sis = hel_seqsis_ios','LEFT');
-		$this->db->join('heltbcon','hel_pk_seq_con = hel_seqcontec_ios','LEFT');
+		$this->db->select(' 	   ios.hel_pk_seq_ios as hel_pk_seq_ios,
+							       hel_seqcha_ios,
+								   hel_desc_ser,
+							       hel_desc_sis,
+							       hel_nome_con,
+							       ios.hel_horaricioencerrado_ios,
+							       ios.hel_encerrado_ios,
+							       (SELECT ios1.hel_seqose_ios FROM heltbios ios1 WHERE ios1.hel_pk_seq_ios = ios.hel_seqioscha_ios) as hel_seqose_ios
+							FROM heltbios ios
+							LEFT JOIN heltbser ON ios.hel_seqser_ios    = hel_pk_seq_ser
+							LEFT JOIN heltbsis ON ios.hel_seqsis_ios    = hel_pk_seq_sis
+							LEFT JOIN heltbcon ON ios.hel_seqcontec_ios = hel_pk_seq_con ', FALSE);
 		$this->db->where('hel_seqcha_ios = ', $hel_seqcha_ios, FALSE);
 		$this->db->where('hel_tipo_ios = ', CHAMADO, FALSE);
 		return $this->db->get()->result();

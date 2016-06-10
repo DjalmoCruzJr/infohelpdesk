@@ -148,7 +148,7 @@ class PHPJasperXML {
         $i=0;
        // echo $i++."<br/>";
         foreach ($xml as $k=>$out) {
-//             echo $i++."$k<br/>";
+            //echo $i++."$k<br/>";
             switch($k) {
                 case "parameter":
                     $this->parameter_handler($out);
@@ -305,10 +305,11 @@ class PHPJasperXML {
     
         if($xml_path["isStartNewPage"]=="true")
             $newPageGroup=true;
+/*		Linha comentada por Luiz Marior 03/06/2016 - Quebra de página do report_group         
         else
             $newPageGroup="";
         
-       
+*/       
         
         //echo print_r($this->arraygrouphead,true)."<br/><br/>";
         
@@ -395,8 +396,7 @@ class PHPJasperXML {
             	case "ellipse":
                     $this->element_ellipse($out);
                     break;
-	                case "textField":
-                            
+	           case "textField":
                     $this->element_textField($out);
                     break;
 //                case "stackedBarChart":
@@ -639,24 +639,26 @@ class PHPJasperXML {
         //"height"=>$data->reportElement["height"]
         
 //### UTF-8 characters, a must for me.	
-		$txtEnc=$data->text; 
-                
+		$txtEnc = $data->text;
+// 		echo '</br>';
+// 		echo '$data->text ->'.$data->text;
+		                
 		$this->pointer[]=array("type"=>"MultiCell","width"=>$data->reportElement["width"],"height"=>$height,
-                    "txt"=>$txtEnc,"border"=>$border,"align"=>$align,"fill"=>$fill,"hidden_type"=>"statictext",
-                    "soverflow"=>$stretchoverflow,"poverflow"=>$printoverflow,"rotation"=>$rotation,"valign"=>$valign,
-                    "x"=>$data->reportElement["x"]+0,"y"=>$data->reportElement["y"]+0);
+			                   "txt"=>$data->text,"border"=>$border,"align"=>$align,"fill"=>$fill,"hidden_type"=>"statictext",
+			                   "soverflow"=>$stretchoverflow,"poverflow"=>$printoverflow,"rotation"=>$rotation,"valign"=>$valign,
+			                   "x"=>$data->reportElement["x"]+0,"y"=>$data->reportElement["y"]+0);
 //### End of modification, below is the original line		
 //        $this->pointer[]=array("type"=>"MultiCell","width"=>$data->reportElement["width"],"height"=>$height,"txt"=>$data->text,"border"=>$border,"align"=>$align,"fill"=>$fill,"hidden_type"=>"statictext","soverflow"=>$stretchoverflow,"poverflow"=>$printoverflow,"rotation"=>$rotation);
 
     }
 
     public function element_image($data) {
-        $imagepath= $data->imageExpression;
+        $imagepath=$data->imageExpression;
         //$imagepath= substr($data->imageExpression, 1, -1);
         //$imagetype= substr($imagepath,-3);
-		$data->hyperlinkReferenceExpression=$this->analyse_expression($data->hyperlinkReferenceExpression);
-		$data->hyperlinkReferenceExpression=trim(str_replace(array(" ",'"'),"",$data->hyperlinkReferenceExpression));
- 	
+$data->hyperlinkReferenceExpression=$this->analyse_expression($data->hyperlinkReferenceExpression);
+$data->hyperlinkReferenceExpression=trim(str_replace(array(" ",'"'),"",$data->hyperlinkReferenceExpression));
+ 
         switch($data[scaleImage]) {
             case "FillFrame":
                 $this->pointer[]=array("type"=>"Image","path"=>$imagepath,"x"=>$data->reportElement["x"]+0,"y"=>$data->reportElement["y"]+0,"width"=>$data->reportElement["width"]+0,
@@ -664,9 +666,9 @@ class PHPJasperXML {
                         "hidden_type"=>"image","linktarget"=>$data["hyperlinkTarget"]."");
                 break;
             default:
-            	$this->pointer[]=array("type"=>"Image","path"=>$imagepath,"x"=>$data->reportElement["x"]+0,"y"=>$data->reportElement["y"]+0,"width"=>$data->reportElement["width"]+0,
-            			"height"=>$data->reportElement["height"]+0,"imgtype"=>$imagetype,"link"=>$data->hyperlinkReferenceExpression,
-            			"hidden_type"=>"image","linktarget"=>$data["hyperlinkTarget"]."");
+                $this->pointer[]=array("type"=>"Image","path"=>$imagepath,"x"=>$data->reportElement["x"]+0,"y"=>$data->reportElement["y"]+0,"width"=>$data->reportElement["width"]+0,
+                        "height"=>$data->reportElement["height"]+0,"imgtype"=>$imagetype,"link"=>$data->hyperlinkReferenceExpression,
+                        "hidden_type"=>"image","linktarget"=>$data["hyperlinkTarget"]."");
                 break;
         }
     }
@@ -3849,6 +3851,7 @@ foreach($this->arrayVariable as $name=>$value){
 // 	            	echo $resultado.'<br>';
 	            	return $resultado;
 	            } else {
+// 	            	echo $this->pdf->GetY().'<br>';
 	            	return $this->pdf->GetY();
 	            }
 //         	}
@@ -4913,6 +4916,7 @@ foreach($this->arrayVariable as $name=>$value){
     }
     
     // function alterada em 19/08/2015 Luiz Mário, Esdras, Pablo
+    // Alterado para HelpDesk 31/05/2016 por Luiz Mario
     public function includeSubReport($d,$arrdata,$current_y){ 
     		   $select_sub = " ";		   
                include_once ("PHPJasperXMLSubReport.inc.php");
@@ -4921,15 +4925,15 @@ foreach($this->arrayVariable as $name=>$value){
                $PHPJasperXMLSubReport->arrayParameter=$arrdata;
 	
                // Linha adicionada por Luiz Mário, Esdras para subrelato 19/08/2015
-               $chave = array_keys( $PHPJasperXMLSubReport->arrayParameter);
-				
+               $chave = array_keys($PHPJasperXMLSubReport->arrayParameter);
+
 			   foreach ($chave as $select){
 					$select_sub = $this->select_sub[$select];
 			   }
 
                $PHPJasperXMLSubReport->debugsql=$this->debugsql;
                // function alterada em 19/08/2015
-               $PHPJasperXMLSubReport->xml_dismantle($srxml, $this->arrayNoSubSelect, $select_sub );
+               $PHPJasperXMLSubReport->xml_dismantle($srxml, $this->arrayNoSubSelect, $select_sub, $PHPJasperXMLSubReport->arrayParameter);
                
                $this->passAllArrayDatatoSubReport($PHPJasperXMLSubReport,$d,$current_y,$arrdata);
                
@@ -4948,11 +4952,13 @@ foreach($this->arrayVariable as $name=>$value){
     public function passAllArrayDatatoSubReport($PHPJasperXMLSubReport,$d,$current_y,$data){
         
                 $PHPJasperXMLSubReport->arrayMainPageSetting=$this->arrayPageSetting;
-//                 print_r($this->arrayPageSetting);
                 if(isset($this->arraypageHeader)) {
                     $PHPJasperXMLSubReport->arrayPageSetting["subreportpageHeight"]=$PHPJasperXMLSubReport->arrayPageSetting["pageHeight"];
                     $PHPJasperXMLSubReport->arrayMainpageHeader=$this->arraypageHeader;
                     $PHPJasperXMLSubReport->arrayMainpageFooter=$this->arraypageFooter;
+                    
+//                     echo $current_y."<br/>";
+//                     echo $PHPJasperXMLSubReport->TopHeightFromMainPage."<br/>";
                     
                     if ($this->currentband=='pageHeader'){ ///here need to add more conditions to fulfill different band subreport
                         $PHPJasperXMLSubReport->TopHeightFromMainPage=$PHPJasperXMLSubReport->arrayMainPageSetting["topMargin"]+$d['y'];
@@ -4965,11 +4971,9 @@ foreach($this->arrayVariable as $name=>$value){
                 if($current_y>$PHPJasperXMLSubReport->TopHeightFromMainPage) {
                 	$PHPJasperXMLSubReport->TopHeightFromMainPage=$current_y+$d['y'];
                 }
-              
                 
                 $PHPJasperXMLSubReport->BottomHeightFromMainPage=$PHPJasperXMLSubReport->arrayMainPageSetting["bottomMargin"]
                                                                                                 +$PHPJasperXMLSubReport->arrayMainpageFooter[0]["height"];
-
                 $PHPJasperXMLSubReport->arrayPageSetting["leftMargin"]=$PHPJasperXMLSubReport->arrayPageSetting["leftMargin"]+$this->arrayPageSetting["leftMargin"];
 ###Set fixed pageHeight constant despite the changes of $PHPJasperXMLSubReport->TopHeightFromMainPage due to subreport in Detail band
                 $PHPJasperXMLSubReport->arrayPageSetting["pageHeight"]=$this->arrayPageSetting["pageHeight"]

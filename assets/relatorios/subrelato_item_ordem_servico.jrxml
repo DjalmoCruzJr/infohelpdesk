@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_cidade_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
-	<property name="ireport.zoom" value="2.1961500000000416"/>
+	<property name="ireport.zoom" value="1.6500000000000319"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="hel_seqose_ios" class="java.lang.Integer">
@@ -45,7 +45,7 @@ WHERE hel_tipo_ios   = 0
 		<band/>
 	</pageHeader>
 	<detail>
-		<band height="61" splitType="Stretch">
+		<band height="51" splitType="Stretch">
 			<textField>
 				<reportElement x="60" y="0" width="81" height="12" uuid="f63094ba-1db4-43ff-abb0-ccced3b48c51"/>
 				<textElement>
@@ -54,14 +54,14 @@ WHERE hel_tipo_ios   = 0
 				<textFieldExpression><![CDATA[$F{hel_pk_seq_ios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="60" y="36" width="306" height="12" uuid="80f2174e-f0d4-403c-a7e0-d7ba749e79e4"/>
+				<reportElement x="337" y="24" width="213" height="12" uuid="80f2174e-f0d4-403c-a7e0-d7ba749e79e4"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_desc_sis}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="60" y="24" width="306" height="12" uuid="b87c3356-61a6-4715-a18e-a71c52881f58"/>
+				<reportElement x="61" y="25" width="210" height="12" uuid="b87c3356-61a6-4715-a18e-a71c52881f58"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -82,7 +82,7 @@ WHERE hel_tipo_ios   = 0
 				<textFieldExpression><![CDATA[$F{hel_seqioscha_ios}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToBandHeight" x="60" y="48" width="490" height="12" isPrintWhenDetailOverflows="true" uuid="6e7e4af1-01d4-4564-9eda-14264d08e9a1"/>
+				<reportElement stretchType="RelativeToBandHeight" x="60" y="37" width="490" height="12" isPrintWhenDetailOverflows="true" uuid="6e7e4af1-01d4-4564-9eda-14264d08e9a1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -110,28 +110,28 @@ WHERE hel_tipo_ios   = 0
 				<text><![CDATA[Item do Chamado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="24" width="57" height="12" uuid="f7068220-f82a-4c69-bc81-4d9e231f73e2"/>
+				<reportElement x="4" y="25" width="57" height="12" uuid="f7068220-f82a-4c69-bc81-4d9e231f73e2"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Serviço]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="36" width="57" height="12" uuid="6440d6f6-27a9-4f8c-b0c2-5e5b34fa4f4b"/>
+				<reportElement x="280" y="24" width="57" height="12" uuid="6440d6f6-27a9-4f8c-b0c2-5e5b34fa4f4b"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Sistema]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="48" width="57" height="12" uuid="183ffab7-ec21-4103-8517-b12442d9cee7"/>
+				<reportElement x="3" y="37" width="57" height="12" uuid="183ffab7-ec21-4103-8517-b12442d9cee7"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Complemento]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="60" width="555" height="1" isPrintWhenDetailOverflows="true" uuid="bca4f9cd-b022-4f9e-8bdd-b724769925c3"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="50" width="555" height="1" isPrintWhenDetailOverflows="true" uuid="bca4f9cd-b022-4f9e-8bdd-b724769925c3"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dotted"/>
 				</graphicElement>

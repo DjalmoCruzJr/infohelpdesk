@@ -27,7 +27,7 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="hel_empresa_emp" class="java.lang.Integer">
-		<fieldDescription><![CDATA[CÃ“DIGO DA EMPRESA]]></fieldDescription>
+		<fieldDescription><![CDATA[CÓDIGO DA EMPRESA]]></fieldDescription>
 	</field>
 	<field name="hel_filial_emp" class="java.lang.Integer">
 		<fieldDescription><![CDATA[CODIGO DA FILIAL]]></fieldDescription>
@@ -70,7 +70,7 @@
 			<staticText>
 				<reportElement x="474" y="17" width="41" height="15" uuid="3d31b837-4f42-4254-89b1-b1d96d2f3330"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<text><![CDATA[PÃ¡gina]]></text>
+				<text><![CDATA[Página]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="525" y="17" width="17" height="15" uuid="8144e2f5-ac89-497d-9623-66521b449f81"/>

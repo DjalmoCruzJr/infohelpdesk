@@ -5,7 +5,7 @@ class Assunto_Sistema extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
-// 		$this->layout = LAYOUT_DASHBOARD;
+		$this->layout = LAYOUT_DASHBOARD;
 
 		$this->load->model('Sistema_Model', 'SistemaModel');
 		$this->load->model('Assunto_Sistema_Model', 'AssuntoSistemaModel');
@@ -21,6 +21,8 @@ class Assunto_Sistema extends CI_Controller {
 		$dados['VOLTAR_SISTEMA']   		  = site_url('sistema');
 		$dados['BLC_DADOS']   		   	  = array();
 		$dados['hel_seqsis_asu']		  = base64_decode($hel_seqsis_asu);
+		
+		$this->carregarSistema($dados);
 
 		$this->carregarDados($dados);
 		
@@ -75,11 +77,9 @@ class Assunto_Sistema extends CI_Controller {
 		$hel_titulo_asu  = $this->input->post('hel_titulo_asu');
 		$hel_link_asu  	 = $this->input->post('hel_link_asu');
 		
-		$config['upload_path'] 	 	= base_url().'uploads/';
-		$config['allowed_types'] 	= 'jpg|png|pdf|btmp|jpeg|doc';
-// 		$config['max_size']     	= '100';
-// 		$config['max_width'] 		= '1024';
-// 		$config['max_height'] 		= '768';
+		$config['upload_path'] 	 = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
+		$config['max_size']		 = '1000';
 		
 		echo '<pre>';
 		print_r($config);
@@ -126,6 +126,15 @@ class Assunto_Sistema extends CI_Controller {
 			$this->session->set_flashdata('sucesso', 'Assunto do sistema apagado com sucesso.'); 
 		}			
 		redirect('assunto_sistema/index/'.$hel_seqsis_asu);
+	}
+	
+	private function carregarSistema(&$dados) {
+	
+		$resultado = $this->SistemaModel->get($dados['hel_seqsis_asu']);
+	
+		if ($resultado) {
+			$dados['NOME_SISTEMA'] = $resultado->hel_desc_sis;
+		}
 	}
 	
 	private function carregarDados(&$dados) {

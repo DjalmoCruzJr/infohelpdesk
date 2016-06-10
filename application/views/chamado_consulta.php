@@ -10,7 +10,7 @@
                 <div>
                     <a href="{NOVO_CHAMADO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Novo Chamado</a>
 	                <div class="pull-right">
-			    		<a onclick="" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
+			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>
                 </div>
                 </br>
@@ -67,60 +67,91 @@
     </div>
 </div>
 
-<div class="modal fade" id="relatorio_contato" tabindex="-1" role="dialog" aria-labelledby="relatorio_empresa_label" aria-hidden="true">
+<div class="modal fade" id="relatorio_chamado" tabindex="-1" role="dialog" aria-labelledby="relatorio_chamado_label" aria-hidden="true">
     <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
-                    <h3 class="modal-title" id="relatorio_empresa_label">Relatório - Contato</h3>
+                    <h3 class="modal-title" id="relatorio_empresa_label">Relatório - Chamado</h3>
                 </div>
                 <div class="modal-body">
                 	<form class="form-horizontal">
+                		<div class="form-group col-sm-11 text-center">
+							<label class="checkbox-inline">
+						       	<input type="checkbox" id="imprimir_itens" name="imprimir_itens">Imprimir Itens do chamado
+						    </label>
+					    </div>
+					    <div class="form-group col-sm-11 text-center">
+							<label class="radio-inline">
+							  <input type="radio" name="layout" id="hel_sintetico_cha" value="0" checked> Layout Sintetico
+							</label>
+							<label class="radio-inline">
+							  <input type="radio" name="layout" id="hel_analitico_cha" value="1"> Layout Analitico
+							</label>
+						</div>
 						<div class="form-group">
 							<label for="ordenacao_relatorio" class="col-sm-2 ">Ordenar por</label>
-								<div class="col-sm-4">
+								<div class="col-sm-7">
 									<div class="radio-inline">
 										<label>
-											<input type="radio" id="ordenacao_codigo" name="ordenacao_relatorio" value="0" checked/>Código
+											<input type="radio" id="ordenacao_numero" name="ordenacao_relatorio" value="0" checked/>Numero
 										</label>
 									</div>
 									<div class="radio-inline">
 										<label>
-											<input type="radio" id="ordenacao_nome" name="ordenacao_relatorio" value="1"/>Nome
+											<input type="radio" id="ordenacao_data" name="ordenacao_relatorio" value="1"/>Data Abertura
+										</label>
+									</div>
+								</div>
+						</div>						
+						<div class="form-group col-sm-11">
+						    <label for="hel_ativo_emp" class="col-sm-1 control-label">Status</label>
+								<div class="col-sm-11">
+								<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statustodos_cha" onclick="carregarChamado()" name="status_relatorio" value="0" checked/>Todos
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statusaberto_cha" onclick="carregarChamado()" name="status_relatorio" value="1"/>Aberto
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statusencerrado_cha" onclick="carregarChamado()" name="status_relatorio" value="2" />Encerrado
 										</label>
 									</div>
 								</div>
 						</div>
-						<div class="form-group col-sm-11">
-						    <label for="hel_ativo_emp" class="col-sm-1 control-label">Status</label>
-								<div class="col-sm-11">
-									<div class="radio-inline">
-										<label>
-											<input type="radio" id="hel_statusinativo_con" name="status_relatorio" value="0" checked/>Inativo
-										</label>
-									</div>
-									<div class="radio-inline">
-										<label>
-											<input type="radio" id="hel_statusativo_con" name="status_relatorio" value="1"/>Ativo 
-										</label>
-									</div>
-									<div class="radio-inline">
-										<label>
-											<input type="radio" id="hel_statustodos_con" name="status_relatorio" value="2" checked="checked" />Todos
-										</label>
-									</div>
-								</div>
-							</div>
 						<div class="form-group">
-							<label for="tipo_contato_relatorio" class="col-sm-3 ">Filtro por Tipo de contato</label>
+							<label for="chamado_relatorio" class="col-sm-3 ">Filtro por Chamado</label>
 								<div>
-			                		<select id="tipo_contato_relatorio" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple">
-									{BLC_TIPO_CONTATO_RELATORIO}
-										<option value="{hel_pk_seq_tco}" {dis_hel_tco}>{hel_desc_tco}</option>
-									{/BLC_TIPO_CONTATO_RELATORIO}
+			                		<select id="chamado_relatorio" onchange="habilitarDesabilitaComponentes()" class="js-example-basic-multiple form-control" style="width: 360px;" multiple="multiple">
+										{BLC_CHAMADO_RELATORIO}
+											<option value="{hel_pk_seq_cha}" >{hel_numero_cha}</option>
+										{/BLC_CHAMADO_RELATORIO}
 									</select>	                			
 								</div>	
 	                	</div>
+						<div class="form-group">
+							<label for="empresa_relatorio" class="col-sm-3 ">Filtro por Empresa</label>
+								<div>
+			                		<select id="empresa_relatorio" class="js-example-basic-multiple form-control" style="width: 360px;" multiple="multiple">
+										{BLC_EMPRESA_RELATORIO}
+											<option value="{hel_pk_seq_emp}" >{hel_nomefantasia_emp}</option>
+										{/BLC_EMPRESA_RELATORIO}
+									</select>	                			
+								</div>	
+	                	</div>
+<!-- 	                	<div class="form-group"> -->
+<!-- 							<label for="contato_relatorio" class="col-sm-3 ">Filtro por Contato</label> -->
+<!-- 								<div> -->
+<!--			                		<select id="contato_relatorio" class="js-example-basic-multiple form-control" style="width: 360px;" multiple="multiple" disabled> -->
+<!-- 			                			<option value=""></option> -->
+<!-- 									</select>	                			 -->
+<!-- 								</div>	 -->
+<!-- 	                	</div> -->
 					</form>
 					<br/>					
 					<div class="form-group">
@@ -150,45 +181,152 @@
     }
 
     function abrirDialogRelatorio(){
-        $('#relatorio_contato').modal('show');
+        $('#relatorio_chamado').modal('show');
     }
 
+    function habilitarDesabilitaComponentes(){
+    	var chamado        = document.getElementById("chamado_relatorio");
+    	var filtro_chamado = "";
+    	var disabled       = false;
+
+    	for (var i = 0; i < chamado.options.length; i++) {
+	  		if (chamado.options[i].selected){
+	  			disabled = true;
+	    	}
+	  	}
+    	
+    	document.getElementById("empresa_relatorio").disabled 		= disabled;
+    	document.getElementById("hel_statustodos_cha").disabled 	= disabled;
+    	document.getElementById("hel_statusaberto_cha").disabled 	= disabled;
+    	document.getElementById("hel_statusencerrado_cha").disabled = disabled;    	
+    }
+
+	function carregarChamado(){
+		
+		var status  = "";
+		var options = "";
+
+		if (document.getElementById('hel_statusaberto_cha').checked) {
+			status = "0"
+		}else if (document.getElementById('hel_statusencerrado_cha').checked){
+			status = "1"
+		}	
+	
+		$.ajax({
+			url      : '{URL_BUSCAR_CHAMADO}/' + status,
+			dataType : "json",
+			async    : true,
+			success  : function(data) {
+				$("#chamado_relatorio").empty();
+				for (i = 0; i < data.length; i++) {
+					options += '<option value="' + data[i].hel_pk_seq_cha + '">' + data[i].hel_numero_cha + '</option>';
+				}
+				$("#chamado_relatorio").html(options);
+			},
+			error    : function(error){
+				console.log('Error na function carregarChamado()');
+			}	
+		});
+	 		
+	}
+
+	function carregarContato(){
+		
+		var empresa 	      = document.getElementById("empresa_relatorio");
+		var separador_empresa = ""; 
+		var filtro_empresa    = "";
+		var options           = "";
+	
+		for (var i = 0; i < empresa.options.length; i++) {
+	  		if (empresa.options[i].selected){
+	  			filtro_empresa = filtro_empresa + separador_empresa+  empresa.options[i].value;
+	  			separador_empresa = "," 
+	    	}
+	  	}
+
+	  	if (filtro_empresa != ""){
+	  		$.ajax({
+		  		  url      : '{URL_BUSCAR_CONTATO}/' + filtro_empresa,
+				  dataType : "json",
+				  async    : true,
+				  success  : function(data) {
+					$("#contato_relatorio").empty();
+					for (i = 0; i < data.length; i++) {
+						options += '<option value="' + data[i].hel_pk_seq_con + '">' + data[i].hel_nome_con + '</option>';
+					}
+				  },
+				 error    : function(error){
+					console.log('Error na function carregarContato()');
+			    }	
+			});
+
+			document.getElementById("contato_relatorio").disabled = false;
+		}else {
+			document.getElementById("contato_relatorio").disabled = true;
+		}
+	 		
+	}
+
     function visualizarRelatorio() {
-    	var tipo_contato_relatorio = document.getElementById("tipo_contato_relatorio");
-      	var orderBy 		 	  = "";
+    	var empresa_relatorio = document.getElementById("empresa_relatorio");
+    	var chamado_relatorio = document.getElementById("chamado_relatorio");
+      	var orderBy 		  = "";
+      	var status 		  	  = "0";
+      	var imprimi_itens     = "0";
+      	var layout		      = "1";
 
-      	var filtroTipoContato	 = "";
-      	var separadorTipoContato = "";
-    	for (var i = 0; i < tipo_contato_relatorio.options.length; i++) {
-      		if (tipo_contato_relatorio.options[i].selected){
-      			filtroTipoContato 	 = filtroTipoContato + separadorTipoContato + tipo_contato_relatorio.options[i].value;
-      			separadorTipoContato = ",";
+      	var filtroEmpresa	 = "";
+      	var separadorEmpresa = "";
+      	for (var i = 0; i < empresa_relatorio.options.length; i++) {
+    	     if ( (empresa_relatorio.options[i].selected) && (!document.getElementById("empresa_relatorio").disabled)){
+				filtroEmpresa 	 = filtroEmpresa + separadorEmpresa + empresa_relatorio.options[i].value;
+				separadorEmpresa = ",";
+			}
+		}  	
+
+      	if (filtroEmpresa == ""){
+      		filtroEmpresa = "0";
+        }  
+
+    	var filtroChamado	 = "";
+      	var separadorChamado = "";
+      	for (var i = 0; i < chamado_relatorio.options.length; i++) {
+          	if (chamado_relatorio.options[i].selected){
+          		filtroChamado 	 = filtroChamado + separadorChamado + chamado_relatorio.options[i].value;
+          		separadorChamado = ",";
         	}
-      	} 
-
-      	if (filtroTipoContato == ""){
-      		filtroTipoContato = "0";
         }
+    	 
 
-        var status = "";  
+      	if (filtroChamado == ""){
+      		filtroChamado = "0";
+        } 
 
-      	if (document.getElementById('hel_statusinativo_con').checked) {
-      		status = "0";
-		} else if (document.getElementById('hel_statusativo_con').checked) {
-			status = "1";
-		} else {
-			status = "2"
+      	if ( (document.getElementById('hel_statusaberto_cha').checked) && (!document.getElementById('hel_statusaberto_cha').disabled) ){
+      		status = "1";
+		} else if ( (document.getElementById('hel_statusencerrado_cha').checked) && (!document.getElementById('hel_statusencerrado_cha').disabled) ) {
+			status = "2";
 		}
 		
-    	if (document.getElementById('ordenacao_codigo').checked) {
-    		orderBy = " ORDER BY hel_pk_seq_con";
+    	if (document.getElementById('ordenacao_numero').checked) {
+    		orderBy = " ORDER BY hel_pk_seq_cha";
     	} else {
-    		orderBy = " ORDER BY hel_nome_con";
-		}
+    		orderBy = " ORDER BY hel_horarioabertura_cha";
+        }
+
+    	if (document.getElementById('imprimir_itens').checked){
+    		imprimi_itens = "1";
+        }
+
+        if (document.getElementById('hel_sintetico_cha').checked){
+        	layout = "1";
+        }else {
+        	layout = "2";
+        }
     	
     	$('#relatorio_contato').modal('hide');
     	
-    	window.open('contato/relatorio/'+ orderBy+'/'+filtroTipoContato+'/'+status, '_blank');
+    	window.open('chamado/relatorio/'+ orderBy + '/' + layout +'/' + filtroChamado + '/'+ filtroEmpresa +'/'+status + '/' + imprimi_itens, '_blank');
     }	
 
 </script>

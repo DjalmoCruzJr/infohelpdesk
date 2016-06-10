@@ -45,6 +45,14 @@ class Chamado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getChamadosStatus($status = NULL) {
+		$this->db->select(' hel_pk_seq_cha,concat("Numero ", hel_pk_seq_cha) as hel_numero_cha FROM heltbcha ', FALSE);
+		if ($status <> ""){
+			$this->db->where('hel_status_cha', $status, FALSE);
+		}
+		return $this->db->get()->result();
+	}
+	
 	public function insert($chamado) {
 		$res = $this->db->insert('heltbcha', $chamado);
 	

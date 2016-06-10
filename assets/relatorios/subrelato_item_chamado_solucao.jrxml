@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subrelato_item_chamado" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2cacaaed-bba3-4636-8c60-b1b7d5f19a48">
+	<property name="ireport.zoom" value="1.815000000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="hel_seqcha_ios" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[2]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT hel_solucao_ios
+FROM heltbios
+LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
+LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
+WHERE hel_seqcha_ios = $P{hel_seqcha_ios}
+  AND hel_tipo_ios   =  1]]>
+	</queryString>
+	<field name="hel_solucao_ios" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="12">
+			<staticText>
+				<reportElement x="1" y="0" width="40" height="12" uuid="27b81ced-7f49-4dee-83c5-26a4743ffda5"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solução:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="41" y="0" width="514" height="12" uuid="f82f2746-9e61-409f-b14c-14f2c9c43320"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_solucao_ios}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -6,6 +6,7 @@ class Ordem_Servico extends CI_Controller {
 				
 		$this->layout = LAYOUT_DASHBOARD;
 		
+		$this->load->model('Contato_Model', 'ContatoModel');
  		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Ordem_Servico_Model', 'OrdemServicoModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
@@ -24,6 +25,7 @@ class Ordem_Servico extends CI_Controller {
 		
 		$this->carregarDados($dados);
 
+		$this->carregarTecnicoRelatorio($dados);
 		$this->carregarEmpresaRelatorio($dados);
 		$this->carregarOrdemServicoRelatorio($dados);
 				
@@ -202,6 +204,18 @@ class Ordem_Servico extends CI_Controller {
 
 		$dados['hel_datainicial_ose'] = $this->util->inverteDataPadrao($dados['hel_datainicial_ose']);
 		$dados['hel_datafinal_ose']   = $this->util->inverteDataPadrao($dados['hel_datafinal_ose']);
+	}
+	
+	private function carregarTecnicoRelatorio(&$dados) {
+		$resultado = $this->ContatoModel->getContatoTecnico();
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_TECNICO_RELATORIO'][] = array(
+					"hel_pk_seq_con"	=> $registro->hel_pk_seq_con,
+					"hel_nome_con"		=> $registro->hel_nome_con
+			);
+		}
+		!$resultado ? $dados['BLC_TECNICO_RELATORIO'][] = array("hel_nome_con" => 'Não existe nenhuma técnico cadastrada') :'';
 	}
 
 	private function carregarEmpresaRelatorio(&$dados) {
@@ -479,36 +493,46 @@ class Ordem_Servico extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($filtro_ordem_servico, $filtro_tecnico, $filtro_empresa, $filtro_contato_empresa ){
+	public function relatorio($filtro_ordem_servico, $filtro_tecnico, $filtro_empresa){
 		$clasuraWhere = "";
 		$whereAnd     = " WHERE ";
 		
 		if (!empty($filtro_ordem_servico)){
-			$clasuraWhere .= $clasuraWhere.$whereAnd." hel_pk_seq_ose IN (".$filtro_ordem_servico.") ";
+			$clasuraWhere = $clasuraWhere.$whereAnd." hel_pk_seq_ose IN (".$filtro_ordem_servico.") ";
+			$whereAnd = " AND ";
+		}
+		
+		if (!empty($filtro_tecnico)){
+			$clasuraWhere = $clasuraWhere.$whereAnd." tec.hel_pk_seq_con IN (".$filtro_tecnico.") ";
+			$whereAnd = " AND ";
+		}
+		
+		if (!empty($filtro_empresa)){
+			$clasuraWhere = $clasuraWhere.$whereAnd." hel_pk_seq_emp IN (".$filtro_empresa.") ";
 			$whereAnd = " AND ";
 		}
 
+		$select_item_ordem_servico = 'SELECT hel_pk_seq_ios,
+										     concat(hel_desc_sis, " ( ",hel_codigo_sis, " )") as hel_desc_sis,
+										     hel_desc_ser,
+										     hel_seqcha_ios,
+										     hel_seqioscha_ios,
+										     hel_complemento_ios
+									  FROM heltbios
+									  LEFT JOIN heltbose ON hel_pk_seq_ose = hel_seqose_ios
+									  LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
+									  LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
+									  WHERE hel_tipo_ios   = 0
+										AND hel_seqose_ios = $P{hel_seqose_ios} ';
 
-			$select_item_ordem_servico = 'SELECT hel_pk_seq_ios,
-											     concat(hel_desc_sis, " ( ",hel_codigo_sis, " )") as hel_desc_sis,
-											     hel_desc_ser,
-											     hel_seqcha_ios,
-											     hel_seqioscha_ios,
-											     hel_complemento_ios
-										  FROM heltbios
-										  LEFT JOIN heltbose ON hel_pk_seq_ose = hel_seqose_ios
-										  LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
-										  LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
-										  WHERE hel_tipo_ios   = 0
-											AND hel_seqose_ios = $P{hel_seqose_ios} ';
-
-			$consulta_sub = array (
-				"hel_seqose_ios" => $select_item_ordem_servico
-			);
+		$consulta_sub = array (
+			"hel_seqose_ios" => $select_item_ordem_servico
+		);
 
 
 		global $consulta;
-		$consulta = " SELECT hel_nomefantasia_emp,
+		$consulta = " SELECT hel_pk_seq_emp,
+				             hel_nomefantasia_emp,
 						     heltbcon.hel_nome_con as contato_empresa,
 						     tec.hel_nome_con as tecnico_nome,
 						     TIMEDIFF(hel_horariofinal_ose, hel_horarioinicial_ose) as horas_analista,
@@ -518,16 +542,25 @@ class Ordem_Servico extends CI_Controller {
 						     hel_datainicial_ose,
 						     hel_datafinal_ose,
 						     hel_horarioinicial_ose,
-						     hel_horariofinal_ose
+						     hel_horariofinal_ose,
+							 'Cliente: ' as lb_cliente,
+				             'Clontato: ' as lb_contato,
+						     'Consultor: ' as lb_consultor,
+						     'Autorizador por: ' as lb_autorizado,
+						     'Data Inicial: ' as lb_dataini,
+						     'Hora Inicial: ' as lb_horaini,
+						     'Data Final: ' as lb_datafim,
+						     'Hora Final: ' as lb_horafim,
+						     'Distância Percorrida: ' as lb_distancia,
+						     'Hora analista: ' as lb_horasana
 					  FROM heltbose
 					  LEFT JOIN heltbexc     ON hel_seqexc_ose    = hel_pk_seq_exc
 					  LEFT JOIN heltbemp     ON hel_seqemp_exc    = hel_pk_seq_emp
 					  LEFT JOIN heltbcon     ON hel_seqcon_exc    = hel_pk_seq_con
 					  LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con ".$clasuraWhere;
-	
 
 		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_ordem_servico.jrxml', $consulta, NULL, $consulta_sub);
+			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_ordem_servico_novo.jrxml', $consulta, NULL, $consulta_sub);
 		} else {
 			$mensagem = "- Nenhuma ordem de serviço foi encontrada.\n";
 			$this->session->set_flashdata('erro', nl2br($mensagem));

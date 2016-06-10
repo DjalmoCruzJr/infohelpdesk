@@ -74,33 +74,11 @@
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
                     <h3 class="modal-title" id="relatorio_empresa_label">Relatório - Ordem de serviço</h3>
                 </div>
-				 <div class="modal-body">
-
-					 <div class="form-group col-sm-13">
-						 <label for="hel_ativo_emp" class="col-sm-3 ">Status do contato</label>
-						 <div class="col-sm-9">
-							 <div class="radio-inline">
-								 <label>
-									 <input type="radio" id="hel_statusinativo_con" name="status_relatorio" value="0" checked/>Inativo
-								 </label>
-							 </div>
-							 <div class="radio-inline">
-								 <label>
-									 <input type="radio" id="hel_statusativo_con" name="status_relatorio" value="1"/>Ativo
-								 </label>
-							 </div>
-							 <div class="radio-inline">
-								 <label>
-									 <input type="radio" id="hel_statustodos_con" name="status_relatorio" value="2" checked="checked" />Todos
-								 </label>
-							 </div>
-						 </div>
-					 </div>
-					 
+				 <div class="modal-body">					 
 					 <div class="form-group">
 						 <label for="ordem_servico_relatorio" class="col-sm-3 ">Filtro por O.S</label>
 						 <div>
-							 <select id="ordem_servico_relatorio" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple" >
+							 <select id="ordem_servico_relatorio" onchange="habilitarDesabilitarComponentes()" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple" >
 								 {BLC_ORDEM_SERVICO_RELATORIO}
 								 	<option value="{hel_pk_seq_ose}" >{hel_numero_ose}</option>
 								 {/BLC_ORDEM_SERVICO_RELATORIO}
@@ -113,7 +91,7 @@
 						 <div>
 							 <select id="tecnico_relatorio" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple" >
 								 {BLC_TECNICO_RELATORIO}
-								 	<option value="{hel_pk_seq_tco}" {dis_hel_tco}>{hel_desc_tco}</option>
+								 	<option value="{hel_pk_seq_con}" {dis_hel_tco}>{hel_nome_con}</option>
 								 {/BLC_TECNICO_RELATORIO}
 							 </select>
 						 </div>
@@ -122,21 +100,13 @@
 					 <div class="form-group">
 							<label for="empresa_relatorio" class="col-sm-3 ">Filtro por empresa</label>
 							<div>
-								<select onchange="carregarContato()" id="empresa_relatorio" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple">
+								<select id="empresa_relatorio" onchange="habilitarDesabilitarEmpresa()" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple">
 									{BLC_EMPRESA_RELATORIO}
 									<option value="{hel_pk_seq_emp}" >{hel_nomefantasia_emp}</option>
 									{/BLC_EMPRESA_RELATORIO}
 								</select>
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label for="contato_relatorio" class="col-sm-3 ">Filtro por contato da empresa</label>
-								<div>
-			                		<select id="contato_relatorio" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple" disabled>
-									</select>	                			
-								</div>	
-	                	</div>
 					</form>
 					<br/>					
 					<div class="form-group">
@@ -209,10 +179,35 @@
         $('#relatorio_ordem_servico').modal('show');
     }
 
+    function habilitarDesabilitarComponentes(){
+    	var ordem_servico_relatorio = document.getElementById("ordem_servico_relatorio");
+		var disabled          		= false;
+
+		for (var i = 0; i < ordem_servico_relatorio.options.length; i++) {
+      		if (ordem_servico_relatorio.options[i].selected){
+      			disabled = true;
+        	}
+      	}
+
+		document.getElementById("tecnico_relatorio").disabled = disabled;
+		document.getElementById("empresa_relatorio").disabled = disabled;
+   	}
+
+    function habilitarDesabilitarEmpresa(){
+    	var empresa_relatorio 	= document.getElementById("empresa_relatorio");
+    	var disabled			= false
+    	for (var i = 0; i < empresa_relatorio.options.length; i++) {
+    		if (empresa_relatorio.options[i].selected){
+    			disabled = true;
+    		}
+    	}
+    	document.getElementById("ordem_servico_relatorio").disabled = disabled;
+   	}
+
     function visualizarRelatorio() {
+        
     	var tecnico_relatorio 		= document.getElementById("tecnico_relatorio");
 		var empresa_relatorio		= document.getElementById("empresa_relatorio");
-		var contato_relatorio 		= document.getElementById("contato_relatorio");
 		var ordem_servico_relatorio = document.getElementById("ordem_servico_relatorio");
       	var orderBy 		 	    = "";
 
@@ -220,7 +215,8 @@
       	var separadorTecnico = "";
 
 		for (var i = 0; i < tecnico_relatorio.options.length; i++) {
-      		if (tecnico_relatorio.options[i].selected){
+      		if ( (tecnico_relatorio.options[i].selected) && (!document.getElementById("tecnico_relatorio").disabled)){
+          		console.log('entrou no if  (tecnico_relatorio.options[i].selected) && (!document.getElementById("ordem_servico_relatorio").disabled) ');
 				filtroTecnico 	 = filtroTecnico + separadorTecnico + tecnico_relatorio.options[i].value;
 				separadorTecnico = ",";
         	}
@@ -234,7 +230,8 @@
 		var separadorEmpresa = "";
 
 		for (var i = 0; i < empresa_relatorio.options.length; i++) {
-			if (empresa_relatorio.options[i].selected){
+			if ( (empresa_relatorio.options[i].selected) && (!document.getElementById("empresa_relatorio").disabled) ){
+				console.log('entrou no if  (empresa_relatorio.options[i].selected) && (!document.getElementById("ordem_servico_relatorio").disabled) ');
 				filtroEmpresa 	 = filtroEmpresa + separadorEmpresa + empresa_relatorio.options[i].value;
 				separadorEmpresa = ",";
 			}
@@ -243,27 +240,12 @@
 		if (filtroEmpresa == ""){
 			filtroEmpresa = "0";
 		}
-
-		var filtroContato	 = "";
-		var separadorContato = "";
-
-		for (var i = 0; i < contato_relatorio.options.length; i++) {
-			if (contato_relatorio.options[i].selected){
-				filtroContato 	 = filtroContato + separadorContato + contato_relatorio.options[i].value;
-				separadorContato = ",";
-			}
-		}
-
-		if (filtroContato == ""){
-			filtroContato = "0";
-		}
-
 		var filtroOrdemServico	  = "";
       	var separadorOrdemServico = "";
 
 		for (var i = 0; i < ordem_servico_relatorio.options.length; i++) {
       		if (ordem_servico_relatorio.options[i].selected){
-      			filtroOrdemServico 	 = filtroOrdemServico + separadorOrdemServico + ordem_servico_relatorio.options[i].value;
+      			filtroOrdemServico 	  = filtroOrdemServico + separadorOrdemServico + ordem_servico_relatorio.options[i].value;
 				separadorOrdemServico = ",";
         	}
       	} 
@@ -274,7 +256,7 @@
 
     	$('#relatorio_ordem_servico').modal('hide');
     	
-    	window.open('ordem_servico/relatorio/'+ filtroOrdemServico +'/'+ filtroTecnico + '/' + filtroEmpresa + '/' + filtroContato, '_blank');
+    	window.open('ordem_servico/relatorio/'+ filtroOrdemServico +'/'+ filtroTecnico + '/' + filtroEmpresa, '_blank');
     }	
 
 </script>

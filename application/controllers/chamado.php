@@ -20,9 +20,13 @@ class Chamado extends CI_Controller {
 		
 		$dados['NOVO_CHAMADO'] = site_url('chamado/novo');
 		
-		$dados['BLC_DADOS']  = array();
+		$dados['BLC_DADOS']           = array();
+		$dados['URL_BUSCAR_CONTATO']  = site_url('json/json/carregar_contato_relatorio/'.CHAVE_JSON);
+		$dados['URL_BUSCAR_CHAMADO']  = site_url('json/json/carregar_chamado/'.CHAVE_JSON);
 		
 		$this->carregarDados($dados);
+		$this->carregarEmpresaRelatorio($dados);
+		$this->carregarChamadoRelatorio($dados);
 				
 		$this->parser->parse('chamado_consulta', $dados);
 		
@@ -134,10 +138,38 @@ class Chamado extends CI_Controller {
 	}
 	
 	private function setarURL(&$dados) {
-		$dados['URL_BUSCAR_CONTATO']  = site_url('json/json/carregar_contato');
+		$dados['URL_BUSCAR_CONTATO']  = site_url('json/json/carregar_contato/'.CHAVE_JSON);
 		$dados['CONSULTA_CHAMADO']    = site_url('chamado');
 		$dados['ACAO_FORM']           = site_url('chamado/salvar');
-	}	
+	}
+
+	private function carregarChamadoRelatorio(&$dados) {
+	
+		$resultado = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) ? $this->ChamadoModel->getChamado($this->session->userdata('hel_pk_seq_con')) : $this->ChamadoModel->getChamado();
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_CHAMADO_RELATORIO'][] = array(
+					"hel_pk_seq_cha" => $registro->hel_pk_seq_cha,
+					"hel_numero_cha" => 'Numero '.$registro->hel_pk_seq_cha
+			);
+		}
+	
+		!$resultado ? $dados['BLC_CHAMADO_RELATORIO'][] = array("hel_numero_cha" => 'Não existe nenhum chamado cadastrado') :'';
+	}
+	
+	private function carregarEmpresaRelatorio(&$dados) {
+		
+		$resultado = !$this->util->autorizacao($this->session->userdata('hel_tipo_tco')) ? $this->EmpresaModel->getEmpresa() : $this->EmpresaContatoModel->getEmpresaContatoRelatorio2($this->session->userdata('hel_pk_seq_con'));
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_EMPRESA_RELATORIO'][] = array(
+					"hel_pk_seq_emp"     	=> $registro->hel_pk_seq_emp,
+					"hel_nomefantasia_emp" 	=> $registro->hel_nomefantasia_emp
+			);
+		}
+		
+		!$resultado ? $dados['BLC_EMPRESA_RELATORIO'][] = array("hel_nomefantasia_emp" => 'Não existe nenhuma empresa cadastrada') :'';
+	}
 	
 	private function carregarDados(&$dados) {
 				
@@ -427,16 +459,79 @@ class Chamado extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($order_by){
-		$order_by = str_replace("%20", " ", $order_by);
+	public function relatorio($order_by, $layout, $filtro_chamado, $filtro_empresa, $status, $imprimir_itens){
+		$order_by     		 = str_replace("%20", " ", $order_by);
+		$clasuraWhere 		 = "";
+		$whereAnd     		 = " WHERE ";
+		$arquivo	  		 = "assets/relatorios/relatorio_chamado.jrxml";
+		$select_item_chamado = '';
+		$filtros		     = array();
+		
+		$arquivo = $layout == 1 ? $arquivo : 'assets/relatorios/relatorio_chamado_analitico.jrxml';
+		
+		if ($imprimir_itens){			
+			$select_item_chamado = ' SELECT ios1.hel_pk_seq_ios,
+									        hel_desc_ser,
+									        hel_desc_sis,
+						 				    hel_nome_con,
+									        DATE_FORMAT(ios1.hel_horaricioencerrado_ios, "%d/%l/%Y %H:%m:%s") AS hel_horaricioencerrado_ios,
+									        CASE ios1.hel_encerrado_ios WHEN 0 THEN "Aberto"
+									        ELSE "Encerrado"
+									        END AS hel_encerrado_ios,
+									        ios1.hel_complemento_ios,
+									        ios1.hel_solucao_ios,
+									        (SELECT ios.hel_seqose_ios FROM heltbios as ios WHERE ios.hel_pk_seq_ios = ios1.hel_seqioscha_ios) as hel_seqose_ios
+									 FROM heltbios as ios1
+									 LEFT JOIN heltbser ON hel_pk_seq_ser = ios1.hel_seqser_ios
+									 LEFT JOIN heltbsis ON hel_pk_seq_sis = ios1.hel_seqsis_ios
+									 LEFT JOIN heltbcon ON hel_pk_seq_con = ios1.hel_seqcontec_ios
+									 WHERE ios1.hel_seqcha_ios = $P{hel_seqcha_ios}
+									   AND ios1.hel_tipo_ios   =  1 ';
+			
+		}
+		
+		if (!empty($status)){
+			$clasuraWhere .= $status == 1 ? $whereAnd." hel_status_cha = 0 " : $whereAnd." hel_status_cha = 1 "; 
+			$whereAnd      = " AND ";
+		}
+		
+		if (!empty($filtro_empresa)){
+			$clasuraWhere .= $whereAnd." hel_pk_seq_emp IN (".$filtro_empresa.")";
+			$whereAnd      = " AND ";
+		}
+		
+		if (!empty($filtro_chamado)){
+			$clasuraWhere .= $whereAnd." hel_pk_seq_cha IN (".$filtro_chamado.")";
+			$whereAnd      = " AND ";
+		}
 	
 		global $consulta;
-		$consulta = " SELECT * FROM heltbcid ".$order_by;
+		$consulta = " SELECT hel_pk_seq_cha,
+						     hel_pk_seq_emp,
+						     hel_nomefantasia_emp,
+						     solicitante.hel_nome_con as solicitante_nome,
+						     de.hel_nome_con as de_nome,
+						     para.hel_nome_con as para_nome,
+						     hel_horarioabertura_cha,
+						     CASE hel_status_cha WHEN 0 THEN 'Aberto'
+						     WHEN 1 THEN 'Encerrado'
+						     else 'Concate a Info Rio'
+						     end as hel_status_cha,
+						     ((SELECT COUNT(*) FROM heltbios WHERE hel_tipo_ios = 1 AND hel_seqcha_ios = hel_pk_seq_cha AND hel_encerrado_ios = 1) / (SELECT COUNT(*) FROM heltbios WHERE hel_tipo_ios = 1 AND hel_seqcha_ios = hel_pk_seq_cha) ) * 100 as hel_percentual_cha
+					  FROM heltbcha
+					  LEFT JOIN heltbexc         	     ON hel_pk_seq_exc      	    = hel_seqexc_cha
+					  LEFT JOIN heltbemp         	     ON hel_pk_seq_emp              = hel_seqemp_exc
+					  LEFT JOIN heltbcon as solicitante  ON solicitante.hel_pk_seq_con  = hel_seqcon_exc
+					  LEFT JOIN heltbcon as de           ON de.hel_pk_seq_con   	    = hel_seqconde_cha
+					  LEFT JOIN heltbcon as para 	     ON para.hel_pk_seq_con	        = hel_seqconpara_cha ".$clasuraWhere.$order_by;
+		
+		$consulta_sub    = array ("hel_seqcha_ios" => $select_item_chamado);
+		$imprimir_itens == 0 ? array_push($filtros,"hel_seqcha_ios")  : "";	
 	
 		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_cidade.jrxml', $consulta);
+			$this->jasper->gerar_relatorio($arquivo, $consulta, $filtros, $consulta_sub);
 		} else {
-			$mensagem = "- Nenhum cidade foi encontrada.\n";
+			$mensagem = "- Nenhum chamado foi encontrado.\n";
 			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			redirect('erro_relatorio');
