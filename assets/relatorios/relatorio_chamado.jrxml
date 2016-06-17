@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_chamado" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
-	<property name="ireport.zoom" value="4.7076425650815805"/>
-	<property name="ireport.x" value="76"/>
-	<property name="ireport.y" value="212"/>
+	<property name="ireport.zoom" value="4.707642565081587"/>
+	<property name="ireport.x" value="1335"/>
+	<property name="ireport.y" value="150"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
 	</parameter>
@@ -18,6 +18,10 @@
        WHEN 1 THEN 'Encerrado'
        else 'Concate a Info Rio'
        end as hel_status_cha,
+       CASE hel_status_cha WHEN 0 THEN DATEDIFF(NOW(), hel_horarioabertura_cha)
+       WHEN 1 THEN ''
+       else 'Concate a Info Rio'
+       end as hel_dias_cha,
       ((SELECT COUNT(*) FROM heltbios WHERE hel_tipo_ios = 1 AND hel_seqcha_ios = hel_pk_seq_cha AND hel_encerrado_ios = 1) / (SELECT COUNT(*) FROM heltbios WHERE hel_tipo_ios = 1 AND hel_seqcha_ios = hel_pk_seq_cha) ) * 100 as hel_percentual_cha
 FROM heltbcha
 LEFT JOIN heltbexc         	    ON hel_pk_seq_exc      	    = hel_seqexc_cha
@@ -44,6 +48,7 @@ LEFT JOIN heltbcon as para 	    ON para.hel_pk_seq_con	    = hel_seqconpara_cha]
 	<field name="hel_status_cha" class="java.lang.String">
 		<fieldDescription><![CDATA[0- Aberto 1- Encerrado]]></fieldDescription>
 	</field>
+	<field name="hel_dias_cha" class="java.lang.String"/>
 	<field name="hel_percentual_cha" class="java.math.BigDecimal"/>
 	<variable name="TOTAL_REGITRO" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[]]></variableExpression>
@@ -130,32 +135,39 @@ LEFT JOIN heltbcon as para 	    ON para.hel_pk_seq_con	    = hel_seqconpara_cha]
 				<text><![CDATA[Nome Fantasia]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="482" y="0" width="55" height="12" uuid="c53d65d9-ffbb-4346-afe1-2abf8944fffa"/>
+				<reportElement x="507" y="0" width="45" height="12" uuid="c53d65d9-ffbb-4346-afe1-2abf8944fffa"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Percentual]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="349" y="0" width="72" height="12" uuid="2be95721-f307-45fb-83a7-9717fe19b961"/>
+				<reportElement x="327" y="0" width="74" height="12" uuid="2be95721-f307-45fb-83a7-9717fe19b961"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Abertura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="217" y="0" width="100" height="12" uuid="f8c7f07a-cc3c-4fab-bc7e-41bec3a40c02"/>
+				<reportElement x="202" y="0" width="112" height="12" uuid="f8c7f07a-cc3c-4fab-bc7e-41bec3a40c02"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Solicitante]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="421" y="0" width="60" height="12" uuid="006bba62-0a3a-486a-a020-2112086e453f"/>
+				<reportElement x="404" y="0" width="48" height="12" uuid="006bba62-0a3a-486a-a020-2112086e453f"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="0" width="53" height="12" uuid="121dd079-52b3-4aa4-8d11-d513472298d0"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtd. Dias]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -169,39 +181,46 @@ LEFT JOIN heltbcon as para 	    ON para.hel_pk_seq_con	    = hel_seqconpara_cha]
 				<textFieldExpression><![CDATA[$F{hel_pk_seq_cha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="38" y="0" width="178" height="12" uuid="c26ae9e6-6a67-481c-a0d2-40473c593c95"/>
+				<reportElement x="38" y="0" width="165" height="12" uuid="c26ae9e6-6a67-481c-a0d2-40473c593c95"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_nomefantasia_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="217" y="0" width="131" height="12" uuid="00365dac-0447-46de-86d5-a715e7fcf6a0"/>
+				<reportElement x="202" y="0" width="124" height="12" uuid="00365dac-0447-46de-86d5-a715e7fcf6a0"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{solicitante_nome}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="349" y="0" width="72" height="12" uuid="e9e8576b-59a7-4d99-a9a0-84233668cd7e"/>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="327" y="0" width="74" height="12" uuid="e9e8576b-59a7-4d99-a9a0-84233668cd7e"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_horarioabertura_cha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="421" y="0" width="60" height="12" uuid="689b2366-88d6-49af-a21e-1450fc93a1d1"/>
+				<reportElement x="404" y="0" width="48" height="12" uuid="689b2366-88d6-49af-a21e-1450fc93a1d1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_status_cha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="482" y="0" width="55" height="12" uuid="eea3bec6-1732-41b0-8c20-d13ef1affb77"/>
+				<reportElement x="507" y="0" width="45" height="12" uuid="eea3bec6-1732-41b0-8c20-d13ef1affb77"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_percentual_cha} + "%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="-1" width="53" height="12" uuid="aeaa5036-eff9-4aac-8ac4-2a9eb015530e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_dias_cha}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="42">

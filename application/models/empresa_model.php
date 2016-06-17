@@ -28,10 +28,10 @@ class Empresa_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp) {
+	public function getEmpresaCadastrada($hel_cpfcnpj_emp, $hel_pk_seq_emp) {
 		$this->db->from('heltbemp');
 		$this->db->where('hel_pk_seq_emp <> ', $hel_pk_seq_emp, FALSE);
-		$this->db->where('hel_cnpj_emp', $hel_cnpj_emp, FALSE);
+		$this->db->where('hel_cpfcnpj_emp', $hel_cpfcnpj_emp, FALSE);
 		return $this->db->get()->result();
 	}
 	

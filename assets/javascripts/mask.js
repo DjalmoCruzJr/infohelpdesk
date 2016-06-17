@@ -7,6 +7,8 @@ $(document).ready(function() {
 	$.mask.definitions['d'] = '[0-9]';
 	
 	$('.mask-cnpj').mask('dd.ddd.ddd/dddd-dd');
+	$('.mask-cpf').mask('ddd.ddd.ddd-dd');
+	$('.mask-cei').mask('ddddddddddd');
 	$('.mask-cep').mask('ddddd-ddd');
 	$('.mask-phone').mask('(dd) dddd-dddd');
 	$('.mask-cel').mask('(dd) 9dddd-dddd');

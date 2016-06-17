@@ -20,15 +20,7 @@ class assunto_sistema_model extends CI_Model {
 		$this->db->where('hel_seqsis_asu', $hel_pk_seq_sis, FALSE);
 		return $this->db->get()->first_row();
 	}
-	
-	
-	public function getEmpresaCadastrada($hel_cnpj_emp, $hel_pk_seq_emp) {
-		$this->db->from('heltbemp');
-		$this->db->where('hel_pk_seq_emp <> ', $hel_pk_seq_emp, FALSE);
-		$this->db->where('hel_cnpj_emp', $hel_cnpj_emp, FALSE);
-		return $this->db->get()->result();
-	}
-	
+		
 	public function insert($assunto) {
 		$res = $this->db->insert('heltbasu', $assunto);
 	

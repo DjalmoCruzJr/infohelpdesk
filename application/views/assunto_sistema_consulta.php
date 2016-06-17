@@ -16,6 +16,7 @@
                             <tr>
                             	<th>Código Sistema</th>
                                 <th>Título</th>
+                                <th>Arquivo</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -25,6 +26,7 @@
 	                            <tr>
 	                            	<td class="vertical-center">{hel_codigo_sis}</td>
 	                                <td class="vertical-center">{hel_titulo_asu}</td>
+	                                <td class="text-center"><a href="{hel_link_asu}" class="glyphicon glyphicon-download" title="arquivo"></a></td>
 	                                <td class="text-center"><a href="{EDITAR_ASSUNTO_SISTEMA}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_ASSUNTO_SISTEMA}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>

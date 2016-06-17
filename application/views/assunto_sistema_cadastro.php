@@ -5,7 +5,7 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 	<?php
-	 echo form_open_multipart('{ACAO_FORM}');
+		echo form_open_multipart('assunto_sistema/salvar');
 	?>
 <!-- 		<form form_open_multipart="{ACAO_FORM}" class="form-horizontal" enctype="multipart"> -->
 			<input type="hidden" id="hel_pk_seq_asu" name="hel_pk_seq_asu" value="{hel_pk_seq_asu}"/>
@@ -36,5 +36,8 @@
 				</div>
 			</div>
 <!-- 		</form> -->
+			 <?php
+				echo form_close();
+			 ?> 
 	</div>
 </div>	

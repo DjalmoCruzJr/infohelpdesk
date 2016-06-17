@@ -22,14 +22,45 @@
 						       value="{hel_filial_emp}" maxlength="2" autocomplete="off" autofocus/>
 					</div>
 				</div>
+				
+			</div>
+			
+			<div class="form-group">
+				<div class="{ERRO_HEL_TIPO_EMP}">
+					<label for="hel_tipo_sis" class="col-sm-1 control-label">Tipo</label>
+					<div class="col-sm-5">
+						<div class="col-sm-11">
+							<div class="radio-inline">
+								<label>
+									<input type="radio" id="hel_tipopessoafisica_emp" {hel_checkpessoafisica_emp} onclick="mudarMascara()"
+										   name="hel_tipo_emp" value="0" />Pessoa Fisica
+								</label>
+							</div>
+							<div class="radio-inline">
+								<label>
+									<input type="radio" id="hel_tipopessoajuridica_emp" {hel_checkpessoajuridica_emp} onclick="mudarMascara()"
+										   name="hel_tipo_emp" value="1"/>Pessoa Juridica
+								</label>
+							</div>
+							<div class="radio-inline">
+								<label>
+									<input type="radio" id="hel_tipocei_emp" {hel_checkcei_emp} onclick="mudarMascara()"
+										   name="hel_tipo_emp" value="2"/>CEI
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			
 				<div class="{ERRO_HEL_CNPJ_EMP}">
-					<label for="hel_cnpj_emp" class="col-sm-1 control-label">CNPJ</label>
+					<label for="hel_cpfcnpj_emp" class="col-sm-1 control-label">CNPJ</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control mask-cnpj" id="hel_cnpj_emp" name="hel_cnpj_emp" 
-						       value="{hel_cnpj_emp}" maxlength="14" autocomplete="off" autofocus/>
+						<input type="text" class="form-control {hel_mask_emp}" id="hel_cpfcnpj_emp" name="hel_cpfcnpj_emp" 
+						       value="{hel_cpfcnpj_emp}" maxlength="14" autocomplete="off" autofocus/>
 					</div>
 				</div>
 			</div>
+			
 			<div class="form-group">
 				<div class="{ERRO_HEL_RAZAOSOCIAL_EMP}">
 					<label for="hel_razaosocial_emp" class="col-sm-1 control-label">Razão Social</label>
@@ -110,6 +141,14 @@
 						       value="{hel_celular_emp}" maxlength="13" autocomplete="off" autofocus/>
 					</div>
 			</div>
+			
+			<div class="form-group">
+				<label for="hel_responsavel_emp" class="col-sm-1 control-label">Responsável</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" id="hel_responsavel_emp" name="hel_responsavel_emp" 
+						       value="{hel_responsavel_emp}" maxlength="100" autocomplete="off" autofocus/>
+					</div>
+			</div>
 							
 			<div class="form-group">
 				<div class="{ERRO_HEL_ATIVO_EMP}">
@@ -136,6 +175,26 @@
 </div>		
 
 <script type="text/javascript">
+
+	function mudarMascara(){
+		var options = '';
+		$("#hel_cpfcnpj_emp").unmask();
+			
+		if (document.getElementById('hel_tipopessoafisica_emp').checked){
+			console.log('Entrou no if');
+			$("#hel_cpfcnpj_emp").mask("ddd.ddd.ddd-dd");
+		}else if (document.getElementById('hel_tipopessoajuridica_emp').checked){
+			console.log('Entrou no else if');
+			$("#hel_cpfcnpj_emp").mask("dd.ddd.ddd/dddd-dd");
+		}else {
+			$("#hel_cpfcnpj_emp").mask("dddddddddddddd");;
+		}
+		
+// 		$("#hel_cpfcnpj_emp").html(options);		
+	}
+
+			
+
 	var cidade_empresa = document.getElementById('hel_seqcid_emp');
 
 	function carregarCep(){

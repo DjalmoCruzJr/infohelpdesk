@@ -36,7 +36,7 @@
 	                                <td class="vertical-center">{hel_nometec_con}</td>
 	                                <td class="vertical-center">{hel_seqose_ios}</td>
 	                                <td {hel_hiddenencerraritemchamado_ios} class="text-center"><a href="{ENCERRAR_ITEM_CHAMADO}" {hel_disabledencerraritemchamado_ios} class="btn btn-link btn-xs" title="Encerrar"><i class="glyphicon glyphicon-ok"></i></a></td>
-	                                <td {hel_hiddensolucao_ios} class="text-center"><a href="{SOLUCAO}" class="btn btn-link btn-xs" title="Solução"><i class="glyphicon glyphicon-info-sign"></i></a></td>
+	                                <td class="text-center"><a href="{SOLUCAO}" class="btn btn-link btn-xs" title="Solução"><i class="glyphicon glyphicon-info-sign"></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
