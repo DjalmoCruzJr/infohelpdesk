@@ -8,33 +8,42 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT hel_pk_seq_emp,
-							 hel_pk_seq_cid,
-						     hel_empresa_emp,
-						     hel_filial_emp,
-						     CONCAT(SUBSTRING(hel_cnpj_emp, 1,2), '.', SUBSTRING(hel_cnpj_emp,3,3), '.', SUBSTRING(hel_cnpj_emp,6,3), '/', SUBSTRING(hel_cnpj_emp,9,4), '-', SUBSTRING(hel_cnpj_emp,13, 2)) AS hel_cnpj_emp,
-						     hel_nomefantasia_emp,
-						     hel_nome_cid,
-						     CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
-							 else 'Inativo'
-						     END AS hel_ativo_emp
-					  FROM heltbemp
-					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp]]>
+       hel_empresa_emp,
+       hel_filial_emp,
+       case hel_tipo_emp WHEN 0 THEN 		CONCAT(SUBSTR(hel_cpfcnpj_emp,1,3),'.',SUBSTR(hel_cpfcnpj_emp,4,3),'.',SUBSTR(hel_cpfcnpj_emp,7,3),'-',SUBSTR(hel_cpfcnpj_emp,10,2))
+       WHEN 1 THEN
+        CONCAT(SUBSTRING(hel_cpfcnpj_emp, 1,2), '.', SUBSTRING(hel_cpfcnpj_emp,3,3), '.', SUBSTRING(hel_cpfcnpj_emp,6,3), '/', SUBSTRING(hel_cpfcnpj_emp,9,4), '-', SUBSTRING(hel_cpfcnpj_emp,13, 2))
+		else
+			hel_cpfcnpj_emp
+	  end AS hel_cnpj_emp,
+       hel_nomefantasia_emp,
+       hel_nome_cid,
+	   CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
+	   else 'Inativo'
+       END AS hel_ativo_emp,
+       hel_razaosocial_emp,
+       hel_endereco_emp,
+       hel_numero_emp,
+       hel_bairro_emp,
+       hel_cep_emp,
+       hel_email_emp,
+       hel_celular_emp,
+       hel_fone_emp,
+       hel_email_emp,
+       hel_razaosocial_emp
+FROM heltbemp
+LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid]]>
 	</queryString>
 	<field name="hel_pk_seq_emp" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="hel_pk_seq_cid" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="hel_empresa_emp" class="java.lang.Integer">
-		<fieldDescription><![CDATA[CÓDIGO DA EMPRESA]]></fieldDescription>
+		<fieldDescription><![CDATA[CÃ“DIGO DA EMPRESA]]></fieldDescription>
 	</field>
 	<field name="hel_filial_emp" class="java.lang.Integer">
 		<fieldDescription><![CDATA[CODIGO DA FILIAL]]></fieldDescription>
 	</field>
-	<field name="hel_cnpj_emp" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="hel_cnpj_emp" class="java.lang.String"/>
 	<field name="hel_nomefantasia_emp" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -44,6 +53,30 @@
 	<field name="hel_ativo_emp" class="java.lang.String">
 		<fieldDescription><![CDATA[0- Inativo
 1- Ativo]]></fieldDescription>
+	</field>
+	<field name="hel_razaosocial_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_endereco_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_numero_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_bairro_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_cep_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_email_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_celular_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_fone_emp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<variable name="TOTAL_REGITRO" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[]]></variableExpression>
@@ -70,7 +103,7 @@
 			<staticText>
 				<reportElement x="474" y="17" width="41" height="15" uuid="3d31b837-4f42-4254-89b1-b1d96d2f3330"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<text><![CDATA[Página]]></text>
+				<text><![CDATA[Pï¿½gina]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="525" y="17" width="17" height="15" uuid="8144e2f5-ac89-497d-9623-66521b449f81"/>
@@ -99,52 +132,52 @@
 		<band height="16" splitType="Stretch">
 			<staticText>
 				<reportElement x="188" y="-1" width="90" height="16" uuid="2e7de5be-cf40-4a0d-ba86-1bd405a3e61b"/>
-				<textElement>
-					<font isBold="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome Fantasia]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="493" y="0" width="61" height="16" uuid="fb87e8f3-8eaf-4dde-af72-b5065cc4b3e1"/>
-				<textElement>
-					<font isBold="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ativo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="36" y="0" width="40" height="15" uuid="5a3250fd-9306-4d1c-8aff-136f900842a2"/>
 				<textElement verticalAlignment="Middle">
-					<font isBold="true" isStrikeThrough="false"/>
+					<font size="8" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Emp.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="387" y="0" width="63" height="15" uuid="a3f74257-58f1-4715-a8a6-904526574e52"/>
 				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cidade]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="0" width="33" height="15" uuid="a19588e5-2f8d-4554-8e40-5080b468522a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Seq.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="70" y="0" width="24" height="15" uuid="6052ee4f-0ef1-4cf3-8d67-3a9c8a0ef039"/>
 				<textElement verticalAlignment="Middle">
-					<font isBold="true" isStrikeThrough="false"/>
+					<font size="8" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Fil.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="97" y="-1" width="74" height="16" uuid="18d85685-3e50-403d-86a5-0ce4b622e74f"/>
-				<textElement>
-					<font isBold="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CNPJ]]></text>
+				<text><![CDATA[CNPJ/CPF/CEI]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="15" width="555" height="1" uuid="4824f051-2dfd-498f-b91a-07f7e0c43889"/>
@@ -159,36 +192,50 @@
 			<textField>
 				<reportElement positionType="Float" x="70" y="1" width="24" height="15" uuid="77e0347a-632a-407d-9210-7fd4e09504f2"/>
 				<textElement textAlignment="Center">
-					<font isUnderline="false" isStrikeThrough="false"/>
+					<font size="8" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_filial_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="36" y="0" width="24" height="15" uuid="19cf4a68-dc59-4463-80b8-d74539f77556"/>
 				<textElement textAlignment="Center">
-					<font isUnderline="false" isStrikeThrough="false"/>
+					<font size="8" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_empresa_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="387" y="0" width="101" height="15" uuid="3a176d3a-db4d-42e0-84a7-8452b9de6aa4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_nome_cid}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="0" y="0" width="33" height="15" uuid="fcdf3423-c45b-4ac4-8074-9b61c1be9db7"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_pk_seq_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="493" y="0" width="61" height="15" uuid="0df5665a-11df-4ff9-9aee-e18476e7db56"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_ativo_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="0" width="86" height="16" uuid="4208fe95-5a21-43ca-8570-209bf10a27ec"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_cnpj_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="188" y="0" width="195" height="15" uuid="2ce4d489-c52c-4f1d-89ff-7ef78fc6014f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_nomefantasia_emp}]]></textFieldExpression>
 			</textField>
 		</band>

@@ -4,7 +4,7 @@ class Empresa extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 				
-//   		$this->layout = LAYOUT_DASHBOARD;
+  		$this->layout = LAYOUT_DASHBOARD;
 		
 		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Chamado_Model', 'ChamadoModel');
@@ -39,24 +39,28 @@ class Empresa extends CI_Controller {
 	public function novo() {
 							
 		$dados = array();
-		$dados['hel_pk_seq_emp']  		= 0;		
-		$dados['hel_empresa_emp'] 		= '';
-		$dados['hel_filial_emp']  		= '';
-		$dados['hel_cpfcnpj_emp']  		= '';
-		$dados['hel_razaosocial_emp']  	= '';
-		$dados['hel_nomefantasia_emp']  = '';
-		$dados['hel_endereco_emp']  	= '';
-		$dados['hel_numero_emp']  		= '';
-		$dados['hel_bairro_emp']  		= '';
-		$dados['hel_seqcid_emp']  		= '';
-		$dados['hel_cep_emp']  			= '';
-		$dados['hel_ativo_emp']  		= '';
-		$dados['hel_checkedativo_emp']  = 'checked';
-		$dados['hel_email_emp']			= '';
-		$dados['hel_fone_emp']			= '';
-		$dados['hel_celular_emp']		= '';
-		$dados['hel_tipo_emp']			= '';
-		$dados['hel_responsavel_emp']	= '';
+		$dados['hel_pk_seq_emp']  			 = 0;		
+		$dados['hel_empresa_emp'] 			 = '';
+		$dados['hel_filial_emp']  			 = '';
+		$dados['hel_cpfcnpj_emp']  			 = '';
+		$dados['hel_razaosocial_emp']  		 = '';
+		$dados['hel_nomefantasia_emp']  	 = '';
+		$dados['hel_endereco_emp']  		 = '';
+		$dados['hel_numero_emp']  			 = '';
+		$dados['hel_bairro_emp']  			 = '';
+		$dados['hel_seqcid_emp']  			 = '';
+		$dados['hel_cep_emp']  				 = '';
+		$dados['hel_ativo_emp']  			 = '';
+		$dados['hel_checkedativo_emp']  	 = 'checked';
+		$dados['hel_email_emp']				 = '';
+		$dados['hel_fone_emp']				 = '';
+		$dados['hel_celular_emp']			 = '';
+		$dados['hel_tipo_emp']				 = '1';
+		$dados['hel_responsavel_emp']		 = '';
+		$dados['hel_lbcpfcnpj_emp']	    	 = 'CPF';
+		$dados['hel_checkpessoafisica_emp']  = 'checked';
+		$dados['hel_mask_emp']				 = 'mask-cpf';
+		
 		
 		$dados['ACAO'] = 'Novo';
 		
@@ -171,11 +175,11 @@ class Empresa extends CI_Controller {
 				redirect('empresa');
 			}
 		} else {
-// 			if (!$hel_pk_seq_emp) {
-// 				redirect('empresa/novo/');
-// 			} else {
-// 				redirect('empresa/editar/'.base64_encode($hel_pk_seq_emp));
-// 			}			
+			if (!$hel_pk_seq_emp) {
+				redirect('empresa/novo/');
+			} else {
+				redirect('empresa/editar/'.base64_encode($hel_pk_seq_emp));
+			}			
 		}
 	}
 	
@@ -229,17 +233,8 @@ class Empresa extends CI_Controller {
 		$dados['hel_checkpessoafisica_emp']		= $dados['hel_tipo_emp']  == 0 ? 'checked' : '';
 		$dados['hel_checkpessoajuridica_emp'] 	= $dados['hel_tipo_emp']  == 1 ? 'checked' : '';
 		$dados['hel_checkcei_emp']		  		= $dados['hel_tipo_emp']  == 2 ? 'checked' : '';
-		
-		switch ($dados['hel_tipo_emp']) {
-				
-			case 0 : $dados['hel_mask_emp'] = 'mask-cpf';
-					 break;
-			case 1 : $dados['hel_mask_emp'] = 'mask-cnpj';
-					 break;
-			case 2 : $dados['hel_mask_emp'] = 'mask-cei';
-					 break;
-		}
-		
+		$dados['hel_lbcpfcnpj_emp'] 			= $this->carregarTipo($dados['hel_tipo_emp']);
+		$dados['hel_mask_emp'] 					= $this->carregarMascara($dados['hel_tipo_emp']);		
 	}
 
 	private function carregarEmpresaRelatorio(&$dados) {
@@ -302,9 +297,40 @@ class Empresa extends CI_Controller {
 				"dis_hel_sis"  => 'disabled') :'';
 	}	
 	
+	private function carregarMascara($hel_tipo_emp) {
+		$retorno = '';
+	
+		switch ($hel_tipo_emp){
+			case 0 : $retorno = 'mask-cpf';
+					 break;
+			case 1 : $retorno = 'mask-cnpj';
+				     break;
+			default: $retorno = 'mask-cei';
+					 break;
+		}
+	
+		return $retorno;
+	}
+	
+	private function carregarTipo($hel_tipo_emp) {
+		$retorno = '';
+		
+		switch ($hel_tipo_emp){
+			case 0 : $retorno = 'CPF';
+			         break;
+			case 1 : $retorno = 'CNPJ';
+			         break;
+			default: $retorno = 'CEI';
+			         break;
+		}
+		
+		return $retorno;
+	}	
+	
+	
 	private function carregarCidade(&$dados) {
 		$resultado = $this->CidadeModel->getCidade();
-		
+	
 		foreach ($resultado as $registro) {
 			$dados['BLC_CIDADE'][] = array(
 					"hel_pk_seq_cid"     => $registro->hel_pk_seq_cid,
@@ -347,9 +373,6 @@ class Empresa extends CI_Controller {
 		$hel_bairro_emp 		= trim($hel_bairro_emp);
 		$hel_email_emp			= trim($hel_email_emp);
 		
-		echo '$hel_tipo_emp    -> '.$hel_tipo_emp.'<br/>';
-		echo '$hel_cpfcnpj_emp -> '.$hel_cpfcnpj_emp.'<br/>';
-		
 		if (empty($hel_empresa_emp)) {
 			$erros    = TRUE;
 			$mensagem .= "- Empresa não foi preenchido.\n";
@@ -369,22 +392,13 @@ class Empresa extends CI_Controller {
 			$this->session->set_flashdata('ERRO_HEL_TIPO_EMP', 'has-error');
 		}
 		
-		var_dump((!$this->util->validar_cnpj($hel_cpfcnpj_emp)) and ($hel_tipo_emp == 1));		
-		var_dump((!$this->util->validar_cpf($hel_cpfcnpj_emp)) and ($hel_tipo_emp == 0));
-		
 		if ($hel_cpfcnpj_emp == '') {
-			$erros    = TRUE;
-			$mensagem .= "- CNPJ/CPF não foi preenchido.\n";
+			$erros     = TRUE;
+			$mensagem .= "- ".$this->carregarTipo($hel_tipo_emp)." não foi preenchido.\n";
 			$this->session->set_flashdata('ERRO_HEL_CNPJ_EMP', 'has-error');
-		} else if ( (!$this->util->validar_cnpj($hel_cpfcnpj_emp)) and ($hel_tipo_emp == 1)){
-			echo '- CNPJ inválido.';
-			$erros    = TRUE;
-			$mensagem .= "- CNPJ inválido.\n";
-			$this->session->set_flashdata('ERRO_HEL_CNPJ_EMP', 'has-error');
-		} else if ( ($this->util->validar_cpf($hel_cpfcnpj_emp)) and ($hel_tipo_emp == 0) ) {
-			echo '- CPF inválido.';
-			$erros    = TRUE;
-			$mensagem .= "- CPF inválido.\n";
+		} else if (!$this->util->validar_cnpj_cpf($hel_cpfcnpj_emp, $hel_tipo_emp)){
+			$erros     = TRUE;
+			$mensagem .= $hel_tipo_emp == 0 ? "- CPF inválido.\n" :"- CNPJ inválido.\n";
 			$this->session->set_flashdata('ERRO_HEL_CNPJ_EMP', 'has-error');
 		}
 		
@@ -514,6 +528,7 @@ class Empresa extends CI_Controller {
 		$hel_celular_emp  	   	   = $this->session->flashdata('hel_celular_emp');
 		$hel_tipo_emp			   = $this->session->flashdata('hel_tipo_emp');
 		$hel_responsavel_emp	   = $this->session->flashdata('hel_responsavel_emp');
+		$hel_lbcpfcnpj_emp	       = $this->session->flashdata('hel_lbcpfcnpj_emp');
 		
 		
 		
@@ -539,16 +554,8 @@ class Empresa extends CI_Controller {
 				$dados['hel_checkpessoafisica_emp']		= $hel_tipo_emp  == 0 ? 'checked' : '';
 				$dados['hel_checkpessoajuridica_emp'] 	= $hel_tipo_emp  == 1 ? 'checked' : '';
 				$dados['hel_checkcei_emp']		  		= $hel_tipo_emp  == 2 ? 'checked' : '';
-				
-				switch ($hel_tipo_emp) {
-					
-					case 0 : $dados['hel_mask_emp'] = 'mask-cpf';
-							 break;
-					case 1 : $dados['hel_mask_emp'] = 'mask-cnpj';
-							 break;
-					case 2 : $dados['hel_mask_emp'] = 'mask-cei';
-							 break;
-				}
+				$dados['hel_mask_emp']      		    = $this->carregarMascara($hel_tipo_emp);
+				$dados['hel_lbcpfcnpj_emp']      		= $this->carregarTipo($hel_tipo_emp);
 			}
 			
 			
@@ -625,24 +632,38 @@ class Empresa extends CI_Controller {
 	
 		global $consulta;
 		$consulta = " SELECT hel_pk_seq_emp,
-						     hel_empresa_emp,
+							 hel_empresa_emp,
 						     hel_filial_emp,
-						     CONCAT(SUBSTRING(hel_cnpj_emp, 1,2), '.', SUBSTRING(hel_cnpj_emp,3,3), '.', SUBSTRING(hel_cnpj_emp,6,3), '/', SUBSTRING(hel_cnpj_emp,9,4), '-', SUBSTRING(hel_cnpj_emp,13, 2)) AS hel_cnpj_emp,
+							 CASE hel_tipo_emp WHEN 0 THEN
+								'CPF:'
+							 WHEN 1 THEN
+							     'CNPJ:'
+							 ELSE
+								 'CEI:'	
+							 end AS hel_tipo_emp,
+						     case hel_tipo_emp WHEN 0 THEN
+							  CONCAT(SUBSTR(hel_cpfcnpj_emp,1,3),'.',SUBSTR(hel_cpfcnpj_emp,4,3),'.',SUBSTR(hel_cpfcnpj_emp,7,3),'-',SUBSTR(hel_cpfcnpj_emp,10,2))
+							 WHEN 1 THEN
+							  CONCAT(SUBSTRING(hel_cpfcnpj_emp, 1,2), '.', SUBSTRING(hel_cpfcnpj_emp,3,3), '.', SUBSTRING(hel_cpfcnpj_emp,6,3), '/', SUBSTRING(hel_cpfcnpj_emp,9,4), '-', SUBSTRING(hel_cpfcnpj_emp,13, 2))
+							  else
+							   hel_cpfcnpj_emp
+							 end AS hel_cnpj_emp,
 						     hel_nomefantasia_emp,
 						     hel_nome_cid,
-						     CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
-						     else 'Inativo'
+							 CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
+							 else 'Inativo'
 						     END AS hel_ativo_emp,
 						     hel_razaosocial_emp,
 						     hel_endereco_emp,
-						     hel_numero_emp,
-						     hel_bairro_emp,
+							 hel_numero_emp,
+							 hel_bairro_emp,
 						     hel_cep_emp,
 						     hel_email_emp,
 						     hel_celular_emp,
 						     hel_fone_emp,
 						     hel_email_emp,
-						     hel_razaosocial_emp
+						     hel_razaosocial_emp,
+				             hel_responsavel_emp
 					  FROM heltbemp
 					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp ".$clasulaWhere.$order_by;		
 	

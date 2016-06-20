@@ -53,7 +53,7 @@
 				</div>
 			
 				<div class="{ERRO_HEL_CNPJ_EMP}">
-					<label for="hel_cpfcnpj_emp" class="col-sm-1 control-label">CNPJ</label>
+					<label for="hel_cpfcnpj_emp" id="hel_lbcpfcnpj_emp" class="col-sm-1 control-label">{hel_lbcpfcnpj_emp}</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control {hel_mask_emp}" id="hel_cpfcnpj_emp" name="hel_cpfcnpj_emp" 
 						       value="{hel_cpfcnpj_emp}" maxlength="14" autocomplete="off" autofocus/>
@@ -181,12 +181,13 @@
 		$("#hel_cpfcnpj_emp").unmask();
 			
 		if (document.getElementById('hel_tipopessoafisica_emp').checked){
-			console.log('Entrou no if');
+			 document.getElementById('hel_lbcpfcnpj_emp').innerHTML = 'CPF';
 			$("#hel_cpfcnpj_emp").mask("ddd.ddd.ddd-dd");
 		}else if (document.getElementById('hel_tipopessoajuridica_emp').checked){
-			console.log('Entrou no else if');
+			document.getElementById('hel_lbcpfcnpj_emp').innerHTML = 'CNPJ';
 			$("#hel_cpfcnpj_emp").mask("dd.ddd.ddd/dddd-dd");
 		}else {
+			document.getElementById('hel_lbcpfcnpj_emp').innerHTML = 'CEI';
 			$("#hel_cpfcnpj_emp").mask("dddddddddddddd");;
 		}
 		

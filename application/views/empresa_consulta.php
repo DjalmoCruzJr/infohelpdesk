@@ -19,7 +19,7 @@
 						<thead>
                             <tr>
                                 <th>Nome Fantasia</th>    
-                                <th>CNPJ</th>
+                                <th>CNPJ/CPF/CEI</th>
                                 <th>Cidade</th>
                                 <th>Ativo</th>
                                 <th class="coluna-acao" width="130">Contato da Empresa</th>
