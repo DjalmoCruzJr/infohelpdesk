@@ -7,8 +7,7 @@
 	<div class="panel-body">
 		<form action="{ACAO_FORM}" method="post" class="form-horizontal">
 			<input type="hidden" id="hel_pk_seq_cha" name="hel_pk_seq_cha" value="{hel_pk_seq_cha}"/>
-			<input type="hidden" id="hel_seqcon_cha" name="hel_seqcon_cha" value="{hel_seqcon_cha}"/>
-			<input type="hidden" id="hel_seqconde_cha" name="hel_seqconde_cha" value="{hel_seqconde_cha}"/>				
+			<input type="hidden" id="hel_seqcon_cha" name="hel_seqcon_cha" value="{hel_seqcon_cha}"/>				
 			<div class="form-group">
 				<div class="{ERRO_HEL_SEQEMP_CHA}">
 					<label for="hel_seqemp_cha" class="col-sm-1 control-label">Empresa</label>
@@ -22,7 +21,7 @@
 						</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" {hel_hiddenseqconsolicitante_cha}>
 				<div class="{ERRO_HEL_SEQCON_CHA}">
 					<label for="hel_seqconsolicitante_cha" class="col-sm-1 control-label">Solicitante</label>
 					<div class="col-sm-7">
@@ -30,34 +29,6 @@
 								{BLC_CONTATO_SOLICITANTE}
 									<option value="{hel_pk_seq_con}" {sel_hel_seqconsolicitante_cha}>{hel_nome_con}</option>
 								{/BLC_CONTATO_SOLICITANTE}
-							</select>   
-					</div>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="{ERRO_HEL_SEQCONDE_CHA}">
-					<label for="hel_seqconpara_cha" class="col-sm-1 control-label">Aberto Por</label>
-					<div class="col-sm-6">
-							<select class="form-control" id="hel_seconde_cha" name="hel_seconde_cha" autofocus="autofocus">
-								<option value="">Selecione...</option>
-									{BLC_CONTATO_DE}
-								    	<option value="{hel_pk_seq_con}" {sel_hel_seqconode_cha}>{hel_nome_con}</option>
-								    {/BLC_CONTATO_DE}
-							</select>   
-					</div>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="{ERRO_HEL_SEQCONPARA_CHA}">
-					<label for="hel_seqconpara_cha" class="col-sm-1 control-label">Aberto Para</label>
-					<div class="col-sm-6">
-							<select class="form-control" id="hel_seqconpara_cha" name="hel_seqconpara_cha" autofocus="autofocus">
-								<option value="">Selecione...</option>
-									{BLC_CONTATO_PARA}
-								    	<option value="{hel_pk_seq_con}" {sel_hel_seqconopara_cha}>{hel_nome_con}</option>
-								    {/BLC_CONTATO_PARA}
 							</select>   
 					</div>
 				</div>

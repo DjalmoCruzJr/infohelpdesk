@@ -55,7 +55,11 @@ class Chamado extends CI_Controller {
 		$this->carregarContatoDe($dados);
 		$this->carregarContatoPara($dados);
 		
-		$this->parser->parse('chamado_cadastro', $dados);
+		$view = "";
+		
+		$view = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) == TRUE ? 'usuario\chamado_cadastro' : 'chamado_cadastro' ;
+
+		$this->parser->parse($view, $dados);
 	}
 	
 	public function editar($hel_pk_seq_cha) {		
@@ -73,7 +77,11 @@ class Chamado extends CI_Controller {
 		$this->carregarContatoDe($dados);
 		$this->carregarContatoPara($dados);
 		
-		$this->parser->parse('chamado_cadastro', $dados);	
+		$view = "";
+		
+		$view = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) == TRUE ? 'usuario\chamado_cadastro' : 'chamado_cadastro' ;
+		
+		$this->parser->parse($view, $dados);
 	}
 	
 	public function salvar() {

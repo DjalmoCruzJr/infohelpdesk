@@ -20,8 +20,7 @@
                                 <th>Status</th>
                                 <th>Técnico</th>
                                 <th>O.S.</th>
-                                <th class="coluna-acao" width="60" {hel_hiddenencerraritemchamado_ios}>Encerrar</th>
-                                <th class="coluna-acao" width="60" >Solução</th>
+                                <th class="coluna-acao" width="60">Solução</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -35,7 +34,6 @@
 	                                <td class="vertical-center">{hel_encerrado_ios}</td>
 	                                <td class="vertical-center">{hel_nometec_con}</td>
 	                                <td class="vertical-center">{hel_seqose_ios}</td>
-	                                <td class="text-center"><a href="{ENCERRAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Encerrar"><i class="glyphicon glyphicon-ok"></i></a></td>
 	                                <td class="text-center"><a href="{SOLUCAO}" class="btn btn-link btn-xs {hel_disabledsolucao_ios}" title="Solução"><i class="glyphicon glyphicon-info-sign"></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_ITEM_CHAMADO}" class="btn btn-link btn-xs" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>

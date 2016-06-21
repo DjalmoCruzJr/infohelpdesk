@@ -29,8 +29,12 @@ class Item_Chamado extends CI_Controller {
 		$dados['hel_seqcha_ios'] 				= base64_decode($hel_seqcha_ios);
 		
 		$this->carregarDados($dados);
-				
-		$this->parser->parse('item_chamado_consulta', $dados);
+		
+		$view = "";
+		
+		$view = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) == TRUE ? 'usuario\item_chamado_consulta' : 'item_chamado_consulta' ;
+		
+		$this->parser->parse($view, $dados);
 	}
 	
 	public function novo($hel_seqcha_ios) {
@@ -60,7 +64,11 @@ class Item_Chamado extends CI_Controller {
 		$this->carregarDadosEmpresa($dados);
 		$this->carregarSistema($dados);
 		
-		$this->parser->parse('item_chamado_cadastro', $dados);
+		$view = "";
+		
+		$view = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) == TRUE ? 'usuario\item_chamado_cadastro' : 'item_chamado_cadastro' ;
+		
+		$this->parser->parse($view, $dados);
 	}
 	
 	public function solucao($hel_seqcha_ios, $hel_pk_seq_ios) {
@@ -116,7 +124,11 @@ class Item_Chamado extends CI_Controller {
 		$this->carregarDadosEmpresa($dados);
 		$this->carregarSistema($dados);
 		
-		$this->parser->parse('item_chamado_cadastro', $dados);	
+		$view = "";
+		
+		$view = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) == TRUE ? 'usuario\item_chamado_cadastro' : 'item_chamado_cadastro' ;
+		
+		$this->parser->parse($view, $dados);
 	}
 	
 	public function salvar() {
@@ -217,8 +229,6 @@ class Item_Chamado extends CI_Controller {
 		
 		$dados['hel_hiddenencerraritemchamado_ios'] = $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '' ;
 		
-		$dados['hel_hiddenmenusolucao_ios'] = $this->ItemChamadoModel->getItemChamdoEncerrado2($dados['hel_seqcha_ios']) ? '' : 'hidden';		
-		
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
 				"hel_desc_ser" 	 	  			=> $registro->hel_desc_ser,							
@@ -227,6 +237,7 @@ class Item_Chamado extends CI_Controller {
 				"hel_nometec_con"  				=> $registro->hel_nome_con,
 				"hel_encerrado_ios"	  			=> $registro->hel_encerrado_ios == 0 ? 'Aberto' : 'Encerrado',					
 				"hel_seqose_ios"	  			=> $registro->hel_seqose_ios,
+				"hel_disabledsolucao_ios"	    => $registro->hel_encerrado_ios == 0 ? 'disabled' : '',
 				"ENCERRAR_ITEM_CHAMADO"			=> site_url('encerramento_chamado/index/'.base64_encode($registro->hel_pk_seq_ios)),
 				"SOLUCAO"						=> site_url('item_chamado/solucao/'.base64_encode($registro->hel_seqcha_ios).'/'.base64_encode($registro->hel_pk_seq_ios)),
 				"EDITAR_ITEM_CHAMADO" 			=> site_url('item_chamado/editar/'.base64_encode($registro->hel_pk_seq_ios).'/'.base64_encode($registro->hel_seqcha_ios)),
