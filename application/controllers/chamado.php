@@ -494,7 +494,7 @@ class Chamado extends CI_Controller {
 									 LEFT JOIN heltbsis ON hel_pk_seq_sis = ios1.hel_seqsis_ios
 									 LEFT JOIN heltbcon ON hel_pk_seq_con = ios1.hel_seqcontec_ios
 									 WHERE ios1.hel_seqcha_ios = $P{hel_seqcha_ios}
-									   AND ios1.hel_tipo_ios   =  1 ';
+									   AND ios1.hel_tipo_ios   = '.CHAMADO;
 			
 		}
 		
@@ -529,7 +529,7 @@ class Chamado extends CI_Controller {
 						     WHEN 1 THEN ''
 						     else 'Concate a Info Rio'
 						     end as hel_dias_cha,
-						     ((SELECT COUNT(*) FROM heltbios WHERE hel_tipo_ios = 1 AND hel_seqcha_ios = hel_pk_seq_cha AND hel_encerrado_ios = 1) / (SELECT COUNT(*) FROM heltbios WHERE hel_tipo_ios = 1 AND hel_seqcha_ios = hel_pk_seq_cha) ) * 100 as hel_percentual_cha
+						     ((SELECT COUNT(*) FROM heltbios WHERE hel_tipo_ios = ".CHAMADO." AND hel_seqcha_ios = hel_pk_seq_cha AND hel_encerrado_ios = 1) / (SELECT COUNT(*) FROM heltbios WHERE ".CHAMADO." AND hel_seqcha_ios = hel_pk_seq_cha) ) * 100 as hel_percentual_cha
 					  FROM heltbcha
 					  LEFT JOIN heltbexc         	     ON hel_pk_seq_exc      	    = hel_seqexc_cha
 					  LEFT JOIN heltbemp         	     ON hel_pk_seq_emp              = hel_seqemp_exc

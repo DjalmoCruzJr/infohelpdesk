@@ -391,7 +391,7 @@ class Ordem_Servico extends CI_Controller {
 							   hel_seqcontec_ios = NULL,
 							   hel_solucao_ios   = NULL    		
 						WHERE hel_pk_seq_ios IN ( SELECT hel_seqioscha_ios FROM ( SELECT hel_seqioscha_ios FROM heltbios
-																				  WHERE hel_tipo_ios   = 0
+																				  WHERE hel_tipo_ios   = '.ORDEM_SERVICO.'
 																                    AND hel_seqose_ios = '.$hel_pk_seq_ose.'
 																                    AND hel_seqioscha_ios IS NOT NULL ) AS temp_hetbios ) ';		
 			
@@ -522,7 +522,7 @@ class Ordem_Servico extends CI_Controller {
 									  LEFT JOIN heltbose ON hel_pk_seq_ose = hel_seqose_ios
 									  LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
 									  LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
-									  WHERE hel_tipo_ios   = 0
+									  WHERE hel_tipo_ios   = '.ORDEM_SERVICO.'
 										AND hel_seqose_ios = $P{hel_seqose_ios} ';
 
 		$consulta_sub = array (
