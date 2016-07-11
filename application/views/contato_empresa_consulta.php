@@ -11,7 +11,7 @@
                 </div>
                 </br>
                 <div class="table">
-                    <table class="table table-striped table-bordered table-hover table-condensed" id="tb_contato_empresa">
+                    <table class="table table-striped table-bordered table-hover table-condensed" id="tb_dados_adicionais">
 						<thead>
                             <tr>
                                 <th>Empresa</th>    

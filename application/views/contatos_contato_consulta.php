@@ -7,7 +7,7 @@
          <div class="row">
              <div class="col-lg-12">
                  <div>
-                     <a href="{NOVO_CONTATOS_CONTATO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Novos Dados</a>
+                     <a href="{NOVO_CONTATOS_CONTATO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Novo Dado</a>
                  </div>
                  </br>
                  <div class="table">
@@ -27,9 +27,8 @@
  	                            	<td class="vertical-center">{hel_tipo_cco}</td>
  	                                <td class="vertical-center">{hel_telefone_cco}</td>
  	                                <td class="vertical-center">{hel_whatsapp_cco}</td>
- 	                                <td class="text-center"><a href="{hel_link_asu}" class="glyphicon glyphicon-download" title="arquivo"></a></td>
- 	                                <td class="text-center"><a href="{EDITAR_ASSUNTO_SISTEMA}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
- 	                                <td class="text-center"><a onclick="{APAGAR_ASSUNTO_SISTEMA}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
+ 	                                <td class="text-center"><a href="{EDITAR_CONTATOS_CONTATO}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
+ 	                                <td class="text-center"><a onclick="{APAGAR_CONTATOS_CONTATO}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
  	                            </tr>
                          	{/BLC_DADOS}
                          </tbody>                   
@@ -51,7 +50,7 @@
                      <h3 class="modal-title" id="myModalLabel">Info Rio Sistemas</h3>
                  </div>
                  <div class="modal-body">
-                     <h4>Deseja realmente apagar este assunto do sistema ?</h4>
+                     <h4>Deseja realmente apagar este dado adicional ?</h4>
                  </div>
                  <div class="modal-footer">
                      <button type="button" class="btn btn-primary" onclick="apagar()">Sim</button>
@@ -65,17 +64,17 @@
  <script type="text/javascript">
  
      var idExclusao = "";
-     var idSistema = "";
+     var idContato = "";
  
-     function abrirConfirmacao(id, idSis){
+     function abrirConfirmacao(id, idCon){
          idExclusao = id;
-         idSistema  = idSis;
+         idContato  = idCon;
          $('#myModal').modal('show');
      }
  
      function apagar(){
          $('#myModal').modal('hide');
-         location.href = '{URL_APAGAR}/' + idExclusao + '/' + idSistema;
+         location.href = '{URL_APAGAR}/' + idExclusao + '/' + idContato;
      }
  
  </script> 

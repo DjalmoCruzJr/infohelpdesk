@@ -2,9 +2,9 @@
  
  class contatos_contato_model extends CI_Model {
  	
- 	public function get($hel_pk_seq_asu) {
- 		$this->db->from('heltbasu');
- 		$this->db->where('hel_pk_seq_asu', $hel_pk_seq_asu, FALSE);
+ 	public function get($hel_pk_seq_cco) {
+ 		$this->db->from('heltbcco');
+ 		$this->db->where('hel_pk_seq_cco', $hel_pk_seq_cco, FALSE);
  		return $this->db->get()->first_row();
  	}
  	
@@ -20,8 +20,8 @@
  		return $this->db->get()->first_row();
  	}
  		
- 	public function insert($assunto) {
- 		$res = $this->db->insert('heltbasu', $assunto);
+ 	public function insert($dados_adicionais) {
+ 		$res = $this->db->insert('heltbcco', $dados_adicionais);
  	
  		if ($res) {
  			return $this->db->insert_id();
@@ -30,20 +30,20 @@
  		}
  	}
  	
- 	public function update($assunto, $hel_pk_seq_asu) {
- 		$this->db->where('hel_pk_seq_asu', $hel_pk_seq_asu, FALSE);
- 		$res = $this->db->update('heltbasu', $assunto);
+ 	public function update($dados_adicionais, $hel_pk_seq_cco) {
+ 		$this->db->where('hel_pk_seq_cco', $hel_pk_seq_cco, FALSE);
+ 		$res = $this->db->update('heltbcco', $dados_adicionais);
  	
  		if ($res) {
- 			return $hel_pk_seq_asu;
+ 			return $hel_pk_seq_cco;
  		} else {
  			return FALSE;
  		}
  	}
  	
- 	public function delete($hel_pk_seq_asu) {
- 		$this->db->where('hel_pk_seq_asu', $hel_pk_seq_asu, FALSE);
- 		return $this->db->delete('heltbasu');
+ 	public function delete($hel_pk_seq_cco) {
+ 		$this->db->where('hel_pk_seq_cco', $hel_pk_seq_cco, FALSE);
+ 		return $this->db->delete('heltbcco');
  	}
  		
  }

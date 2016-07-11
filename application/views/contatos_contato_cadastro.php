@@ -38,19 +38,26 @@
  					</div>
  				</div>
  				
- 				<label for="hel_ramal_cco" class="col-sm-1 control-label">Ramal</label>
- 					<div class="col-sm-2">
- 						<input type="text" class="form-control" id="hel_ramal_cco" name="hel_ramal_cco" 
- 						       value="{hel_ramal_cco}" maxlength="5" autocomplete="off" autofocus/>
- 					</div>
+ 				<div class="{ERRO_HEL_RAMAL_CCO}">
+	 				<label for="hel_ramal_cco" class="col-sm-1 control-label">Ramal</label>
+	 					<div class="col-sm-2">
+	 						<input type="text" class="form-control" id="hel_ramal_cco" name="hel_ramal_cco" {hel_disabledramal_cco}
+	 						       value="{hel_ramal_cco}" maxlength="5" autocomplete="off" autofocus/>
+	 					</div>
+	 			</div>
  				
  			</div>
+ 				<label for="hel_skype_cco" class="col-sm-1 control-label">Skype</label>
+ 					<div class="col-sm-7">
+ 						<input type="text" class="form-control" id="hel_skype_cco" name="hel_skype_cco" 
+ 						       value="{hel_skype_cco}" maxlength="60" autocomplete="off" autofocus/>
+ 					</div>
  							
  			<div class="form-group">
  					<div class="col-sm-offset-1 col-sm-10">
  						<div class="checkbox">
  							<label >
- 								<input type="checkbox"  id="hel_wthasapp_cco"name="hel_wthasapp_cco" value="1" 
+ 								<input type="checkbox"  id="hel_whatsapp_cco"name="hel_whatsapp_cco" value="1" 
  								{hel_checkedwhatsapp_cco} autocomplete="off" autofocus/>Whatsapp
  							</label>										      
  						</div>
@@ -60,7 +67,7 @@
  			<div class="form-group">
  				<div class="col-sm-offset-1 col-sm-11">
  					<button type="submit" name="salvar_cidade" class="btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Salvar</button>
- 		        	<a type="button" href="{CONSULTA_EMPRESA}" class="btn btn-default">Cancelar</a>
+ 		        	<a type="button" href="{CONSULTA_CONTATOS_CONTATO}" class="btn btn-default">Cancelar</a>
  				</div>
  			</div>
  		</form>

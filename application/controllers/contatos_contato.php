@@ -35,11 +35,13 @@ class Contatos_Contato extends CI_Controller {
 		$dados['hel_telefone_cco']  	= '';
 		$dados['hel_ramal_cco']     	= '';
 		$dados['hel_whatsapp_cco']  	= '';
+		$dados['hel_skype_cco']  		= '';
 		$dados['hel_maskphone_cco'] 	= 'mask-phone';
 		$dados['hel_lbtelefone_cco'] 	= 'Telefone';
 		$dados['hel_checktelefone_cco']	= 'checked';
 
 		$dados['ACAO'] = 'Novo';
+		
 		$this->setarURL($dados);
 		$this->carregarDadosFlash($dados);
 		
@@ -51,16 +53,17 @@ class Contatos_Contato extends CI_Controller {
 		$dados['ACAO_FORM']            		= site_url('contatos_contato/salvar');
 	}
 
-	public function editar($hel_pk_seq_asu, $hel_seqsis_asu) {
-		$hel_pk_seq_asu = base64_decode($hel_pk_seq_asu);
+	public function editar($hel_pk_seq_cco, $hel_seqsis_asu) {
+		$hel_pk_seq_cco = base64_decode($hel_pk_seq_cco);
 		$dados = array();
-		$this->carregarAssuntoSistema($hel_pk_seq_asu, $dados);
+		$this->carregarContatosContato($hel_pk_seq_cco, $dados);
 
 		$this->carregarDadosFlash($dados);
 		
 		$dados['ACAO'] = 'Editar';
 		$this->setarURL($dados);
-		$this->parser->parse('assunto_sistema_cadastro', $dados);
+		
+		$this->parser->parse('contatos_contato_cadastro', $dados);
 	}
 						
 	public function salvar() {
@@ -70,39 +73,46 @@ class Contatos_Contato extends CI_Controller {
 		global $hel_telefone_cco;
 		global $hel_ramal_cco;
 		global $hel_whatsapp_cco;
-	
+		global $hel_skype_cco;
+		
 		$hel_pk_seq_cco  	= $this->input->post('hel_pk_seq_cco');
 		$hel_seqcon_cco  	= $this->input->post('hel_seqcon_cco');
 		$hel_tipo_cco	  	= $this->input->post('hel_tipo_cco');
 		$hel_telefone_cco  	= $this->input->post('hel_telefone_cco');
 		$hel_ramal_cco  	= $this->input->post('hel_ramal_cco');
-		$hel_whatsapp_cco  	= $this->input->post('hel_whatsapp_cco');
+		$hel_whatsapp_cco  	= $this->input->post('hel_whatsapp_cco') == 1 ? 1 : 0;
+		$hel_skype_cco  	= $this->input->post('hel_skype_cco');
 		
-		$hel_telefone_cco 		= str_replace("(", null, $hel_telefone_cco);
-		$hel_telefone_cco 		= str_replace(")", null, $hel_telefone_cco);
-		$hel_telefone_cco 		= str_replace("-", null, $hel_telefone_cco);
+		$hel_telefone_cco 	= str_replace("(", null, $hel_telefone_cco);
+		$hel_telefone_cco 	= str_replace(")", null, $hel_telefone_cco);
+		$hel_telefone_cco 	= str_replace("-", null, $hel_telefone_cco);
+		
+		
 		if ($this->testarDados()) {
-			$assunto = array(
-				"hel_seqsis_asu"   => $hel_seqsis_asu,
-				"hel_titulo_asu"   => $hel_titulo_asu,
-				"hel_link_asu"	   => $hel_link_asu
+			$dados_adicionais = array(
+				"hel_seqcon_cco"   	=> $hel_seqcon_cco,
+				"hel_tipo_cco"   	=> $hel_tipo_cco,
+				"hel_telefone_cco"  => $hel_telefone_cco,
+				"hel_ramal_cco"	   	=> $hel_ramal_cco,
+				"hel_whatsapp_cco"	=> $hel_whatsapp_cco,
+				"hel_skype_cco"	   	=> $hel_skype_cco
 			);
 	
-			if (!$hel_pk_seq_asu) {
-				$hel_pk_seq_asu = $this->AssuntoSistemaModel->insert($assunto);
+			if (!$hel_pk_seq_cco) {
+				$hel_pk_seq_cco = $this->ContatosContatoModel->insert($dados_adicionais);
 			} else {
-				$hel_pk_seq_asu = $this->AssuntoSistemaModel->update($assunto, $hel_pk_seq_asu);
+				$hel_pk_seq_cco = $this->ContatosContatoModel->update($dados_adicionais, $hel_pk_seq_cco);
 			}
 	
-			if (is_numeric($hel_pk_seq_asu)) {
-				$this->session->set_flashdata('sucesso', 'Assunto do Sistema salvo com sucesso.');
-				redirect('assunto_sistema/index/'.base64_encode($hel_seqsis_asu));
+			if (is_numeric($hel_pk_seq_cco)) {
+				$this->session->set_flashdata('sucesso', 'Dado adicional salvo com sucesso.');
+				redirect('contatos_contato/index/'.base64_encode($hel_seqcon_cco));
 			} else {
-				$this->session->set_flashdata('erro', $hel_pk_seq_asu);
-				redirect('assunto_sistema/index/'.base64_encode($hel_seqsis_asu));
+				$this->session->set_flashdata('erro', $hel_pk_seq_cco);
+				redirect('contatos_contato/index/'.base64_encode($hel_seqcon_cco));
 			}
 		} else {
-			if (!$hel_pk_seq_asu) {
+			if (!$hel_pk_seq_cco) {
 				redirect('contatos_contato/novo/'.base64_encode($hel_seqcon_cco));
 			} else {
 				redirect('contatos_contato/editar/'.base64_encode($hel_pk_seq_cco).'/'.base64_encode($hel_seqcon_cco));	
@@ -110,14 +120,14 @@ class Contatos_Contato extends CI_Controller {
 		}
 	}
 	
-	public function apagar($hel_pk_seq_asu, $hel_seqsis_asu) {
-		if ($this->testarApagar(base64_decode($hel_pk_seq_asu))) {
-			$res = $this->AssuntoSistemaModel->delete(base64_decode($hel_pk_seq_asu));
+	public function apagar($hel_pk_seq_cco, $hel_seqcon_cco) {
+		if ($this->testarApagar(base64_decode($hel_pk_seq_cco))) {
+			$res = $this->ContatosContatoModel->delete(base64_decode($hel_pk_seq_cco));
 			if ($res) {
-				$this->session->set_flashdata('sucesso', 'Assunto do sistema apagado com sucesso.');
+				$this->session->set_flashdata('sucesso', 'Dado adicional apagado com sucesso.');
 			}
 		}
-			redirect('assunto_sistema/index/'.$hel_seqsis_asu);
+			redirect('contatos_contato/index/'.$hel_seqcon_cco);
 	}
 	
 	private function carregarContato(&$dados) {
@@ -132,17 +142,17 @@ class Contatos_Contato extends CI_Controller {
 		
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
-					"hel_tipo_cco"		  		=> $registro->hel_tipo_cco,
+					"hel_tipo_cco"		  		=> $this->carregarTelefoneCelular($registro->hel_tipo_cco),
 					"hel_telefone_cco"			=> $registro->hel_telefone_cco,
-					"hel_whatsapp_cco"			=> $registro->hel_whatsapp_cco,
+					"hel_whatsapp_cco"			=> $registro->hel_whatsapp_cco == 1 ? 'Sim' : 'Não',
 					"EDITAR_CONTATOS_CONTATO"	=> site_url('contatos_contato/editar/'.base64_encode($registro->hel_pk_seq_cco).'/'.base64_encode($registro->hel_seqcon_cco)),
-					"APAGAR_ASSUNTO_SISTEMA"	=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_cco)."','".base64_encode($dados['hel_seqcon_cco'])."')"
+					"APAGAR_CONTATOS_CONTATO"	=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_cco)."','".base64_encode($dados['hel_seqcon_cco'])."')"
 			);
 		}
 	}
 		
-	private function carregarAssuntoSistema($hel_pk_seq_asu, &$dados) {
-		$resultado = $this->AssuntoSistemaModel->get($hel_pk_seq_asu);
+	private function carregarContatosContato($hel_pk_seq_cco, &$dados) {
+		$resultado = $this->ContatosContatoModel->get($hel_pk_seq_cco);
 		if ($resultado) {
 			foreach ($resultado as $chave => $valor) {
 				$dados[$chave] = $valor;
@@ -150,6 +160,13 @@ class Contatos_Contato extends CI_Controller {
 		} else {
 			show_error('Não foram encontrados dados.', 500, 'Ops, erro encontrado');
 		}
+		
+		$dados['hel_maskphone_cco'] 	    = $dados['hel_tipo_cco'] == 0 ? 'mask-phone' : 'mask-cel';
+		$dados['hel_lbtelefone_cco'] 	    = $this->carregarTelefoneCelular($dados['hel_tipo_cco']);
+		$dados['hel_checktelefone_cco']	    = $dados['hel_tipo_cco'] == 0 ? 'checked' :'';
+		$dados['hel_checkcelular_cco']	    = $dados['hel_tipo_cco'] == 1 ? 'checked' :'';
+		$dados['hel_checkedwhatsapp_cco']  	= $dados['hel_whatsapp_cco'] == 1 ? 'checked' : '';
+		$dados['hel_disabledramal_cco']  	= $dados['hel_tipo_cco'] == 1 ? 'disabled' : '';
 	}
 		
 	private function carregarTelefoneCelular($hel_tipo_cco) {
@@ -170,11 +187,13 @@ class Contatos_Contato extends CI_Controller {
 		global $hel_telefone_cco;
 		global $hel_ramal_cco;
 		global $hel_whatsapp_cco;
+		global $hel_skype_cco;
 		
 		$erros    = FALSE;
 		$mensagem = null;
 		
-		
+		$hel_skype_cco = trim($hel_skype_cco);
+				
 		if (empty($hel_seqcon_cco)) {
 			$erros    = TRUE;
 			$mensagem .= "- Contato não informado.\n";
@@ -191,7 +210,15 @@ class Contatos_Contato extends CI_Controller {
 			$mensagem .= "- ".$this->carregarTelefoneCelular($hel_tipo_cco)." não informado.\n";
 			$this->session->set_flashdata('ERRO_HEL_TELEFONE_CCO', 'has-error');
 		}
-			if ($erros) {
+		
+		if (($hel_tipo_cco == 1) and (!empty($hel_ramal_cco)) ){
+			$erros    = TRUE;
+			$mensagem .= "- Tipo ".$this->carregarTelefoneCelular($hel_tipo_cco).", não pode informar o ramal.\n";
+			$this->session->set_flashdata('ERRO_HEL_TELEFONE_CCO', 'has-error');
+			$this->session->set_flashdata('ERRO_HEL_RAMAL_CCO', 'has-error');
+		}
+		
+		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para continuar, corrija os seguintes erros:');
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			$this->session->set_flashdata('ERRO_HEL_CCO', TRUE);
@@ -200,6 +227,7 @@ class Contatos_Contato extends CI_Controller {
 			$this->session->set_flashdata('hel_telefone_cco', $hel_telefone_cco);
 			$this->session->set_flashdata('hel_ramal_cco', $hel_ramal_cco);
 			$this->session->set_flashdata('hel_whatsapp_cco', $hel_whatsapp_cco);
+			$this->session->set_flashdata('hel_skype_cco', $hel_skype_cco);
 		}
 		
 		return !$erros;
@@ -208,25 +236,7 @@ class Contatos_Contato extends CI_Controller {
 
 	private function testarApagar($hel_pk_seq_asu) {
 		$erros    = FALSE;
-		$mensagem = null;
-
-		$resultado = $this->AssuntoSistemaModel->get($hel_pk_seq_asu);
-
-		if ($resultado){
-				
-			$nome_arquivo = $resultado->hel_link_asu;
-			$caminho = "./uploads/assunto_sistema/";
-			
-			if (file_exists($caminho.$nome_arquivo)){
-				unlink($caminho.$nome_arquivo);
-			} else {
-				$erros = TRUE;
-				$mensagem = " - Erro ao verificar se o arquivo existi\n";
-			}
-		} else {
-			show_error('Não foram encontrados dados do arquivo.', 500, 'Ops, erro encontrado');
-		}
-			
+		$mensagem = null;			
 			
 		if ($erros) {
 			$this->session->set_flashdata('titulo_erro', 'Para apagar corrija os seguintes erros:');
@@ -240,11 +250,13 @@ class Contatos_Contato extends CI_Controller {
 		$ERRO_HEL_CCO   	     = $this->session->flashdata('ERRO_HEL_CCO');
 		$ERRO_HEL_TIPO_CCO       = $this->session->flashdata('ERRO_HEL_TIPO_CCO');
 		$ERRO_HEL_TELEFONE_CCO   = $this->session->flashdata('ERRO_HEL_TELEFONE_CCO');
+		$ERRO_HEL_RAMAL_CCO   	 = $this->session->flashdata('ERRO_HEL_RAMAL_CCO');
 		
 		$hel_seqcon_cco			= $this->session->flashdata('hel_seqcon_cco');
 		$hel_tipo_cco			= $this->session->flashdata('hel_tipo_cco');
 		$hel_telefone_cco		= $this->session->flashdata('hel_telefone_cco');
 		$hel_ramal_cco			= $this->session->flashdata('hel_ramal_cco');
+		$hel_skype_cco			= $this->session->flashdata('hel_skype_cco');
 		$hel_whatsapp_cco		= $this->session->flashdata('hel_whatsapp_cco');
 	
 		if ($ERRO_HEL_CCO) {
@@ -252,14 +264,17 @@ class Contatos_Contato extends CI_Controller {
 			$dados['hel_tipo_cco']       		= $hel_tipo_cco;
 			$dados['hel_telefone_cco']	 		= $hel_telefone_cco;
 			$dados['hel_ramal_cco']		 		= $hel_ramal_cco;
+			$dados['hel_skype_cco']	 			= $hel_skype_cco;
 			$dados['hel_whatsapp_cco']	 		= $hel_whatsapp_cco;
 			$dados['hel_lbtelefone_cco'] 		= $hel_tipo_cco == 0 ? 'Telefone' : 'Celular';
 			$dados['hel_checktelefone_cco'] 	= $hel_tipo_cco == 0 ? 'checked' : '';
 			$dados['hel_checkcelular_cco']  	= $hel_tipo_cco == 1 ? 'checked' : '';
 			$dados['hel_checkedwhatsapp_cco']  	= $hel_whatsapp_cco == 1 ? 'checked' : '';
+			$dados['hel_disabledramal_cco']  	= $hel_tipo_cco == 1 ? 'disabled' : '';
 			
 			$dados['ERRO_HEL_TIPO_CCO']      	= $ERRO_HEL_TIPO_CCO;
 			$dados['ERRO_HEL_TELEFONE_CCO']  	= $ERRO_HEL_TELEFONE_CCO;
+			$dados['ERRO_HEL_RAMAL_CCO']  		= $ERRO_HEL_RAMAL_CCO;
 		}
 	}
 
