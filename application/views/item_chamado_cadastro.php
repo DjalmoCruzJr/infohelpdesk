@@ -42,28 +42,7 @@
 						</div>
 				</div>
 			</div>
-			<div class="form-group" {hel_hiddensolucao_ios}>
-				<div class="{ERRO_HEL_SOLUCAO_IOS}" >
-					<label for="hel_solucao_ios" class="col-sm-1 control-label">Solução</label>
-						<div class="col-sm-11">
-							<textarea  class="form-control" id="hel_solucao_ios" name="hel_solucao_ios" {hel_readonlysolucao_ios} 
-							          autocomplete="off" autofocus>{hel_solucao_ios}</textarea>
-						</div>
-				</div>
-			</div>
 			
-			<div class="form-group">
-				<div class="{ERRO_HEL_STATUS_IOS}">
-					<div class="col-sm-offset-1 col-sm-10">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" id="hel_status_ios" name="hel_encerrado_ios" value="1"  
-								{hel_checkedencerrado_ios} autocomplete="off" autofocus {hel_readonlyencerrado_ios}/>Encerrado
-							</label>										
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-11">
 					<button type="submit" name="salvar_cidade" class="btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Salvar</button>

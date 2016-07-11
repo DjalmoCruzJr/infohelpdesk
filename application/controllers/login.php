@@ -21,7 +21,8 @@ class Login extends CI_Controller {
 		$dados['hel_login_con'] = '';
 		$dados['hel_senha_con'] = '';
 		
-		$dados['ACAO_FORM']     = site_url('login/entrar');
+		$dados['ACAO_FORM']          = site_url('login/entrar');
+		$dados['RELEMBRAR_FORM']     = site_url('lembrar_senha');
 		
 		$this->carregarDadosFlash($dados);
 		

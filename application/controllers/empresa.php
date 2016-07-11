@@ -372,6 +372,7 @@ class Empresa extends CI_Controller {
 		$hel_numero_emp 		= trim($hel_numero_emp);
 		$hel_bairro_emp 		= trim($hel_bairro_emp);
 		$hel_email_emp			= trim($hel_email_emp);
+		$hel_responsavel_emp	= trim($hel_responsavel_emp);
 		
 		if (empty($hel_empresa_emp)) {
 			$erros    = TRUE;
@@ -434,7 +435,7 @@ class Empresa extends CI_Controller {
 			}
 		}
 		
-		if (!$erros and $this->EmpresaModel->getEmpresaCadastrada($hel_cpfcnpj_emp, $hel_pk_seq_emp)){
+		if (!$erros and $this->EmpresaModel->getEmpresaCadastrada($hel_cpfcnpj_emp, $hel_pk_seq_emp, $hel_tipo_emp)){
 			$erros    = TRUE;
 			$mensagem .= "- Empresa já cadastrada.\n";
 			$this->session->set_flashdata('ERRO_HEL_EMPRESA_EMP', 'has-error');

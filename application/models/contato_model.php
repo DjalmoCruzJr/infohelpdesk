@@ -75,4 +75,11 @@ class Contato_Model extends CI_Model {
 		$this->db->where('hel_senha_con = ', $hel_senha_con);
 		return $this->db->get()->first_row();
 	}
+	
+	public function getEmail($hel_email_con) {
+		$this->db->from('heltbcon');
+		$this->db->where('hel_email_con', $hel_email_con);
+		$this->db->where('hel_ativo_con', CONTATO_ATIVO);		
+		return $this->db->get()->first_row();
+	}
 }

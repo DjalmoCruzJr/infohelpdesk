@@ -10,7 +10,7 @@
                 <div>
                     <a href="{NOVA_CIDADE}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nova Cidade</a>
 	                <div class="pull-right">
-			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i>Imprimir</a> 
+			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>
                 </div>
                 </br>

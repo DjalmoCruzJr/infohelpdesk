@@ -69,6 +69,7 @@
 								</div>
 							</div>
 					</form>
+					<p class="text-center text-muted mt-md mb-md labellogin">Esqueceu sua senha? <a href="{RELEMBRAR_FORM}">Clique Aqui!</a></p>
 				</div>
 			</div>
 				<p class="text-center text-muted mt-md mb-md labellogin">&copy; Copyright © 2015 | Desenvolvido pela Info Rio Sistemas Ltda. Todos os direitos reservados.</p>
