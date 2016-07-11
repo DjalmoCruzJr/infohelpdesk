@@ -23,6 +23,7 @@
                                 <th>Tipo de Contato</th>
                                 <th>Ativo</th>
                                 <th class="coluna-acao" width="125">Contato da Empresa</th>
+                                <th class="coluna-acao" width="125">Dados Adicionais</th>
                                 <th class="coluna-acao" width="80"></th>
                                 <th class="coluna-acao" width="80"></th>
                             </tr>
@@ -35,6 +36,7 @@
 	                                <td class="vertical-center">{hel_desc_tco}</td>
 	                                <td class="vertical-center">{hel_ativo_con}</td>
 	                                <td class="text-center"><a href="{CONTATO_EMPRESA}" class="btn btn-link btn-xs" title="Contato da empresa"><i class="glyphicon glyphicon-comment"></i></a></td>
+	                                <td class="text-center"><a href="{CONTATOS_CONTATO}" class="btn btn-link btn-xs" title="Dados Adicionais"><i class="glyphicon glyphicon-phone"></i></a></td>
 	                                <td class="text-center"><a href="{EDITAR_CONTATO}" class="btn btn-link btn-xs {dis_alterar}" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a></td>
 	                                <td class="text-center"><a onclick="{APAGAR_CONTATO}" class="btn btn-link btn-xs {dis_excluir}" title="Apagar"><i class="glyphicon glyphicon-trash"></i></a></td>
 	                            </tr>
