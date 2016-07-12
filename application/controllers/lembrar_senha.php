@@ -33,32 +33,14 @@ class Lembrar_Senha extends CI_Controller {
 		$hel_email_con = $this->input->post('hel_email_con');		
 		
 		if ($this->testarDados()) {
-			$config = array(
-					'protocol' => 'smtp',
-					'smtp_host' => 'ssl://smtp.googlemail.com',
-					'smtp_port' => 465,
-					'smtp_user' => 'luizmariodev@gmail.com',
-					'smtp_pass' => 'luizMarioDeveloper',
-					'mailtype' => 'html',
-					'charset' => 'utf-8',
-					'wordwrap' => TRUE
-			);
 			
-// 			$config['mailtype']		= 'html';
-// 			$config['protocol']		= 'smtp';
-// 			$config['smtp_host']	= 'ssl://smtp.googlemail.com';
-// 			$config['smtp_port']	= '465';
-// 			$config['smtp_timeout']	= '60';
-// 			$config['smtp_user']	= 'luizmariodev@gmail.com';
-// 			$config['smtp_pass']	= 'luizMarioDeveloper';
-// 			$config['validate']		=  TRUE;
-// 			$config['charset']		= 'utf-8';
-// 			$config['newline']		= "\r\n";
-			
-			$nova_senha = $this->util->gerar_senha(8,true,true,true);
+			$nova_senha = $this->util->gerar_senha(TAMANHO_SENHA,true,true,true);
 			$body 		= ' <p>Olá, '.$hel_nome_con.' sua nova senha é:<strong>'.$nova_senha.'</strong>
-						 	<p>Use-e a para logar no sistema.<p>
-							<p>É importante que esta senha seja alterada logo após logar.<p> ';
+						 	<p>Use-a para logar no sistema.<p>
+							<p>É importante alterada a senha após o primeiro acesso.<p> ';
+			$titulo     = 'Recuperação de senha - HelpDesk Info Rio Sistema LTDA';
+			$emailFrom  = 'luizmariodev@gmail.com';
+			$usuario    = 'Suporte';
 			
 				
 			$contato = array(
@@ -71,27 +53,27 @@ class Lembrar_Senha extends CI_Controller {
 			
 			if(!empty($hel_pk_seq_con)){
 				
-				// $this->load->library('email');
-				$this->load->library('email', $config);
-				$this->email->set_newline("\r\n");
-				$this->email->initialize($config);
+				$this->load->library('email');
+				$this->email->initialize();
 				
-				$this->email->from('luizmariodev@gmail.com', 'Suporte');
+				$this->email->from($emailFrom, $usuario);
 				$this->email->to($hel_email_con);
 				
-				$this->email->subject('Recuperação de senha - HelpDesk');
+				$this->email->subject($titulo);
 				$this->email->message($body);
 				
 				if ($this->email->send()){
-					echo 'sucess';
+					$dados = array();
+					$dados['hel_email_con'] 			 = '';					
+					$dados['MENSAGEM_LEMBRARSENHA_ERRO'] = $this->criarAltertaSucess('Para continuar, acesse seu email: ', ' - Verifique se foi enviando um e-mail com uma nova senha');
+					$this->setarURL($dados);
+					
+					$this->parser->parse('lembrar_senha_view', $dados);
 				}else {
 					echo '<pre>';
 					print_r($this->email->print_debugger());
-					
 				}
 			}
-			
-// 			redirect('lembrar_senha');
 			
 		} else {
 			redirect('lembrar_senha');
@@ -166,6 +148,28 @@ class Lembrar_Senha extends CI_Controller {
 		}else {
 			$dados['MENSAGEM_LEMBRARSENHA_ERRO'] = '';
 		}
+	}
+	
+	private function criarAltertaSucess($titulo, $mensagem) {
+		$html = " <br/>
+		<div class='alert alert-success' role='alert' align='center' >
+		<button type='button' class='close' data-dismiss='alert'>
+		<span aria-hidden='true'>&times;</span>
+		</button>
+		<h4>
+		<strong>{$titulo}</strong>
+		</h4>";
+	
+		if (!empty($mensagem)) {
+			$html .= "<div align='left'>
+			<strong>{$mensagem}</strong>
+			</div>";
+		}
+			
+			
+		$html .= "</div>";
+	
+		return $html;
 	}
 	
 	private function criarAlterta($titulo, $mensagem) {

@@ -43,8 +43,11 @@ define('CHAMADO',								'1');
 define('TECNICO',								'0');
 define('ABERTO',								'0');
 define('ORDEM_SERVICO',							'0');
+define('TAMANHO_SENHA',							'8');
+define('SENHA_EMAIL',							'bHVpek1hcmlvRGV2ZWxvcGVy');
 define('CHAVE_JSON',							'52b964aecd013d598c5ea4f92a2d25e0');
 define('LAYOUT_DASHBOARD',						'dashboard');
+
 
 
 /* End of file constants.php */
