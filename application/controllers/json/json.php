@@ -40,10 +40,10 @@ class Json extends CI_Controller {
 		echo json_encode($resultado, JSON_PRETTY_PRINT);			
 	}
 	
-	public function carregar_chamado($chave,$status = NULL) {
+	public function carregar_chamado($chave,$status = NULL, $empresa = NULL) {
 		$resultado = array();
 		if ($chave === CHAVE_JSON){
-			$resultado = $this->ChamadoModel->getChamadosStatus($status);
+			$resultado = $this->ChamadoModel->getChamadosStatus($status, $empresa);
 		}
 		echo json_encode($resultado, JSON_PRETTY_PRINT);
 	}

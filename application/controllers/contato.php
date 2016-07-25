@@ -266,7 +266,7 @@ class Contato extends CI_Controller {
 		
 		$resultado = $this->util->validar_senha($hel_senha_con);
 		
-		if (!$erros and !empty($resultado)){
+		if ($erros and !empty($resultado)){
 			$erros    = TRUE;
 			$mensagem .= $resultado;
 			$this->session->set_flashdata('ERRO_HEL_SENHA_CON', 'has-error');

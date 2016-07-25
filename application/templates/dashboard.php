@@ -230,7 +230,7 @@
 								<i class="fa fa-user fa-2x"></i>
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-								<span class="name">{hel_login_con}</span>
+								<span class="name">{login}</span>
 								<span class="role">{hel_desc_tco}</span>
 							</div>
 			

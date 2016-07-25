@@ -2,7 +2,8 @@
 <html class="fixed">
 	<head>
 		<meta charset="UTF-8">
-
+		
+		<title>Esqueci minha senha - Help Desk | Info Rio Sistema LTDA</title>
 		<meta name="description" content="Info Rio Sistemas LTDA">
 		<meta name="author" content="Luiz Mário">
 		

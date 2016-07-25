@@ -20,16 +20,33 @@ class Chamado extends CI_Controller {
 		
 		$dados['NOVO_CHAMADO'] = site_url('chamado/novo');
 		
-		$dados['BLC_DADOS']           = array();
-		$dados['URL_BUSCAR_CONTATO']  = site_url('json/json/carregar_contato_relatorio/'.CHAVE_JSON);
-		$dados['URL_BUSCAR_CHAMADO']  = site_url('json/json/carregar_chamado/'.CHAVE_JSON);
+		$dados['BLC_DADOS']           	= array();
+		$dados['URL_BUSCAR_CONTATO']  	= site_url('json/json/carregar_contato_relatorio/'.CHAVE_JSON);
+		$dados['URL_BUSCAR_CHAMADO']  	= site_url('json/json/carregar_chamado/'.CHAVE_JSON);
+		$dados['ACAO_FILTRO']           = site_url('chamado');
+		
+		$status_filtro		  			= $this->input->post('status_filtro');
+		$hel_seqemp_filtro  			= $this->input->post('hel_seqemp_filtro');
+		$hel_seqcha_filtro 	 			= $this->input->post('hel_seqcha_filtro');
+		$hel_seqconpara_filtro			= $this->input->post('hel_seqconpara_filtro');
+		
+		$dados['status_filtro']			= $status_filtro;
+		$dados['hel_seqemp_filtro']		= $hel_seqemp_filtro;
+		$dados['hel_seqcha_filtro'] 	= $hel_seqcha_filtro;
+		$dados['hel_seqconpara_filtro']	= $hel_seqconpara_filtro;
+		
+// 		echo '<pre>';
+//  		print_r($dados);
 		
 		$this->carregarDados($dados);
+		$this->carregarEmpresaFiltro($dados);
+		$this->carregarChamadoFiltro($dados);
+		$this->carregarContatoParaFiltro($dados);
+		
 		$this->carregarEmpresaRelatorio($dados);
 		$this->carregarChamadoRelatorio($dados);
 				
 		$this->parser->parse('chamado_consulta', $dados);
-		
 	}
 	
 	public function novo() {
@@ -177,6 +194,53 @@ class Chamado extends CI_Controller {
 		}
 		
 		!$resultado ? $dados['BLC_EMPRESA_RELATORIO'][] = array("hel_nomefantasia_emp" => 'Não existe nenhuma empresa cadastrada') :'';
+	}
+	
+	private function carregarChamadoFiltro(&$dados) {
+		
+		$resultado = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) ? $this->ChamadoModel->getChamado($this->session->userdata('hel_pk_seq_con')) : $this->ChamadoModel->getChamado();
+		
+		foreach ($resultado as $registro) {
+			$dados['BLC_CHAMADO_FILTRO'][] = array(
+					"hel_pk_seq_cha" 			=> $registro->hel_pk_seq_cha,
+					"hel_numero_cha" 			=> 'Numero '.$registro->hel_pk_seq_cha,
+					"sel_hel_seqchafiltro_cha"	=> ($dados['hel_seqcha_filtro'] == $registro->hel_pk_seq_con)?'selected':''					
+			);
+		}
+		
+		!$resultado ? $dados['BLC_CHAMADO_FILTRO'][] = array("hel_numero_cha" => 'Não existe nenhum chamado cadastrado') :'';
+	}
+	
+	
+	private function carregarEmpresaFiltro(&$dados) {
+	
+		$resultado = !$this->util->autorizacao($this->session->userdata('hel_tipo_tco')) ? $this->EmpresaModel->getEmpresa() : $this->EmpresaContatoModel->getEmpresaContatoRelatorio2($this->session->userdata('hel_pk_seq_con'));
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_EMPRESA_FILTRO'][] = array(
+					"hel_pk_seq_emp"     		=> $registro->hel_pk_seq_emp,
+					"hel_nomefantasia_emp" 		=> $registro->hel_nomefantasia_emp,
+					"sel_hel_seqempfiltro_cha"	=> ($dados['hel_seqemp_filtro'] == $registro->hel_pk_seq_emp)?'selected':''					
+			);
+		}
+	
+		!$resultado ? $dados['BLC_EMPRESA_FILTRO'][] = array("hel_nomefantasia_emp" => 'Não existe nenhuma empresa cadastrada') :'';
+	}
+	
+	private function carregarContatoParaFiltro(&$dados) {
+	
+		$resultado = $this->ContatoModel->getContatoTecnico();
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_CONTATO_PARA_FILTRO'][] = array(
+					"hel_pk_seq_con"       			=> $registro->hel_pk_seq_con,
+					"hel_nome_con"         			=> $registro->hel_nome_con,
+					"sel_hel_seqconparafiltro_cha"	=> ($dados['hel_seqconpara_filtro'] == $registro->hel_pk_seq_con)?'selected':''
+			);
+		}
+		
+		!$resultado ? $dados['BLC_CONTATO_PARA_FILTRO'][] = array("hel_nome_con" => 'Não existe nenhum contato técnico cadastrado') :'';
+	
 	}
 	
 	private function carregarDados(&$dados) {

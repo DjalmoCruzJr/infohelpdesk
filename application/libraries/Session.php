@@ -69,10 +69,13 @@ class  CI_Session {
         {
               setcookie(session_name(), '', time()-42000, '/');
         }
-        if (session_status() != PHP_SESSION_ACTIVE) {
-        	session_start();
-        	session_destroy();
-        }
+        /*
+         * Linha comentada por luiz mario 18/07/2016
+         * */
+//         if (session_status() != PHP_SESSION_ACTIVE) {
+//         	session_start();
+//         	session_destroy();
+//         }
     }
     /**
     * Reads given session attribute value

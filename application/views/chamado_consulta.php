@@ -10,6 +10,7 @@
                 <div>
                     <a href="{NOVO_CHAMADO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Novo Chamado</a>
 	                <div class="pull-right">
+	                	<a onclick="abrirDialogFiltro()" class="btn btn-info"><i class="glyphicon glyphicon-filter"></i> Filtro</a>
 			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>
                 </div>
@@ -165,6 +166,81 @@
     	</div>
 </div>
 
+<div class="modal fade" id="filtro_chamado" tabindex="-1" role="dialog" aria-labelledby="filtro_chamado_label" aria-hidden="true">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                    <h3 class="modal-title" id="relatorio_filtro_label">Opções de filtro</h3>
+                </div>
+                <div class="modal-body">
+                	<form class="form-horizontal" action="{ACAO_FILTRO}" method="post">
+						<div class="form-group col-sm-12">
+						    <label for="hel_statusfiltro_cha" class="col-sm-1 control-label">Status</label>
+								<div class="col-sm-11">
+								<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statusfiltrotodos_cha" onclick="carregarChamadoFiltro()" name="status_filtro" value="0" checked/>Todos
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statusfiltroaberto_cha" onclick="carregarChamadoFiltro()" name="status_filtro" value="1"/>Aberto
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" id="hel_statusfiltroencerrado_cha" onclick="carregarChamadoFiltro()" name="status_filtro" value="2" />Encerrado
+										</label>
+									</div>
+								</div>
+						</div>
+						<div class="form-group">
+							<label for="hel_seqemp_filtro" class="col-sm-3 control-label">Filtro Empresa</label>
+								<div class="col-sm-7">
+									<select class="form-control" id="hel_seqemp_filtro" name="hel_seqemp_filtro" onchange="carregarChamadoFiltro()" autofocus="autofocus">
+										<option value="">Selecione...</option>
+										{BLC_EMPRESA_FILTRO}
+											<option value="{hel_pk_seq_emp}" {sel_hel_seqempfiltro_cha}>{hel_nomefantasia_emp}</option>
+										{/BLC_EMPRESA_FILTRO}
+									</select>
+								</div>
+	                	</div>
+	                	<div class="form-group">
+							<label for="hel_seqcha_filtro" class="col-sm-3 control-label">Filtro Chamado</label>
+								<div class="col-sm-7">
+									<select class="form-control" id="hel_seqcha_filtro" onchange="habilitarDesabilitaComponentesFiltro()" name="hel_seqcha_filtro" autofocus="autofocus">
+										<option value="">Selecione...</option>
+										{BLC_CHAMADO_FILTRO}
+											<option value="{hel_pk_seq_cha}" {sel_hel_seqchafiltro_cha}>{hel_numero_cha}</option>
+										{/BLC_CHAMADO_FILTRO}
+									</select>
+								</div>
+	                	</div>
+	                	<div class="form-group">
+							<label for="hel_seqconpara_filtro" class="col-sm-3 control-label">Filtro Contato Para</label>
+								<div class="col-sm-7">
+									<select class="form-control" id="hel_seqconpara_filtro" name="hel_seqconpara_filtro" autofocus="autofocus">
+										<option value="">Selecione...</option>
+										{BLC_CONTATO_PARA_FILTRO}
+											<option value="{hel_pk_seq_con}" {sel_hel_seqconparafiltro_cha}>{hel_nome_con}</option>
+										{/BLC_CONTATO_PARA_FILTRO}
+									</select>
+								</div>
+	                	</div>
+	                	<br/>					
+						<div class="form-group">
+							<center>
+								<button type="submit" name="filtro_chamado" class="btn btn-primary" > <i class="glyphicon glyphicon-filter"></i> Filtrar</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							</center>	
+						</div>
+					</form>						
+                </div>
+        	</div>
+    	</div>
+</div>
+
 
 <script type="text/javascript">
 
@@ -182,6 +258,64 @@
 
     function abrirDialogRelatorio(){
         $('#relatorio_chamado').modal('show');
+    }
+
+    function abrirDialogFiltro(){
+        $('#filtro_chamado').modal('show');
+    }
+
+    function habilitarDesabilitaComponentesFiltro(){
+    	var chamado    = document.getElementById("hel_seqcha_filtro");
+    	var disabled   = false;
+
+    	for (var i = 0; i < chamado.options.length; i++) {
+	  		if ( (chamado.options[i].selected) && (i != 0) ){
+	  			disabled = true;
+	    	}
+	  	}
+    	
+    	document.getElementById("hel_seqemp_filtro").disabled	 		  = disabled;    	
+    	document.getElementById("hel_seqconpara_filtro").disabled 		  = disabled;    	
+    	document.getElementById("hel_statusfiltrotodos_cha").disabled 	  = disabled;
+    	document.getElementById("hel_statusfiltroaberto_cha").disabled	  = disabled;
+    	document.getElementById("hel_statusfiltroencerrado_cha").disabled = disabled;    	
+    }
+
+    function carregarChamadoFiltro(){
+
+    	var status  		= "";
+		var options 		= '<option value="">Selecione...</option>';
+		var empresa		 	= document.getElementById("hel_seqemp_filtro");
+		var filtro_empresa 	= ""; 
+
+		for (var i = 0; i < empresa.options.length; i++) {
+	  		if (empresa.options[i].selected){
+	  			filtro_empresa = filtro_empresa + empresa.options[i].value;
+	    	}
+	  	}
+
+		if (document.getElementById('hel_statusfiltroaberto_cha').checked) {
+			status = "0"
+		}else if (document.getElementById('hel_statusfiltroencerrado_cha').checked){
+			status = "1"
+		}	
+	
+		$.ajax({
+			url      : '{URL_BUSCAR_CHAMADO}/' + status + '/' + filtro_empresa,
+			dataType : "json",
+			async    : true,
+			success  : function(data) {
+				$("#hel_seqcha_filtro").empty();
+				for (i = 0; i < data.length; i++) {
+					options += '<option value="' + data[i].hel_pk_seq_cha + '">' + data[i].hel_numero_cha + '</option>';
+				}
+				$("#hel_seqcha_filtro").html(options);
+			},
+			error    : function(error){
+				console.log('Error na function carregarChamadoFiltro()');
+			}	
+		});
+        
     }
 
     function habilitarDesabilitaComponentes(){

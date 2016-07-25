@@ -6,7 +6,7 @@
  <div class="panel panel-default">
  	<div class="panel-body">
  		<form action="{ACAO_FORM}" method="post" class="form-horizontal">
- 			<input type="hidden" id="hel_pk_seq_emp" name="hel_pk_seq_emp" value="{hel_pk_seq_emp}"/>
+ 			<input type="hidden" id="hel_pk_seq_cco" name="hel_pk_seq_cco" value="{hel_pk_seq_cco}"/>
  			<input type="hidden" id="hel_seqcon_cco" name="hel_seqcon_cco" value="{hel_seqcon_cco}"/>				
  			
  			<div class="form-group">
