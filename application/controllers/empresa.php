@@ -345,7 +345,7 @@ class Empresa extends CI_Controller {
 			);
 		}
 	
-		!$resultado ? $dados['BLC_SEGMENTO'][] = array("hel_desc_seg" => 'Nenhum segmento cadastrado') :'';
+		!$resultado ? $dados['BLC_SEGMENTO'][] = array("hel_pk_seq_seg"=> NULL, "hel_desc_seg" => 'Nenhum segmento cadastrado') :'';
 	}
 	
 	

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
-	<property name="ireport.zoom" value="1.650000000000027"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="3.2153832150000543"/>
+	<property name="ireport.x" value="340"/>
+	<property name="ireport.y" value="152"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
 	</parameter>
@@ -25,13 +25,14 @@
 	  end AS hel_cnpj_emp,
        hel_nomefantasia_emp,
        hel_nome_cid,
+       hel_desc_seg,
 	   CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
 	   else 'Inativo'
        END AS hel_ativo_emp,
        hel_razaosocial_emp,
        hel_endereco_emp,
-	   hel_numero_emp,
-	   hel_bairro_emp,
+       hel_numero_emp,
+       hel_bairro_emp,
        hel_cep_emp,
        hel_email_emp,
        hel_celular_emp,
@@ -40,7 +41,8 @@
        hel_razaosocial_emp,
        hel_responsavel_emp
 FROM heltbemp
-LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid]]>
+LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid
+LEFT JOIN heltbseg ON hel_seqseg_emp = hel_pk_seq_seg]]>
 	</queryString>
 	<field name="hel_pk_seq_emp" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -61,6 +63,9 @@ LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="hel_nome_cid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hel_desc_seg" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="hel_ativo_emp" class="java.lang.String">
@@ -198,7 +203,7 @@ LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid]]>
 				<textFieldExpression><![CDATA[$F{hel_filial_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="320" y="3" width="100" height="15" uuid="1df5284f-ad81-4236-b054-e324296d36e3"/>
+				<reportElement x="356" y="3" width="100" height="15" uuid="1df5284f-ad81-4236-b054-e324296d36e3"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -233,14 +238,14 @@ LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid]]>
 				<textFieldExpression><![CDATA[$F{hel_razaosocial_emp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="448" y="3" width="41" height="15" uuid="ecaa9da6-07c8-43a6-9cf6-31839126b71a"/>
+				<reportElement x="459" y="3" width="30" height="15" uuid="ecaa9da6-07c8-43a6-9cf6-31839126b71a"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Status]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="489" y="3" width="62" height="15" uuid="b7e18a2e-1c07-4c8f-8820-0c9ee6ee7f7f"/>
+				<reportElement x="490" y="3" width="62" height="15" uuid="b7e18a2e-1c07-4c8f-8820-0c9ee6ee7f7f"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -345,7 +350,7 @@ LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid]]>
 				<textFieldExpression><![CDATA[$F{hel_email_emp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="291" y="3" width="29" height="15" uuid="0d20eaac-866d-4d10-8b1d-6ef2c5444171"/>
+				<reportElement x="327" y="3" width="29" height="15" uuid="0d20eaac-866d-4d10-8b1d-6ef2c5444171"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -364,6 +369,20 @@ LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid]]>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_responsavel_emp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="3" width="46" height="15" uuid="a1a6002f-0f0c-4a41-b7e4-df4d76fd8c03"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Segmento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="206" y="3" width="114" height="15" uuid="7239cdca-202d-445e-b089-84c7f09eb999"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hel_desc_seg}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="50">
