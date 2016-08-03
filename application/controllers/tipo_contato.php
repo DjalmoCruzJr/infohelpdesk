@@ -250,9 +250,9 @@ class Tipo_Contato extends CI_Controller {
 	}
 
 	public function relatorio($order_by,$hel_tipo_tco){
-		$clasulaWhere = "";
-		$whereAnd    = " WHERE ";
-		$order_by = str_replace("%20", " ", $order_by);
+		$clasulaWhere = " ";
+		$whereAnd     = " WHERE ";
+		$order_by     = str_replace("%20", " ", $order_by);
 
 		switch ($hel_tipo_tco){
 			case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_tipo_tco = '.$hel_tipo_tco;
@@ -273,7 +273,7 @@ class Tipo_Contato extends CI_Controller {
 							  WHEN 1 THEN 'Responsável'
 							  WHEN 2 THEN 'Outros'
 							 end as hel_tipo_tco
-						FROM heltbtco ".$clasulaWhere.$order_by;
+						FROM heltbtco ".$clasulaWhere." ".$order_by;
 
 		if ($this->gerarRelatorio()) {
 			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_tipo_contato.jrxml', $consulta);

@@ -57,12 +57,12 @@
     </div>
 </div>
 
-<div class="modal fade" id="relatorio_cidade" tabindex="-1" role="dialog" aria-labelledby="relatorio_cidade_label" aria-hidden="true">
+<div class="modal fade" id="relatorio_segmento" tabindex="-1" role="dialog" aria-labelledby="relatorio_cidade_label" aria-hidden="true">
     <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
-                    <h3 class="modal-title" id="relatorio_cidade_label">Relatório - Cidade</h3>
+                    <h3 class="modal-title" id="relatorio_cidade_label">Relatório - Segmento</h3>
                 </div>
                 <div class="modal-body">
                 	<form class="form-horizontal">
@@ -110,21 +110,21 @@
     }
     
     function abrirDialogRelatorio(){
-        $('#relatorio_cidade').modal('show');
+        $('#relatorio_segmento').modal('show');
     }
 
     function visualizarRelatorio() {
 		var orderBy = "";
 		
     	if (document.getElementById('ordenacao_codigo').checked) {
-    		orderBy = " ORDER BY hel_pk_seq_cid ";
+    		orderBy = " ORDER BY hel_pk_seq_seg ";
     	} else {
-    		orderBy = " ORDER BY hel_nome_cid ";
+    		orderBy = " ORDER BY hel_desc_seg ";
 		}
     	
-    	$('#relatorio_cidade').modal('hide');
+    	$('#relatorio_segmento').modal('hide');
     	
-    	window.open('cidade/relatorio/'+ orderBy, '_blank');
+    	window.open('segmento/relatorio/'+ orderBy, '_blank');
     }	
 
 </script>
