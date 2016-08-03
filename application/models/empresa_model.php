@@ -36,6 +36,12 @@ class Empresa_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getEmpresaSegmento($hel_pk_seq_seg) {
+		$this->db->from('heltbemp');
+		$this->db->where('hel_seqseg_emp ', $hel_pk_seq_seg, FALSE);
+		return $this->db->get()->result();
+	}
+	
 	public function insert($empresa) {
 		$res = $this->db->insert('heltbemp', $empresa);
 	

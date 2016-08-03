@@ -9,6 +9,7 @@ class Empresa extends CI_Controller {
 		$this->load->model('Empresa_Model', 'EmpresaModel');
 		$this->load->model('Chamado_Model', 'ChamadoModel');
 		$this->load->model('Sistema_Model', 'SistemaModel');
+		$this->load->model('Segmento_Model', 'SegmentoModel');
 		$this->load->model('Cidade_Model', 'CidadeModel');
 		$this->load->model('Contato_Model', 'ContatoModel');
 		$this->load->model('Empresa_Contato_Model', 'EmpresaContatoModel');
@@ -60,6 +61,7 @@ class Empresa extends CI_Controller {
 		$dados['hel_lbcpfcnpj_emp']	    	 = 'CPF';
 		$dados['hel_checkpessoafisica_emp']  = 'checked';
 		$dados['hel_mask_emp']				 = 'mask-cpf';
+		$dados['hel_seqseg_emp']			 = '';
 		
 		
 		$dados['ACAO'] = 'Novo';
@@ -69,6 +71,7 @@ class Empresa extends CI_Controller {
 		$this->carregarDadosFlash($dados);
 	
 		$this->carregarCidade($dados);
+		$this->carregarSegmento($dados);
 		
 		$this->parser->parse('empresa_cadastro', $dados);
 	}
@@ -85,6 +88,7 @@ class Empresa extends CI_Controller {
 		$this->carregarDadosFlash($dados);
 		
 		$this->carregarCidade($dados);
+		$this->carregarSegmento($dados);
 		
 		$this->parser->parse('empresa_cadastro', $dados);	
 	}
@@ -107,6 +111,7 @@ class Empresa extends CI_Controller {
 		global $hel_celular_emp;
 		global $hel_tipo_emp;
 		global $hel_responsavel_emp;
+		global $hel_seqseg_emp;
 		
 		$hel_pk_seq_emp  		= $this->input->post('hel_pk_seq_emp');			
 		$hel_empresa_emp 		= $this->input->post('hel_empresa_emp');
@@ -125,6 +130,7 @@ class Empresa extends CI_Controller {
 		$hel_celular_emp 		= $this->input->post('hel_celular_emp');
 		$hel_tipo_emp 			= $this->input->post('hel_tipo_emp');
 		$hel_responsavel_emp	= $this->input->post('hel_responsavel_emp');
+		$hel_seqseg_emp			= $this->input->post('hel_seqseg_emp');
 		
 		$hel_cpfcnpj_emp 		= str_replace(".", null, $hel_cpfcnpj_emp);
 		$hel_cpfcnpj_emp 		= str_replace("/", null, $hel_cpfcnpj_emp);
@@ -157,7 +163,8 @@ class Empresa extends CI_Controller {
 				"hel_fone_emp"     	    => $hel_fone_emp,
 				"hel_celular_emp"     	=> $hel_celular_emp,
 				"hel_tipo_emp"     		=> $hel_tipo_emp,
-				"hel_responsavel_emp"   => $hel_responsavel_emp
+				"hel_responsavel_emp"   => $hel_responsavel_emp,
+				"hel_seqseg_emp"   		=> $hel_seqseg_emp
 					
 			);
 			
@@ -327,6 +334,20 @@ class Empresa extends CI_Controller {
 		return $retorno;
 	}	
 	
+	private function carregarSegmento(&$dados) {
+		$resultado = $this->SegmentoModel->getSegmento();
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_SEGMENTO'][] = array(
+					"hel_pk_seq_seg"     => $registro->hel_pk_seq_seg,
+					"hel_desc_seg"       => $registro->hel_desc_seg,
+					"sel_hel_seqseg_emp" => ($dados['hel_seqseg_emp'] == $registro->hel_pk_seq_seg)?'selected':''
+			);
+		}
+	
+		!$resultado ? $dados['BLC_SEGMENTO'][] = array("hel_desc_seg" => 'Nenhum segmento cadastrado') :'';
+	}
+	
 	
 	private function carregarCidade(&$dados) {
 		$resultado = $this->CidadeModel->getCidade();
@@ -362,6 +383,7 @@ class Empresa extends CI_Controller {
 		global $hel_celular_emp;
 		global $hel_tipo_emp;
 		global $hel_responsavel_emp;
+		global $hel_seqseg_emp;
 
 		$erros    = FALSE;
 		$mensagem = null;
@@ -385,6 +407,12 @@ class Empresa extends CI_Controller {
 			$erros    = TRUE;
 			$mensagem .= "- Filial não foi preenchido.\n";
 			$this->session->set_flashdata('ERRO_HEL_FILIAL_EMP', 'has-error');
+		}
+		
+		if(empty($hel_seqseg_emp)){
+			$erros    = TRUE;
+			$mensagem .= "- Segmento não foi selecionado.\n";
+			$this->session->set_flashdata('ERRO_HEL_SEQSEG_EMP', 'has-error');
 		}
 		
 		if ($hel_tipo_emp == ''){
@@ -472,6 +500,7 @@ class Empresa extends CI_Controller {
 			$this->session->set_flashdata('hel_celular_emp', $hel_celular_emp);
 			$this->session->set_flashdata('hel_tipo_emp', $hel_tipo_emp);
 			$this->session->set_flashdata('hel_responsavel_emp', $hel_responsavel_emp);
+			$this->session->set_flashdata('hel_seqseg_emp', $hel_seqseg_emp);
 		}
 				
 		return !$erros;
@@ -511,6 +540,7 @@ class Empresa extends CI_Controller {
 		$ERRO_HEL_ATIVO_EMP       	= $this->session->flashdata('ERRO_HEL_ATIVO_EMP');
 		$ERRO_HEL_EMAIL_EMP       	= $this->session->flashdata('ERRO_HEL_EMAIL_EMP');
 		$ERRO_HEL_TIPO_EMP       	= $this->session->flashdata('ERRO_HEL_TIPO_EMP');
+		$ERRO_HEL_SEQSEG_EMP       	= $this->session->flashdata('ERRO_HEL_SEQSEG_EMP');		
 		
 
 		$hel_empresa_emp     	   = $this->session->flashdata('hel_empresa_emp');
@@ -530,8 +560,7 @@ class Empresa extends CI_Controller {
 		$hel_tipo_emp			   = $this->session->flashdata('hel_tipo_emp');
 		$hel_responsavel_emp	   = $this->session->flashdata('hel_responsavel_emp');
 		$hel_lbcpfcnpj_emp	       = $this->session->flashdata('hel_lbcpfcnpj_emp');
-		
-		
+		$hel_seqseg_emp	       	   = $this->session->flashdata('hel_seqseg_emp');		
 		
 		if ($ERRO_HEL_EMP) {
 			$dados['hel_empresa_emp']      			= $hel_empresa_emp;
@@ -551,6 +580,7 @@ class Empresa extends CI_Controller {
 			$dados['hel_checkedativo_emp']  		= $hel_ativo_emp == 1 ? 'checked' : '';
 			$dados['hel_tipo_emp']  			    = $hel_tipo_emp;
 			$dados['hel_responsavel_emp']  			= $hel_responsavel_emp;
+			$dados['hel_seqseg_emp']  				= $hel_seqseg_emp;
 			if ($hel_tipo_emp <> ''){
 				$dados['hel_checkpessoafisica_emp']		= $hel_tipo_emp  == 0 ? 'checked' : '';
 				$dados['hel_checkpessoajuridica_emp'] 	= $hel_tipo_emp  == 1 ? 'checked' : '';
@@ -570,6 +600,7 @@ class Empresa extends CI_Controller {
 			$dados['ERRO_HEL_ATIVO_EMP']    		= $ERRO_HEL_ATIVO_EMP;
 			$dados['ERRO_HEL_EMAIL_EMP']    		= $ERRO_HEL_EMAIL_EMP;
 			$dados['ERRO_HEL_TIPO_EMP']    			= $ERRO_HEL_TIPO_EMP;
+			$dados['ERRO_HEL_SEQSEG_EMP']    		= $ERRO_HEL_SEQSEG_EMP;
 		}
 	}
 	
@@ -651,6 +682,7 @@ class Empresa extends CI_Controller {
 							 end AS hel_cnpj_emp,
 						     hel_nomefantasia_emp,
 						     hel_nome_cid,
+				             hel_desc_seg,
 							 CASE hel_ativo_emp WHEN 1 THEN 'Ativo'
 							 else 'Inativo'
 						     END AS hel_ativo_emp,
@@ -666,7 +698,8 @@ class Empresa extends CI_Controller {
 						     hel_razaosocial_emp,
 				             hel_responsavel_emp
 					  FROM heltbemp
-					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp ".$clasulaWhere.$order_by;		
+					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp 
+				      LEFT JOIN heltbseg ON hel_pk_seq_seg = hel_seqseg_emp ".$clasulaWhere.$order_by;		
 	
 		if ($this->gerarRelatorio()) {
 			$this->jasper->gerar_relatorio($arquivo, $consulta, $filtros, $consulta_sub);

@@ -273,7 +273,7 @@ class Tipo_Contato extends CI_Controller {
 							  WHEN 1 THEN 'Responsável'
 							  WHEN 2 THEN 'Outros'
 							 end as hel_tipo_tco
-						FROM heltbtco".$clasulaWhere.$order_by;
+						FROM heltbtco ".$clasulaWhere.$order_by;
 
 		if ($this->gerarRelatorio()) {
 			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_tipo_contato.jrxml', $consulta);

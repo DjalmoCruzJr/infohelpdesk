@@ -22,7 +22,18 @@
 						       value="{hel_filial_emp}" maxlength="2" autocomplete="off" autofocus/>
 					</div>
 				</div>
-				
+				<div class="form-group">
+				<div class="{ERRO_HEL_SEQSEG_EMP}">
+					<label for="hel_seqseg_emp" class="col-sm-1 control-label">Segmento</label>
+					<div class="col-sm-4">
+							<select class="form-control" id="hel_seqseg_emp" name="hel_seqseg_emp" autofocus="autofocus">
+								<option value="">Selecione...</option>
+									{BLC_SEGMENTO}
+								    	<option value="{hel_pk_seq_seg}" {sel_hel_seqseg_emp} >{hel_desc_seg}</option>
+								    {/BLC_SEGMENTO}
+							</select>   
+					</div>
+				</div>
 			</div>
 			
 			<div class="form-group">

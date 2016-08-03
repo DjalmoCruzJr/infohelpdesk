@@ -285,7 +285,12 @@
 										<ul class="nav nav-children" >
 											<li>
 												<a href="<?php echo site_url('cidade')?>" {desabilita}>
-													 	 Cidades
+													 	 Cidade
+												</a>
+											</li>
+											<li>
+												<a href="<?php echo site_url('segmento')?>" {desabilita}>
+													 	 Segmento
 												</a>
 											</li>
 											<li>
@@ -517,6 +522,7 @@
 				$('#tb_assunto').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_item_chamado').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_dados_adicionais').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_segmento').dataTable({"order": [[ 1, "asc" ]]});				
 				
 			});
 		</script>
