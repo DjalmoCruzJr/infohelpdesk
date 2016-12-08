@@ -36,9 +36,21 @@ class Empresa_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
+	public function getEmpresaNaoSistemaContratado() {
+		$this->db->select(' * FROM heltbemp WHERE NOT EXISTS (SELECT * FROM heltbsco WHERE hel_seqemp_sco = hel_pk_seq_emp)  ', FALSE);
+		return $this->db->get()->result();
+	}
+	
 	public function getEmpresaSegmento($hel_pk_seq_seg) {
 		$this->db->from('heltbemp');
 		$this->db->where('hel_seqseg_emp ', $hel_pk_seq_seg, FALSE);
+		return $this->db->get()->first_row();
+	}
+	
+	public function getEmpresaSegmento2($hel_pk_seq_seg) {
+		$this->db->from('heltbemp');
+		$this->db->where('hel_seqseg_emp ', $hel_pk_seq_seg, FALSE);
+		$this->db->where('hel_ativo_emp', EMPRESA_ATIVO, FALSE);
 		return $this->db->get()->result();
 	}
 	

@@ -123,7 +123,7 @@ WHERE ios1.hel_seqcha_ios = $P{hel_seqcha_ios}
 				</textElement>
 				<text><![CDATA[Encerrado em:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
 				<reportElement x="330" y="19" width="81" height="12" uuid="4609c26a-8229-46b8-ae0f-ac5ae0eed86f"/>
 				<textElement>
 					<font size="8"/>

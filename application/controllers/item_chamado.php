@@ -139,7 +139,7 @@ class Item_Chamado extends CI_Controller {
 		global $hel_seqsis_ios;
 		global $hel_complemento_ios;
 		global $hel_solucao_ios;
-		global $hel_encerrado_ios;
+
 		
 		$hel_pk_seq_ios  		= $this->input->post('hel_pk_seq_ios');
 		$hel_tipo_ios   		= $this->input->post('hel_tipo_ios');
@@ -147,7 +147,6 @@ class Item_Chamado extends CI_Controller {
 		$hel_seqser_ios 		= $this->input->post('hel_seqser_ios');
 		$hel_seqsis_ios 		= $this->input->post('hel_seqsis_ios');
 		$hel_complemento_ios    = $this->input->post('hel_complemento_ios');
-		$hel_solucao_ios 		= $this->input->post('hel_solucao_ios');
 		$hel_encerrado_ios 		= $this->input->post('hel_encerrado_ios') == 1 ? 1 : 0;
 		
 		if ($this->testarDados()) {
@@ -367,24 +366,6 @@ class Item_Chamado extends CI_Controller {
 			$erros    = TRUE;
 			$mensagem .= "- Complemento não foi preenchido.\n";
 			$this->session->set_flashdata('ERRO_HEL_COMPLEMENTO_IOS', 'has-error');
-		}
-		
-		if ( ($this->session->userdata('hel_tipo_tco') == 0) and (empty($hel_solucao_ios)) and (!empty($hel_pk_seq_ios))){
-			$erros    = TRUE;
-			$mensagem .= "- Solução não foi preenchida.\n";
-			$this->session->set_flashdata('ERRO_HEL_SOLUCAO_IOS', 'has-error');			
-		}
-		
-		if ( (!$erros) and ($hel_encerrado_ios == 1) and (empty($hel_solucao_ios)) ){
-			$erros = TRUE;
-			$mensagem .= "- Quando estiver encerrado deve informar a solução.\n";
-			$this->session->set_flashdata('ERRO_HEL_SOLUCAO_IOS', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_STATUS_IOS', 'has-error');			
-		} else if ( (!$erros) and ($hel_encerrado_ios == 0) and (!empty($hel_solucao_ios)) ) {
-			$erros = TRUE;
-			$mensagem .= "- Quando estiver solução deve informar encerrado.\n";
-			$this->session->set_flashdata('ERRO_HEL_SOLUCAO_IOS', 'has-error');
-			$this->session->set_flashdata('ERRO_HEL_STATUS_IOS', 'has-error');
 		}
 
 		if ($erros) {

@@ -630,10 +630,10 @@ class Empresa extends CI_Controller {
 		}
 		
 		switch ($hel_ativo_emp){
-			case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp;
+			case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp.' ';
 					 $whereAnd = " AND ";
 					 break;
-			case 1 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp;
+			case 1 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp.' ';
 					 $whereAnd = " AND ";
 					 break;
 		}

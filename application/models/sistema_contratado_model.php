@@ -8,6 +8,12 @@ class Sistema_Contratado_Model extends CI_Model {
 		return $this->db->get()->first_row();
 	}
 	
+	public function getEmpresaSistemaContratadoSegmento($hel_seqemp_sco) {
+		$this->db->from('heltbsco');
+		$this->db->where('hel_seqemp_sco', $hel_seqemp_sco, FALSE);
+		return $this->db->get()->result();
+	}
+	
 	public function getEmpresaSistemaContratado($hel_pk_seq_emp) {
 		$this->db->from('heltbsco');
 		$this->db->where('hel_seqemp_sco', $hel_pk_seq_emp, FALSE);

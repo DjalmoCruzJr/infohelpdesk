@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_chamado" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
-	<property name="ireport.zoom" value="4.707642565081587"/>
-	<property name="ireport.x" value="1335"/>
-	<property name="ireport.y" value="150"/>
+	<property name="ireport.zoom" value="1.6500000000000294"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
 	</parameter>
@@ -223,21 +223,21 @@ LEFT JOIN heltbcon as para 	    ON para.hel_pk_seq_con	    = hel_seqconpara_cha]
 				<textFieldExpression><![CDATA[$F{hel_dias_cha}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="42">
-			<subreport>
-				<reportElement x="12" y="2" width="543" height="40" isRemoveLineWhenBlank="true" uuid="a72c2a81-e9a0-40ed-8960-d85c641bd26c"/>
-				<subreportParameter name="hel_seqcha_ios">
-					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_cha}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_item_chamado.jasper"]]></subreportExpression>
-			</subreport>
+		<band height="44">
 			<line>
 				<reportElement x="1" y="-1" width="555" height="1" uuid="d6567387-2c36-41d8-8f02-ad6fd3acec6e"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<subreport>
+				<reportElement x="38" y="0" width="514" height="43" uuid="893f6c97-b720-4c80-b788-5967c4a0e678"/>
+				<subreportParameter name="hel_seqcha_ios">
+					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_cha}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subrelato_item_chamado.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<columnFooter>

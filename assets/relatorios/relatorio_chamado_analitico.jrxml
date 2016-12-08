@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_chamado" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
-	<property name="ireport.zoom" value="2.6573415000000513"/>
-	<property name="ireport.x" value="607"/>
-	<property name="ireport.y" value="12"/>
+	<property name="ireport.zoom" value="1.6500000000000319"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
 	</parameter>
@@ -229,12 +229,12 @@ LEFT JOIN heltbcon as para         ON para.hel_pk_seq_con         = hel_seqconpa
 				</graphicElement>
 			</line>
 			<subreport>
-				<reportElement x="12" y="2" width="543" height="40" isRemoveLineWhenBlank="true" uuid="a72c2a81-e9a0-40ed-8960-d85c641bd26c"/>
+				<reportElement x="24" y="1" width="531" height="41" uuid="de615036-6b01-44f7-9e46-d95113a6e8e6"/>
 				<subreportParameter name="hel_seqcha_ios">
 					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_cha}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_item_chamado.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subrelato_item_chamado.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

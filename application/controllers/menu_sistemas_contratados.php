@@ -140,7 +140,7 @@ class Menu_Sistemas_Contratados extends CI_Controller {
 				"sel_hel_seqmen_msc" => ($dados['hel_seqmen_msc'] == $registro->hel_pk_seq_men)?'selected':'' );
 		}
 
-		!$resultado ? $dados['BLC_SISTEMA'][] = array("hel_desc_men" => 'Não existe nenhuma menu cadastrado') :'';
+		!$resultado ? $dados['BLC_MENU'][] = array("hel_pk_seq_men"=> NULL, "hel_desc_men" => 'Não existe nenhuma menu cadastrado') :'';
 	}
 	
 	private function carregarDados(&$dados) {

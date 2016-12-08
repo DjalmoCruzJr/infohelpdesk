@@ -8,7 +8,6 @@
 		<form action="{ACAO_FORM}" method="post" class="form-horizontal">
 			<input type="hidden" id="hel_pk_seq_cha" name="hel_pk_seq_cha" value="{hel_pk_seq_cha}"/>
 			<input type="hidden" id="hel_seqcon_cha" name="hel_seqcon_cha" value="{hel_seqcon_cha}"/>
-			<input type="hidden" id="hel_seqconde_cha" name="hel_seqconde_cha" value="{hel_seqconde_cha}"/>				
 			<div class="form-group">
 				<div class="{ERRO_HEL_SEQEMP_CHA}">
 					<label for="hel_seqemp_cha" class="col-sm-1 control-label">Empresa</label>
@@ -37,7 +36,7 @@
 			
 			<div class="form-group">
 				<div class="{ERRO_HEL_SEQCONDE_CHA}">
-					<label for="hel_seqconpara_cha" class="col-sm-1 control-label">Aberto Por</label>
+					<label for="hel_seconde_cha" class="col-sm-1 control-label">Aberto Por</label>
 					<div class="col-sm-6">
 							<select class="form-control" id="hel_seconde_cha" name="hel_seconde_cha" autofocus="autofocus">
 								<option value="">Selecione...</option>

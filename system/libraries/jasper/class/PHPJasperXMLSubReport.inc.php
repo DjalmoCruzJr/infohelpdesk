@@ -3441,7 +3441,7 @@ if(isset($this->arraygroup)&&($this->global_pointer>0)&&($this->arraysqltable[$t
         elseif($pattern=="dd/MM/yyyy h.mm a" && $txt !="")
             return date("d/m/Y h:i a",strtotime($txt));
         elseif($pattern=="dd/MM/yyyy HH.mm.ss" && $txt !="")
-            return date("d-m-Y H:i:s",strtotime($txt));
+            return date("d/m/Y H:i:s",strtotime($txt));
         else
             return $txt;
 

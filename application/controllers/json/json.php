@@ -37,7 +37,7 @@ class Json extends CI_Controller {
 		if ($chave === CHAVE_JSON){
 			$resultado = $this->EmpresaContatoModel->getEmpresaContato2($empresa);
 		}
-		echo json_encode($resultado, JSON_PRETTY_PRINT);			
+		echo json_encode($resultado);			
 	}
 	
 	public function carregar_chamado($chave,$status = NULL, $empresa = NULL) {
@@ -45,7 +45,7 @@ class Json extends CI_Controller {
 		if ($chave === CHAVE_JSON){
 			$resultado = $this->ChamadoModel->getChamadosStatus($status, $empresa);
 		}
-		echo json_encode($resultado, JSON_PRETTY_PRINT);
+		echo json_encode($resultado);
 	}
 
 	public function carregar_contato_relatorio($chave,$empresa) {
@@ -58,7 +58,7 @@ class Json extends CI_Controller {
 		if ($chave === CHAVE_JSON){
 			$resultado = $this->EmpresaContatoModel->getEmpresaContatoRelatorio($filtro_empresa);
 		}
-		echo json_encode($resultado, JSON_PRETTY_PRINT);
+		echo json_encode($resultado);
 	}
 	
 	public function carregar_item_chamado($chave, $hel_seqcha_ios){
@@ -66,7 +66,7 @@ class Json extends CI_Controller {
 		if ($chave === CHAVE_JSON){
 			$resultado = $this->ItemChamadoModel->getItemChamadoEncerrado($hel_seqcha_ios);
 		}
-		echo json_encode($resultado, JSON_PRETTY_PRINT);
+		echo json_encode($resultado);
 	}
 	
 	public function carregar_servico_sistema_item_chamado($chave, $hel_seqcha_ios){
@@ -74,7 +74,7 @@ class Json extends CI_Controller {
 		if ($chave === CHAVE_JSON){
 			$resultado = $this->ItemChamadoModel->get($hel_seqcha_ios);
 		}		
-		echo json_encode($resultado, JSON_PRETTY_PRINT);
+		echo json_encode($resultado);
 	}
 
 }

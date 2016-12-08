@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38f6502-0aa3-44fa-9ca5-b1040a97af79">
-	<property name="ireport.zoom" value="3.2153832150000543"/>
-	<property name="ireport.x" value="340"/>
-	<property name="ireport.y" value="152"/>
+	<property name="ireport.zoom" value="1.2396694214876238"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\wamp\\www\\gabinete\\assets\\relatorios\\"]]></defaultValueExpression>
 	</parameter>
@@ -387,12 +387,12 @@ LEFT JOIN heltbseg ON hel_seqseg_emp = hel_pk_seq_seg]]>
 		</band>
 		<band height="50">
 			<subreport>
-				<reportElement x="33" y="0" width="522" height="50" uuid="85136454-3d47-44b8-a255-7a6449f3fd86"/>
+				<reportElement x="33" y="0" width="518" height="50" uuid="49610b01-7a43-4276-94ca-ab99ab3210fc"/>
 				<subreportParameter name="hel_seqemp_sco">
 					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_emp}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_sistema_contratado.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subrelato_sistema_contratado.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

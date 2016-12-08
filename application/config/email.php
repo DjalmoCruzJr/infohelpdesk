@@ -9,11 +9,11 @@
 $config['useragent']	= 'CodeIgniter';
 $config['mailtype']		= 'html';
 $config['protocol']		= 'smtp';
-$config['smtp_host']	= 'ssl://smtp.googlemail.com';
-$config['smtp_port']	= 465;
+$config['smtp_host']	= 'mail.inforio.com.br';
+$config['smtp_port']	= 587;
 $config['smtp_timeout']	= '60';
-$config['smtp_user']	= 'luizmariodev@gmail.com';
-$config['smtp_pass']	=  base64_decode(SENHA_EMAIL);
+$config['smtp_user']	= 'luizmario@inforio.com.br';
+$config['smtp_pass']	= 'luizMarioInforio';
 $config['validate']		= TRUE;
 $config['wordwrap']     = TRUE;
 $config['charset']		= 'utf-8';

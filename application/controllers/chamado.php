@@ -34,10 +34,7 @@ class Chamado extends CI_Controller {
 		$dados['hel_seqemp_filtro']		= $hel_seqemp_filtro;
 		$dados['hel_seqcha_filtro'] 	= $hel_seqcha_filtro;
 		$dados['hel_seqconpara_filtro']	= $hel_seqconpara_filtro;
-		
-// 		echo '<pre>';
-//  		print_r($dados);
-		
+				
 		$this->carregarDados($dados);
 		$this->carregarEmpresaFiltro($dados);
 		$this->carregarChamadoFiltro($dados);
@@ -54,10 +51,10 @@ class Chamado extends CI_Controller {
 		$dados = array();
 		$dados['hel_pk_seq_cha']  					= 0;		
 		$dados['hel_seqemp_cha']  					= '';
-		$dados['hel_seqcon_cha'] 					= $this->session->userdata('hel_tipo_tco') <> 0 ? $this->session->userdata('hel_pk_seq_con') : '';
-		$dados['hel_hiddenseqconpara_cha'] 			= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '';
-		$dados['hel_hiddenseqconsolicitante_cha'] 	= $this->session->userdata('hel_tipo_tco') <> 0 ? 'hidden' : '';
-		$dados['hel_seqconde_cha'] 					= $this->session->userdata('hel_tipo_tco') <> 0 ? '' : $this->session->userdata('hel_pk_seq_con');
+		$dados['hel_seqcon_cha'] 					= $this->session->userdata('hel_tipo_tco') <> 0 	? $this->session->userdata('hel_pk_seq_con') : '';
+		$dados['hel_hiddenseqconpara_cha'] 			= $this->session->userdata('hel_tipo_tco') <> 0 	? 'hidden' : '';
+		$dados['hel_hiddenseqconsolicitante_cha'] 	= $this->session->userdata('hel_tipo_tco') <> 0 	? 'hidden' : '';
+		$dados['hel_seqconde_cha'] 					= $this->session->userdata('hel_seqconde_cha') <> 0 ? '' : $this->session->userdata('hel_pk_seq_con');
 		$dados['hel_seqconpara_cha']				= '';
 		$dados['hel_status_cha'] 					= '';
 		$dados['hel_checkedencerrado_cha'] 			= '';
@@ -118,6 +115,7 @@ class Chamado extends CI_Controller {
 		$hel_seqconde_cha  	 		= $this->input->post('hel_seqconde_cha');
 		$hel_seqconpara_cha  		= $this->input->post('hel_seqconpara_cha');
 		$hel_status_cha  	 		= $this->input->post('hel_status_cha') == 1 ? 1 : 0;
+		
 
 		if ($this->testarDados()) {			
 			$chamado = array(
@@ -386,8 +384,8 @@ class Chamado extends CI_Controller {
 		$erros    = FALSE;
 		$mensagem = null;
 		
-		var_dump($hel_seqcon_cha);
-		var_dump($hel_seqconsolicitante_cha);
+// 		var_dump($hel_seqcon_cha);
+// 		var_dump($hel_seqconsolicitante_cha);
 
 		$hel_seqcon_cha 	= empty($hel_seqcon_cha) ? $hel_seqconsolicitante_cha : $hel_seqcon_cha;
 		$hel_seqconde_cha 	= empty($hel_seqconde_cha) ? NULL : $hel_seqconde_cha;
@@ -443,7 +441,7 @@ class Chamado extends CI_Controller {
 		}
 		
 		if ($erros) {
-			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros:');
+			$this->session->set_flashdata('titulo_erro', 'Para continuar corrija os seguintes erros: $hel_seqconde_cha '.$hel_seqconde_cha);
 			$this->session->set_flashdata('erro', nl2br($mensagem));
 			
 			$this->session->set_flashdata('ERRO_HEL_CHA', TRUE);				
@@ -546,7 +544,7 @@ class Chamado extends CI_Controller {
 									        hel_desc_ser,
 									        hel_desc_sis,
 						 				    hel_nome_con,
-									        DATE_FORMAT(ios1.hel_horaricioencerrado_ios, "%d/%l/%Y %H:%m:%s") AS hel_horaricioencerrado_ios,
+									        ios1.hel_horaricioencerrado_ios AS hel_horaricioencerrado_ios,
 									        CASE ios1.hel_encerrado_ios WHEN 0 THEN "Aberto"
 									        ELSE "Encerrado"
 									        END AS hel_encerrado_ios,

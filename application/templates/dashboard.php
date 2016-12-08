@@ -343,6 +343,19 @@
 											</li>
 										</ul>
 									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-tasks" aria-hidden="true"></i>
+											<span>Atualizacao</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="<?php echo site_url('replicar');?>">
+													Replicar 
+												</a>
+											</li>
+										</ul>
+									</li>
 									
 									<li class="nav-parent">
 										<a {desabilita}>

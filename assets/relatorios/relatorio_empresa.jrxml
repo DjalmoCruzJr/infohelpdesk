@@ -241,12 +241,12 @@ LEFT JOIN heltbcid ON hel_seqcid_emp = hel_pk_seq_cid]]>
 		</band>
 		<band height="50">
 			<subreport>
-				<reportElement x="33" y="0" width="521" height="50" uuid="85136454-3d47-44b8-a255-7a6449f3fd86"/>
+				<reportElement x="36" y="0" width="519" height="50" uuid="1fc3468c-9888-4884-b27f-eba67ff7e5bd"/>
 				<subreportParameter name="hel_seqemp_sco">
 					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_emp}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\wamp\\www\\HelpDesk\\assets\\relatorios\\subrelato_sistema_contratado.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subrelato_sistema_contratado.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
