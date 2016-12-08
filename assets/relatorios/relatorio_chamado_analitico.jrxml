@@ -98,16 +98,16 @@ LEFT JOIN heltbcon as para         ON para.hel_pk_seq_con         = hel_seqconpa
 				</textElement>
 				<text><![CDATA[HELPR601]]></text>
 			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="38">
 			<line>
-				<reportElement x="0" y="41" width="555" height="1" uuid="3167657a-63e4-4716-bf59-3b451adadbfe"/>
+				<reportElement x="0" y="-1" width="555" height="1" uuid="3167657a-63e4-4716-bf59-3b451adadbfe"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
-		</band>
-	</pageHeader>
-	<detail>
-		<band height="36">
 			<staticText>
 				<reportElement x="0" y="0" width="48" height="12" uuid="ba32bd4c-9ddf-4689-84b7-60bad4a20d9b"/>
 				<textElement>
@@ -193,7 +193,7 @@ LEFT JOIN heltbcon as para         ON para.hel_pk_seq_con         = hel_seqconpa
 				<text><![CDATA[Qtd. Dias]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="523" y="12" width="31" height="12" uuid="b6e080ac-cdb6-4272-a32e-66c9d1815f45"/>
+				<reportElement x="523" y="15" width="31" height="12" uuid="b6e080ac-cdb6-4272-a32e-66c9d1815f45"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -221,7 +221,7 @@ LEFT JOIN heltbcon as para         ON para.hel_pk_seq_con         = hel_seqconpa
 				<text><![CDATA[Aberto por:]]></text>
 			</staticText>
 		</band>
-		<band height="42">
+		<band height="43">
 			<line>
 				<reportElement x="0" y="0" width="554" height="1" uuid="5276dcf0-8b6f-4009-8c11-4f8e8910fafa"/>
 				<graphicElement>

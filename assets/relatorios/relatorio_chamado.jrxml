@@ -113,7 +113,7 @@ LEFT JOIN heltbcon as para 	    ON para.hel_pk_seq_con	    = hel_seqconpara_cha]
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="13" splitType="Stretch">
+		<band height="12" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="36" height="12" uuid="a19588e5-2f8d-4554-8e40-5080b468522a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -121,12 +121,6 @@ LEFT JOIN heltbcon as para 	    ON para.hel_pk_seq_con	    = hel_seqconpara_cha]
 				</textElement>
 				<text><![CDATA[Num.]]></text>
 			</staticText>
-			<line>
-				<reportElement x="0" y="12" width="555" height="1" uuid="4824f051-2dfd-498f-b91a-07f7e0c43889"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineStyle="Dashed"/>
-				</graphicElement>
-			</line>
 			<staticText>
 				<reportElement x="38" y="0" width="62" height="12" uuid="7ae4b89d-a000-40ab-b9d7-03bbb89f0d9f"/>
 				<textElement>
@@ -216,22 +210,22 @@ LEFT JOIN heltbcon as para 	    ON para.hel_pk_seq_con	    = hel_seqconpara_cha]
 				<textFieldExpression><![CDATA[$F{hel_percentual_cha} + "%"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="454" y="-1" width="53" height="12" uuid="aeaa5036-eff9-4aac-8ac4-2a9eb015530e"/>
+				<reportElement x="454" y="0" width="53" height="12" uuid="aeaa5036-eff9-4aac-8ac4-2a9eb015530e"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hel_dias_cha}]]></textFieldExpression>
 			</textField>
-		</band>
-		<band height="44">
 			<line>
-				<reportElement x="1" y="-1" width="555" height="1" uuid="d6567387-2c36-41d8-8f02-ad6fd3acec6e"/>
+				<reportElement x="2" y="0" width="555" height="1" uuid="4824f051-2dfd-498f-b91a-07f7e0c43889"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+		</band>
+		<band height="44">
 			<subreport>
-				<reportElement x="38" y="0" width="514" height="43" uuid="893f6c97-b720-4c80-b788-5967c4a0e678"/>
+				<reportElement x="25" y="1" width="530" height="43" uuid="893f6c97-b720-4c80-b788-5967c4a0e678"/>
 				<subreportParameter name="hel_seqcha_ios">
 					<subreportParameterExpression><![CDATA[$F{hel_pk_seq_cha}]]></subreportParameterExpression>
 				</subreportParameter>

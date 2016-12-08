@@ -93,7 +93,7 @@ WHERE ios1.hel_seqcha_ios = $P{hel_seqcha_ios}
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Seq.]]></text>
+				<text><![CDATA[Seq. Item]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="3" y="32" width="57" height="12" uuid="f7068220-f82a-4c69-bc81-4d9e231f73e2"/>

@@ -557,6 +557,10 @@ class Chamado extends CI_Controller {
 									 LEFT JOIN heltbcon ON hel_pk_seq_con = ios1.hel_seqcontec_ios
 									 WHERE ios1.hel_seqcha_ios = $P{hel_seqcha_ios}
 									   AND ios1.hel_tipo_ios   = '.CHAMADO;
+
+ 			$select_item_chamado .= $status == 1 ? ' AND ios1.hel_encerrado_ios = 0 ' : '  AND ios1.hel_encerrado_ios = 1 '; 
+      
+      		$select_item_chamado .= ' ORDER BY hel_pk_seq_ios ';
 			
 		}
 		

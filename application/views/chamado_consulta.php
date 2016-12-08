@@ -77,11 +77,13 @@
                 </div>
                 <div class="modal-body">
                 	<form class="form-horizontal">
+                		
                 		<div class="form-group col-sm-11 text-center">
-							<label class="checkbox-inline">
-						       	<input type="checkbox" id="imprimir_itens" name="imprimir_itens">Imprimir Itens do chamado
-						    </label>
-					    </div>
+                			<label class="checkbox-inline">
+								<input type="checkbox" id="imprimir_itens" name="imprimir_itens" checked="checked">Imprimir itens do chamado
+							</label>
+                		</div>
+
 					    <div class="form-group col-sm-11 text-center">
 							<label class="radio-inline">
 							  <input type="radio" name="layout" id="hel_sintetico_cha" value="0" checked> Layout Sintetico
@@ -108,7 +110,7 @@
 						<div class="form-group col-sm-11">
 						    <label for="hel_ativo_emp" class="col-sm-1 control-label">Status</label>
 								<div class="col-sm-11">
-								<div class="radio-inline">
+									<div class="radio-inline">
 										<label>
 											<input type="radio" id="hel_statustodos_cha" onclick="carregarChamado()" name="status_relatorio" value="0" checked/>Todos
 										</label>
@@ -154,6 +156,7 @@
 <!-- 								</div>	 -->
 <!-- 	                	</div> -->
 					</form>
+				
 					<br/>					
 					<div class="form-group">
 						<center>
