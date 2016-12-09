@@ -536,6 +536,7 @@ class Chamado extends CI_Controller {
 		$arquivo	  		 = "assets/relatorios/relatorio_chamado.jrxml";
 		$select_item_chamado = '';
 		$filtros		     = array();
+		$where_item_chamado = "";
 		
 		$arquivo = $layout == 1 ? $arquivo : 'assets/relatorios/relatorio_chamado_analitico.jrxml';
 		
@@ -558,9 +559,13 @@ class Chamado extends CI_Controller {
 									 WHERE ios1.hel_seqcha_ios = $P{hel_seqcha_ios}
 									   AND ios1.hel_tipo_ios   = '.CHAMADO;
 
- 			$select_item_chamado .= $status == 1 ? ' AND ios1.hel_encerrado_ios = 0 ' : '  AND ios1.hel_encerrado_ios = 1 '; 
-      
-      		$select_item_chamado .= ' ORDER BY hel_pk_seq_ios ';
+			if($status == 1){
+				$where_item_chamado = ' AND ios1.hel_encerrado_ios = 0 ';
+			}else if ($status == 2){
+				$where_item_chamado = ' AND ios1.hel_encerrado_ios = 1 ';
+			}
+
+ 			$select_item_chamado .= $where_item_chamado. ' ORDER BY hel_pk_seq_ios ';
 			
 		}
 		
