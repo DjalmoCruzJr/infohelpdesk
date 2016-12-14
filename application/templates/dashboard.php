@@ -533,7 +533,7 @@
 				$('#tb_item_ordem_servico').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_chamado').dataTable();
 				$('#tb_assunto').dataTable({"order": [[ 1, "asc" ]]});
-				$('#tb_item_chamado').dataTable({"order": [[ 1, "asc" ]]});
+				$('#tb_item_chamado').dataTable();
 				$('#tb_dados_adicionais').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_segmento').dataTable({"order": [[ 1, "asc" ]]});				
 				

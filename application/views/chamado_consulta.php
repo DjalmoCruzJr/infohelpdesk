@@ -86,10 +86,10 @@
 
 					    <div class="form-group col-sm-11 text-center">
 							<label class="radio-inline">
-							  <input type="radio" name="layout" id="hel_sintetico_cha" value="0" checked> Layout Sintetico
+							  <input type="radio" name="layout" id="hel_sintetico_cha" value="0"> Layout Sintetico
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="layout" id="hel_analitico_cha" value="1"> Layout Analitico
+							  <input type="radio" name="layout" id="hel_analitico_cha" value="1"checked> Layout Analitico
 							</label>
 						</div>
 						<div class="form-group">
@@ -112,12 +112,12 @@
 								<div class="col-sm-11">
 									<div class="radio-inline">
 										<label>
-											<input type="radio" id="hel_statustodos_cha" onclick="carregarChamado()" name="status_relatorio" value="0" checked/>Todos
+											<input type="radio" id="hel_statustodos_cha" onclick="carregarChamado()" name="status_relatorio" value="0" />Todos
 										</label>
 									</div>
 									<div class="radio-inline">
 										<label>
-											<input type="radio" id="hel_statusaberto_cha" onclick="carregarChamado()" name="status_relatorio" value="1"/>Aberto
+											<input type="radio" id="hel_statusaberto_cha" onclick="carregarChamado()" name="status_relatorio" value="1" checked/>Aberto
 										</label>
 									</div>
 									<div class="radio-inline">

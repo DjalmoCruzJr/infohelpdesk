@@ -23,6 +23,7 @@ class Item_Chamado_Model extends CI_Model {
 							LEFT JOIN heltbcon ON ios.hel_seqcontec_ios = hel_pk_seq_con ', FALSE);
 		$this->db->where('hel_seqcha_ios = ', $hel_seqcha_ios, FALSE);
 		$this->db->where('hel_tipo_ios = ', CHAMADO, FALSE);
+		$this->db->order_by("hel_pk_seq_ios", "asc");		
 		return $this->db->get()->result();
 	}
 	

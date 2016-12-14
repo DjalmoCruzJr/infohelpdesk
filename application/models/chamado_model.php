@@ -26,13 +26,30 @@ class Chamado_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getChamado($hel_pk_seq_con = NULL) {
+	public function getChamado($hel_pk_seq_con = NULL, $status = NULL, $empresa = NULL, $chamado = NULL, $contato_para = NULL) {
 		$this->db->from('heltbcha');
 		$this->db->join('heltbexc','hel_pk_seq_exc = hel_seqexc_cha','LEFT');
 		$this->db->join('heltbcon','hel_pk_seq_con = hel_seqcon_exc','LEFT');		
 		$this->db->join('heltbemp','hel_pk_seq_emp = hel_seqemp_exc','LEFT');
 		if (!empty($hel_pk_seq_con)){
 			$this->db->where('hel_seqcon_exc', $hel_pk_seq_con, FALSE);
+		}
+		if (!empty($contato_para)){
+			$this->db->where('hel_seqconpara_cha', $contato_para, FALSE);
+		}
+		if (!empty($empresa)){
+			$this->db->where('hel_seqemp_exc', $empresa, FALSE);
+		}
+		if (!empty($status)){
+			if ($status == 1){
+				$this->db->where('hel_status_cha = 0');		
+			}
+			if ($status == 2){
+				$this->db->where('hel_status_cha = 1');		
+			}
+		}
+		if (!empty($chamado)){
+			$this->db->where('hel_pk_seq_cha = ', $chamado, FALSE);
 		}
 		$this->db->order_by("hel_pk_seq_cha", "asc");
 		return $this->db->get()->result();
@@ -47,6 +64,13 @@ class Chamado_Model extends CI_Model {
 	
 	public function getChamadosStatus($status = NULL, $empresa = NULL) {
 		$this->db->select(' hel_pk_seq_cha, concat("Numero ", hel_pk_seq_cha) as hel_numero_cha FROM heltbcha ', FALSE);
+		if ($status != ''){
+			$this->db->where('hel_status_cha = ', $status, FALSE);
+		}
+		if (!empty($empresa)){
+			$this->db->join('heltbexc','hel_pk_seq_exc = hel_seqexc_cha','LEFT');
+			$this->db->where('hel_seqemp_exc = ', $empresa, FALSE);			
+		}		
 		$this->db->order_by("hel_pk_seq_cha", "asc");
 		return $this->db->get()->result();
 	}

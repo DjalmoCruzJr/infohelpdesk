@@ -34,7 +34,7 @@ class Chamado extends CI_Controller {
 		$dados['hel_seqemp_filtro']		= $hel_seqemp_filtro;
 		$dados['hel_seqcha_filtro'] 	= $hel_seqcha_filtro;
 		$dados['hel_seqconpara_filtro']	= $hel_seqconpara_filtro;
-				
+
 		$this->carregarDados($dados);
 		$this->carregarEmpresaFiltro($dados);
 		$this->carregarChamadoFiltro($dados);
@@ -242,19 +242,18 @@ class Chamado extends CI_Controller {
 	}
 	
 	private function carregarDados(&$dados) {
-				
-		$resultado = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) ? $this->ChamadoModel->getChamado($this->session->userdata('hel_pk_seq_con')) : $this->ChamadoModel->getChamado() ;	
+
+		$resultado = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) ? $this->ChamadoModel->getChamado($this->session->userdata('hel_pk_seq_con')) : $this->ChamadoModel->getChamado(NULL, $dados['status_filtro'], $dados['hel_seqemp_filtro'], $dados['hel_seqcha_filtro'], $dados['hel_seqconpara_filtro']) ;	
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
-				"hel_pk_seq_cha"      			=> $registro->hel_pk_seq_cha,
-				"hel_nomefantasia_emp"  		=> $registro->hel_nomefantasia_emp,
-				"hel_nome_con"         			=> $registro->hel_nome_con,
-				"hel_horarioabertura_cha" 		=> $this->util->formatarDateTime($registro->hel_horarioabertura_cha),
-				"hel_status_cha" 				=> $registro->hel_status_cha == 0 ? 'Aberto' : 'Encerrado',
-// 				"hel_disableditemencerrado_cha" => 	$registro->hel_status_cha == 0 ? '' : 'disabled',
-				"ITEM_CHAMADO" 	 				=> site_url('item_chamado/index/'.base64_encode($registro->hel_pk_seq_cha)),					
-				"EDITAR_CHAMADO" 	 			=> site_url('chamado/editar/'.base64_encode($registro->hel_pk_seq_cha)),
-				"APAGAR_CHAMADO" 	 			=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_cha)."')"
+				"hel_pk_seq_cha"      		=> $registro->hel_pk_seq_cha,
+				"hel_nomefantasia_emp"  	=> $registro->hel_nomefantasia_emp,
+				"hel_nome_con"         		=> $registro->hel_nome_con,
+				"hel_horarioabertura_cha" 	=> $this->util->formatarDateTime($registro->hel_horarioabertura_cha),
+				"hel_status_cha" 			=> $registro->hel_status_cha == 0 ? 'Aberto' : 'Encerrado',
+				"ITEM_CHAMADO" 	 			=> site_url('item_chamado/index/'.base64_encode($registro->hel_pk_seq_cha)),
+				"EDITAR_CHAMADO" 	 		=> site_url('chamado/editar/'.base64_encode($registro->hel_pk_seq_cha)),
+				"APAGAR_CHAMADO" 	 		=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_cha)."')"
 			);
 		}
 	}

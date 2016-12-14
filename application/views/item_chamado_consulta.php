@@ -14,6 +14,7 @@
                     <table class="table table-striped table-bordered table-hover table-condensed" id="tb_item_chamado">
 						<thead>
                             <tr>
+                                <th>Seq. item</th>                                
                                 <th>Serviço</th>    
                                 <th>Sistema</th>
                                 <th>Horário Encerramento</th>
@@ -29,6 +30,7 @@
                         <tbody>
                         	{BLC_DADOS}
 	                            <tr>
+                                    <td class="vertical-center">{hel_pk_seq_ios}</td>                                     
 	                                <td class="vertical-center">{hel_desc_ser}</td>	    
 	                                <td class="vertical-center">{hel_desc_sis}</td>
 	                                <td class="vertical-center">{hel_horaricioencerrado_ios}</td>

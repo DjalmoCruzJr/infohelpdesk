@@ -230,6 +230,7 @@ class Item_Chamado extends CI_Controller {
 		
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
+				"hel_pk_seq_ios" 	 	  		=> $registro->hel_pk_seq_ios,				
 				"hel_desc_ser" 	 	  			=> $registro->hel_desc_ser,							
 				"hel_desc_sis" 		  			=> $registro->hel_desc_sis,
 				"hel_horaricioencerrado_ios"  	=> $this->util->formatarDateTime($registro->hel_horaricioencerrado_ios),
