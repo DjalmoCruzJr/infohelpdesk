@@ -87,7 +87,7 @@ class Template {
 		}
 		
 	private function carregarDadosSessao($CI, &$html) {
-		$html	= str_replace("{login}", $CI->session->userdata('hel_login_con'), $html);
+		$html	= str_replace("{login}", $CI->session->userdata('hel_nome_con'), $html);
 		$html	= str_replace("{hel_desc_tco}", $CI->session->userdata('hel_desc_tco'), $html);
 		$html	= str_replace("{desabilita}", $CI->session->userdata('hel_tipo_tco') <> 0 ? 'style="display:none"' : "'href=echo site_url('ordem_servico')", $html);
 	}

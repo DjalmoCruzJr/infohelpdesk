@@ -183,12 +183,12 @@
 								<div class="col-sm-11">
 								<div class="radio-inline">
 										<label>
-											<input type="radio" id="hel_statusfiltrotodos_cha" onclick="carregarChamadoFiltro()" name="status_filtro" value="0" checked/>Todos
+											<input type="radio" id="hel_statusfiltrotodos_cha" onclick="carregarChamadoFiltro()" name="status_filtro" value="0"/>Todos
 										</label>
 									</div>
 									<div class="radio-inline">
 										<label>
-											<input type="radio" id="hel_statusfiltroaberto_cha" onclick="carregarChamadoFiltro()" name="status_filtro" value="1"/>Aberto
+											<input type="radio" id="hel_statusfiltroaberto_cha" onclick="carregarChamadoFiltro()" name="status_filtro" value="1" checked/>Aberto
 										</label>
 									</div>
 									<div class="radio-inline">
