@@ -77,4 +77,12 @@ class Json extends CI_Controller {
 		echo json_encode($resultado);
 	}
 
+	public function carregar_detahe_item_chamado($chave, $hel_pk_seq_ios){
+		$resultado = array();
+		if ($chave === CHAVE_JSON){
+			$resultado = $this->ItemChamadoModel->getItemChamdoAll($hel_pk_seq_ios);
+		}		
+		echo json_encode($resultado);
+	}
+
 }

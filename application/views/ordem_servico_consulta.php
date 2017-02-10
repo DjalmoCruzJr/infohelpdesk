@@ -10,6 +10,8 @@
                 <div>
                     <a href="{NOVA_ORDEM_SERVICO}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nova Ordem de Serviço</a>
 	                <div class="pull-right" >
+	                	<a onclick="abrirDialogFiltro()" class="btn btn-info"><i class="glyphicon glyphicon-filter"></i> Filtro</a>
+
 			    		<a onclick="abrirDialogRelatorio()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Imprimir</a> 
 			    	</div>
                 </div>
@@ -48,6 +50,69 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="filtro_ordem_servico" tabindex="-1" role="dialog" aria-labelledby="filtro_ordem_servico_label" aria-hidden="true">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                    <h3 class="modal-title" id="relatorio_filtro_label">Opções de filtro</h3>
+                </div>
+                <div class="modal-body">
+                	<form class="form-horizontal" action="{ACAO_FILTRO}" method="post">
+						<div class="form-group">
+							<label for="hel_seqemp_filtro" class="col-sm-3 control-label">Filtro Empresa</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="hel_seqemp_filtro" name="hel_seqemp_filtro" onchange="carregarChamadoFiltro()" autofocus="autofocus">
+										<option value="">Selecione...</option>
+										{BLC_EMPRESA_FILTRO}
+											<option value="{hel_pk_seq_emp}" {sel_hel_seqempfiltro_cha}>{hel_nomefantasia_emp}</option>
+										{/BLC_EMPRESA_FILTRO}
+									</select>
+								</div>
+	                	</div>
+
+	                	<div class="form-group">
+							<label for="hel_seqcon_filtro" class="col-sm-3 control-label">Filtro Técnico</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="hel_seqcon_filtro" name="hel_seqcon_filtro" onchange="carregarChamadoFiltro()" autofocus="autofocus">
+										<option value="">Selecione...</option>
+										{BLC_TECNICO_FILTRO}
+											<option value="{hel_pk_seq_con}" {sel_hel_seqconfiltro_con}>{hel_nome_con}</option>
+										{/BLC_TECNICO_FILTRO}
+									</select>
+								</div>
+	                	</div>	                	
+
+						<div class="form-group">
+							<label for="hel_dateinicialfiltro_ose" class="col-sm-1 control-label">Data Inicial</label>
+								<div class="col-sm-3">
+									<input type="text" class="form-control mask-date" id="hel_dateinicialfiltro_ose" name="hel_dateinicialfiltro_ose"  onblur="validarDataInicial()" 
+									value="{hel_datainicial_ose}" autocomplete="off" autofocus/>
+								</div>
+						
+										
+							<label for="hel_datafinalfiltro_ose" class="col-sm-1 control-label">Data Final</label>
+								<div class="col-sm-3">
+									<input type="text" class="form-control mask-date" id="hel_datafinalfiltro_ose" name="hel_datafinalfiltro_ose" 
+								    value="{hel_datafinal_ose}" onblur="validarDataFinal()" autocomplete="off" autofocus/>
+								</div>
+						</div>
+
+						                	
+	                	<br/>					
+						<div class="form-group">
+							<center>
+								<button type="submit" name="filtro_ordem_servico" class="btn btn-primary" > <i class="glyphicon glyphicon-filter"></i> Filtrar</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							</center>	
+						</div>
+					</form>						
+                </div>
+        	</div>
+    	</div>
+</div>
+
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -129,6 +194,117 @@
         idExclusao = id;
         $('#myModal').modal('show');
     }
+
+
+    function abrirDialogFiltro(){
+        $('#filtro_ordem_servico').modal('show');
+    }
+
+    function checarDatas(){
+		var dataInicial = document.getElementById("hel_dateinicialfiltro_ose").value;
+		var dataFinal   = document.getElementById("hel_datafinalfiltro_ose").value;
+
+		if ((dataInicial != "__/__/____") && (dataFinal == "__/__/____" )){
+			alert("Data Final deve ser preenchida");
+		}else if ((dataInicial == "__/__/____") && (dataFinal != "__/__/____" )){
+			alert("Data Inicial deve ser preenchida");
+		}else if ((dataInicial != "__/__/____") && (dataFinal != "__/__/____")){
+			var dataIni = new Date(dataInicial.split("/")[2], dataInicial.split("/")[1] - 1, dataInicial.split("/")[0]);
+			var dataFim = new Date(dataFinal.split("/")[2], dataFinal.split("/")[1] - 1, dataFinal.split("/")[0])
+			
+			if (dataIni > dataFim) {
+			   alert("Data inicial não pode ser maior que a data final");
+			   return false;
+			}
+			else {
+			    return true
+			}
+		}
+	}
+
+    function validarDataFinal(){
+
+    	dataFinal = document.getElementById("hel_datafinalfiltro_ose").value;
+    	var dataInvalida = false;
+
+    	if (dataFinal != "__/__/____"){
+    		day   = dataFinal.substring(0,2);
+			month = dataFinal.substring(3,5);
+			year  = dataFinal.substring(6,10);
+
+			if( (month==01) || (month==03) || (month==05) || (month==07) || (month==08) || (month==10) || (month==12) ) {//mes com 31 dias
+				if( (day < 01) || (day > 31) ){
+				    alert('Data final inválida');
+				    dataInvalida = true;
+				}
+			} else if( (month==04) || (month==06) || (month==09) || (month==11) ){//mes com 30 dias
+				if( (day < 01) || (day > 30) ){
+				    alert('Data final inválida');
+				    dataInvalida = true;
+				}
+			} else if( (month==02) ){//February and leap year
+				if( (year % 4 == 0) && ( (year % 100 != 0) || (year % 400 == 0) ) ){
+					if( (day < 01) || (day > 29) ){
+					    alert('Data final inválida');
+					    dataInvalida = true;
+					}
+				} else {
+					if( (day < 01) || (day > 28) ){
+						alert('Data final inválida');
+						dataInvalida = true;
+					}
+				}
+			}
+			if (!dataInvalida){
+				checarDatas();	
+			}
+			
+    	}else {
+    		alert('Data final não preenchida');
+    	}
+	}
+
+    function validarDataInicial(){
+
+    	dataInicial = document.getElementById("hel_dateinicialfiltro_ose").value;
+    	var dataInvalida = false;
+
+    	if (dataInicial != "__/__/____"){
+    		day   = dataInicial.substring(0,2);
+			month = dataInicial.substring(3,5);
+			year  = dataInicial.substring(6,10);
+
+			if( (month==01) || (month==03) || (month==05) || (month==07) || (month==08) || (month==10) || (month==12) ) {//mes com 31 dias
+				if( (day < 01) || (day > 31) ){
+				    alert('Data inicial inválida');
+				    dataInvalida = true;
+				}
+			} else if( (month==04) || (month==06) || (month==09) || (month==11) ){//mes com 30 dias
+				if( (day < 01) || (day > 30) ){
+				    alert('Data inicial inválida');
+				    dataInvalida = true;
+				}
+			} else if( (month==02) ){//February and leap year
+				if( (year % 4 == 0) && ( (year % 100 != 0) || (year % 400 == 0) ) ){
+					if( (day < 01) || (day > 29) ){
+					    alert('Data inicial inválida');
+					    dataInvalida = true;
+					}
+				} else {
+					if( (day < 01) || (day > 28) ){
+						alert('Data inicial inválida');
+						dataInvalida = true;
+					}
+				}
+			}
+			if (!dataInvalida){
+				checarDatas();	
+			}
+    	}else {
+    		alert('Data Inicial não preenchida');
+    	}
+		
+	}
 
 	function carregarContato(){
 

@@ -26,6 +26,7 @@ class Item_Ordem_Servico extends CI_Controller {
 		$dados['NOVO_ITEM_ORDEM_SERVICO']	= site_url('item_ordem_servico/novo/'.$hel_seqose_ios);
 		$dados['VOLTAR_ORDEM_SERVICO']		= site_url('ordem_servico');
 		$dados['URL_APAGAR']				= site_url('item_ordem_servico/apagar');
+		$dados['URL_RELATORIO']				= site_url('ordem_servico/relatorio');
 		
 		$dados['BLC_DADOS']  = array();
 		

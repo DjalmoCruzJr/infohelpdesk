@@ -20,11 +20,20 @@ class Ordem_Servico_Model extends CI_Model {
 		return $this->db->get()->result();
 	}
 	
-	public function getOrdemServico() {
+	public function getOrdemServico($empresa = NULL, $tecnico = NULL, $dataInicial = NULL, $dataFinal = NULL) {
 		$this->db->from('heltbose');
 		$this->db->join('heltbexc','hel_pk_seq_exc = hel_seqexc_ose','LEFT');
 		$this->db->join('heltbemp','hel_pk_seq_emp = hel_seqemp_exc','LEFT');
 		$this->db->join('heltbcon','hel_pk_seq_con = hel_seqcontec_ose','LEFT');
+		if ($empresa != ""){
+			$this->db->where('hel_seqemp_exc', $empresa, FALSE);
+		}
+		if ($tecnico != ""){
+			$this->db->where('hel_seqcontec_ose', $tecnico, FALSE);
+		}
+		if ($dataInicial != "" and $dataFinal != ""){
+			$this->db->where("hel_datainicial_ose between ('".$dataInicial."') and ('".$dataFinal."')");
+		}
 		return $this->db->get()->result();
 	}
 	

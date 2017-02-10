@@ -20,10 +20,23 @@ class Ordem_Servico extends CI_Controller {
 		
 		$dados['NOVA_ORDEM_SERVICO']	= site_url('ordem_servico/novo');
 		$dados['URL_BUSCAR_CONTATO']   	= site_url('json/json/carregar_contato_relatorio');
+		$dados['ACAO_FILTRO']			= site_url('ordem_servico');
+		
 		
 		$dados['BLC_DADOS']  = array();
-		
+		$hel_seqemp_filtro  	= $this->input->post('hel_seqemp_filtro');
+		$hel_seqcon_filtro		= $this->input->post('hel_seqcon_filtro');
+		$hel_datainicial_filtro	= $this->input->post('hel_dateinicialfiltro_ose');
+		$hel_datafinal_filtro	= $this->input->post('hel_datafinalfiltro_ose');
+
+		$dados['hel_seqemp_filtro']		 = $hel_seqemp_filtro;
+		$dados['hel_seqcon_filtro']		 = $hel_seqcon_filtro;
+		$dados['hel_datainicial_filtro'] = trim($hel_datainicial_filtro) != '' ? $this->util->gravar_data_banco($hel_datainicial_filtro) : '';
+		$dados['hel_datafinal_filtro']	 = trim($hel_datafinal_filtro) != '' ? $this->util->gravar_data_banco($hel_datafinal_filtro) : '';
+
 		$this->carregarDados($dados);
+		$this->carregarEmpresaFiltro($dados);
+		$this->carregarTecnicoFiltro($dados);
 
 		$this->carregarTecnicoRelatorio($dados);
 		$this->carregarEmpresaRelatorio($dados);
@@ -85,6 +98,7 @@ class Ordem_Servico extends CI_Controller {
 		global $hel_kmfinal_ose;
 		global $hel_observacao_ose;
 		global $hel_seqexc_ose;
+		global $hel_seqcontec_ose;
 		$inserir = FALSE;
 		
 		$hel_pk_seq_ose  		= $this->input->post('hel_pk_seq_ose');			
@@ -97,6 +111,7 @@ class Ordem_Servico extends CI_Controller {
 		$hel_kminicial_ose      = $this->input->post('hel_kminicial_ose');
 		$hel_kmfinal_ose        = $this->input->post('hel_kmfinal_ose');
 		$hel_observacao_ose     = $this->input->post('hel_observacao_ose');
+		$hel_seqcontec_ose		= $this->session->userdata('hel_pk_seq_con');
 		
 		if ($this->testarDados()) {
 			
@@ -104,7 +119,7 @@ class Ordem_Servico extends CI_Controller {
 			
 			$ordem_servico = array(
 				"hel_seqexc_ose"           => $hel_seqexc_ose,
-				"hel_seqcontec_ose"		   => $this->session->userdata('hel_pk_seq_con'),
+				"hel_seqcontec_ose"		   => $hel_seqcontec_ose,
 				"hel_datainicial_ose"      => $this->util->gravar_data_banco($hel_dateinicial_ose),
 				"hel_horarioinicial_ose"   => $hel_horarioinicial_ose,
 				"hel_datafinal_ose"        => $this->util->gravar_data_banco($hel_datefinal_ose),
@@ -155,10 +170,40 @@ class Ordem_Servico extends CI_Controller {
 		$dados['ACAO_FORM']         	 = site_url('ordem_servico/salvar');
 		$dados['URL_BUSCAR_CONTATO']   	 = site_url('json/json/carregar_contato/'.CHAVE_JSON);
 	}	
+
+	private function carregarEmpresaFiltro(&$dados) {
+	
+		$resultado = !$this->util->autorizacao($this->session->userdata('hel_tipo_tco')) ? $this->EmpresaModel->getEmpresa() : $this->EmpresaContatoModel->getEmpresaContatoRelatorio2($this->session->userdata('hel_pk_seq_con'));
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_EMPRESA_FILTRO'][] = array(
+					"hel_pk_seq_emp"     		=> $registro->hel_pk_seq_emp,
+					"hel_nomefantasia_emp" 		=> $registro->hel_nomefantasia_emp,
+					"sel_hel_seqempfiltro_cha"	=> ($dados['hel_seqemp_filtro'] == $registro->hel_pk_seq_emp)?'selected':''					
+			);
+		}
+	
+		!$resultado ? $dados['BLC_EMPRESA_FILTRO'][] = array("hel_nomefantasia_emp" => 'Não existe nenhuma empresa cadastrada') :'';
+	}
+
+	private function carregarTecnicoFiltro(&$dados) {
+
+		$resultado = $this->ContatoModel->getContatoTecnico();
+	
+		foreach ($resultado as $registro) {
+			$dados['BLC_TECNICO_FILTRO'][] = array(
+					"hel_pk_seq_con"			=> $registro->hel_pk_seq_con,
+					"hel_nome_con"				=> $registro->hel_nome_con,
+					"sel_hel_seqconfiltro_con"	=> ($dados['hel_seqcon_filtro'] == $registro->hel_pk_seq_con)?'selected':''							
+			);
+		}
+		!$resultado ? $dados['BLC_TECNICO_FILTRO'][] = array("hel_nome_con" => 'Não existe nenhuma técnico cadastrada') :'';
+	}
+	
 	
 	private function carregarDados(&$dados) {
 						
-		$resultado = $this->OrdemServicoModel->getOrdemServico();	
+		$resultado = $this->OrdemServicoModel->getOrdemServico($dados['hel_seqemp_filtro'], $dados['hel_seqcon_filtro'], $dados['hel_datainicial_filtro'], $dados['hel_datafinal_filtro']);	
 		foreach ($resultado as $registro) {
 			$dados['BLC_DADOS'][] = array(
 				"hel_pk_seq_ose" 	 	  => $registro->hel_pk_seq_ose,					
@@ -267,6 +312,7 @@ class Ordem_Servico extends CI_Controller {
 		global $hel_kmfinal_ose;
 		global $hel_observacao_ose;
 		global $hel_seqexc_ose;
+		global $hel_seqcontec_ose;
 		
 		$erros    = FALSE;
 		$mensagem = null;
@@ -275,6 +321,20 @@ class Ordem_Servico extends CI_Controller {
 			$erros    = TRUE;
 			$mensagem .= "- Empresa não selecionada.\n";
 			$this->session->set_flashdata('ERRO_HEL_SEQEMP_OSE', 'has-error');
+		}
+
+		if (empty($hel_seqcontec_ose)) {
+			$erros    = TRUE;
+			$mensagem .= "- Técnico não informado.\n";
+		}else{
+			$tecnico = $this->ContatoModel->get($hel_seqcontec_ose);
+			if (!$tecnico) {
+				$erros    = TRUE;
+				$mensagem .= "- Técnico não cadastro.\n";
+			}else if ($tecnico->hel_attivo_con == 0){
+				$erros    = TRUE;
+				$mensagem .= "- Técnico invativo.\n";
+			}
 		}
 
 		if (empty($hel_seqcon_ose)) {

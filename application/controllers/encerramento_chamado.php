@@ -204,6 +204,12 @@ class Encerramento_Chamado extends CI_Controller {
 			$resultado_contato = $this->ContatoModel->get($hel_seqcontec_ios);
 			
 			if ($resultado_contato) {
+
+				if ($resultado_tecnico->hel_ativo_con == 0) {
+					$erros     = TRUE;
+					$mensagem .= "- Técnico inativo, entre em contato com a Info Rio Sistema LTDA.\n";
+				} 
+
 				$resultado_tecnico = $this->TipoContatoModel->getEhTecnico($resultado_contato->hel_seqtco_con);
 				
 				if (!$resultado_tecnico) {

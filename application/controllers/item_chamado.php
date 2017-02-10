@@ -23,13 +23,14 @@ class Item_Chamado extends CI_Controller {
 		$dados['NOVO_ITEM_CHAMADO']				= site_url('item_chamado/novo/'.$hel_seqcha_ios);
 		$dados['URL_APAGAR']					= site_url('item_chamado/apagar');
 		$dados['VOLTAR_CHAMADO']				= site_url('chamado');
+		$dados['URL_BUSCAR_ITEMCHAMADO']		= site_url('json/json/carregar_detahe_item_chamado/'.CHAVE_JSON);		
 
 		$dados['BLC_DADOS']  = array();
 		
 		$dados['hel_seqcha_ios'] 				= base64_decode($hel_seqcha_ios);
 		
 		$this->carregarDados($dados);
-		
+			
 		$view = "";
 		
 		$view = $this->util->autorizacao($this->session->userdata('hel_tipo_tco')) == TRUE ? 'usuario\item_chamado_consulta' : 'item_chamado_consulta' ;
@@ -235,13 +236,14 @@ class Item_Chamado extends CI_Controller {
 				"hel_desc_sis" 		  			=> $registro->hel_desc_sis,
 				"hel_horaricioencerrado_ios"  	=> $this->util->formatarDateTime($registro->hel_horaricioencerrado_ios),
 				"hel_nometec_con"  				=> $registro->hel_nome_con,
-				"hel_encerrado_ios"	  			=> $registro->hel_encerrado_ios == 0 ? 'Aberto' : 'Encerrado',					
+				"hel_encerrado_ios"	  			=> $registro->hel_encerrado_ios == 0 ? 'Aberto' : 'Encerrado',			
 				"hel_seqose_ios"	  			=> $registro->hel_seqose_ios,
 				"hel_disabledsolucao_ios"	    => $registro->hel_encerrado_ios == 0 ? 'disabled' : '',
 				"ENCERRAR_ITEM_CHAMADO"			=> site_url('encerramento_chamado/index/'.base64_encode($registro->hel_pk_seq_ios)),
 				"SOLUCAO"						=> site_url('item_chamado/solucao/'.base64_encode($registro->hel_seqcha_ios).'/'.base64_encode($registro->hel_pk_seq_ios)),
 				"EDITAR_ITEM_CHAMADO" 			=> site_url('item_chamado/editar/'.base64_encode($registro->hel_pk_seq_ios).'/'.base64_encode($registro->hel_seqcha_ios)),
-				"APAGAR_ITEM_CHAMADO" 			=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ios)."','".base64_encode($dados['hel_seqcha_ios'])."')"
+				"APAGAR_ITEM_CHAMADO" 			=> "abrirConfirmacao('".base64_encode($registro->hel_pk_seq_ios)."','".base64_encode($dados['hel_seqcha_ios'])."')",
+				"VISUALIZAR_ITEM" 				=> "abrirDialogDetalhesItem('".$registro->hel_pk_seq_ios."')"
 			);
 		}
 	}
