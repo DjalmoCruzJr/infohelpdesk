@@ -140,16 +140,26 @@
                     <h3 class="modal-title" id="relatorio_empresa_label">Relatório - Ordem de serviço</h3>
                 </div>
 				 <div class="modal-body">					 
-					 <div class="form-group">
-						 <label for="ordem_servico_relatorio" class="col-sm-3 ">Filtro por O.S</label>
-						 <div>
-							 <select id="ordem_servico_relatorio" onchange="habilitarDesabilitarComponentes()" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple" >
-								 {BLC_ORDEM_SERVICO_RELATORIO}
-								 	<option value="{hel_pk_seq_ose}" >{hel_numero_ose}</option>
-								 {/BLC_ORDEM_SERVICO_RELATORIO}
-							 </select>
+					<div class="form-group">
+						<label for="hel_dateinicialrelatorio_ose" class="col-sm-1 control-label">Data Inicial</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control mask-date" id="hel_dateinicialrelatorio_ose" name="hel_dateinicialrelatorio_ose"  onblur="validarDataRelatorioInicial()"  autocomplete="off"/>
+							</div>
+								
+												
+							<label for="hel_datafinalrelatorio_ose" class="col-sm-1 control-label">Data Final</label>
+								<div class="col-sm-3">
+									<input type="text" class="form-control mask-date" id="hel_datafinalrelatorio_ose" name="hel_datafinalfiltro_ose" onblur="validarDataRelatorioFinal()" autocomplete="off"/>
+								</div>
+						</div>
+						<div class="form-group">						
+							<label for="hel_seqcon_filtro" class="col-sm-3 control-label">Filtro O.S </label>
+								<select id="ordem_servico_relatorio" onchange="habilitarDesabilitarComponentes()" class="js-example-basic-multiple form-control " style="width: 360px;" multiple="multiple" >
+									 {BLC_ORDEM_SERVICO_RELATORIO}
+									 	<option value="{hel_pk_seq_ose}" >{hel_numero_ose}</option>
+									 {/BLC_ORDEM_SERVICO_RELATORIO}
+								 </select>
 						 </div>
-					 </div>
 
 					 <div class="form-group">
 						 <label for="tecnico_relatorio" class="col-sm-3 ">Filtro por técnico</label>
@@ -203,6 +213,28 @@
     function checarDatas(){
 		var dataInicial = document.getElementById("hel_dateinicialfiltro_ose").value;
 		var dataFinal   = document.getElementById("hel_datafinalfiltro_ose").value;
+
+		if ((dataInicial != "__/__/____") && (dataFinal == "__/__/____" )){
+			alert("Data Final deve ser preenchida");
+		}else if ((dataInicial == "__/__/____") && (dataFinal != "__/__/____" )){
+			alert("Data Inicial deve ser preenchida");
+		}else if ((dataInicial != "__/__/____") && (dataFinal != "__/__/____")){
+			var dataIni = new Date(dataInicial.split("/")[2], dataInicial.split("/")[1] - 1, dataInicial.split("/")[0]);
+			var dataFim = new Date(dataFinal.split("/")[2], dataFinal.split("/")[1] - 1, dataFinal.split("/")[0])
+			
+			if (dataIni > dataFim) {
+			   alert("Data inicial não pode ser maior que a data final");
+			   return false;
+			}
+			else {
+			    return true
+			}
+		}
+	}
+
+	function checarDatasRelatorio(){
+		var dataInicial = document.getElementById("hel_dateinicialrelatorio_ose").value;
+		var dataFinal   = document.getElementById("hel_datafinalrelatorio_ose").value;
 
 		if ((dataInicial != "__/__/____") && (dataFinal == "__/__/____" )){
 			alert("Data Final deve ser preenchida");
@@ -306,10 +338,140 @@
 		
 	}
 
+	function validarDataRelatorioFinal(){
+
+    	dataFinal = document.getElementById("hel_datafinalrelatorio_ose").value;
+    	var dataInvalida = false;
+
+    	if (dataFinal != "__/__/____"){
+    		day   = dataFinal.substring(0,2);
+			month = dataFinal.substring(3,5);
+			year  = dataFinal.substring(6,10);
+
+			if( (month==01) || (month==03) || (month==05) || (month==07) || (month==08) || (month==10) || (month==12) ) {//mes com 31 dias
+				if( (day < 01) || (day > 31) ){
+				    alert('Data final inválida');
+				    dataInvalida = true;
+				}
+			} else if( (month==04) || (month==06) || (month==09) || (month==11) ){//mes com 30 dias
+				if( (day < 01) || (day > 30) ){
+				    alert('Data final inválida');
+				    dataInvalida = true;
+				}
+			} else if( (month==02) ){//February and leap year
+				if( (year % 4 == 0) && ( (year % 100 != 0) || (year % 400 == 0) ) ){
+					if( (day < 01) || (day > 29) ){
+					    alert('Data final inválida');
+					    dataInvalida = true;
+					}
+				} else {
+					if( (day < 01) || (day > 28) ){
+						alert('Data final inválida');
+						dataInvalida = true;
+					}
+				}
+			}
+			if (!dataInvalida){
+				if (checarDatasRelatorio()){
+					document.getElementById("ordem_servico_relatorio").disabled = true;
+				}else{
+					document.getElementById("ordem_servico_relatorio").disabled = false;
+				}
+			}
+			
+    	}else {
+    		alert('Data final não preenchida');
+    	}
+
+    	return dataInvalida;
+	}
+
+	function validarDataRelatorioInicial(){
+
+    	dataInicial = document.getElementById("hel_dateinicialrelatorio_ose").value;
+    	var dataInvalida = false;
+
+    	if (dataInicial != "__/__/____"){
+    		day   = dataInicial.substring(0,2);
+			month = dataInicial.substring(3,5);
+			year  = dataInicial.substring(6,10);
+
+			if( (month==01) || (month==03) || (month==05) || (month==07) || (month==08) || (month==10) || (month==12) ) {//mes com 31 dias
+				if( (day < 01) || (day > 31) ){
+				    alert('Data inicial inválida');
+				    dataInvalida = true;
+				}
+			} else if( (month==04) || (month==06) || (month==09) || (month==11) ){//mes com 30 dias
+				if( (day < 01) || (day > 30) ){
+				    alert('Data inicial inválida');
+				    dataInvalida = true;
+				}
+			} else if( (month==02) ){//February and leap year
+				if( (year % 4 == 0) && ( (year % 100 != 0) || (year % 400 == 0) ) ){
+					if( (day < 01) || (day > 29) ){
+					    alert('Data inicial inválida');
+					    dataInvalida = true;
+					}
+				} else {
+					if( (day < 01) || (day > 28) ){
+						alert('Data inicial inválida');
+						dataInvalida = true;
+					}
+				}
+			}
+			if (!dataInvalida){
+				checarDatasRelatorio();	
+			}
+    	}else {
+    		alert('Data Inicial não preenchida');
+    	}
+	}
+
+	function validarDataRelatorio(opcao){
+		var dataInvalida = false;
+		var date = "";
+		if (opcao =='I'){
+			console.log('Entrou if data inicial ' + document.getElementById("hel_dateinicialrelatorio_ose").value);
+			date = document.getElementById("hel_dateinicialrelatorio_ose").value;
+		}else {
+			date = document.getElementById("hel_datafinalrelatorio_ose").value;
+		}
+
+    	if (date != "__/__/____"){
+    		day   = date.substring(0,2);
+			month = date.substring(3,5);
+			year  = date.substring(6,10);
+
+			if( (month==01) || (month==03) || (month==05) || (month==07) || (month==08) || (month==10) || (month==12) ) {//mes com 31 dias
+				if( (day < 01) || (day > 31) ){
+				    dataInvalida = true;
+				}
+			} else if( (month==04) || (month==06) || (month==09) || (month==11) ){//mes com 30 dias
+				if( (day < 01) || (day > 30) ){
+				    dataInvalida = true;
+				}
+			} else if( (month==02) ){//February and leap year
+				if( (year % 4 == 0) && ( (year % 100 != 0) || (year % 400 == 0) ) ){
+					if( (day < 01) || (day > 29) ){
+					    dataInvalida = true;
+					}
+				} else {
+					if( (day < 01) || (day > 28) ){
+						dataInvalida = true;
+					}
+				}
+			}
+    	}else {
+    		dataInvalida = true;
+    	}
+
+    	return !dataInvalida;
+	}
+
 	function carregarContato(){
 
-		var empresa 	   = document.getElementById("empresa_relatorio");
-		var filtro_empresa = "";
+		var empresa 	    = document.getElementById("empresa_relatorio");
+		var filtro_empresa  = "";
 		var separar_empresa = "";
 
 		for (var i = 0; i < empresa.options.length; i++) {
@@ -336,14 +498,6 @@
 				console.log('Error na function carregarContato()');
 			}
 		});
-	}
-
-	function habilitarSistema(){
-		if (document.getElementById("tipo_empresa_relatorio").disabled == false){
-			document.getElementById("tipo_contato_relatorio").disabled = false;
-		}else {
-			document.getElementById("tipo_contato_relatorio").disabled = true;
-		}
 	}
 
     function apagar(){
@@ -380,11 +534,17 @@
     	document.getElementById("ordem_servico_relatorio").disabled = disabled;
    	}
 
+   	function replaceAll(str, needle, replacement) {
+    	return str.split(needle).join(replacement);
+	}
+
     function visualizarRelatorio() {
         
     	var tecnico_relatorio 		= document.getElementById("tecnico_relatorio");
 		var empresa_relatorio		= document.getElementById("empresa_relatorio");
 		var ordem_servico_relatorio = document.getElementById("ordem_servico_relatorio");
+		var dataInicial	    		= document.getElementById("hel_dateinicialrelatorio_ose").value;
+		var dataFinal     			= document.getElementById("hel_datafinalrelatorio_ose").value;		
       	var orderBy 		 	    = "";
 
       	var filtroTecnico	 = "";
@@ -407,7 +567,6 @@
 
 		for (var i = 0; i < empresa_relatorio.options.length; i++) {
 			if ( (empresa_relatorio.options[i].selected) && (!document.getElementById("empresa_relatorio").disabled) ){
-				console.log('entrou no if  (empresa_relatorio.options[i].selected) && (!document.getElementById("ordem_servico_relatorio").disabled) ');
 				filtroEmpresa 	 = filtroEmpresa + separadorEmpresa + empresa_relatorio.options[i].value;
 				separadorEmpresa = ",";
 			}
@@ -430,9 +589,28 @@
       		filtroOrdemServico = "0";
         }
 
+        var dataIniAux = dataInicial;
+        var dataFimAux = dataFinal;
+		
+        if ((dataIniAux != "__/__/____") && (validarDataRelatorio('I'))){
+        	var fiedData = dataIniAux.split("/")
+        	dataInicial = fiedData[2]+ "-" + fiedData[1] + "-" + fiedData[0];
+			var dataFim = new Date(dataIniAux.split("/")[2], dataIniAux.split("/")[1] - 1, dataIniAux.split("/")[0])        	
+        }else {
+        	dataInicial = "0";	
+        }
+
+        if ((dataFimAux != "__/__/____") && (validarDataRelatorio('F'))){
+        	var fiedData = dataFimAux.split("/")
+        	dataFinal    = fiedData[2]+ "-" + fiedData[1] + "-" + fiedData[0];
+			var dataIni = new Date(dataFimAux.split("/")[2], dataFimAux.split("/")[1] - 1, dataFimAux.split("/")[0]);        	
+        }else{
+        	dataFinal = "0";	
+        }
+   
     	$('#relatorio_ordem_servico').modal('hide');
     	
-    	window.open('ordem_servico/relatorio/'+ filtroOrdemServico +'/'+ filtroTecnico + '/' + filtroEmpresa, '_blank');
+    	window.open('ordem_servico/relatorio/'+ filtroOrdemServico +'/'+ filtroTecnico + '/' + filtroEmpresa + '/' + dataInicial + '/' + dataFinal , '_blank');
     }	
 
 </script>

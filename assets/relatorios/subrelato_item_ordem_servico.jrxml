@@ -130,10 +130,12 @@ WHERE hel_tipo_ios   = 0
 				</textElement>
 				<text><![CDATA[Complemento]]></text>
 			</staticText>
+		</band>
+		<band height="3">
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="50" width="555" height="1" isPrintWhenDetailOverflows="true" uuid="bca4f9cd-b022-4f9e-8bdd-b724769925c3"/>
+				<reportElement x="0" y="0" width="555" height="1" uuid="48b2cc1e-7cd6-4409-9b21-eb66454a20fe"/>
 				<graphicElement>
-					<pen lineWidth="0.5" lineStyle="Dotted"/>
+					<pen lineWidth="0.25" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 		</band>

@@ -331,7 +331,7 @@ class Ordem_Servico extends CI_Controller {
 			if (!$tecnico) {
 				$erros    = TRUE;
 				$mensagem .= "- Técnico não cadastro.\n";
-			}else if ($tecnico->hel_attivo_con == 0){
+			}else if ($tecnico->hel_ativo_con == 0){
 				$erros    = TRUE;
 				$mensagem .= "- Técnico invativo.\n";
 			}
@@ -553,12 +553,17 @@ class Ordem_Servico extends CI_Controller {
 		return $result->result();
 	}
 	
-	public function relatorio($filtro_ordem_servico, $filtro_tecnico, $filtro_empresa){
+	public function relatorio($filtro_ordem_servico, $filtro_tecnico, $filtro_empresa, $dataIni, $dataFim){
 		$clasuraWhere = "";
 		$whereAnd     = " WHERE ";
 		
 		if (!empty($filtro_ordem_servico)){
 			$clasuraWhere = $clasuraWhere.$whereAnd." hel_pk_seq_ose IN (".$filtro_ordem_servico.") ";
+			$whereAnd = " AND ";
+		}
+
+		if ((!empty($dataIni)) and (!empty($dataFim))){
+			$clasuraWhere = $clasuraWhere.$whereAnd." hel_datainicial_ose BETWEEN '".$dataIni."' and '".$dataFim."'";
 			$whereAnd = " AND ";
 		}
 		

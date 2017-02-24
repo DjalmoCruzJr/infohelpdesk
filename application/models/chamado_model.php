@@ -40,13 +40,15 @@ class Chamado_Model extends CI_Model {
 		if (!empty($empresa)){
 			$this->db->where('hel_seqemp_exc', $empresa, FALSE);
 		}
-		if (!empty($status)){
+		if ($status = ''){
 			if ($status == 1){
 				$this->db->where('hel_status_cha = 0');		
 			}
 			if ($status == 2){
 				$this->db->where('hel_status_cha = 1');		
 			}
+		}else{
+			$this->db->where('hel_status_cha = 0');					
 		}
 		if (!empty($chamado)){
 			$this->db->where('hel_pk_seq_cha = ', $chamado, FALSE);
