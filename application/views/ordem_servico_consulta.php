@@ -236,11 +236,7 @@
 		var dataInicial = document.getElementById("hel_dateinicialrelatorio_ose").value;
 		var dataFinal   = document.getElementById("hel_datafinalrelatorio_ose").value;
 
-		if ((dataInicial != "__/__/____") && (dataFinal == "__/__/____" )){
-			alert("Data Final deve ser preenchida");
-		}else if ((dataInicial == "__/__/____") && (dataFinal != "__/__/____" )){
-			alert("Data Inicial deve ser preenchida");
-		}else if ((dataInicial != "__/__/____") && (dataFinal != "__/__/____")){
+		if ((dataInicial != "__/__/____") && (dataFinal != "__/__/____")){
 			var dataIni = new Date(dataInicial.split("/")[2], dataInicial.split("/")[1] - 1, dataInicial.split("/")[0]);
 			var dataFim = new Date(dataFinal.split("/")[2], dataFinal.split("/")[1] - 1, dataFinal.split("/")[0])
 			
@@ -380,6 +376,7 @@
 			}
 			
     	}else {
+    		document.getElementById("ordem_servico_relatorio").disabled = false;
     		alert('Data final não preenchida');
     	}
 
@@ -420,9 +417,14 @@
 				}
 			}
 			if (!dataInvalida){
-				checarDatasRelatorio();	
+				if (checarDatasRelatorio()){
+					document.getElementById("ordem_servico_relatorio").disabled = true;
+				}else{
+					document.getElementById("ordem_servico_relatorio").disabled = false;
+				}
 			}
     	}else {
+    		document.getElementById("ordem_servico_relatorio").disabled = false;
     		alert('Data Inicial não preenchida');
     	}
 	}
@@ -431,7 +433,6 @@
 		var dataInvalida = false;
 		var date = "";
 		if (opcao =='I'){
-			console.log('Entrou if data inicial ' + document.getElementById("hel_dateinicialrelatorio_ose").value);
 			date = document.getElementById("hel_dateinicialrelatorio_ose").value;
 		}else {
 			date = document.getElementById("hel_datafinalrelatorio_ose").value;
@@ -534,17 +535,13 @@
     	document.getElementById("ordem_servico_relatorio").disabled = disabled;
    	}
 
-   	function replaceAll(str, needle, replacement) {
-    	return str.split(needle).join(replacement);
-	}
-
     function visualizarRelatorio() {
         
     	var tecnico_relatorio 		= document.getElementById("tecnico_relatorio");
 		var empresa_relatorio		= document.getElementById("empresa_relatorio");
 		var ordem_servico_relatorio = document.getElementById("ordem_servico_relatorio");
-		var dataInicial	    		= document.getElementById("hel_dateinicialrelatorio_ose").value;
-		var dataFinal     			= document.getElementById("hel_datafinalrelatorio_ose").value;		
+		var dataIni 	    		= document.getElementById("hel_dateinicialrelatorio_ose").value;
+		var dataFim     			= document.getElementById("hel_datafinalrelatorio_ose").value;		
       	var orderBy 		 	    = "";
 
       	var filtroTecnico	 = "";
@@ -552,7 +549,6 @@
 
 		for (var i = 0; i < tecnico_relatorio.options.length; i++) {
       		if ( (tecnico_relatorio.options[i].selected) && (!document.getElementById("tecnico_relatorio").disabled)){
-          		console.log('entrou no if  (tecnico_relatorio.options[i].selected) && (!document.getElementById("ordem_servico_relatorio").disabled) ');
 				filtroTecnico 	 = filtroTecnico + separadorTecnico + tecnico_relatorio.options[i].value;
 				separadorTecnico = ",";
         	}
@@ -589,28 +585,29 @@
       		filtroOrdemServico = "0";
         }
 
-        var dataIniAux = dataInicial;
-        var dataFimAux = dataFinal;
+        var dataFinalFiltroRelatorio    = "0";
+        var dataInicialFiltroRelatorio  = "0";
+
 		
-        if ((dataIniAux != "__/__/____") && (validarDataRelatorio('I'))){
-        	var fiedData = dataIniAux.split("/")
-        	dataInicial = fiedData[2]+ "-" + fiedData[1] + "-" + fiedData[0];
-			var dataFim = new Date(dataIniAux.split("/")[2], dataIniAux.split("/")[1] - 1, dataIniAux.split("/")[0])        	
-        }else {
-        	dataInicial = "0";	
+        if ((dataIni != "") && (validarDataRelatorio('I'))){
+        	var fiedData = dataIni.split("/")
+        	dataInicialFiltroRelatorio = fiedData[2]+ "-" + fiedData[1] + "-" + fiedData[0];
+        	var dateIni = new Date(dataIni.split("/")[2], dataIni.split("/")[1] - 1, dataIni.split("/")[0]);
         }
 
-        if ((dataFimAux != "__/__/____") && (validarDataRelatorio('F'))){
-        	var fiedData = dataFimAux.split("/")
-        	dataFinal    = fiedData[2]+ "-" + fiedData[1] + "-" + fiedData[0];
-			var dataIni = new Date(dataFimAux.split("/")[2], dataFimAux.split("/")[1] - 1, dataFimAux.split("/")[0]);        	
-        }else{
-        	dataFinal = "0";	
+        if ((dataFim != "") && (validarDataRelatorio('F'))){
+        	var fiedData = dataFim.split("/")
+        	dataFinalFiltroRelatorio = fiedData[2]+ "-" + fiedData[1] + "-" + fiedData[0];
+        	var dateFim = new Date(dataFim.split("/")[2], dataFim.split("/")[1] - 1, dataFim.split("/")[0])
         }
    
-    	$('#relatorio_ordem_servico').modal('hide');
-    	
-    	window.open('ordem_servico/relatorio/'+ filtroOrdemServico +'/'+ filtroTecnico + '/' + filtroEmpresa + '/' + dataInicial + '/' + dataFinal , '_blank');
+   		if (dateIni > dateFim){
+   			alert('Data inicial maior que a final');
+   		}else{
+   			$('#relatorio_ordem_servico').modal('hide');	
+			window.open('ordem_servico/relatorio/'+ filtroOrdemServico +'/'+ filtroTecnico + '/' + filtroEmpresa + '/' + dataInicialFiltroRelatorio + '/' + dataFinalFiltroRelatorio , '_blank');   			
+   		}
+    	    	
     }	
 
 </script>
