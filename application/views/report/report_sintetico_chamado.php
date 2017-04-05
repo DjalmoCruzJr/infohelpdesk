@@ -1,5 +1,5 @@
 <div class="row"><!-- CHAMADO CABEÇALHO LABEL -->
-<!--    <div class="row" style="border-top: 0.25px dashed #000;"></div> <!-- Linha pontilhada -->-->
+<!--    <div class="row" style="border-top: 0.25px dashed #000;"></div> <!-- Linha pontilhada -->
     <div class="row">
         <div class="col-xs-1" style=" width: 45px; padding-left: 0; text-align: right;">
             <span class="detail__label--string"><strong>Num.</strong></span>

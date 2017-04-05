@@ -521,7 +521,7 @@ class Chamado extends CI_Controller {
         return $result->result();
     }
 
-    public function relatorio($order_by, $layout, $filtro_chamado, $filtro_empresa, $status, $imprimir_itens) {
+    public function relatorio($order_by, $layout, $filtro_chamado, $filtro_empresa, $status) {
         $order_by = str_replace("%20", " ", $order_by);
         $clasuraWhere = "";
         $whereAnd = " WHERE ";
@@ -611,23 +611,23 @@ class Chamado extends CI_Controller {
 
             for ($i = 0; $i < count($dados['BLC_RELATORIO']); $i++) {
                 $html .= $this->parser->parse($arquivo, $dados['BLC_RELATORIO'][$i]);
-                if ($imprimir_itens == 1) {
-                    $select_item_chamado = ' SELECT hel_pk_seq_ios,
-                                                    hel_desc_ser,
-                                                    hel_desc_sis,
-                                                    hel_nome_con,
-                                                    hel_horaricioencerrado_ios,
-                                                    hel_complemento_ios,
-                                                    hel_solucao_ios,
-                                                    hel_seqioscha_ios
-                                             FROM heltbios
-                                             LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
-                                             LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
-                                             LEFT JOIN heltbcon ON hel_pk_seq_con = hel_seqcontec_ios
-                                             WHERE hel_seqcha_ios = ' . $dados['BLC_RELATORIO'][$i]['hel_pk_seq_cha'] . '
-                                               AND hel_tipo_ios   = ' . CHAMADO.''.$where_item_chamado ;
 
-                    $resultado = $this->consultarBanco($select_item_chamado);
+                $select_item_chamado = ' SELECT hel_pk_seq_ios,
+                                                hel_desc_ser,
+                                                hel_desc_sis,
+                                                hel_nome_con,
+                                                hel_horaricioencerrado_ios,
+                                                hel_complemento_ios,
+                                                hel_solucao_ios,
+                                                hel_seqioscha_ios
+                                          FROM heltbios
+                                          LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
+                                          LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
+                                          LEFT JOIN heltbcon ON hel_pk_seq_con = hel_seqcontec_ios
+                                          WHERE hel_seqcha_ios = ' . $dados['BLC_RELATORIO'][$i]['hel_pk_seq_cha'] . '
+                                            AND hel_tipo_ios   = ' . CHAMADO.''.$where_item_chamado ;
+
+                $resultado = $this->consultarBanco($select_item_chamado);
 
                     if ($resultado) {
                         $dados['BLC_RELATORIO_ITENS_CHAMADO'] = array();
@@ -645,8 +645,8 @@ class Chamado extends CI_Controller {
                         }
                     }
 
-                    $html .= $this->parser->parse('report/report_item_chamado', $dados);
-                }
+                $html .= $this->parser->parse('report/report_item_chamado', $dados);
+
             }
 
             $footer = $_SERVER['HTTP_HOST'] . '|Página {PAGENO} de {nbpg}|' . date('d/m/Y H:i:s');

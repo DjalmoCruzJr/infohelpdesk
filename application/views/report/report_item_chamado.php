@@ -30,13 +30,13 @@
                 <span class="detail__label--string">{hel_desc_sis}</span>
             </div>
         </div>
-        <div class="row" style="padding: 2px 0;">
+        <div class="row" style="padding: 2px 0; text-align: justify;">
             <div class="col-xs-12">
                 <span class="detail__label--string"><strong>Complemento: </strong></span>
                 <span class="detail__label--string">{hel_complemento_ios}</span>
             </div>
         </div>
-        <div class="row" style="padding: 2px 0;">
+        <div class="row" style="padding: 2px 0; text-align: justify;">
             <div class="col-xs-12">
                 <span class="detail__label--string"><strong>Solução: </strong></span>
                 <span class="detail__label--string">{hel_solucao_ios}</span>

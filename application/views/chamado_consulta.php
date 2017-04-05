@@ -77,12 +77,7 @@
                 </div>
                 <div class="modal-body">
                 	<form class="form-horizontal">
-                		
-                		<div class="form-group col-sm-11 text-center">
-                			<label class="checkbox-inline">
-								<input type="checkbox" id="imprimir_itens" name="imprimir_itens" checked="checked">Imprimir itens do chamado
-							</label>
-                		</div>
+                        
 
 					    <div class="form-group col-sm-11 text-center">
 							<label class="radio-inline">
@@ -451,10 +446,6 @@
     		orderBy = " ORDER BY hel_horarioabertura_cha";
         }
 
-    	if (document.getElementById('imprimir_itens').checked){
-    		imprimi_itens = "1";
-        }
-
         if (document.getElementById('hel_sintetico_cha').checked){
         	layout = "1";
         }else {
@@ -463,7 +454,7 @@
     	
     	$('#relatorio_contato').modal('hide');
     	
-    	window.open('chamado/relatorio/'+ orderBy + '/' + layout +'/' + filtroChamado + '/'+ filtroEmpresa +'/'+status + '/' + imprimi_itens, '_blank');
+    	window.open('chamado/relatorio/'+ orderBy + '/' + layout +'/' + filtroChamado + '/'+ filtroEmpresa +'/'+status, '_blank');
     }	
 
 </script>

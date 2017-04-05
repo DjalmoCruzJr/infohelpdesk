@@ -559,7 +559,7 @@ class Ordem_Servico extends CI_Controller {
 
         $dados['BLC_RELATORIO_HEADER'][] = array(
             "report_caminho_imagem" => base_url("assets/images/logo.png"),
-            "report_titulo" => 'Relatório de Ordem serviço',
+            "report_titulo" => 'Ordem de serviço',
             "report_modulo" => 'HelpDesk',
             "report_codigo" => 'HELPR602',
             "report_pagina" => 'Página {PAGENO} de {nbpg}',
@@ -675,7 +675,7 @@ class Ordem_Servico extends CI_Controller {
 
                 $html .= $this->parser->parse('report/report_item_ordem_servico', $dados);
                 $html .= $this->parser->parse('report/report_sumary_ordem_servico', $dados['BLC_RELATORIO'][$i]);
-                $pdf->WriteHTML($html, true);
+                $pdf->WriteHTML($html);
                 if (isset($dados['BLC_RELATORIO'][$i +1]['hel_pk_seq_ose'])){
                     $pdf->AddPage();
                 }
