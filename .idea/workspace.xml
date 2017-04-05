@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b54bf300-a663-45ca-ac4e-c8f39ff9e0c3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/chamado.php" afterPath="$PROJECT_DIR$/application/controllers/chamado.php" />
-    </list>
+    <list default="true" id="b54bf300-a663-45ca-ac4e-c8f39ff9e0c3" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,135 +11,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ordem_servico.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="566" column="0" lean-forward="true" selection-start-line="566" selection-start-column="0" selection-end-line="566" selection-end-column="0" />
-              <folding>
-                <marker date="1491423488048" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
-                <marker date="1491423488048" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
-                <marker date="1491423488048" expanded="true" signature="16990:17238" ph="SELECT hel_s... heltbios" />
-                <marker date="1491423488048" expanded="true" signature="22982:23747" ph="SELECT hel_p... heltbose" />
-                <marker date="1491423488048" expanded="true" signature="24965:25368" ph="..." />
-                <marker date="1491423488048" expanded="true" signature="24979:25328" ph="..." />
-                <marker date="1491423488048" expanded="true" signature="25522:26405" ph="SELECT hel_p... heltbios" />
-                <marker date="1491423488048" expanded="true" signature="25522:26406" ph="SELECT hel_p... heltbios" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mpdf.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/third_party/mpdf/mpdf.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="16047" column="40" lean-forward="true" selection-start-line="16047" selection-start-column="40" selection-end-line="16047" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report_item_ordem_servico.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="28" column="68" lean-forward="false" selection-start-line="28" selection-start-column="68" selection-end-line="28" selection-end-column="68" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report_sumary_ordem_servico.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/report/report_sumary_ordem_servico.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report_ordem_servico.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/report/report_ordem_servico.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="45" column="44" lean-forward="false" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#5;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#6;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chamado.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="585" column="69" lean-forward="false" selection-start-line="585" selection-start-column="69" selection-end-line="585" selection-end-column="69" />
-              <folding>
-                <marker date="1491426087425" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
-                <marker date="1491426087425" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
-                <marker date="1491426087425" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
-                <marker date="1491426087425" expanded="true" signature="26547:26950" ph="..." />
-                <marker date="1491426087425" expanded="true" signature="26561:26910" ph="..." />
-                <marker date="1491426087425" expanded="true" signature="27237:28267" ph="SELECT hel_p... heltbios" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chamado_consulta.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/chamado_consulta.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="79" column="24" lean-forward="false" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report_item_chamado.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/report/report_item_chamado.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="3" column="52" lean-forward="true" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report_sintetico_chamado.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/report/report_sintetico_chamado.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="97" lean-forward="true" selection-start-line="1" selection-start-column="97" selection-end-line="1" selection-end-column="97" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -198,6 +67,9 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -349,17 +221,17 @@
       <option name="presentableId" value="Default" />
       <updated>1491391903219</updated>
       <workItem from="1491391906586" duration="7365000" />
-      <workItem from="1491403878064" duration="12536000" />
+      <workItem from="1491403878064" duration="12664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19901000" />
+    <option name="totallyTimeSpent" value="20029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -694,6 +566,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="575" column="42" lean-forward="true" selection-start-line="575" selection-start-column="42" selection-end-line="575" selection-end-column="42" />
+          <folding>
+            <marker date="1491426087425" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
+            <marker date="1491426087425" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
+            <marker date="1491426087425" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
+            <marker date="1491426087425" expanded="true" signature="26547:26950" ph="..." />
+            <marker date="1491426087425" expanded="true" signature="26561:26910" ph="..." />
+            <marker date="1491426087425" expanded="true" signature="27237:28267" ph="SELECT hel_p... heltbios" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/report/report_ordem_servico.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -722,11 +609,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="28" column="68" lean-forward="false" selection-start-line="28" selection-start-column="68" selection-end-line="28" selection-end-column="68" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/third_party/mpdf/mpdf.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="16047" column="40" lean-forward="true" selection-start-line="16047" selection-start-column="40" selection-end-line="16047" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="566" column="0" lean-forward="true" selection-start-line="566" selection-start-column="0" selection-end-line="566" selection-end-column="0" />
+          <folding>
+            <marker date="1491423488048" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
+            <marker date="1491423488048" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
+            <marker date="1491423488048" expanded="true" signature="16990:17238" ph="SELECT hel_s... heltbios" />
+            <marker date="1491423488048" expanded="true" signature="22982:23747" ph="SELECT hel_p... heltbose" />
+            <marker date="1491423488048" expanded="true" signature="24965:25368" ph="..." />
+            <marker date="1491423488048" expanded="true" signature="24979:25328" ph="..." />
+            <marker date="1491423488048" expanded="true" signature="25522:26405" ph="SELECT hel_p... heltbios" />
+            <marker date="1491423488048" expanded="true" signature="25522:26406" ph="SELECT hel_p... heltbios" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -756,49 +671,6 @@
           <caret line="1" column="97" lean-forward="true" selection-start-line="1" selection-start-column="97" selection-end-line="1" selection-end-column="97" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="28" column="68" lean-forward="false" selection-start-line="28" selection-start-column="68" selection-end-line="28" selection-end-column="68" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="566" column="0" lean-forward="true" selection-start-line="566" selection-start-column="0" selection-end-line="566" selection-end-column="0" />
-          <folding>
-            <marker date="1491423488048" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
-            <marker date="1491423488048" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
-            <marker date="1491423488048" expanded="true" signature="16990:17238" ph="SELECT hel_s... heltbios" />
-            <marker date="1491423488048" expanded="true" signature="22982:23747" ph="SELECT hel_p... heltbose" />
-            <marker date="1491423488048" expanded="true" signature="24965:25368" ph="..." />
-            <marker date="1491423488048" expanded="true" signature="24979:25328" ph="..." />
-            <marker date="1491423488048" expanded="true" signature="25522:26405" ph="SELECT hel_p... heltbios" />
-            <marker date="1491423488048" expanded="true" signature="25522:26406" ph="SELECT hel_p... heltbios" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="585" column="69" lean-forward="false" selection-start-line="585" selection-start-column="69" selection-end-line="585" selection-end-column="69" />
-          <folding>
-            <marker date="1491426087425" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
-            <marker date="1491426087425" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
-            <marker date="1491426087425" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
-            <marker date="1491426087425" expanded="true" signature="26547:26950" ph="..." />
-            <marker date="1491426087425" expanded="true" signature="26561:26910" ph="..." />
-            <marker date="1491426087425" expanded="true" signature="27237:28267" ph="SELECT hel_p... heltbios" />
           </folding>
         </state>
       </provider>
