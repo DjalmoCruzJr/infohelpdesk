@@ -4,7 +4,7 @@ class Doc extends CI_Controller {
   {
     parent::__construct();
     $params = array('orientation' => 'P', 'unit' => 'mm', 'size' => array(106,106));
-    $this->load->library('pdf', $params); // Load library
+    $this->load->library('Pdf2', $params); // Load library
     $this->pdf->fontpath = 'font/'; // Specify font folder
   }
   public function index()

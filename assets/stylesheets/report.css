@@ -1,0 +1,30 @@
+.report-header{
+    padding: 5px;
+}
+
+.report-header-logo{
+    padding: 5px;
+}
+
+.report-header-title{
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.report-header-info{
+    text-align: center;
+}
+
+.report-column-header{
+    padding: 5px;
+    font-weight: bold;
+}
+
+.report-detail{
+}
+
+.report-line-dashed{
+    border-bottom: 1px dashed #CCC;
+}
+

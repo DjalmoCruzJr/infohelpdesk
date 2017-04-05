@@ -8,7 +8,7 @@ private $previousarraydata;
 public $debugsql=false;
 public $newPageGroup = false;
 
-public function PHPJasperXML($lang="en",$pdflib="FPDF"){
+public function __construct($lang="en",$pdflib="FPDF"){
 $this->lang=$lang;
 $this->pdflib=$pdflib;
 }

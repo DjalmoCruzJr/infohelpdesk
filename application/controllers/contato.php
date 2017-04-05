@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Contato extends CI_Controller {
-	public function __construct() {
+
+    public function __construct() {
 		parent::__construct();
 				
  		$this->layout = LAYOUT_DASHBOARD;
@@ -377,26 +378,26 @@ class Contato extends CI_Controller {
 	}
 	
 	public function relatorio($order_by, $filtro_tipo_contato, $hel_ativo_con){
-		$order_by     = str_replace("%20", " ", $order_by);
-		$clasulaWhere = "";
-		$whereAnd     = " WHERE ";
-	
-		if ($filtro_tipo_contato != 0 ){
-			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_tco IN ('.$filtro_tipo_contato.') ';
-			$whereAnd     = " AND ";
-		}
-	
-		switch ($hel_ativo_con){
-			case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_con = '.$hel_ativo_con;
-					 $whereAnd = " AND ";
-					 break;
-			case 1 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_con = '.$hel_ativo_con;
-					 $whereAnd = " AND ";
-					 break;
-		}
-	
-		global $consulta;
-		$consulta = " SELECT hel_pk_seq_con,
+        $order_by     = str_replace("%20", " ", $order_by);
+        $clasulaWhere = "";
+        $whereAnd     = " WHERE ";
+
+        if ($filtro_tipo_contato != 0 ){
+            $clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_tco IN ('.$filtro_tipo_contato.') ';
+            $whereAnd     = " AND ";
+        }
+
+        switch ($hel_ativo_con){
+            case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_con = '.$hel_ativo_con;
+                $whereAnd = " AND ";
+                break;
+            case 1 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_con = '.$hel_ativo_con;
+                $whereAnd = " AND ";
+                break;
+        }
+
+        global $consulta;
+        $consulta = " SELECT hel_pk_seq_con,
 							 hel_pk_seq_tco,
 						     hel_nome_con,
 						     hel_login_con,
@@ -406,15 +407,15 @@ class Contato extends CI_Controller {
 							 END AS hel_ativo_con
 						FROM heltbcon
 						LEFT JOIN heltbtco ON hel_pk_seq_tco = hel_seqtco_con ".$clasulaWhere.$order_by;
-		
-		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_contato.jrxml', $consulta);
-		} else {
-			$mensagem = "- Nenhuma contato foi encontrada.\n";
-			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
-			$this->session->set_flashdata('erro', nl2br($mensagem));
-			redirect('erro_relatorio');
-		}
+
+        if ($this->gerarRelatorio()) {
+            $this->jasper->gerar_relatorio('assets/relatorios/relatorio_contato.jrxml', $consulta);
+        } else {
+            $mensagem = "- Nenhuma contato foi encontrada.\n";
+            $this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
+            $this->session->set_flashdata('erro', nl2br($mensagem));
+            redirect('erro_relatorio');
+        }
 	}
 	
 }

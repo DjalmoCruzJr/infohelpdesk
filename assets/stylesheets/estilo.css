@@ -1,0 +1,73 @@
+/*
+	Corpo Relatorio <body>
+*/
+
+.layout-relatorio{
+	 margin: 0,0,10,10px;
+}
+
+/*
+	Cabeçalho
+*/
+
+.cabecalho{
+	display: inline-block;
+}
+
+.cabecalho__foto{
+	margin-top: 15px;
+	width: 200px;
+	height: 60px;
+}
+
+/*.cabecalho__foto > img{
+	width: 40%;
+	height: 10%;
+}
+*/
+.cabecalho__titulo{
+	text-align: center;
+}
+
+.cabecalho__subtitulo{
+	 text-align: right;
+	 list-style: none;
+}
+
+/*---------  --------
+	     border
+  --------- --------- */
+
+.border--top{
+	margin-top: 10px;
+	border-bottom: 1px dashed #ccc;
+}
+
+.border--bottom{
+	margin-bottom: 10px;
+	border-bottom: 1px dashed #ccc;
+}
+
+/*---------  --------
+	     Header
+  --------- --------- */
+
+
+.colum_header__titulo--numero{
+	margin: 0px; 
+	text-align: right;
+}
+
+.colum_header__titulo--string{
+	margin: 0px; 
+	text-align: left;
+}
+
+.detail__label--string, .detail__texto--string, .detail__texto--numero   {
+	font-size: 10px;
+
+}
+
+.detail__padding{
+	padding: 2px 0 2px 0;
+}

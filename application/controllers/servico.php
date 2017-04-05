@@ -199,22 +199,22 @@ class Servico extends CI_Controller {
 	}
 	
 	public function relatorio($order_by){
-		$order_by = str_replace("%20", " ", $order_by);
-	
-		global $consulta;
-		$consulta = " SELECT hel_pk_seq_ser,
+        $order_by = str_replace("%20", " ", $order_by);
+
+        global $consulta;
+        $consulta = " SELECT hel_pk_seq_ser,
 						     hel_desc_ser,
 						     case hel_sistema_ser when 1 then 'X'
 						     else '' end as hel_sistema_ser
 					   FROM heltbser ".$order_by;
-	
-		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_servico.jrxml', $consulta);
-		} else {
-			$mensagem = "- Nenhum serviço foi encontrado.\n";
-			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
-			$this->session->set_flashdata('erro', nl2br($mensagem));
-			redirect('erro_relatorio');
-		}
-	}
+
+        if ($this->gerarRelatorio()) {
+            $this->jasper->gerar_relatorio('assets/relatorios/relatorio_servico.jrxml', $consulta);
+        } else {
+            $mensagem = "- Nenhum serviço foi encontrado.\n";
+            $this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
+            $this->session->set_flashdata('erro', nl2br($mensagem));
+            redirect('erro_relatorio');
+        }
+    }
 }

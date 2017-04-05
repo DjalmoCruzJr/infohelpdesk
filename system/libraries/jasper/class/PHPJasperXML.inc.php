@@ -35,7 +35,7 @@ class PHPJasperXML {
 	private $report_count=0;		//### New declaration (variable exists in original too)
 	private $group_count = array(); //### New declaration
         public $generatestatus=false;
-    public function PHPJasperXML($lang="en",$pdflib="TCPDF") {
+    public function __construct($lang="en",$pdflib="TCPDF") {
         $this->lang=$lang;
        $this->setErrorReport(0);
         
@@ -50,15 +50,19 @@ class PHPJasperXML {
     }
 
     public function connect($db_host,$db_user,$db_pass,$db_or_dsn_name,$cndriver="mysql") {
+
+
     $this->db_host=$db_host;
-            $this->db_user=$db_user;
-       $this->db_pass=$db_pass;
+    $this->db_user=$db_user;
+    $this->db_pass=$db_pass;
     $this->db_or_dsn_name=$db_or_dsn_name;
     $this->cndriver=$cndriver;
+
         if($cndriver=="mysql") {
 
             if(!$this->con) {
                 $this->myconn = @mysql_connect($db_host,$db_user,$db_pass);
+
                 if($this->myconn) {
                     $seldb = @mysql_select_db($db_or_dsn_name,$this->myconn);
                     if($seldb) {
@@ -131,6 +135,7 @@ class PHPJasperXML {
     }
 
     public function load_xml_string($jrxml, $select){
+
         $keyword="<queryString>
 		<![CDATA[";
         $jrxml =  str_replace($keyword, "<queryString><![CDATA[", $jrxml);
@@ -139,11 +144,13 @@ class PHPJasperXML {
     }
     
     public function load_xml_file($file, $select){
+
             $xml=  file_get_contents($file);
             $this->load_xml_string($xml, $select);            
     }
     
-    public function xml_dismantle($xml, $select) {	
+    public function xml_dismantle($xml, $select) {
+
         $this->page_setting($xml);
         $i=0;
        // echo $i++."<br/>";
@@ -236,6 +243,7 @@ class PHPJasperXML {
 
 
         }
+
     }
 
     public function subDataset_handler($data){
@@ -654,6 +662,7 @@ class PHPJasperXML {
 
     public function element_image($data) {
         $imagepath=$data->imageExpression;
+    
         //$imagepath= substr($data->imageExpression, 1, -1);
         //$imagetype= substr($imagepath,-3);
 $data->hyperlinkReferenceExpression=$this->analyse_expression($data->hyperlinkReferenceExpression);
@@ -1404,6 +1413,7 @@ $font=$data->textElement->font["fontName"];
     }
 
     public function transferDBtoArray($host,$user,$password,$db_or_dsn_name,$cndriver="mysql") {
+
         $this->m=0;
 
         if(!$this->connect($host,$user,$password,$db_or_dsn_name,$cndriver))	//connect database
@@ -1411,6 +1421,8 @@ $font=$data->textElement->font["fontName"];
             echo "Fail to connect database";
             exit(0);
         }
+
+
         if($this->debugsql==true) {
             
             echo "<textarea cols='100' rows='40'>$this->sql</textarea>";

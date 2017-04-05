@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="90094d02-4ef5-4c09-9665-c23baa354c53" name="Default" comment="" />
-    <ignored path="HelpDesk.iws" />
-=======
-    <list default="true" id="38b4e065-2848-4667-8534-547e3a9d6a8d" name="Default" comment="">
+    <list default="true" id="b54bf300-a663-45ca-ac4e-c8f39ff9e0c3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/libraries/M_pdf.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/gabinete.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/libraries/Pdf.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/HelpDesk.iml" afterPath="$PROJECT_DIR$/.idea/HelpDesk.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/database.php" afterPath="$PROJECT_DIR$/application/config/database.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/mimes.php" afterPath="$PROJECT_DIR$/application/config/mimes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Doc.php" afterPath="$PROJECT_DIR$/application/controllers/Doc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/chamado.php" afterPath="$PROJECT_DIR$/application/controllers/chamado.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/cidade.php" afterPath="$PROJECT_DIR$/application/controllers/cidade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/contato.php" afterPath="$PROJECT_DIR$/application/controllers/contato.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/empresa.php" afterPath="$PROJECT_DIR$/application/controllers/empresa.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/menu.php" afterPath="$PROJECT_DIR$/application/controllers/menu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/ordem_servico.php" afterPath="$PROJECT_DIR$/application/controllers/ordem_servico.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/segmento.php" afterPath="$PROJECT_DIR$/application/controllers/segmento.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/servico.php" afterPath="$PROJECT_DIR$/application/controllers/servico.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/sistema.php" afterPath="$PROJECT_DIR$/application/controllers/sistema.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/tipo_contato.php" afterPath="$PROJECT_DIR$/application/controllers/tipo_contato.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/Session.php" afterPath="$PROJECT_DIR$/application/libraries/Session.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/templates/dashboard.php" afterPath="$PROJECT_DIR$/application/templates/dashboard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/core/Common.php" afterPath="$PROJECT_DIR$/system/core/Common.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/Email.php" afterPath="$PROJECT_DIR$/system/libraries/Email.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php" afterPath="$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML-aftercustomizefaile.php" afterPath="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML-aftercustomizefaile.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML2.inc.php" afterPath="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML2.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/jasper/jasper.php" afterPath="$PROJECT_DIR$/system/libraries/jasper/jasper.php" />
     </list>
-    <ignored path="gabinete.iws" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-    <ignored path=".idea/workspace.xml" />
-    <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,186 +42,120 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
-  <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
-  <component name="FavoritesManager">
-<<<<<<< HEAD
-    <favorites_list name="HelpDesk" />
-  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="tipo_contato.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/controllers/tipo_contato.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.0697675">
-              <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
-              <folding>
-                <marker date="1449771727634" expanded="true" signature="7175:7197" placeholder="SELECT * FRO..gabtbcid..." />
-                <marker date="1449771727634" expanded="true" signature="7259:8052" placeholder="SELECT gab_p..gabtbevc..." />
-                <marker date="1449771727634" expanded="true" signature="8231:8763" placeholder="SELECT gab_p..gabtbsec..." />
-                <marker date="1449771727634" expanded="true" signature="8991:9601" placeholder="SELECT gab_p..gabtbbai..." />
-                <marker date="1449771727634" expanded="true" signature="9846:11546" placeholder="SELECT gab_p..gabtbbai..." />
-                <marker date="1449771727634" expanded="true" signature="12045:13144" placeholder="SELECT gab_p..gabtbbai..." />
-                <marker date="1449771727634" expanded="true" signature="13505:14583" placeholder="SELECT gab_p..gabtbbai..." />
-=======
-    <favorites_list name="gabinete" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="cidade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24504505">
-              <caret line="241" column="31" selection-start-line="241" selection-start-column="31" selection-end-line="241" selection-end-column="31" />
+            <state relative-caret-position="111">
+              <caret line="237" column="8" lean-forward="false" selection-start-line="237" selection-start-column="8" selection-end-line="237" selection-end-column="8" />
               <folding>
-                <marker date="1448646463462" expanded="true" signature="11931:11953" placeholder="SELECT * FRO..gabtbcid..." />
-                <marker date="1448646463462" expanded="true" signature="12015:12808" placeholder="SELECT gab_p..gabtbevc..." />
-                <marker date="1448646463462" expanded="true" signature="12987:13519" placeholder="SELECT gab_p..gabtbsec..." />
-                <marker date="1448646463462" expanded="true" signature="13747:14357" placeholder="SELECT gab_p..gabtbbai..." />
-                <marker date="1448646463462" expanded="true" signature="14602:16302" placeholder="SELECT gab_p..gabtbbai..." />
-                <marker date="1448646463462" expanded="true" signature="16801:17900" placeholder="SELECT gab_p..gabtbbai..." />
-                <marker date="1448646463462" expanded="true" signature="18261:19339" placeholder="SELECT gab_p..gabtbbai..." />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
+                <marker date="1491414370275" expanded="true" signature="6500:6523" ph="SELECT * FRO... heltbcid" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file leaf-file-name="contato_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/contato_model.php">
+      <file leaf-file-name="jasper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/libraries/jasper/jasper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385">
-              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-=======
-      <file leaf-file-name="cidade_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/cidade_model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="84" selection-start-line="10" selection-start-column="84" selection-end-line="10" selection-end-column="84" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
+            <state relative-caret-position="260">
+              <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file leaf-file-name="tipo_contato_cadastro.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_cadastro.php">
+      <file leaf-file-name="setting.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/libraries/jasper/setting.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.769231">
-              <caret line="36" column="115" selection-start-line="36" selection-start-column="97" selection-end-line="36" selection-end-column="115" />
+            <state relative-caret-position="160">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tipo_contato_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/tipo_contato_model.php">
+      <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/config/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5384614">
-              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+            <state relative-caret-position="240">
+              <caret line="57" column="40" lean-forward="true" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tipo_contato_consulta.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_consulta.php">
+      <file leaf-file-name="PHPJasperXML.inc.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.615385">
-              <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.9230769">
-              <caret line="228" column="28" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
-=======
-      <file leaf-file-name="cidade_cadastro.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/cidade_cadastro.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-              <folding />
+            <state relative-caret-position="340">
+              <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+              <folding>
+                <marker date="1491414355289" expanded="true" signature="3887:3899" ph="..." />
+                <marker date="1491414355289" expanded="true" signature="170802:170979" ph="..." />
+                <marker date="1491414355289" expanded="true" signature="170814:170951" ph="..." />
+                <marker date="1491414355289" expanded="true" signature="171703:171753" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
-<<<<<<< HEAD
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/application/models/tipo_contato_model.php" />
-        <option value="$PROJECT_DIR$/application/templates/dashboard.php" />
-        <option value="$PROJECT_DIR$/.htaccess" />
-        <option value="$PROJECT_DIR$/application/config/config.php" />
-        <option value="$PROJECT_DIR$/application/views/tipo_contato_consulta.php" />
-        <option value="$PROJECT_DIR$/application/models/contato_model.php" />
-        <option value="$PROJECT_DIR$/application/views/tipo_contato_cadastro.php" />
-        <option value="$PROJECT_DIR$/application/controllers/tipo_contato.php" />
-=======
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>$parameter_procedure</find>
+      <find>bootstrap.min</find>
+      <find>bootstrap-grid.min</find>
+      <find>transf</find>
+      <find>connect</find>
+      <find>passo 1.7</find>
+      <find>passo</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/application/controllers/ordem_servico.php" />
+        <option value="$PROJECT_DIR$/assets/stylesheets/estilo.css" />
         <option value="$PROJECT_DIR$/application/templates/dashboard.php" />
-        <option value="$PROJECT_DIR$/application/views/programa_consulta.php" />
-        <option value="$PROJECT_DIR$/application/models/programa_model.php" />
-        <option value="$PROJECT_DIR$/application/controllers/programa.php" />
+        <option value="$PROJECT_DIR$/application/views/report/report_item_chamado.php" />
+        <option value="$PROJECT_DIR$/application/views/report/report_sintetico_chamado.php" />
+        <option value="$PROJECT_DIR$/application/controllers/segmento.php" />
+        <option value="$PROJECT_DIR$/application/controllers/contato.php" />
+        <option value="$PROJECT_DIR$/application/controllers/empresa.php" />
+        <option value="$PROJECT_DIR$/application/controllers/menu.php" />
+        <option value="$PROJECT_DIR$/application/controllers/servico.php" />
+        <option value="$PROJECT_DIR$/application/libraries/Pdf2.php" />
+        <option value="$PROJECT_DIR$/application/libraries/M_pdf.php" />
+        <option value="$PROJECT_DIR$/application/controllers/chamado.php" />
+        <option value="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML-aftercustomizefaile.php" />
+        <option value="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML2.inc.php" />
+        <option value="$PROJECT_DIR$/system/libraries/jasper/setting.php" />
         <option value="$PROJECT_DIR$/application/config/database.php" />
-        <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/application/views/cargo_cadastro.php" />
-        <option value="$PROJECT_DIR$/assets/javascripts/mask.js" />
-        <option value="$PROJECT_DIR$/application/models/cidade_model.php" />
-        <option value="$PROJECT_DIR$/application/views/cidade_cadastro.php" />
+        <option value="$PROJECT_DIR$/system/libraries/jasper/jasper.php" />
+        <option value="$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php" />
         <option value="$PROJECT_DIR$/application/controllers/cidade.php" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NamedScopeManager">
-    <order />
-  </component>
-  <component name="PhpServers">
-    <servers />
-  </component>
-<<<<<<< HEAD
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-=======
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
-    <option name="height" value="744" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -211,55 +168,20 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-<<<<<<< HEAD
-      <pane id="Scratches" />
-=======
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-<<<<<<< HEAD
-              <option name="myItemId" value="HelpDesk" />
-=======
-              <option name="myItemId" value="gabinete" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
               <option name="myItemId" value="HelpDesk" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="HelpDesk" />
-=======
-              <option name="myItemId" value="gabinete" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gabinete" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -269,45 +191,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="HelpDesk" />
-=======
-              <option name="myItemId" value="gabinete" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gabinete" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelpDesk" />
-=======
-              <option name="myItemId" value="gabinete" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gabinete" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -317,49 +205,64 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
-=======
-              <option name="myItemId" value="views" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-<<<<<<< HEAD
-=======
       <pane id="Scratches" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-<<<<<<< HEAD
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-=======
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-    <property name="FullScreen" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="servico&#9;null&#9;null&#10;menu&#9;null&#9;null&#10;empresa&#9;null&#9;null&#10;conta&#9;null&#9;null&#10;cidade&#9;null&#9;null&#10;report&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;header_pa&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_header_padrao.php&#10;dashb&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/templates/dashboard.php&#10;report_i&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;chama&#9;null&#9;null&#10;item&#9;null&#9;null&#10;orde&#9;null&#9;null" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-<<<<<<< HEAD
-      <recent name="C:\wamp\www\HelpDesk\application\views" />
-      <recent name="C:\wamp\www\HelpDesk\application\models" />
-      <recent name="C:\wamp\www\HelpDesk\application\controllers" />
-    </key>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -373,836 +276,433 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
       <arguments />
-      <pass-parent-envs>true</pass-parent-envs>
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
   </component>
-=======
-      <recent name="C:\Users\Gustavo\Documents\GitHub\gabinete\application\controllers" />
-      <recent name="C:\Users\Gustavo\Documents\GitHub\gabinete\application\models" />
-      <recent name="C:\Users\Gustavo\Documents\GitHub\gabinete\application\views" />
-    </key>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-  <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-<<<<<<< HEAD
-      <changelist id="90094d02-4ef5-4c09-9665-c23baa354c53" name="Default" comment="" />
-      <created>1449256297633</created>
+      <changelist id="b54bf300-a663-45ca-ac4e-c8f39ff9e0c3" name="Default" comment="" />
+      <created>1491391903219</created>
       <option name="number" value="Default" />
-      <updated>1449256297633</updated>
-=======
-      <changelist id="38b4e065-2848-4667-8534-547e3a9d6a8d" name="Default" comment="" />
-      <created>1426877834556</created>
-      <option name="number" value="Default" />
-      <updated>1426877834556</updated>
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
+      <option name="presentableId" value="Default" />
+      <updated>1491391903219</updated>
+      <workItem from="1491391906586" duration="7365000" />
+      <workItem from="1491403878064" duration="3925000" />
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-<<<<<<< HEAD
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20045386" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-=======
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout>
-<<<<<<< HEAD
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19742814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
-=======
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="11290000" />
   </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-<<<<<<< HEAD
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="1" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/controllers/tipo_contato.php">
-=======
-    <breakpoint-manager />
-    <watches-manager />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
+    <entry file="file://$PROJECT_DIR$/application/controllers/segmento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="4440">
+          <caret line="222" column="5" lean-forward="false" selection-start-line="222" selection-start-column="5" selection-end-line="222" selection-end-column="5" />
           <folding>
-<<<<<<< HEAD
-            <marker date="1449771727634" expanded="true" signature="7175:7197" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1449771727634" expanded="true" signature="7259:8052" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1449771727634" expanded="true" signature="8231:8763" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1449771727634" expanded="true" signature="8991:9601" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="9846:11546" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="12045:13144" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="13505:14583" placeholder="SELECT gab_p..gabtbbai..." />
-=======
-            <marker date="1448646463462" expanded="true" signature="11931:11953" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1448646463462" expanded="true" signature="12015:12808" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1448646463462" expanded="true" signature="12987:13519" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1448646463462" expanded="true" signature="13747:14357" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="14602:16302" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="16801:17900" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="18261:19339" placeholder="SELECT gab_p..gabtbbai..." />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
+            <marker date="1491400210990" expanded="true" signature="7225:7248" ph="SELECT * FRO... heltbseg" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/models/cidade_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="84" selection-start-line="10" selection-start-column="84" selection-end-line="10" selection-end-column="84" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/models/tipo_contato_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_consulta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="89" selection-start-line="31" selection-start-column="89" selection-end-line="31" selection-end-column="89" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/views/cidade_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/tipo_contato.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="29" selection-start-line="86" selection-start-column="29" selection-end-line="86" selection-end-column="29" />
-          <folding>
-            <marker date="1449771727634" expanded="true" signature="7175:7197" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1449771727634" expanded="true" signature="7259:8052" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1449771727634" expanded="true" signature="8231:8763" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1449771727634" expanded="true" signature="8991:9601" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="9846:11546" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="12045:13144" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="13505:14583" placeholder="SELECT gab_p..gabtbbai..." />
-=======
-    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1448646463462" expanded="true" signature="11931:11953" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1448646463462" expanded="true" signature="12015:12808" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1448646463462" expanded="true" signature="12987:13519" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1448646463462" expanded="true" signature="13747:14357" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="14602:16302" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="16801:17900" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="18261:19339" placeholder="SELECT gab_p..gabtbbai..." />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/tipo_contato_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_consulta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="14" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/models/cidade_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="84" selection-start-line="10" selection-start-column="84" selection-end-line="10" selection-end-column="84" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="228" column="28" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/views/cidade_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/controllers/tipo_contato.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="29" selection-start-line="86" selection-start-column="29" selection-end-line="86" selection-end-column="29" />
-          <folding>
-            <marker date="1449771727634" expanded="true" signature="7175:7197" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1449771727634" expanded="true" signature="7259:8052" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1449771727634" expanded="true" signature="8231:8763" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1449771727634" expanded="true" signature="8991:9601" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="9846:11546" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="12045:13144" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="13505:14583" placeholder="SELECT gab_p..gabtbbai..." />
-=======
-    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="240" column="8" selection-start-line="240" selection-start-column="8" selection-end-line="240" selection-end-column="8" />
-          <folding>
-            <marker date="1448646463462" expanded="true" signature="11931:11953" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1448646463462" expanded="true" signature="12015:12808" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1448646463462" expanded="true" signature="12987:13519" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1448646463462" expanded="true" signature="13747:14357" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="14602:16302" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="16801:17900" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="18261:19339" placeholder="SELECT gab_p..gabtbbai..." />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/tipo_contato_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/models/cidade_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_consulta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="14" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/views/cidade_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/tipo_contato.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="119" column="42" selection-start-line="119" selection-start-column="42" selection-end-line="119" selection-end-column="42" />
-          <folding>
-            <marker date="1449771727634" expanded="true" signature="7175:7197" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1449771727634" expanded="true" signature="7259:8052" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1449771727634" expanded="true" signature="8231:8763" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1449771727634" expanded="true" signature="8991:9601" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="9846:11546" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="12045:13144" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="13505:14583" placeholder="SELECT gab_p..gabtbbai..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
-          <folding />
-=======
-    <entry file="file://$PROJECT_DIR$/application/controllers/contato.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/contato_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="72" selection-start-line="43" selection-start-column="72" selection-end-line="43" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="87" selection-start-line="54" selection-start-column="87" selection-end-line="54" selection-end-column="87" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-<<<<<<< HEAD
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/tipo_contato_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_consulta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="70" selection-start-line="32" selection-start-column="70" selection-end-line="32" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-=======
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/login.php">
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/config/constants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="38" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="38" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1448646463462" expanded="true" signature="11931:11953" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1448646463462" expanded="true" signature="12015:12808" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1448646463462" expanded="true" signature="12987:13519" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1448646463462" expanded="true" signature="13747:14357" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="14602:16302" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="16801:17900" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="18261:19339" placeholder="SELECT gab_p..gabtbbai..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="306" column="48" selection-start-line="306" selection-start-column="48" selection-end-line="306" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/programa_consulta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/programa_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/programa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="117" column="42" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/config/constants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-=======
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.52577317">
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="38" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/constants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/empresa_model.php">
-=======
-    <entry file="file://$PROJECT_DIR$/application/controllers/programa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="116" column="42" selection-start-line="116" selection-start-column="42" selection-end-line="116" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/programa_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/programa_consulta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029209621">
-          <caret line="307" column="48" selection-start-line="307" selection-start-column="48" selection-end-line="307" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="87" selection-start-line="54" selection-start-column="87" selection-end-line="54" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/views/cidade_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2255083">
-          <caret line="39" column="61" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11623932">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.9731665">
-          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.9230769">
-          <caret line="228" column="28" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_consulta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.615385">
-          <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/controllers/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/cargo_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0068728523">
-          <caret line="8" column="100" selection-start-line="8" selection-start-column="100" selection-end-line="8" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/contato_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3659794">
-          <caret line="43" column="72" selection-start-line="43" selection-start-column="72" selection-end-line="43" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/cidade_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="84" selection-start-line="10" selection-start-column="84" selection-end-line="10" selection-end-column="84" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7996422">
-          <caret line="28" column="30" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/contato_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/tipo_contato_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5384614">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/tipo_contato_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231">
-          <caret line="36" column="115" selection-start-line="36" selection-start-column="97" selection-end-line="36" selection-end-column="115" />
-=======
-    <entry file="file://$PROJECT_DIR$/application/views/profissao_cadastro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52577317">
-          <caret line="21" column="75" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/contato.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="8140">
+          <caret line="407" column="37" lean-forward="false" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
+          <folding>
+            <marker date="1491400295777" expanded="true" signature="14029:14064" ph="SELECT hel_p... heltbcon" />
+            <marker date="1491400295777" expanded="true" signature="14029:14334" ph="SELECT hel_p... heltbcon" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/javascripts/mask.js">
+    <entry file="file://$PROJECT_DIR$/application/controllers/empresa.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="12760">
+          <caret line="638" column="9" lean-forward="false" selection-start-line="638" selection-start-column="9" selection-end-line="638" selection-end-column="9" />
+          <folding>
+            <marker date="1491400361128" expanded="true" signature="24634:25068" ph="SELECT hel_p... heltbsco" />
+            <marker date="1491400361128" expanded="true" signature="25332:26676" ph="SELECT hel_p... heltbemp" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/cidade_cadastro.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
+        <state relative-caret-position="4040">
+          <caret line="202" column="7" lean-forward="false" selection-start-line="202" selection-start-column="7" selection-end-line="202" selection-end-column="7" />
+          <folding>
+            <marker date="1491400416879" expanded="true" signature="4893:4916" ph="SELECT * FRO... heltbmen" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4120">
+          <caret line="206" column="32" lean-forward="false" selection-start-line="206" selection-start-column="32" selection-end-line="206" selection-end-column="32" />
+          <folding>
+            <marker date="1491400478811" expanded="true" signature="5707:5867" ph="SELECT hel_p... heltbser" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/M_pdf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application/controllers/tipo_contato.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.0697675">
-          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
+        <state relative-caret-position="12960">
+          <caret line="648" column="4" lean-forward="true" selection-start-line="648" selection-start-column="4" selection-end-line="648" selection-end-column="4" />
           <folding>
-            <marker date="1449771727634" expanded="true" signature="7175:7197" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1449771727634" expanded="true" signature="7259:8052" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1449771727634" expanded="true" signature="8231:8763" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1449771727634" expanded="true" signature="8991:9601" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="9846:11546" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="12045:13144" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1449771727634" expanded="true" signature="13505:14583" placeholder="SELECT gab_p..gabtbbai..." />
-=======
+            <marker date="1491403947832" expanded="true" signature="23918:25084" ph="SELECT hel_p... heltbcha" />
+            <marker date="1491403947832" expanded="true" signature="24367:24495" ph="SELECT COUNT... heltbios" />
+            <marker date="1491403947832" expanded="true" signature="24500:24587" ph="SELECT COUNT... heltbios" />
+            <marker date="1491403947832" expanded="true" signature="26582:26985" ph="..." />
+            <marker date="1491403947832" expanded="true" signature="26596:26945" ph="..." />
+            <marker date="1491403947832" expanded="true" signature="27319:28395" ph="SELECT hel_p... heltbios" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Pdf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/ordem_servico_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-560">
+          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/item_ordem_servico_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1580">
+          <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+          <folding>
+            <marker date="1491392919641" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
+            <marker date="1491392919641" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
+            <marker date="1491392919641" expanded="true" signature="16990:17238" ph="SELECT hel_s... heltbios" />
+            <marker date="1491392919641" expanded="true" signature="22183:22737" ph="SELECT hel_p... heltbios" />
+            <marker date="1491392919641" expanded="true" signature="22861:24099" ph="SELECT hel_p... heltbose" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/item_ordem_servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="171" column="66" lean-forward="true" selection-start-line="171" selection-start-column="66" selection-end-line="171" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/stylesheets/estilo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/templates/dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="28" column="122" lean-forward="false" selection-start-line="28" selection-start-column="122" selection-end-line="28" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/report/report_item_chamado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/report/report_header_padrao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="45" lean-forward="true" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/report/report_sintetico_chamado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="6" column="54" lean-forward="true" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#6;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/segmento.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4440">
+          <caret line="222" column="5" lean-forward="false" selection-start-line="222" selection-start-column="5" selection-end-line="222" selection-end-column="5" />
+          <folding>
+            <marker date="1491400210990" expanded="true" signature="7225:7248" ph="SELECT * FRO... heltbseg" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/contato.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8140">
+          <caret line="407" column="37" lean-forward="false" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
+          <folding>
+            <marker date="1491400295777" expanded="true" signature="14029:14064" ph="SELECT hel_p... heltbcon" />
+            <marker date="1491400295777" expanded="true" signature="14029:14334" ph="SELECT hel_p... heltbcon" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/empresa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12760">
+          <caret line="638" column="9" lean-forward="false" selection-start-line="638" selection-start-column="9" selection-end-line="638" selection-end-column="9" />
+          <folding>
+            <marker date="1491400361128" expanded="true" signature="24634:25068" ph="SELECT hel_p... heltbsco" />
+            <marker date="1491400361128" expanded="true" signature="25332:26676" ph="SELECT hel_p... heltbemp" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/third_party/fpdf/fpdf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="202" column="7" lean-forward="false" selection-start-line="202" selection-start-column="7" selection-end-line="202" selection-end-column="7" />
+          <folding>
+            <marker date="1491400416879" expanded="true" signature="4893:4916" ph="SELECT * FRO... heltbmen" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="206" column="32" lean-forward="false" selection-start-line="206" selection-start-column="32" selection-end-line="206" selection-end-column="32" />
+          <folding>
+            <marker date="1491400478811" expanded="true" signature="5707:5867" ph="SELECT hel_p... heltbser" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/M_pdf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Pdf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="650" column="11" lean-forward="false" selection-start-line="650" selection-start-column="11" selection-end-line="650" selection-end-column="11" />
+          <folding>
+            <marker date="1491403947832" expanded="true" signature="23918:25084" ph="SELECT hel_p... heltbcha" />
+            <marker date="1491403947832" expanded="true" signature="24367:24495" ph="SELECT COUNT... heltbios" />
+            <marker date="1491403947832" expanded="true" signature="24500:24587" ph="SELECT COUNT... heltbios" />
+            <marker date="1491403947832" expanded="true" signature="26582:26985" ph="..." />
+            <marker date="1491403947832" expanded="true" signature="26596:26945" ph="..." />
+            <marker date="1491403947832" expanded="true" signature="27319:28395" ph="SELECT hel_p... heltbios" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML-aftercustomizefaile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML2.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="398" column="23" lean-forward="false" selection-start-line="398" selection-start-column="23" selection-end-line="398" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/database/DB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-240">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="57" column="40" lean-forward="true" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/jasper/setting.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/jasper/jasper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding>
+            <marker date="1491414355289" expanded="true" signature="3887:3899" ph="..." />
+            <marker date="1491414355289" expanded="true" signature="170802:170979" ph="..." />
+            <marker date="1491414355289" expanded="true" signature="170814:170951" ph="..." />
+            <marker date="1491414355289" expanded="true" signature="171703:171753" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24504505">
-          <caret line="241" column="31" selection-start-line="241" selection-start-column="31" selection-end-line="241" selection-end-column="31" />
+        <state relative-caret-position="111">
+          <caret line="237" column="8" lean-forward="false" selection-start-line="237" selection-start-column="8" selection-end-line="237" selection-end-column="8" />
           <folding>
-            <marker date="1448646463462" expanded="true" signature="11931:11953" placeholder="SELECT * FRO..gabtbcid..." />
-            <marker date="1448646463462" expanded="true" signature="12015:12808" placeholder="SELECT gab_p..gabtbevc..." />
-            <marker date="1448646463462" expanded="true" signature="12987:13519" placeholder="SELECT gab_p..gabtbsec..." />
-            <marker date="1448646463462" expanded="true" signature="13747:14357" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="14602:16302" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="16801:17900" placeholder="SELECT gab_p..gabtbbai..." />
-            <marker date="1448646463462" expanded="true" signature="18261:19339" placeholder="SELECT gab_p..gabtbbai..." />
->>>>>>> 65ec2764d9a78450ffe462ace4afe374122cdccc
+            <marker date="1491414370275" expanded="true" signature="6500:6523" ph="SELECT * FRO... heltbcid" />
           </folding>
         </state>
       </provider>

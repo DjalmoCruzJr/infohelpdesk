@@ -2007,7 +2007,7 @@ class CI_Email {
 						'sea'	=>	'application/octet-stream',
 						'dll'	=>	'application/octet-stream',
 						'oda'	=>	'application/oda',
-						'pdf'	=>	'application/pdf',
+						'Pdf2' =>	'application/pdf',
 						'ai'	=>	'application/postscript',
 						'eps'	=>	'application/postscript',
 						'ps'	=>	'application/postscript',

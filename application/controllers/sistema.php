@@ -301,9 +301,48 @@ class Sistema extends CI_Controller {
 							  WHEN 2 THEN 'Web'
        						 END AS hel_tipo_sis 
 				       FROM heltbsis ".$clasulaWhere.$order_by;
-	
-		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_sistema.jrxml', $consulta);
+
+        $dados['BLC_RELATORIO'] = array();
+
+        $dados_relatorio = $this->gerarRelatorio();
+
+		if ($dados_relatorio) {
+            foreach ($dados_relatorio as $registro) {
+                $dados['BLC_RELATORIO'][] = array(
+                    "hel_pk_seq_sis" => $registro->hel_pk_seq_sis,
+                    "hel_codigo_sis" => $registro->hel_codigo_sis,
+                    "hel_desc_sis" => $registro->hel_desc_sis,
+                    "hel_tipo_sis" => $registro->hel_tipo_sis
+                );
+            }
+
+            $dados['BLC_RELATORIO_NUM_TOTALIZADOR'][] = array(
+                "hel_numregistros_sis" => count($dados['BLC_RELATORIO'])
+            );
+            $dados['BLC_RELATORIO_COLUMNHEADER'][] = array(
+                "hel_lb_pk_seq_sis" => 'Seq.',
+                "hel_lb_codigo_sis" => 'Código',
+                "hel_lb_desc_sis" => 'Descrição',
+                "hel_lb_tipo_sis" => 'Tipo'
+            );
+
+            $header = ' <table width="100%" style="border-bottom: 1px solid #000000; vertical-align: bottom;"><tr>
+							<td align="left"><img src="' . base_url('assets/images/logo.png') . '" width="28%" /></td>
+							<td align="center"><h1>Relatório de Sistemas</h1></td>
+							<td style="text-align: right;"><span>HelpDesk</span><br/><span>HELPR507</span><br/><span>Página {PAGENO} de {nbpg}</span> </td>
+						</table> ';
+
+            $footer = $_SERVER['HTTP_HOST'] . '|Página {PAGENO} de {nbpg}|' . date('d/m/Y H:i:s');
+
+            $html .= $this->parser->parse('report/report_sistema', $dados);
+
+            $this->load->library('Pdf2');
+            $pdf = $this->pdf->load();
+            $pdf->setAutoTopMargin = 'stretch';
+            $pdf->SetHTMLHeader($header);
+            $pdf->SetFooter($footer);
+            $pdf->WriteHTML($html);
+            $pdf->Output();
 		} else {
 			$mensagem = "- Nenhum sistema foi encontrada.\n";
 			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');

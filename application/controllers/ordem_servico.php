@@ -55,8 +55,8 @@ class Ordem_Servico extends CI_Controller {
 		$dados['hel_horariofinal_ose']      = '';
 		$dados['hel_seqemp_ose']    		= '';
 		$dados['hel_seqcon_ose']    		= '';
-		$dados['hel_kminicial_ose']    		= '';
-		$dados['hel_kmfinal_ose']    		= '';
+		$dados['hel_kminicial_ose']    		= '0';
+		$dados['hel_kmfinal_ose']    		= '0';
 		$dados['hel_observacao_ose']        = '';
 				
 		$dados['ACAO'] = 'Novo';

@@ -12,22 +12,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.css') ?>" rel="stylesheet">
 		<link href="<?php echo base_url('assets/vendor/font-awesome/css/font-awesome.css') ?>" rel="stylesheet">
-		<link href="<?php echo base_url('assets/stylesheets/dataTables.bootstrap.css') ?>" rel="stylesheet">		
-		
+		<link href="<?php echo base_url('assets/stylesheets/dataTables.bootstrap.css') ?>" rel="stylesheet">
+
 		<link href="<?php echo base_url('assets/stylesheets/theme.css') ?>" rel="stylesheet">
-		
+
 		<link href="<?php echo base_url('assets/stylesheets/skins/default.css') ?>" rel="stylesheet">
-		
+
 		<link href="<?php echo base_url('assets/stylesheets/theme-custom.css') ?>" rel="stylesheet">
 		<script src="<?php echo base_url('assets/vendor/modernizr/modernizr.js') ?>"></script>
-		
+
 		<link href="<?php echo base_url('assets/vendor/select2/select2.css') ?>" rel="stylesheet">
-		
+
 		<link href="<?php echo base_url('assets/vendor/bootstrap-chosen/bootstrap-chosen.css') ?>" rel="stylesheet">
-		
+
 		<link href="<?php echo base_url('assets/stylesheets/jquery-upload/jquery.fileupload.css') ?>" rel="stylesheet">
 		<link href="<?php echo base_url('assets/stylesheets/jquery-upload/jquery.fileupload-ui.css') ?>" rel="stylesheet">
-		
+
 		<noscript>
 			<link href="<?php echo base_url('assets/stylesheets/jquery-upload/jquery.fileupload-noscript.css') ?>" rel="stylesheet">
 		</noscript>
@@ -39,14 +39,14 @@
 		<section class="body">
 			<header class="header">
 				<div class="logo-container">
-					<a href="<?php echo site_url('inicio')?>" class="logo">
+					<a href="<?php echo site_url('inicio') ?>" class="logo">
 						<img src="<?php echo base_url('assets/images/logo.png') ?>" height="35" alt="Porto Admin" />
 					</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
 						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 					</div>
 				</div>
-			
+
 				<!-- start: search & user box -->
 				<div class="header-right">
 <!-- 					<ul class="notifications"> -->
@@ -57,23 +57,23 @@
 <!-- 							</a>						 -->
 <!-- 						</li> -->
 <!-- 					</ul> -->
-			
+
 					<span class="separator"></span>
-			
+
 					<ul class="notifications">
-						
+
 <!-- 						<li> -->
 <!-- 							<a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown"> -->
 <!-- 								<i class="fa fa-tasks"></i> -->
 <!-- 								<span class="badge">3</span> -->
 <!-- 							</a> -->
-			
+
 <!-- 							<div class="dropdown-menu notification-menu large"> -->
 <!-- 								<div class="notification-title"> -->
 <!-- 									<span class="pull-right label label-default">3</span> -->
 <!-- 									Tasks -->
 <!-- 								</div> -->
-			
+
 <!-- 								<div class="content"> -->
 <!-- 									<ul> -->
 <!-- 										<li> -->
@@ -85,7 +85,7 @@
 												<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
 <!-- 											</div> -->
 <!-- 										</li> -->
-			
+
 <!-- 										<li> -->
 <!-- 											<p class="clearfix mb-xs"> -->
 <!-- 												<span class="message pull-left">Importing Contacts</span> -->
@@ -95,7 +95,7 @@
 												<div class="progress-bar" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100" style="width: 98%;"></div>
 <!-- 											</div> -->
 <!-- 										</li> -->
-			
+
 <!-- 										<li> -->
 <!-- 											<p class="clearfix mb-xs"> -->
 <!-- 												<span class="message pull-left">Uploading something big</span> -->
@@ -114,13 +114,13 @@
 <!-- 								<i class="fa fa-envelope"></i> -->
 <!-- 								<span class="badge">4</span> -->
 <!-- 							</a> -->
-			
+
 <!-- 							<div class="dropdown-menu notification-menu"> -->
 <!-- 								<div class="notification-title"> -->
 <!-- 									<span class="pull-right label label-default">230</span> -->
 <!-- 									Messages -->
 <!-- 								</div> -->
-			
+
 <!-- 								<div class="content"> -->
 <!-- 									<ul> -->
 <!-- 										<li> -->
@@ -138,7 +138,7 @@
 <!-- 													<img src="assets/images/!sample-user.jpg" alt="Joseph Junior" class="img-circle" /> -->
 <!-- 												</figure> -->
 <!-- 												<span class="title">Joseph Junior</span> -->
-												
+
 <!-- 											</a> -->
 <!-- 										</li> -->
 <!-- 										<li> -->
@@ -156,13 +156,13 @@
 <!-- 													<img src="assets/images/!sample-user.jpg" alt="Joseph Junior" class="img-circle" /> -->
 <!-- 												</figure> -->
 <!-- 												<span class="title">Joseph Junior</span> -->
-												
+
 <!-- 											</a> -->
 <!-- 										</li> -->
 <!-- 									</ul> -->
-			
+
 <!-- 									<hr /> -->
-			
+
 <!-- 									<div class="text-right"> -->
 <!-- 										<a href="#" class="view-more">View All</a> -->
 <!-- 									</div> -->
@@ -174,13 +174,13 @@
 <!-- 								<i class="fa fa-bell"></i> -->
 <!-- 								<span class="badge">3</span> -->
 <!-- 							</a> -->
-			
+
 <!-- 							<div class="dropdown-menu notification-menu"> -->
 <!-- 								<div class="notification-title"> -->
 <!-- 									<span class="pull-right label label-default">3</span> -->
 <!-- 									Alerts -->
 <!-- 								</div> -->
-			
+
 <!-- 								<div class="content"> -->
 <!-- 									<ul> -->
 <!-- 										<li> -->
@@ -211,9 +211,9 @@
 <!-- 											</a> -->
 <!-- 										</li> -->
 <!-- 									</ul> -->
-			
+
 <!-- 									<hr /> -->
-			
+
 <!-- 									<div class="text-right"> -->
 <!-- 										<a href="#" class="view-more">View All</a> -->
 <!-- 									</div> -->
@@ -221,9 +221,9 @@
 <!-- 							</div> -->
 <!-- 						</li> -->
 					</ul>
-			
+
 <!-- 					<span class="separator"></span> -->
-			
+
 					<div id="userbox" class="userbox">
 						<a href="#" data-toggle="dropdown">
 							<figure class="profile-picture">
@@ -233,18 +233,18 @@
 								<span class="name">{login}</span>
 								<span class="role">{hel_desc_tco}</span>
 							</div>
-			
+
 							<i class="fa custom-caret"></i>
 						</a>
-			
+
 						<div class="dropdown-menu">
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1"  href="<?php echo site_url('meuPerfil')?>"><i class="fa fa-user"></i> Meu Perfil</a>
-								</li>								
+									<a role="menuitem" tabindex="-1"  href="<?php echo site_url('meuPerfil') ?>"><i class="fa fa-user"></i> Meu Perfil</a>
+								</li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="<?php echo site_url('login')?>"><i class="fa fa-power-off"></i> Sair</a>
+									<a role="menuitem" tabindex="-1" href="<?php echo site_url('login') ?>"><i class="fa fa-power-off"></i> Sair</a>
 								</li>
 							</ul>
 						</div>
@@ -257,10 +257,10 @@
 			<div class="inner-wrapper">
 				<!-- start: sidebar -->
 				<aside id="sidebar-left" class="sidebar-left">
-				
+
 					<div class="sidebar-header">
 						<div class="sidebar-title">
-							
+
 						</div>
 						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
 							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -272,11 +272,11 @@
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li class="nav-active">
-										<a href="<?php echo site_url('inicio')?>">
+										<a href="<?php echo site_url('inicio') ?>">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Início</span>
 										</a>
-									</li>								
+									</li>
 									<li class="nav-parent">
 										<a {desabilita}>
 											<i class="fa fa-file-o" aria-hidden="true"></i>
@@ -284,42 +284,42 @@
 										</a>
 										<ul class="nav nav-children" >
 											<li>
-												<a href="<?php echo site_url('cidade')?>" {desabilita}>
+												<a href="<?php echo site_url('cidade') ?>" {desabilita}>
 													 	 Cidade
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('segmento')?>" {desabilita}>
+												<a href="<?php echo site_url('segmento') ?>" {desabilita}>
 													 	 Segmento
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('empresa')?>" {desabilita}>
+												<a href="<?php echo site_url('empresa') ?>" {desabilita}>
 													 Empresa
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('tipo_contato');?>"{desabilita}>
+												<a href="<?php echo site_url('tipo_contato'); ?>"{desabilita}>
 													Tipo contato
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('contato');?>" {desabilita}>
+												<a href="<?php echo site_url('contato'); ?>" {desabilita}>
 													Contato
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('servico');?>"{desabilita}>
+												<a href="<?php echo site_url('servico'); ?>"{desabilita}>
 													Serviço
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('sistema');?>"{desabilita}>
+												<a href="<?php echo site_url('sistema'); ?>"{desabilita}>
 													Sistema
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('menu');?>"{desabilita}>
+												<a href="<?php echo site_url('menu'); ?>"{desabilita}>
 													Menu
 												</a>
 											</li>
@@ -332,13 +332,13 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="<?php echo site_url('chamado');?>">
-													Chamado 
+												<a href="<?php echo site_url('chamado'); ?>">
+													Chamado
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('ordem_servico');?>"{desabilita}>
-													Ordem de Serviço 
+												<a href="<?php echo site_url('ordem_servico'); ?>"{desabilita}>
+													Ordem de Serviço
 												</a>
 											</li>
 										</ul>
@@ -350,13 +350,13 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="<?php echo site_url('replicar');?>">
-													Replicar 
+												<a href="<?php echo site_url('replicar'); ?>">
+													Replicar
 												</a>
 											</li>
 										</ul>
 									</li>
-									
+
 									<li class="nav-parent">
 										<a {desabilita}>
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -364,12 +364,12 @@
 										</a>
 										<ul class="nav nav-children">
 											<li>
-												<a href="<?php echo site_url('relatorio_contato_empresa');?>" {desabilita}>
+												<a href="<?php echo site_url('relatorio_contato_empresa'); ?>" {desabilita}>
 													Contatos da Empresa
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('relatorio_menu_contratado');?>" {desabilita}>
+												<a href="<?php echo site_url('relatorio_menu_contratado'); ?>" {desabilita}>
 													Menu Contratado
 												</a>
 											</li>
@@ -377,19 +377,19 @@
 									</li>
 								</ul>
 							</ul>
-						</nav>	
+						</nav>
 					</div>
 				</div>
-				
+
 				</aside>
 				<!-- end: sidebar -->
 
 				<section role="main" class="content-body">
 					<div class="row">
-						<div class="col-md-12 col-lg-12 col-xl-12">							
+						<div class="col-md-12 col-lg-12 col-xl-12">
 										{MENSAGEM_SISTEMA_ERRO}
 										{MENSAGEM_SISTEMA_SUCESSO}
-										{CONTEUDO}   							
+										{CONTEUDO}
 						</div>
 					</div>
 				</section>
@@ -401,13 +401,13 @@
 						<a href="#" class="mobile-close visible-xs">
 							Collapse <i class="fa fa-chevron-right"></i>
 						</a>
-			
+
 						<div class="sidebar-right-wrapper">
-			
+
 							<div class="sidebar-widget widget-calendar">
 								<h6>Upcoming Tasks</h6>
 								<div data-plugin-datepicker data-plugin-skin="dark" ></div>
-			
+
 								<ul>
 									<li>
 										<time datetime="2014-04-19T00:00+00:00">04/19/2014</time>
@@ -415,7 +415,7 @@
 									</li>
 								</ul>
 							</div>
-			
+
 							<div class="sidebar-widget widget-friends">
 								<h6>Friends</h6>
 								<ul>
@@ -457,15 +457,15 @@
 									</li>
 								</ul>
 							</div>
-			
+
 						</div>
 					</div>
 				</div>
 			</aside>
 		</section>
-		
-		<input type="hidden" id="siteURL" value="<?php echo site_url();?>">
-		
+
+		<input type="hidden" id="siteURL" value="<?php echo site_url(); ?>">
+
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.ui.widget.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/tmpl.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/load-image.min.js') ?>"></script>
@@ -478,14 +478,14 @@
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-validate.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-ui.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-process.js') ?>"></script>
-		
+
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.fileupload-angular.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-audio.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-jquery-ui.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.fileupload-video.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/jquery.jquery.iframe-transport.js') ?>"></script>
 		<script src="<?php echo base_url('assets/javascripts/jquery-upload/tmpl.min.js') ?>"></script>
-		
+
 		<script src="<?php echo base_url('assets/vendor/jquery/jquery.js') ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.js') ?>"></script>
@@ -503,7 +503,7 @@
 		<script src="<?php echo base_url('assets/vendor/select2/select2.js') ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/select2/select2_locale_pt-BR.js') ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/bootstrap-chosen/chosen.jquery.js') ?>"></script>
-		
+
 		<script>
 		    $(".js-example-basic-multiple").select2();
 
@@ -515,8 +515,8 @@
 // 		    $(".js-example-language").select2({
 // 		    	  language: "pt-BR"
 // 		    	});
-		    
-	    
+
+
 		    $(document).ready(function() {
 		        $('#tb_cidade').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_tipo_contato').dataTable({"order": [[ 1, "asc" ]]});
@@ -535,8 +535,8 @@
 				$('#tb_assunto').dataTable({"order": [[ 1, "asc" ]]});
 				$('#tb_item_chamado').dataTable();
 				$('#tb_dados_adicionais').dataTable({"order": [[ 1, "asc" ]]});
-				$('#tb_segmento').dataTable({"order": [[ 1, "asc" ]]});				
-				
+				$('#tb_segmento').dataTable({"order": [[ 1, "asc" ]]});
+
 			});
 		</script>
 

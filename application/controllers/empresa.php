@@ -611,38 +611,37 @@ class Empresa extends CI_Controller {
 	}
 	
 	public function relatorio($layout, $filtro_empresa, $order_by, $filtro_cidade, $imprimir_sistema_contratado, $filtro_sistema, $hel_ativo_emp){
-		$order_by     	= str_replace("%20", " ", $order_by);
-		$clasulaWhere 	= "";
-		$whereAnd    	= " WHERE ";
-		$filtros      	= array();
-		$select_sistema = "";
-		$arquivo        = $layout == 0 ? 'assets/relatorios/relatorio_empresa.jrxml' : 'assets/relatorios/relatorio_empresa_analitico.jrxml';
-		
-		if ($filtro_empresa != 0){
-			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_emp IN ('.$filtro_empresa.') ';
-			$whereAnd = " AND ";
-		
-		}
-		
-		if ($filtro_cidade != 0 ){
-			$clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_cid IN ('.$filtro_cidade.') ';
-			$whereAnd     = " AND ";
-		}
-		
-		switch ($hel_ativo_emp){
-			case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp.' ';
-					 $whereAnd = " AND ";
-					 break;
-			case 1 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp.' ';
-					 $whereAnd = " AND ";
-					 break;
-		}
-		
-		
-		$imprimir_sistema_contratado == 0 ? array_push($filtros,"hel_seqemp_sco")  : "";
+        $order_by     	= str_replace("%20", " ", $order_by);
+        $clasulaWhere 	= "";
+        $whereAnd    	= " WHERE ";
+        $filtros      	= array();
+        $select_sistema = "";
+        $arquivo        = $layout == 0 ? 'assets/relatorios/relatorio_empresa.jrxml' : 'assets/relatorios/relatorio_empresa_analitico.jrxml';
 
-		if ($imprimir_sistema_contratado == 1) {
-			$select_sistema = ' SELECT hel_pk_seq_sco,
+        if ($filtro_empresa != 0){
+            $clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_emp IN ('.$filtro_empresa.') ';
+            $whereAnd = " AND ";
+
+        }
+
+        if ($filtro_cidade != 0 ){
+            $clasulaWhere = $clasulaWhere.$whereAnd.' hel_pk_seq_cid IN ('.$filtro_cidade.') ';
+            $whereAnd     = " AND ";
+        }
+
+        switch ($hel_ativo_emp){
+            case 0 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp.' ';
+                $whereAnd = " AND ";
+                break;
+            case 1 : $clasulaWhere = $clasulaWhere.$whereAnd.' hel_ativo_emp = '.$hel_ativo_emp.' ';
+                $whereAnd = " AND ";
+                break;
+        }
+
+
+        $imprimir_sistema_contratado == 0 ? array_push($filtros,"hel_seqemp_sco")  : "";
+        if ($imprimir_sistema_contratado == 1) {
+            $select_sistema = ' SELECT hel_pk_seq_sco,
 									   hel_seqsis_sco,
 								       hel_codigo_sis,
 								       hel_desc_sis,
@@ -653,17 +652,16 @@ class Empresa extends CI_Controller {
 								FROM heltbsco
 								LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_sco
 								WHERE hel_seqemp_sco = $P{hel_seqemp_sco} ';
-				
-			$select_sistema .= $filtro_sistema != 0 ? ' AND hel_seqsis_sco IN ('.$filtro_sistema.') ' : '';
-				
-		}
 
-		$consulta_sub = array (
-			"hel_seqemp_sco" => $select_sistema
-		);
-	
-		global $consulta;
-		$consulta = " SELECT hel_pk_seq_emp,
+            $select_sistema .= $filtro_sistema != 0 ? ' AND hel_seqsis_sco IN ('.$filtro_sistema.') ' : '';
+
+        }
+        $consulta_sub = array (
+            "hel_seqemp_sco" => $select_sistema
+        );
+
+        global $consulta;
+        $consulta = " SELECT hel_pk_seq_emp,
 							 hel_empresa_emp,
 						     hel_filial_emp,
 							 CASE hel_tipo_emp WHEN 0 THEN
@@ -699,16 +697,16 @@ class Empresa extends CI_Controller {
 				             hel_responsavel_emp
 					  FROM heltbemp
 					  LEFT JOIN heltbcid ON hel_pk_seq_cid = hel_seqcid_emp 
-				      LEFT JOIN heltbseg ON hel_pk_seq_seg = hel_seqseg_emp ".$clasulaWhere.$order_by;		
-	
-		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio($arquivo, $consulta, $filtros, $consulta_sub);
-		} else {
-			$mensagem = "- Nenhuma empresa foi encontrada.\n";
-			$this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
-			$this->session->set_flashdata('erro', nl2br($mensagem));
-			redirect('erro_relatorio');
-		}
-	}
+				      LEFT JOIN heltbseg ON hel_pk_seq_seg = hel_seqseg_emp ".$clasulaWhere.$order_by;
+
+        if ($this->gerarRelatorio()) {
+            $this->jasper->gerar_relatorio($arquivo, $consulta, $filtros, $consulta_sub);
+        } else {
+            $mensagem = "- Nenhuma empresa foi encontrada.\n";
+            $this->session->set_flashdata('titulo_erro', 'Para visualizar corrija os seguintes erros:');
+            $this->session->set_flashdata('erro', nl2br($mensagem));
+            redirect('erro_relatorio');
+        }
+    }
 	
 }

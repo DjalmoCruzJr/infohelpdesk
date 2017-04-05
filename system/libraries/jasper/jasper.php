@@ -11,7 +11,6 @@ class Jasper {
     	$PHPJasperXML->select_sub = $select_sub;
     	$PHPJasperXML->load_xml_file($name, $select);
     	 
-    	 
     	$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db);
     	$PHPJasperXML->outpage("I", $arrayNoSubSelect);    	
     }

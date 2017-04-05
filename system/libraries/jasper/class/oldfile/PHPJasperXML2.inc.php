@@ -10,7 +10,8 @@ private $myconn;
 private $con;
 private $group_name;
 
-public function PHPJasperXML($lang="en",$pdflib="FPDF"){	
+public function __construct($lang="en",$pdflib="FPDF"){
+    echo 'passo 1.6<br/>';
 $this->lang=$lang;
 $this->pdflib=$pdflib;
 }
@@ -395,8 +396,11 @@ public function element_textField($data){
 	}
 }
 
-public function transferDBtoArray($host,$user,$password,$db_or_dsn_name,$cndriver="mysql"){ $this->m=0;
-   
+public function transferDBtoArray($host,$user,$password,$db_or_dsn_name,$cndriver="mysql"){
+	$this->m=0;
+
+	echo 'passo 1.6<br/>';
+
 	if(!$this->connect($host,$user,$password,$db_or_dsn_name,$cndriver))	//connect database
 	{
 	echo "Fail to connect database";
