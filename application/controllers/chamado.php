@@ -577,7 +577,6 @@ class Chamado extends CI_Controller {
         $dados['BLC_RELATORIO_ITENS_CHAMADO'] = array();
 
         if ($dados_relatorio) {
-            $i = 0;
             foreach ($dados_relatorio as $registro) {
                 $dados['BLC_RELATORIO'][] = array(
                     "hel_pk_seq_cha" => $registro->hel_pk_seq_cha,

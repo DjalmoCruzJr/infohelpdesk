@@ -2,38 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b54bf300-a663-45ca-ac4e-c8f39ff9e0c3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/libraries/M_pdf.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/gabinete.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/libraries/Pdf.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/HelpDesk.iml" afterPath="$PROJECT_DIR$/.idea/HelpDesk.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/database.php" afterPath="$PROJECT_DIR$/application/config/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/mimes.php" afterPath="$PROJECT_DIR$/application/config/mimes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Doc.php" afterPath="$PROJECT_DIR$/application/controllers/Doc.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/chamado.php" afterPath="$PROJECT_DIR$/application/controllers/chamado.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/cidade.php" afterPath="$PROJECT_DIR$/application/controllers/cidade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/contato.php" afterPath="$PROJECT_DIR$/application/controllers/contato.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/empresa.php" afterPath="$PROJECT_DIR$/application/controllers/empresa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/menu.php" afterPath="$PROJECT_DIR$/application/controllers/menu.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/ordem_servico.php" afterPath="$PROJECT_DIR$/application/controllers/ordem_servico.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/segmento.php" afterPath="$PROJECT_DIR$/application/controllers/segmento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/servico.php" afterPath="$PROJECT_DIR$/application/controllers/servico.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/sistema.php" afterPath="$PROJECT_DIR$/application/controllers/sistema.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/tipo_contato.php" afterPath="$PROJECT_DIR$/application/controllers/tipo_contato.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/Session.php" afterPath="$PROJECT_DIR$/application/libraries/Session.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/templates/dashboard.php" afterPath="$PROJECT_DIR$/application/templates/dashboard.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/core/Common.php" afterPath="$PROJECT_DIR$/system/core/Common.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/Email.php" afterPath="$PROJECT_DIR$/system/libraries/Email.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php" afterPath="$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML-aftercustomizefaile.php" afterPath="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML-aftercustomizefaile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML2.inc.php" afterPath="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML2.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/libraries/jasper/jasper.php" afterPath="$PROJECT_DIR$/system/libraries/jasper/jasper.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,58 +16,89 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cidade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
+      <file leaf-file-name="ordem_servico.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="237" column="8" lean-forward="false" selection-start-line="237" selection-start-column="8" selection-end-line="237" selection-end-column="8" />
+            <state relative-caret-position="405">
+              <caret line="687" column="27" lean-forward="false" selection-start-line="687" selection-start-column="27" selection-end-line="687" selection-end-column="27" />
               <folding>
-                <marker date="1491414370275" expanded="true" signature="6500:6523" ph="SELECT * FRO... heltbcid" />
+                <marker date="1491422667333" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
+                <marker date="1491422667333" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
+                <marker date="1491422667333" expanded="true" signature="16990:17238" ph="SELECT hel_s... heltbios" />
+                <marker date="1491422667333" expanded="true" signature="22992:23757" ph="SELECT hel_p... heltbose" />
+                <marker date="1491422667333" expanded="true" signature="24975:25378" ph="..." />
+                <marker date="1491422667333" expanded="true" signature="24989:25338" ph="..." />
+                <marker date="1491422667333" expanded="true" signature="25532:26415" ph="SELECT hel_p... heltbios" />
+                <marker date="1491422667333" expanded="true" signature="25532:26416" ph="SELECT hel_p... heltbios" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jasper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/libraries/jasper/jasper.php">
+      <file leaf-file-name="mpdf.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/third_party/mpdf/mpdf.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+            <state relative-caret-position="230">
+              <caret line="16047" column="40" lean-forward="true" selection-start-line="16047" selection-start-column="40" selection-end-line="16047" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setting.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/libraries/jasper/setting.php">
+      <file leaf-file-name="report_item_ordem_servico.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="40">
+              <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <file leaf-file-name="report_sumary_ordem_servico.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/report/report_sumary_ordem_servico.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="57" column="40" lean-forward="true" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
-              <folding />
+            <state relative-caret-position="20">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PHPJasperXML.inc.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php">
+      <file leaf-file-name="report_ordem_servico.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/report/report_ordem_servico.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="45" column="44" lean-forward="false" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#5;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#6;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chamado.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+              <caret line="626" column="117" lean-forward="false" selection-start-line="626" selection-start-column="72" selection-end-line="626" selection-end-column="117" />
               <folding>
-                <marker date="1491414355289" expanded="true" signature="3887:3899" ph="..." />
-                <marker date="1491414355289" expanded="true" signature="170802:170979" ph="..." />
-                <marker date="1491414355289" expanded="true" signature="170814:170951" ph="..." />
-                <marker date="1491414355289" expanded="true" signature="171703:171753" ph="..." />
+                <marker date="1491417606188" expanded="true" signature="23918:25084" ph="SELECT hel_p... heltbcha" />
+                <marker date="1491417606188" expanded="true" signature="24367:24495" ph="SELECT COUNT... heltbios" />
+                <marker date="1491417606188" expanded="true" signature="24500:24587" ph="SELECT COUNT... heltbios" />
+                <marker date="1491417606188" expanded="true" signature="26562:26965" ph="..." />
+                <marker date="1491417606188" expanded="true" signature="26576:26925" ph="..." />
+                <marker date="1491417606188" expanded="true" signature="27299:28375" ph="SELECT hel_p... heltbios" />
               </folding>
             </state>
           </provider>
@@ -113,6 +115,10 @@
       <find>connect</find>
       <find>passo 1.7</find>
       <find>passo</find>
+      <find>e</find>
+      <find>relato</find>
+      <find>consultarBanco</find>
+      <find>WriteHTML</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,7 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/controllers/ordem_servico.php" />
         <option value="$PROJECT_DIR$/assets/stylesheets/estilo.css" />
         <option value="$PROJECT_DIR$/application/templates/dashboard.php" />
         <option value="$PROJECT_DIR$/application/views/report/report_item_chamado.php" />
@@ -133,7 +138,6 @@
         <option value="$PROJECT_DIR$/application/controllers/servico.php" />
         <option value="$PROJECT_DIR$/application/libraries/Pdf2.php" />
         <option value="$PROJECT_DIR$/application/libraries/M_pdf.php" />
-        <option value="$PROJECT_DIR$/application/controllers/chamado.php" />
         <option value="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML-aftercustomizefaile.php" />
         <option value="$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML2.inc.php" />
         <option value="$PROJECT_DIR$/system/libraries/jasper/setting.php" />
@@ -141,6 +145,11 @@
         <option value="$PROJECT_DIR$/system/libraries/jasper/jasper.php" />
         <option value="$PROJECT_DIR$/system/libraries/jasper/class/PHPJasperXML.inc.php" />
         <option value="$PROJECT_DIR$/application/controllers/cidade.php" />
+        <option value="$PROJECT_DIR$/application/controllers/chamado.php" />
+        <option value="$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php" />
+        <option value="$PROJECT_DIR$/application/views/report/report_ordem_servico.php" />
+        <option value="$PROJECT_DIR$/application/views/report/report_sumary_ordem_servico.php" />
+        <option value="$PROJECT_DIR$/application/controllers/ordem_servico.php" />
       </list>
     </option>
   </component>
@@ -156,6 +165,9 @@
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="754" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -212,7 +224,29 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="third_party" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HelpDesk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HelpDesk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="third_party" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mpdf" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -227,7 +261,12 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="servico&#9;null&#9;null&#10;menu&#9;null&#9;null&#10;empresa&#9;null&#9;null&#10;conta&#9;null&#9;null&#10;cidade&#9;null&#9;null&#10;report&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;header_pa&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_header_padrao.php&#10;dashb&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/templates/dashboard.php&#10;report_i&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;chama&#9;null&#9;null&#10;item&#9;null&#9;null&#10;orde&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="util&#9;null&#9;null&#10;chamado&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/controllers/chamado.php&#10;servico&#9;null&#9;null&#10;menu&#9;null&#9;null&#10;empresa&#9;null&#9;null&#10;conta&#9;null&#9;null&#10;cidade&#9;null&#9;null&#10;report&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;header_pa&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_header_padrao.php&#10;dashb&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/templates/dashboard.php&#10;report_i&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;chama&#9;null&#9;null&#10;item&#9;null&#9;null&#10;orde&#9;null&#9;null" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\HelpDesk\application\views\report" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -324,12 +363,12 @@
       <option name="presentableId" value="Default" />
       <updated>1491391903219</updated>
       <workItem from="1491391906586" duration="7365000" />
-      <workItem from="1491403878064" duration="3925000" />
+      <workItem from="1491403878064" duration="10945000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11290000" />
+    <option name="totallyTimeSpent" value="18310000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -432,12 +471,12 @@
         <state relative-caret-position="12960">
           <caret line="648" column="4" lean-forward="true" selection-start-line="648" selection-start-column="4" selection-end-line="648" selection-end-column="4" />
           <folding>
-            <marker date="1491403947832" expanded="true" signature="23918:25084" ph="SELECT hel_p... heltbcha" />
-            <marker date="1491403947832" expanded="true" signature="24367:24495" ph="SELECT COUNT... heltbios" />
-            <marker date="1491403947832" expanded="true" signature="24500:24587" ph="SELECT COUNT... heltbios" />
-            <marker date="1491403947832" expanded="true" signature="26582:26985" ph="..." />
-            <marker date="1491403947832" expanded="true" signature="26596:26945" ph="..." />
-            <marker date="1491403947832" expanded="true" signature="27319:28395" ph="SELECT hel_p... heltbios" />
+            <marker date="1491417606188" expanded="true" signature="23918:25084" ph="SELECT hel_p... heltbcha" />
+            <marker date="1491417606188" expanded="true" signature="24367:24495" ph="SELECT COUNT... heltbios" />
+            <marker date="1491417606188" expanded="true" signature="24500:24587" ph="SELECT COUNT... heltbios" />
+            <marker date="1491417606188" expanded="true" signature="26562:26965" ph="..." />
+            <marker date="1491417606188" expanded="true" signature="26576:26925" ph="..." />
+            <marker date="1491417606188" expanded="true" signature="27299:28375" ph="SELECT hel_p... heltbios" />
           </folding>
         </state>
       </provider>
@@ -454,6 +493,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-560">
           <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -461,20 +501,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1580">
-          <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
-          <folding>
-            <marker date="1491392919641" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
-            <marker date="1491392919641" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
-            <marker date="1491392919641" expanded="true" signature="16990:17238" ph="SELECT hel_s... heltbios" />
-            <marker date="1491392919641" expanded="true" signature="22183:22737" ph="SELECT hel_p... heltbios" />
-            <marker date="1491392919641" expanded="true" signature="22861:24099" ph="SELECT hel_p... heltbose" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -490,6 +517,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
           <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -517,6 +545,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="5" column="45" lean-forward="true" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -613,21 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="650" column="11" lean-forward="false" selection-start-line="650" selection-start-column="11" selection-end-line="650" selection-end-column="11" />
-          <folding>
-            <marker date="1491403947832" expanded="true" signature="23918:25084" ph="SELECT hel_p... heltbcha" />
-            <marker date="1491403947832" expanded="true" signature="24367:24495" ph="SELECT COUNT... heltbios" />
-            <marker date="1491403947832" expanded="true" signature="24500:24587" ph="SELECT COUNT... heltbios" />
-            <marker date="1491403947832" expanded="true" signature="26582:26985" ph="..." />
-            <marker date="1491403947832" expanded="true" signature="26596:26945" ph="..." />
-            <marker date="1491403947832" expanded="true" signature="27319:28395" ph="SELECT hel_p... heltbios" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/system/libraries/jasper/class/oldfile/PHPJasperXML-aftercustomizefaile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
@@ -660,10 +674,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="57" column="40" lean-forward="true" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+        <state relative-caret-position="111">
+          <caret line="237" column="8" lean-forward="false" selection-start-line="237" selection-start-column="8" selection-end-line="237" selection-end-column="8" />
+          <folding>
+            <marker date="1491416020078" expanded="true" signature="6495:6518" ph="SELECT * FRO... heltbcid" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/jasper/jasper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -676,10 +700,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system/libraries/jasper/jasper.php">
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+        <state relative-caret-position="240">
+          <caret line="57" column="40" lean-forward="true" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -697,12 +721,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/cidade.php">
+    <entry file="file://$PROJECT_DIR$/application/views/report/report_chamado.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="237" column="8" lean-forward="false" selection-start-line="237" selection-start-column="8" selection-end-line="237" selection-end-column="8" />
+        <state relative-caret-position="100">
+          <caret line="5" column="71" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="5" selection-end-column="71" />
           <folding>
-            <marker date="1491414370275" expanded="true" signature="6500:6523" ph="SELECT * FRO... heltbcid" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/Util.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-280">
+          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="626" column="117" lean-forward="false" selection-start-line="626" selection-start-column="72" selection-end-line="626" selection-end-column="117" />
+          <folding>
+            <marker date="1491417606188" expanded="true" signature="23918:25084" ph="SELECT hel_p... heltbcha" />
+            <marker date="1491417606188" expanded="true" signature="24367:24495" ph="SELECT COUNT... heltbios" />
+            <marker date="1491417606188" expanded="true" signature="24500:24587" ph="SELECT COUNT... heltbios" />
+            <marker date="1491417606188" expanded="true" signature="26562:26965" ph="..." />
+            <marker date="1491417606188" expanded="true" signature="26576:26925" ph="..." />
+            <marker date="1491417606188" expanded="true" signature="27299:28375" ph="SELECT hel_p... heltbios" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/report/report_ordem_servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="45" column="44" lean-forward="false" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#6;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/report/report_sumary_ordem_servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/third_party/mpdf/mpdf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="16047" column="40" lean-forward="true" selection-start-line="16047" selection-start-column="40" selection-end-line="16047" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="687" column="27" lean-forward="false" selection-start-line="687" selection-start-column="27" selection-end-line="687" selection-end-column="27" />
+          <folding>
+            <marker date="1491422667333" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
+            <marker date="1491422667333" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
+            <marker date="1491422667333" expanded="true" signature="16990:17238" ph="SELECT hel_s... heltbios" />
+            <marker date="1491422667333" expanded="true" signature="22992:23757" ph="SELECT hel_p... heltbose" />
+            <marker date="1491422667333" expanded="true" signature="24975:25378" ph="..." />
+            <marker date="1491422667333" expanded="true" signature="24989:25338" ph="..." />
+            <marker date="1491422667333" expanded="true" signature="25532:26415" ph="SELECT hel_p... heltbios" />
+            <marker date="1491422667333" expanded="true" signature="25532:26416" ph="SELECT hel_p... heltbios" />
           </folding>
         </state>
       </provider>

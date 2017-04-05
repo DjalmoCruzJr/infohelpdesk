@@ -546,9 +546,7 @@ class Ordem_Servico extends CI_Controller {
 		}
 	}
 	
-	private function gerarRelatorio(){
-		global $consulta;
-	
+	private function consultarBanco($consulta){
 		$result = $this->db->query($consulta);
 		return $result->result();
 	}
@@ -556,6 +554,25 @@ class Ordem_Servico extends CI_Controller {
 	public function relatorio($filtro_ordem_servico, $filtro_tecnico, $filtro_empresa, $dataIni, $dataFim){
 		$clasuraWhere = "";
 		$whereAnd     = " WHERE ";
+        $dados['BLC_RELATORIO'] = array();
+        $dados['BLC_RELATORIO_ITENS_ORDEM_SERVICO'] = array();
+
+        $dados['BLC_RELATORIO_HEADER'][] = array(
+            "report_caminho_imagem" => base_url("assets/images/logo.png"),
+            "report_titulo" => 'Relatório de Ordem serviço',
+            "report_modulo" => 'HelpDesk',
+            "report_codigo" => 'HELPR602',
+            "report_pagina" => 'Página {PAGENO} de {nbpg}',
+        );
+
+        $header = $this->parser->parse('report/report_header_padrao', $dados);
+        $footer = $_SERVER['HTTP_HOST'] . '|Página {PAGENO} de {nbpg}|' . date('d/m/Y H:i:s');
+
+        $this->load->library('m_pdf');
+        $pdf = $this->m_pdf->load();
+        $pdf->setAutoTopMargin = 'stretch';
+        $pdf->SetHTMLHeader($header);
+        $pdf->SetFooter($footer);
 		
 		if (!empty($filtro_ordem_servico)){
 			$clasuraWhere = $clasuraWhere.$whereAnd." hel_pk_seq_ose IN (".$filtro_ordem_servico.") ";
@@ -577,55 +594,98 @@ class Ordem_Servico extends CI_Controller {
 			$whereAnd = " AND ";
 		}
 
-		$select_item_ordem_servico = 'SELECT hel_pk_seq_ios,
-										     concat(hel_desc_sis, " ( ",hel_codigo_sis, " )") as hel_desc_sis,
-										     hel_desc_ser,
-										     hel_seqcha_ios,
-										     hel_seqioscha_ios,
-										     hel_complemento_ios
-									  FROM heltbios
-									  LEFT JOIN heltbose ON hel_pk_seq_ose = hel_seqose_ios
-									  LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
-									  LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
-									  WHERE hel_tipo_ios   = '.ORDEM_SERVICO.'
-										AND hel_seqose_ios = $P{hel_seqose_ios} ';
-
-		$consulta_sub = array (
-			"hel_seqose_ios" => $select_item_ordem_servico
-		);
-
-
 		global $consulta;
-		$consulta = " SELECT hel_pk_seq_emp,
+		$consulta = " SELECT hel_pk_seq_ose,
 				             hel_nomefantasia_emp,
 						     heltbcon.hel_nome_con as contato_empresa,
 						     tec.hel_nome_con as tecnico_nome,
 						     TIMEDIFF(hel_horariofinal_ose, hel_horarioinicial_ose) as horas_analista,
 						     (hel_kmfinal_ose - hel_kminicial_ose) as distancia,
-						     heltbose.hel_observacao_ose,
-						     hel_pk_seq_ose,
+						     hel_observacao_ose,
 						     hel_datainicial_ose,
 						     hel_datafinal_ose,
 						     hel_horarioinicial_ose,
-						     hel_horariofinal_ose,
-							 'Cliente: ' as lb_cliente,
-				             'Clontato: ' as lb_contato,
-						     'Consultor: ' as lb_consultor,
-						     'Autorizador por: ' as lb_autorizado,
-						     'Data Inicial: ' as lb_dataini,
-						     'Hora Inicial: ' as lb_horaini,
-						     'Data Final: ' as lb_datafim,
-						     'Hora Final: ' as lb_horafim,
-						     'Distância Percorrida: ' as lb_distancia,
-						     'Hora analista: ' as lb_horasana
+						     hel_horariofinal_ose
 					  FROM heltbose
 					  LEFT JOIN heltbexc     ON hel_seqexc_ose    = hel_pk_seq_exc
 					  LEFT JOIN heltbemp     ON hel_seqemp_exc    = hel_pk_seq_emp
 					  LEFT JOIN heltbcon     ON hel_seqcon_exc    = hel_pk_seq_con
 					  LEFT JOIN heltbcon tec ON hel_seqcontec_ose = tec.hel_pk_seq_con ".$clasuraWhere;
 
-		if ($this->gerarRelatorio()) {
-			$this->jasper->gerar_relatorio('assets/relatorios/relatorio_ordem_servico_novo.jrxml', $consulta, NULL, $consulta_sub);
+        $dados_relatorio = $this->consultarBanco($consulta);
+
+
+		if ($dados_relatorio) {
+
+            foreach ($dados_relatorio as $registro) {
+                $dados['BLC_RELATORIO'][] = array(
+                    "hel_pk_seq_ose" => $registro->hel_pk_seq_ose,
+                    "hel_nomefantasia_ose" => $registro->hel_nomefantasia_emp,
+                    "hel_contatoempresa_ose" => $registro->contato_empresa,
+                    "hel_tecniconome_ose" => $registro->tecnico_nome,
+                    "hel_horasanalista_ose" => $registro->horas_analista,
+                    "hel_distancia_ose" => $registro->distancia,
+                    "hel_datainicial_ose" => $this->util->inverteData($registro->hel_datainicial_ose),
+                    "hel_datafinal_ose" => $this->util->inverteData($registro->hel_datafinal_ose),
+                    "hel_horarioinicial_ose" => $registro->hel_horarioinicial_ose,
+                    "hel_horariofinal_ose" => $registro->hel_horariofinal_ose,
+                    "hel_observacao_ose" => $registro->hel_observacao_ose,
+                );
+            }
+
+            for ($i = 0; $i < count($dados['BLC_RELATORIO']); $i++) {
+                $html = ' <html>
+							<head>
+								<link rel="stylesheet" type="text/css" href="' . base_url("assets/stylesheets/bootstrap.min.css") . '">
+								<link rel="stylesheet" type="text/css" href="' . base_url("assets/stylesheets/bootstrap-grid.min.css") . '">
+								<link rel="stylesheet" type="text/css" href="' . base_url("assets/stylesheets/estilo.css") . '">
+							</head>
+							<body class="layout-relatorio"> ';
+
+                $html .= $this->parser->parse('report/report_ordem_servico', $dados['BLC_RELATORIO'][$i]);
+
+                $select_item_chamado = ' SELECT hel_pk_seq_ios,
+                                                concat(hel_desc_sis, " ( ",hel_codigo_sis, " )") as hel_desc_sis,
+                                                hel_desc_ser,
+                                                hel_seqcha_ios,
+                                                hel_seqioscha_ios,
+                                                hel_complemento_ios
+                                         FROM heltbios
+                                         LEFT JOIN heltbose ON hel_pk_seq_ose = hel_seqose_ios
+                                         LEFT JOIN heltbsis ON hel_pk_seq_sis = hel_seqsis_ios
+                                         LEFT JOIN heltbser ON hel_pk_seq_ser = hel_seqser_ios
+                                         WHERE hel_tipo_ios   = '.ORDEM_SERVICO.'
+                                           AND hel_seqose_ios = '.$dados['BLC_RELATORIO'][$i]['hel_pk_seq_ose'] ;
+
+                    $resultado = $this->consultarBanco($select_item_chamado);
+
+                    if ($resultado) {
+                        $dados['BLC_RELATORIO_ITENS_ORDEM_SERVICO'] = array();
+                        foreach ($resultado as $registro) {
+                            $dados['BLC_RELATORIO_ITENS_ORDEM_SERVICO'][] = array(
+                                "hel_pk_seq_ios" => $registro->hel_pk_seq_ios,
+                                "hel_desc_sis" => $registro->hel_desc_sis,
+                                "hel_desc_ser" => $registro->hel_desc_ser,
+                                "hel_seqcha_ios" => $registro->hel_seqcha_ios,
+                                "hel_seqioscha_ios" => $registro->hel_seqioscha_ios,
+                                "hel_complemento_ios" => $registro->hel_complemento_ios
+                            );
+                        }
+                    }
+
+                $html .= $this->parser->parse('report/report_item_ordem_servico', $dados);
+                $html .= $this->parser->parse('report/report_sumary_ordem_servico', $dados['BLC_RELATORIO'][$i]);
+                $pdf->WriteHTML($html, true);
+                if (isset($dados['BLC_RELATORIO'][$i +1]['hel_pk_seq_ose'])){
+                    $pdf->AddPage();
+                }
+                $html .= '        </body>
+                            </head>
+						 </html> ';
+                $html = '';
+            }
+
+            $pdf->Output();
 		} else {
 			$mensagem = "- Nenhuma ordem de serviço foi encontrada.\n";
 			$this->session->set_flashdata('erro', nl2br($mensagem));
