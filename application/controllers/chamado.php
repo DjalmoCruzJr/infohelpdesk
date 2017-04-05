@@ -583,7 +583,7 @@ class Chamado extends CI_Controller {
                     "hel_nomefantasia_emp" => $registro->hel_nomefantasia_emp,
                     "hel_horarioabertura_cha" => $this->util->formatarDateTime($registro->hel_horarioabertura_cha),
                     "hel_solicitantenome_cha" => $registro->solicitante_nome,
-                    "hel_status_cha" => $registro->hel_status_cha = 0 ? 'Aberto' : 'Encerrado',
+                    "hel_status_cha" => $registro->hel_status_cha === 0 ? 'Aberto' : 'Encerrado',
                     "hel_dias_cha" => $registro->hel_dias_cha,
                     "hel_percentual_cha" => number_format($registro->hel_percentual_cha,2),
                     "hel_abertopor_cha" => $registro->de_nome,

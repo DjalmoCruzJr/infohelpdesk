@@ -4,11 +4,6 @@
     <list default="true" id="b54bf300-a663-45ca-ac4e-c8f39ff9e0c3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/chamado.php" afterPath="$PROJECT_DIR$/application/controllers/chamado.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/ordem_servico.php" afterPath="$PROJECT_DIR$/application/controllers/ordem_servico.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/chamado_consulta.php" afterPath="$PROJECT_DIR$/application/views/chamado_consulta.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/report/report_item_chamado.php" afterPath="$PROJECT_DIR$/application/views/report/report_item_chamado.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php" afterPath="$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/report/report_sintetico_chamado.php" afterPath="$PROJECT_DIR$/application/views/report/report_sintetico_chamado.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ordem_servico.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ordem_servico.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="568" column="58" lean-forward="true" selection-start-line="568" selection-start-column="58" selection-end-line="568" selection-end-column="58" />
+            <state relative-caret-position="205">
+              <caret line="566" column="0" lean-forward="true" selection-start-line="566" selection-start-column="0" selection-end-line="566" selection-end-column="0" />
               <folding>
                 <marker date="1491423488048" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
                 <marker date="1491423488048" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
@@ -94,18 +89,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chamado.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chamado.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="634" column="20" lean-forward="false" selection-start-line="634" selection-start-column="20" selection-end-line="634" selection-end-column="20" />
+            <state relative-caret-position="300">
+              <caret line="585" column="69" lean-forward="false" selection-start-line="585" selection-start-column="69" selection-end-line="585" selection-end-column="69" />
               <folding>
-                <marker date="1491423110983" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
-                <marker date="1491423110983" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
-                <marker date="1491423110983" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
-                <marker date="1491423110983" expanded="true" signature="26545:26948" ph="..." />
-                <marker date="1491423110983" expanded="true" signature="26559:26908" ph="..." />
-                <marker date="1491423110983" expanded="true" signature="27235:28265" ph="SELECT hel_p... heltbios" />
+                <marker date="1491426087425" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
+                <marker date="1491426087425" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
+                <marker date="1491426087425" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
+                <marker date="1491426087425" expanded="true" signature="26547:26950" ph="..." />
+                <marker date="1491426087425" expanded="true" signature="26561:26910" ph="..." />
+                <marker date="1491426087425" expanded="true" signature="27237:28267" ph="SELECT hel_p... heltbios" />
               </folding>
             </state>
           </provider>
@@ -189,12 +184,12 @@
         <option value="$PROJECT_DIR$/application/controllers/cidade.php" />
         <option value="$PROJECT_DIR$/application/views/report/report_ordem_servico.php" />
         <option value="$PROJECT_DIR$/application/views/report/report_sumary_ordem_servico.php" />
-        <option value="$PROJECT_DIR$/application/controllers/chamado.php" />
         <option value="$PROJECT_DIR$/application/views/chamado_consulta.php" />
         <option value="$PROJECT_DIR$/application/views/report/report_item_chamado.php" />
         <option value="$PROJECT_DIR$/application/views/report/report_sintetico_chamado.php" />
         <option value="$PROJECT_DIR$/application/views/report/report_item_ordem_servico.php" />
         <option value="$PROJECT_DIR$/application/controllers/ordem_servico.php" />
+        <option value="$PROJECT_DIR$/application/controllers/chamado.php" />
       </list>
     </option>
   </component>
@@ -241,60 +236,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="third_party" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelpDesk" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="third_party" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mpdf" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -306,7 +247,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="report_ch&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_sintetico_chamado.php&#10;item&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;chamado_consult&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/chamado_consulta.php&#10;chamad&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/controllers/chamado.php&#10;util&#9;null&#9;null&#10;chamado&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/controllers/chamado.php&#10;servico&#9;null&#9;null&#10;menu&#9;null&#9;null&#10;empresa&#9;null&#9;null&#10;conta&#9;null&#9;null&#10;cidade&#9;null&#9;null&#10;report&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;header_pa&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_header_padrao.php&#10;dashb&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/templates/dashboard.php&#10;report_i&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;chama&#9;null&#9;null&#10;orde&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="CHAMADO&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/controllers/chamado.php&#10;report_ch&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_sintetico_chamado.php&#10;item&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;chamado_consult&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/chamado_consulta.php&#10;chamad&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/controllers/chamado.php&#10;util&#9;null&#9;null&#10;chamado&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/controllers/chamado.php&#10;servico&#9;null&#9;null&#10;menu&#9;null&#9;null&#10;empresa&#9;null&#9;null&#10;conta&#9;null&#9;null&#10;cidade&#9;null&#9;null&#10;report&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;header_pa&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_header_padrao.php&#10;dashb&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/templates/dashboard.php&#10;report_i&#9;FILE&#9;file://C:/wamp/www/HelpDesk/application/views/report/report_item_chamado.php&#10;chama&#9;null&#9;null&#10;orde&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -408,18 +349,17 @@
       <option name="presentableId" value="Default" />
       <updated>1491391903219</updated>
       <workItem from="1491391906586" duration="7365000" />
-      <workItem from="1491403878064" duration="11871000" />
+      <workItem from="1491403878064" duration="12536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19236000" />
+    <option name="totallyTimeSpent" value="19901000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -516,12 +456,12 @@
         <state relative-caret-position="12960">
           <caret line="648" column="4" lean-forward="true" selection-start-line="648" selection-start-column="4" selection-end-line="648" selection-end-column="4" />
           <folding>
-            <marker date="1491423110983" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
-            <marker date="1491423110983" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
-            <marker date="1491423110983" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
-            <marker date="1491423110983" expanded="true" signature="26545:26948" ph="..." />
-            <marker date="1491423110983" expanded="true" signature="26559:26908" ph="..." />
-            <marker date="1491423110983" expanded="true" signature="27235:28265" ph="SELECT hel_p... heltbios" />
+            <marker date="1491426087425" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
+            <marker date="1491426087425" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
+            <marker date="1491426087425" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
+            <marker date="1491426087425" expanded="true" signature="26547:26950" ph="..." />
+            <marker date="1491426087425" expanded="true" signature="26561:26910" ph="..." />
+            <marker date="1491426087425" expanded="true" signature="27237:28267" ph="SELECT hel_p... heltbios" />
           </folding>
         </state>
       </provider>
@@ -790,21 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="634" column="20" lean-forward="false" selection-start-line="634" selection-start-column="20" selection-end-line="634" selection-end-column="20" />
-          <folding>
-            <marker date="1491423110983" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
-            <marker date="1491423110983" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
-            <marker date="1491423110983" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
-            <marker date="1491423110983" expanded="true" signature="26545:26948" ph="..." />
-            <marker date="1491423110983" expanded="true" signature="26559:26908" ph="..." />
-            <marker date="1491423110983" expanded="true" signature="27235:28265" ph="SELECT hel_p... heltbios" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/chamado_consulta.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -848,8 +773,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/ordem_servico.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="568" column="58" lean-forward="true" selection-start-line="568" selection-start-column="58" selection-end-line="568" selection-end-column="58" />
+        <state relative-caret-position="205">
+          <caret line="566" column="0" lean-forward="true" selection-start-line="566" selection-start-column="0" selection-end-line="566" selection-end-column="0" />
           <folding>
             <marker date="1491423488048" expanded="true" signature="16760:17258" ph="UPDATE heltb... " />
             <marker date="1491423488048" expanded="true" signature="16958:17256" ph="SELECT hel_s... hel_seqioscha_ios" />
@@ -859,6 +784,21 @@
             <marker date="1491423488048" expanded="true" signature="24979:25328" ph="..." />
             <marker date="1491423488048" expanded="true" signature="25522:26405" ph="SELECT hel_p... heltbios" />
             <marker date="1491423488048" expanded="true" signature="25522:26406" ph="SELECT hel_p... heltbios" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/chamado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="585" column="69" lean-forward="false" selection-start-line="585" selection-start-column="69" selection-end-line="585" selection-end-column="69" />
+          <folding>
+            <marker date="1491426087425" expanded="true" signature="23901:25067" ph="SELECT hel_p... heltbcha" />
+            <marker date="1491426087425" expanded="true" signature="24350:24478" ph="SELECT COUNT... heltbios" />
+            <marker date="1491426087425" expanded="true" signature="24483:24570" ph="SELECT COUNT... heltbios" />
+            <marker date="1491426087425" expanded="true" signature="26547:26950" ph="..." />
+            <marker date="1491426087425" expanded="true" signature="26561:26910" ph="..." />
+            <marker date="1491426087425" expanded="true" signature="27237:28267" ph="SELECT hel_p... heltbios" />
           </folding>
         </state>
       </provider>
