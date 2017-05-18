@@ -643,10 +643,8 @@ class Chamado extends CI_Controller {
                                 "hel_seqioscha_ios" => $registro->hel_seqioscha_ios,
                             );
                         }
+                        $html .= $this->parser->parse('report/report_item_chamado', $dados);                        
                     }
-
-                $html .= $this->parser->parse('report/report_item_chamado', $dados);
-
             }
 
             $footer = $_SERVER['HTTP_HOST'] . '|Página {PAGENO} de {nbpg}|' . date('d/m/Y H:i:s');
